@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WANG WEIZE — Belajar Bahasa Hokkian untuk Jane Beatrix</title>
+  <meta name="description" content="Website belajar Hokkian sederhana untuk Jane Beatrix — oleh Wang Weize. Berisi frasa dasar, panggilan sayang, latihan interaktif, dan kamus mini Hokkien–Mandarin–Indonesia.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0f172a; --card:#111827; --muted:#94a3b8; --text:#e5e7eb;
+      --brand:#22c55e; --accent:#f59e0b; --shadow:0 10px 25px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box} html,body{height:100%;margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
+    header{position:sticky;top:0;background:rgba(15,23,42,.85);backdrop-filter:blur(8px);border-bottom:1px solid rgba(148,163,184,.15);}
+    .container{max-width:1100px;margin:auto;padding:0 16px}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:10px}
+    nav a:hover{background:rgba(148,163,184,.15)}
+    .brand{font-weight:800;display:flex;align-items:center;gap:8px}
+    .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--accent))}
+    .hero{padding:60px 0;text-align:center}
+    h1{font-size:clamp(28px,3.4vw,42px);line-height:1.2;margin:12px 0}
+    .lead{color:var(--muted)}
+    .btn{background:linear-gradient(135deg,var(--brand),#16a34a);color:#000;border:none;padding:12px 18px;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn.secondary{background:#1e293b;color:var(--text)}
+    section{padding:40px 0}
+    .card{background:var(--card);border:1px solid rgba(148,163,184,.15);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;text-align:left;border-bottom:1px dashed rgba(148,163,184,.2)}
+    th{color:#cbd5e1;font-size:14px}
+    footer{text-align:center;padding:20px 0;color:var(--muted);border-top:1px solid rgba(148,163,184,.15)}
+    .play{background:#1e293b;border:1px solid rgba(148,163,184,.25);color:var(--text);padding:6px 10px;border-radius:8px;cursor:pointer}
+    .pill{display:inline-block;background:rgba(34,197,94,.15);color:#bbf7d0;padding:6px 10px;border-radius:999px;font-size:12px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <div class="brand"><span class="dot"></span>WANG WEIZE</div>
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#frasa">Frasa</a>
+      <a href="#sayang">Sayang</a>
+      <a href="#latihan">Latihan</a>
+      <a href="#kamus">Kamus</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section id="beranda" class="hero">
+    <span class="pill">BELAJAR BAHASA HOKKIAN UNTUK JANE BEATRIX</span>
+    <h1>Halo, Jane 💚<br>Yuk belajar Hokkian dengan cara cepat & fun!</h1>
+    <p class="lead">Website mini karya <strong>Wang Weize</strong> — berisi frasa harian, panggilan sayang, kuis, dan kamus mini Hokkien–Mandarin–Indonesia.</p>
+    <button class="btn" onclick="document.querySelector('#frasa').scrollIntoView({behavior:'smooth'})">Mulai Belajar 🔰</button>
+  </section>
+
+  <section id="frasa">
+    <div class="card">
+      <h3>Frasa Dasar</h3>
+      <table id="frasaTable">
+        <thead><tr><th>Hokkien</th><th>Mandarin</th><th>Indonesia</th><th>Dengarkan</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sayang">
+    <div class="card">
+      <h3>Panggilan Sayang 💞</h3>
+      <table id="sayangTable">
+        <thead><tr><th>Hokkien</th><th>Mandarin</th><th>Indonesia</th><th>Dengarkan</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="latihan">
+    <div class="card">
+      <h3>Flashcard ⚡</h3>
+      <div id="flashcard" style="padding:40px;text-align:center;border-radius:10px;background:#1e293b;">Klik Acak untuk mulai</div>
+      <div style="margin-top:10px;text-align:center;">
+        <button class="btn" id="btnShuffle">Acak 🔄</button>
+        <button class="btn secondary" id="btnReveal">Tampilkan Arti 👀</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="kamus">
+    <div class="card">
+      <h3>Kamus Mini 🔎</h3>
+      <input id="search" placeholder="Cari kata..." style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:none;background:#1e293b;color:#fff">
+      <table id="kamusTable">
+        <thead><tr><th>Hokkien</th><th>Mandarin</th><th>Indonesia</th><th>Dengarkan</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>💚 Dibuat oleh <strong>Wang Weize</strong> untuk <strong>Jane Beatrix</strong> © <span id="year"></span></footer>
+
+<script>
+const dataFrasa=[
+  {hok:'Lí hó bô?',zh:'你好吗？(Nǐ hǎo ma?)',id:'Apa kabar?'},
+  {hok:'Góa siūnn lí',zh:'我想你 (Wǒ xiǎng nǐ)',id:'Aku rindu kamu'},
+  {hok:'To-siā',zh:'谢谢 (Xièxie)',id:'Terima kasih'},
+  {hok:'Bôe kiaⁿ!',zh:'不用怕 (Búyòng pà)',id:'Jangan takut!'},
+  {hok:'Chia̍h pá bē?',zh:'你吃饱了吗？(Nǐ chī bǎo le ma?)',id:'Sudah makan?'}
+];
+const dataSayang=[
+  {hok:'Bó-bí',zh:'宝贝 (Bǎobèi)',id:'Sayang'},
+  {hok:'Sîn-niû',zh:'仙女 (Xiānnǚ)',id:'Bidadari'},
+  {hok:'Ai-á',zh:'爱人 (Àirén)',id:'Kekasih'}
+];
+const dataKamus=[
+  {hok:'Góa',zh:'我 (Wǒ)',id:'Saya'},
+  {hok:'Lí',zh:'你 (Nǐ)',id:'Kamu'},
+  {hok:'Bô',zh:'没有 (Méiyǒu)',id:'Tidak ada'},
+  {hok:'Khì',zh:'去 (Qù)',id:'Pergi'},
+  {hok:'Lâi',zh:'来 (Lái)',id:'Datang'}
+];
+
+function isiTabel(id,data){
+ const tbody=document.querySelector(`#${id} tbody`);
+ tbody.innerHTML='';
+ data.forEach(d=>{
+   const tr=document.createElement('tr');
+   tr.innerHTML=`<td>${d.hok}</td><td>${d.zh}</td><td>${d.id}</td>
+   <td><button class='play' onclick=\"suara('${d.id}')\">▶</button></td>`;
+   tbody.appendChild(tr);
+ });
+}
+function suara(t){ if('speechSynthesis' in window){ const u=new SpeechSynthesisUtterance(t);u.lang='id-ID';speechSynthesis.speak(u);} }
+isiTabel('frasaTable',dataFrasa);
+isiTabel('sayangTable',dataSayang);
+isiTabel('kamusTable',dataKamus);
+
+let flashIndex=-1,showBack=false;
+const flash=document.getElementById('flashcard');
+function acak(){flashIndex=Math.floor(Math.random()*dataFrasa.length);showBack=false;tampil();}
+function tampil(){const d=dataFrasa[flashIndex];flash.textContent=showBack?`${d.id} — ${d.zh}`:d.hok;}
+document.getElementById('btnShuffle').onclick=acak;
+document.getElementById('btnReveal').onclick=()=>{showBack=true;tampil();};
+
+document.getElementById('search').oninput=(e)=>{
+  const f=e.target.value.toLowerCase();
+  const hasil=dataKamus.filter(x=>x.hok.toLowerCase().includes(f)||x.id.toLowerCase().includes(f));
+  isiTabel('kamusTable',hasil);
+};
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
