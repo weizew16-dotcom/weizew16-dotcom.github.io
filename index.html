@@ -1,1234 +1,1037 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>汉语之声 · Wang Weize · Belajar Mandarin via Lagu</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>汉语之声 · Wang Weize · Sultan Edition v2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@300;400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#8B0000;--red-mid:#A80000;--red-light:#C41E1E;
+  --gold:#FFD700;--gold-dim:#CCA800;--gold-pale:#FFF3A0;
+  --ink:#1A0A0A;--parchment:#FDF6E3;--parchment2:#F5EDD0;
+  --shadow-red:rgba(139,0,0,0.35);--shadow-gold:rgba(255,215,0,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--ink);color:var(--parchment);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+body::after{content:'';position:fixed;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,0,0,.15) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.content-wrap{position:relative;z-index:1;}
+.font-cinzel{font-family:'Cinzel',serif;}
+.font-cinzel-deco{font-family:'Cinzel Decorative',serif;}
+.font-noto{font-family:'Noto Serif SC',serif;}
+.text-gold-grad{background:linear-gradient(135deg,#FFD700 0%,#FFF3A0 40%,#CCA800 70%,#FFD700 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gold-line{height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-dim),var(--gold),transparent);}
+.corner-deco{position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid;}
+.corner-deco.tl{top:-2px;left:-2px;border-width:2px 0 0 2px;}
+.corner-deco.tr{top:-2px;right:-2px;border-width:2px 2px 0 0;}
+.corner-deco.bl{bottom:-2px;left:-2px;border-width:0 0 2px 2px;}
+.corner-deco.br{bottom:-2px;right:-2px;border-width:0 2px 2px 0;}
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+/* HUD */
+#game-hud{position:fixed;bottom:24px;right:20px;z-index:500;
+  background:linear-gradient(135deg,rgba(13,3,3,.97),rgba(50,0,0,.95));
+  border:1px solid rgba(255,215,0,.5);border-radius:16px;padding:16px 20px;
+  box-shadow:0 0 30px rgba(139,0,0,.5),0 8px 32px rgba(0,0,0,.7);
+  backdrop-filter:blur(12px);min-width:210px;}
+.hud-title{font-family:'Cinzel Decorative',serif;font-size:.58rem;color:rgba(255,215,0,.5);
+  letter-spacing:.1em;text-align:center;margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid rgba(255,215,0,.15);}
+.hud-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.hud-row:last-child{margin-bottom:0;}
+.hud-icon{font-size:1.1rem;flex-shrink:0;}
+.hud-label{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.15em;color:var(--gold-dim);text-transform:uppercase;}
+.hud-value{font-family:'Noto Serif SC',serif;font-size:1rem;font-weight:700;color:var(--gold);line-height:1.2;}
+.hud-xp-bar{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-top:10px;}
+.hud-xp-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px;
+  transition:width .9s cubic-bezier(.4,0,.2,1);width:0%;}
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@300;400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:60px 20px 80px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 20% 80%,rgba(139,0,0,.3) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 20%,rgba(139,0,0,.25) 0%,transparent 55%),
+    linear-gradient(180deg,#0D0505 0%,#1A0505 50%,#0D0505 100%);}
+#hero .bg-char{position:absolute;font-family:'Noto Serif SC',serif;color:rgba(139,0,0,.08);
+  user-select:none;pointer-events:none;animation:floatChar 20s infinite ease-in-out;}
+@keyframes floatChar{0%,100%{transform:translateY(0) rotate(0deg);opacity:.06;}50%{transform:translateY(-30px) rotate(5deg);opacity:.12;}}
+.hero-seal{width:110px;height:110px;border-radius:50%;background:var(--red);border:3px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 28px;
+  box-shadow:0 0 40px var(--shadow-red),0 0 80px rgba(139,0,0,.2),inset 0 0 20px rgba(0,0,0,.3);
+  animation:sealPulse 3s ease-in-out infinite;}
+@keyframes sealPulse{0%,100%{box-shadow:0 0 40px var(--shadow-red),0 0 80px rgba(139,0,0,.2);}
+  50%{box-shadow:0 0 60px rgba(139,0,0,.6),0 0 120px rgba(255,215,0,.15);}}
+.hero-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.6rem,5vw,3.2rem);font-weight:900;letter-spacing:.04em;margin-bottom:10px;}
+.hero-hanzi{font-family:'Noto Serif SC',serif;font-size:clamp(1.2rem,4vw,2.2rem);font-weight:300;letter-spacing:.5em;color:rgba(255,215,0,.7);margin-bottom:18px;}
+.hero-tagline{font-size:clamp(.85rem,2vw,1.05rem);font-style:italic;color:rgba(253,246,227,.65);letter-spacing:.08em;max-width:480px;margin:0 auto 36px;}
+.nav-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 26px;
+  background:rgba(139,0,0,.3);border:1px solid rgba(255,215,0,.4);border-radius:50px;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--gold);
+  transition:all .3s;text-transform:uppercase;}
+.nav-pill:hover{background:rgba(139,0,0,.6);border-color:var(--gold);box-shadow:0 0 20px var(--shadow-gold);transform:translateY(-2px);}
 
-  <style>
-    /* ================================================
-       CSS VARIABLES & BASE
-    ================================================ */
-    :root {
-      --red:        #8B0000;
-      --red-mid:    #A80000;
-      --red-light:  #C41E1E;
-      --gold:       #FFD700;
-      --gold-dim:   #CCA800;
-      --gold-pale:  #FFF3A0;
-      --ink:        #1A0A0A;
-      --parchment:  #FDF6E3;
-      --parchment2: #F5EDD0;
-      --smoke:      #F9F3E8;
-      --shadow-red: rgba(139,0,0,0.35);
-      --shadow-gold:rgba(255,215,0,0.4);
-    }
+/* SECTIONS */
+.section-label{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;}
+.section-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.4rem,4vw,2.4rem);font-weight:700;margin-bottom:8px;}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+/* SILSILAH */
+#silsilah{padding:80px 20px;background:linear-gradient(180deg,#0D0505 0%,#120808 100%);}
+.gen-tree{display:flex;flex-direction:column;align-items:center;max-width:800px;margin:0 auto;}
+.gen-row{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:10px 0;}
+.gen-connector-v{width:2px;height:36px;background:linear-gradient(180deg,var(--gold),var(--red));margin:0 auto;position:relative;}
+.gen-connector-v::after{content:'◆';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--gold);font-size:8px;}
+.gen-connector-h{flex:1;height:2px;max-width:80px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);}
+.person-card{background:linear-gradient(135deg,rgba(139,0,0,.18) 0%,rgba(26,10,10,.9) 100%);
+  border:1px solid rgba(255,215,0,.3);border-radius:12px;padding:16px 20px;text-align:center;
+  min-width:130px;max-width:160px;position:relative;transition:all .3s;}
+.person-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(139,0,0,.3),0 0 20px var(--shadow-gold);}
+.person-card.highlight{background:linear-gradient(135deg,rgba(139,0,0,.5) 0%,rgba(60,0,0,.95) 100%);
+  border-color:var(--gold);box-shadow:0 0 30px var(--shadow-red),0 0 60px rgba(255,215,0,.1);min-width:180px;max-width:220px;}
+.person-gen-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:6px;}
+.person-name-cn{font-family:'Noto Serif SC',serif;font-size:1.4rem;font-weight:700;color:var(--gold);margin-bottom:2px;}
+.person-name-id{font-size:.72rem;color:rgba(253,246,227,.75);margin-bottom:4px;}
+.person-origin{display:inline-block;font-size:.6rem;letter-spacing:.1em;padding:2px 8px;
+  background:rgba(139,0,0,.4);border:1px solid rgba(255,215,0,.25);border-radius:20px;color:var(--gold-pale);}
+.person-role{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.15em;color:rgba(255,215,0,.5);margin-top:5px;}
 
-    html { scroll-behavior: smooth; }
+/* SONG SECTION */
+#lagu{padding:80px 20px;background:linear-gradient(180deg,#120808 0%,#0A0303 100%);}
+.song-tabs-scroll{overflow-x:auto;padding-bottom:10px;margin-bottom:28px;
+  scrollbar-width:thin;scrollbar-color:var(--red) transparent;}
+.song-tabs-scroll::-webkit-scrollbar{height:4px;}
+.song-tabs-scroll::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+.song-tabs{display:flex;gap:10px;width:max-content;margin:0 auto;}
+.song-tab{padding:12px 18px;border-radius:10px;cursor:pointer;transition:all .3s;
+  background:rgba(139,0,0,.12);border:1px solid rgba(255,215,0,.2);text-align:center;min-width:140px;flex-shrink:0;}
+.song-tab:hover{border-color:rgba(255,215,0,.5);background:rgba(139,0,0,.3);}
+.song-tab.active{background:linear-gradient(135deg,rgba(139,0,0,.6),rgba(80,0,0,.9));
+  border-color:var(--gold);box-shadow:0 0 20px var(--shadow-red),0 0 8px var(--shadow-gold);}
+.song-tab-hanzi{font-family:'Noto Serif SC',serif;font-size:1.1rem;font-weight:700;color:var(--gold);display:block;}
+.song-tab-pinyin{font-size:.62rem;color:rgba(253,246,227,.55);font-style:italic;display:block;margin-top:2px;}
+.song-tab-id{font-family:'Cinzel',serif;font-size:.54rem;color:rgba(255,215,0,.4);display:block;margin-top:3px;}
 
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: var(--ink);
-      color: var(--parchment);
-      overflow-x: hidden;
-      position: relative;
-    }
+/* VIDEO */
+.video-container{max-width:720px;margin:0 auto 32px;}
+.video-frame-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:14px;overflow:hidden;
+  border:2px solid rgba(255,215,0,.3);box-shadow:0 0 60px rgba(139,0,0,.4),0 20px 60px rgba(0,0,0,.6);}
+.video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;background:radial-gradient(ellipse at center,#1a0505 0%,#0d0303 100%);gap:16px;}
+.video-placeholder:hover .play-icon{transform:scale(1.15);}
+.play-icon{width:72px;height:72px;border-radius:50%;background:var(--red);border:3px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+  box-shadow:0 0 40px var(--shadow-red);transition:transform .3s;}
+.video-meta-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,0,0,.3);
+  border:1px solid rgba(255,215,0,.3);border-radius:30px;padding:6px 16px;font-size:.72rem;color:var(--gold-pale);}
+#search-status{text-align:center;font-size:.8rem;color:rgba(255,215,0,.6);font-style:italic;min-height:24px;margin-top:10px;}
+.load-btn{display:block;margin:16px auto 0;padding:12px 32px;background:linear-gradient(135deg,var(--red),#5C0000);
+  border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-family:'Cinzel',serif;font-size:.78rem;
+  letter-spacing:.1em;cursor:pointer;transition:all .3s;}
+.load-btn:hover{background:linear-gradient(135deg,var(--red-light),var(--red));box-shadow:0 0 20px var(--shadow-red);transform:translateY(-2px);}
+.load-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 
-    /* ── Noise texture overlay ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
+/* LIRIK */
+#lirik-section{padding:0 20px 60px;}
+.lirik-card{max-width:720px;margin:0 auto;background:linear-gradient(135deg,rgba(139,0,0,.12) 0%,rgba(26,10,10,.95) 100%);
+  border-radius:16px;border:1px solid rgba(255,215,0,.2);overflow:hidden;}
+.lirik-header{padding:18px 28px;background:linear-gradient(90deg,rgba(139,0,0,.4) 0%,transparent 100%);
+  border-bottom:1px solid rgba(255,215,0,.15);display:flex;align-items:center;gap:12px;}
+.lirik-icon{width:36px;height:36px;border-radius:50%;background:var(--red);border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.lirik-title-text{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);}
+.lirik-body{padding:22px;}
 
-    /* ── Decorative background circles ── */
-    body::after {
-      content: '';
-      position: fixed;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(139,0,0,0.15) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
+.lyric-block{margin-bottom:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,215,0,.1);transition:border-color .3s;}
+.lyric-block:last-child{margin-bottom:0;}
+.lyric-block:hover{border-color:rgba(255,215,0,.22);}
+.lyric-main{padding:16px 18px;background:rgba(0,0,0,.25);cursor:pointer;
+  border-left:3px solid var(--red);transition:all .3s;display:flex;align-items:flex-start;gap:12px;}
+.lyric-main:hover{background:rgba(139,0,0,.18);border-left-color:var(--gold);}
+.lyric-text{flex:1;}
+.line-hanzi{font-family:'Noto Serif SC',serif;font-size:clamp(1.15rem,3vw,1.6rem);
+  font-weight:700;color:var(--gold);letter-spacing:.08em;margin-bottom:4px;}
+.line-pinyin{font-size:.78rem;color:rgba(253,246,227,.65);font-style:italic;letter-spacing:.06em;margin-bottom:3px;}
+.line-id{font-size:.82rem;color:rgba(255,215,0,.55);font-weight:300;}
+.line-hint{font-size:.58rem;color:rgba(255,215,0,.25);margin-top:5px;font-style:italic;}
 
-    .content-wrap { position: relative; z-index: 1; }
+.mic-btn{flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  background:rgba(139,0,0,.35);border:1px solid rgba(255,215,0,.3);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  cursor:pointer;transition:all .3s;user-select:none;}
+.mic-btn:hover{background:rgba(139,0,0,.65);border-color:var(--gold);box-shadow:0 0 15px var(--shadow-red);}
+.mic-btn.recording{background:rgba(200,0,0,.75);border-color:#FF5555;
+  animation:micPulse .75s ease-in-out infinite;box-shadow:0 0 22px rgba(255,60,60,.7);}
+@keyframes micPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
 
-    /* ── Typography helpers ── */
-    .font-cinzel      { font-family: 'Cinzel', serif; }
-    .font-cinzel-deco { font-family: 'Cinzel Decorative', serif; }
-    .font-noto        { font-family: 'Noto Serif SC', serif; }
+.word-panel{display:none;flex-wrap:wrap;gap:8px;padding:14px 16px;
+  background:rgba(0,0,0,.4);border-top:1px solid rgba(255,215,0,.08);}
+.word-panel.open{display:flex;}
+.word-chip{padding:8px 11px;background:rgba(139,0,0,.22);border:1px solid rgba(255,215,0,.2);
+  border-radius:10px;text-align:center;transition:all .25s;cursor:default;}
+.word-chip:hover{background:rgba(139,0,0,.45);border-color:rgba(255,215,0,.55);transform:translateY(-2px);}
+.wc-hanzi{font-family:'Noto Serif SC',serif;font-size:1.2rem;font-weight:700;color:var(--gold);display:block;}
+.wc-pinyin{font-size:.58rem;color:rgba(253,246,227,.6);font-style:italic;display:block;margin-top:1px;}
+.wc-arti{font-size:.58rem;color:rgba(255,215,0,.55);display:block;margin-top:2px;}
 
-    /* ── Gold text gradient ── */
-    .text-gold-grad {
-      background: linear-gradient(135deg, #FFD700 0%, #FFF3A0 40%, #CCA800 70%, #FFD700 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+.score-panel{display:none;align-items:center;gap:14px;padding:12px 16px;
+  background:rgba(0,0,0,.3);border-top:1px solid rgba(255,215,0,.08);}
+.score-panel.show{display:flex;}
+.score-ring{width:52px;height:52px;border-radius:50%;border:3px solid;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-ring.excellent{border-color:var(--gold);background:rgba(255,215,0,.08);}
+.score-ring.good{border-color:#90EE90;background:rgba(144,238,144,.08);}
+.score-ring.poor{border-color:#FF6B6B;background:rgba(255,107,107,.08);}
+.score-num{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;line-height:1;}
+.score-lbl{font-size:.48rem;font-family:'Cinzel',serif;letter-spacing:.1em;}
+.score-feedback{font-size:.82rem;color:var(--parchment);line-height:1.5;}
+.score-xp-badge{display:inline-block;margin-top:4px;font-family:'Cinzel',serif;font-size:.66rem;
+  color:var(--gold);background:rgba(139,0,0,.4);border:1px solid rgba(255,215,0,.3);border-radius:20px;padding:2px 10px;}
 
-    /* ── Red text gradient ── */
-    .text-red-grad {
-      background: linear-gradient(135deg, #C41E1E 0%, #FF4444 50%, #8B0000 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+/* VOCAB */
+#vocab-section{padding:60px 20px 80px;background:linear-gradient(180deg,#0A0303 0%,#0D0505 100%);}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;max-width:900px;margin:36px auto 0;}
+.vocab-card{background:linear-gradient(135deg,rgba(139,0,0,.15) 0%,rgba(26,10,10,.92) 100%);
+  border:1px solid rgba(255,215,0,.2);border-radius:14px;padding:22px 18px;text-align:center;
+  cursor:pointer;transition:all .35s;position:relative;overflow:hidden;}
+.vocab-card::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(255,215,0,.07),transparent 70%);opacity:0;transition:opacity .3s;}
+.vocab-card:hover{border-color:var(--gold);transform:translateY(-6px) scale(1.02);
+  box-shadow:0 16px 40px rgba(139,0,0,.35),0 0 20px var(--shadow-gold);}
+.vocab-card:hover::before{opacity:1;}
+.vocab-num{position:absolute;top:10px;right:12px;font-family:'Cinzel',serif;font-size:.56rem;color:rgba(255,215,0,.3);}
+.vocab-hanzi{font-family:'Noto Serif SC',serif;font-size:2.2rem;font-weight:900;color:var(--gold);
+  margin-bottom:5px;text-shadow:0 0 20px rgba(255,215,0,.3);}
+.vocab-pinyin{font-size:.72rem;color:rgba(253,246,227,.6);font-style:italic;margin-bottom:8px;letter-spacing:.06em;}
+.vocab-div{height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.3),transparent);margin-bottom:8px;}
+.vocab-arti{font-size:.78rem;color:rgba(255,215,0,.65);font-weight:300;}
+.vocab-tag{display:inline-block;margin-top:8px;font-size:.54rem;letter-spacing:.1em;padding:2px 8px;
+  border-radius:20px;background:rgba(139,0,0,.4);border:1px solid rgba(255,215,0,.2);
+  color:rgba(255,215,0,.45);font-family:'Cinzel',serif;}
 
-    /* ================================================
-       DECORATIVE BORDERS & DIVIDERS
-    ================================================ */
-    .dragon-border {
-      border: 2px solid transparent;
-      background: linear-gradient(var(--ink), var(--ink)) padding-box,
-                  linear-gradient(135deg, #FFD700, #8B0000, #FFD700) border-box;
-      border-radius: 12px;
-    }
+/* CERTIFICATE */
+#cert-section{padding:80px 20px 100px;background:linear-gradient(180deg,#0D0505 0%,#080202 100%);}
+.cert-box{max-width:580px;margin:0 auto;
+  background:linear-gradient(135deg,rgba(139,0,0,.2),rgba(26,10,10,.97));
+  border:1px solid rgba(255,215,0,.35);border-radius:20px;padding:40px 32px;
+  position:relative;box-shadow:0 0 60px rgba(139,0,0,.2);}
+.cert-score-info{font-size:.75rem;color:rgba(255,215,0,.5);text-align:center;font-style:italic;min-height:20px;margin-bottom:4px;}
+.cert-input{width:100%;padding:14px 20px;margin:14px 0;background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,215,0,.35);border-radius:10px;color:var(--parchment);
+  font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.08em;outline:none;transition:border-color .3s;}
+.cert-input:focus{border-color:var(--gold);box-shadow:0 0 15px rgba(255,215,0,.15);}
+.cert-input::placeholder{color:rgba(255,215,0,.28);font-style:italic;}
+.cert-gen-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--red),#5C0000);
+  border:2px solid var(--gold);border-radius:12px;color:var(--gold);font-family:'Cinzel Decorative',serif;
+  font-size:.88rem;letter-spacing:.1em;cursor:pointer;transition:all .35s;font-weight:700;}
+.cert-gen-btn:hover{background:linear-gradient(135deg,var(--red-light),var(--red));
+  box-shadow:0 0 30px var(--shadow-red);transform:translateY(-2px);}
+.cert-preview{margin-top:28px;display:none;text-align:center;}
+.cert-preview.show{display:block;}
+#cert-canvas{max-width:100%;border-radius:10px;border:2px solid rgba(255,215,0,.3);
+  box-shadow:0 0 50px rgba(139,0,0,.4);}
+.cert-dl-btn{display:inline-block;margin-top:16px;padding:12px 36px;
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:none;border-radius:10px;
+  color:var(--ink);font-family:'Cinzel',serif;font-size:.82rem;font-weight:700;letter-spacing:.12em;cursor:pointer;transition:all .3s;}
+.cert-dl-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--shadow-gold);}
 
-    .gold-line {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-dim), var(--gold), transparent);
-    }
+/* COIN RAIN */
+#coin-overlay{position:fixed;inset:0;pointer-events:none;z-index:9990;overflow:hidden;display:none;}
+#coin-overlay.active{display:block;}
+.rain-item{position:absolute;top:-80px;animation:rainFall linear forwards;}
+@keyframes rainFall{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1;}
+  85%{opacity:1;}100%{transform:translateY(115vh) rotate(900deg) scale(.5);opacity:0;}}
 
-    .red-line {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--red-light), transparent);
-    }
+/* TOAST */
+#score-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-60%);
+  z-index:9995;pointer-events:none;opacity:0;transition:all .45s cubic-bezier(.4,0,.2,1);text-align:center;}
+#score-toast.show{opacity:1;transform:translate(-50%,-50%);}
+.toast-inner{background:linear-gradient(135deg,rgba(13,3,3,.98),rgba(60,0,0,.97));
+  border:2px solid var(--gold);border-radius:20px;padding:28px 44px;
+  box-shadow:0 0 70px var(--shadow-red),0 0 140px rgba(255,215,0,.1);}
+.toast-emoji{font-size:3rem;display:block;margin-bottom:10px;}
+.toast-msg{font-family:'Cinzel Decorative',serif;font-size:1.4rem;color:var(--gold);display:block;}
+.toast-sub{font-size:.9rem;color:rgba(253,246,227,.7);display:block;margin-top:6px;}
 
-    .corner-deco {
-      position: absolute;
-      width: 28px; height: 28px;
-      border-color: var(--gold);
-      border-style: solid;
-    }
-    .corner-deco.tl { top: -2px; left: -2px;  border-width: 2px 0 0 2px; }
-    .corner-deco.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
-    .corner-deco.bl { bottom: -2px; left: -2px;  border-width: 0 0 2px 2px; }
-    .corner-deco.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+/* FOOTER */
+footer{padding:40px 20px;background:#080202;text-align:center;border-top:1px solid rgba(255,215,0,.1);}
+footer .footer-seal{font-family:'Noto Serif SC',serif;font-size:2rem;color:rgba(139,0,0,.6);margin-bottom:10px;}
+footer p{font-size:.72rem;color:rgba(253,246,227,.3);letter-spacing:.1em;}
 
-    /* ================================================
-       HEADER / HERO
-    ================================================ */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      background:
-        radial-gradient(ellipse at 20% 80%, rgba(139,0,0,0.30) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 20%, rgba(139,0,0,0.25) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 50%, rgba(255,215,0,0.04) 0%, transparent 70%),
-        linear-gradient(180deg, #0D0505 0%, #1A0505 50%, #0D0505 100%);
-      padding: 60px 20px 80px;
-      position: relative; overflow: hidden;
-    }
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.fade-up-delay-1{transition-delay:.1s;}.fade-up-delay-2{transition-delay:.2s;}
+.fade-up-delay-3{transition-delay:.3s;}
 
-    /* Floating Chinese chars in BG */
-    #hero .bg-char {
-      position: absolute;
-      font-family: 'Noto Serif SC', serif;
-      color: rgba(139,0,0,0.08);
-      user-select: none; pointer-events: none;
-      animation: floatChar 20s infinite ease-in-out;
-    }
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,215,0,.2);
+  border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;
+  vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+::-webkit-scrollbar{width:8px;height:5px;}
+::-webkit-scrollbar-track{background:var(--ink);}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--red),#5C0000);border-radius:4px;}
 
-    @keyframes floatChar {
-      0%,100% { transform: translateY(0) rotate(0deg); opacity: 0.06; }
-      50%      { transform: translateY(-30px) rotate(5deg); opacity: 0.12; }
-    }
-
-    .hero-seal {
-      width: 110px; height: 110px;
-      border-radius: 50%;
-      background: var(--red);
-      border: 3px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 28px;
-      box-shadow: 0 0 40px var(--shadow-red), 0 0 80px rgba(139,0,0,0.2), inset 0 0 20px rgba(0,0,0,0.3);
-      animation: sealPulse 3s ease-in-out infinite;
-    }
-
-    @keyframes sealPulse {
-      0%,100% { box-shadow: 0 0 40px var(--shadow-red), 0 0 80px rgba(139,0,0,0.2); }
-      50%      { box-shadow: 0 0 60px rgba(139,0,0,0.6), 0 0 120px rgba(255,215,0,0.15); }
-    }
-
-    .hero-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.6rem, 5vw, 3.2rem);
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      line-height: 1.15;
-      margin-bottom: 10px;
-    }
-
-    .hero-hanzi {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(1.2rem, 4vw, 2.2rem);
-      font-weight: 300;
-      letter-spacing: 0.5em;
-      color: rgba(255,215,0,0.7);
-      margin-bottom: 18px;
-    }
-
-    .hero-tagline {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(0.85rem, 2vw, 1.05rem);
-      font-style: italic;
-      color: rgba(253,246,227,0.65);
-      letter-spacing: 0.08em;
-      max-width: 480px;
-      margin: 0 auto 36px;
-    }
-
-    .nav-pill {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 10px 26px;
-      background: rgba(139,0,0,0.3);
-      border: 1px solid rgba(255,215,0,0.4);
-      border-radius: 50px;
-      cursor: pointer;
-      font-family: 'Cinzel', serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-    }
-    .nav-pill:hover {
-      background: rgba(139,0,0,0.6);
-      border-color: var(--gold);
-      box-shadow: 0 0 20px var(--shadow-gold);
-      transform: translateY(-2px);
-    }
-
-    /* ================================================
-       SILSILAH / LINEAGE SECTION
-    ================================================ */
-    #silsilah {
-      padding: 80px 20px;
-      background: linear-gradient(180deg, #0D0505 0%, #120808 100%);
-      position: relative;
-    }
-
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.4rem, 4vw, 2.4rem);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    /* Genealogy tree */
-    .gen-tree {
-      display: flex; flex-direction: column; align-items: center; gap: 0;
-      max-width: 800px; margin: 0 auto;
-    }
-
-    .gen-row {
-      display: flex; align-items: center; justify-content: center;
-      gap: 12px; width: 100%;
-      padding: 10px 0;
-      position: relative;
-    }
-
-    .gen-connector-v {
-      width: 2px; height: 36px;
-      background: linear-gradient(180deg, var(--gold), var(--red));
-      margin: 0 auto;
-      position: relative;
-    }
-    .gen-connector-v::after {
-      content: '◆';
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      color: var(--gold); font-size: 8px;
-    }
-
-    .gen-connector-h {
-      flex: 1; height: 2px; max-width: 80px;
-      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-    }
-
-    .person-card {
-      background: linear-gradient(135deg, rgba(139,0,0,0.18) 0%, rgba(26,10,10,0.9) 100%);
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 12px;
-      padding: 16px 20px;
-      text-align: center;
-      min-width: 130px;
-      max-width: 160px;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .person-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(139,0,0,0.3), 0 0 20px var(--shadow-gold);
-    }
-    .person-card.highlight {
-      background: linear-gradient(135deg, rgba(139,0,0,0.5) 0%, rgba(60,0,0,0.95) 100%);
-      border-color: var(--gold);
-      box-shadow: 0 0 30px var(--shadow-red), 0 0 60px rgba(255,215,0,0.1);
-      min-width: 180px; max-width: 220px;
-    }
-
-    .person-gen-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem; letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 6px;
-    }
-    .person-name-cn {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--gold); margin-bottom: 2px;
-    }
-    .person-name-id {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.72rem; color: rgba(253,246,227,0.75);
-      margin-bottom: 4px;
-    }
-    .person-origin {
-      display: inline-block;
-      font-size: 0.6rem; letter-spacing: 0.1em;
-      padding: 2px 8px;
-      background: rgba(139,0,0,0.4);
-      border: 1px solid rgba(255,215,0,0.25);
-      border-radius: 20px;
-      color: var(--gold-pale);
-    }
-    .person-role {
-      font-family: 'Cinzel', serif;
-      font-size: 0.58rem; letter-spacing: 0.15em;
-      color: rgba(255,215,0,0.5);
-      margin-top: 5px;
-    }
-
-    /* ================================================
-       LAGU / SONG SECTION
-    ================================================ */
-    #lagu {
-      padding: 80px 20px;
-      background: linear-gradient(180deg, #120808 0%, #0A0303 100%);
-    }
-
-    /* Tab selector */
-    .song-tabs {
-      display: flex; gap: 12px;
-      flex-wrap: wrap; justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    .song-tab {
-      padding: 14px 28px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.35s ease;
-      background: rgba(139,0,0,0.12);
-      border: 1px solid rgba(255,215,0,0.2);
-      text-align: center;
-      min-width: 200px;
-    }
-    .song-tab:hover { border-color: rgba(255,215,0,0.5); background: rgba(139,0,0,0.3); }
-    .song-tab.active {
-      background: linear-gradient(135deg, rgba(139,0,0,0.6), rgba(80,0,0,0.9));
-      border-color: var(--gold);
-      box-shadow: 0 0 25px var(--shadow-red), 0 0 8px var(--shadow-gold);
-    }
-    .song-tab-hanzi {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.5rem; font-weight: 700;
-      color: var(--gold); display: block;
-    }
-    .song-tab-pinyin {
-      font-size: 0.7rem; color: rgba(253,246,227,0.6);
-      font-style: italic; display: block; margin-top: 2px;
-    }
-    .song-tab-id {
-      font-family: 'Cinzel', serif;
-      font-size: 0.62rem; letter-spacing: 0.05em;
-      color: rgba(255,215,0,0.5); display: block; margin-top: 3px;
-    }
-
-    /* ================================================
-       VIDEO PLAYER AREA
-    ================================================ */
-    .video-container {
-      position: relative;
-      max-width: 720px; margin: 0 auto 32px;
-    }
-
-    .video-frame-wrap {
-      position: relative;
-      width: 100%; padding-bottom: 56.25%;
-      border-radius: 14px; overflow: hidden;
-      border: 2px solid rgba(255,215,0,0.3);
-      box-shadow: 0 0 60px rgba(139,0,0,0.4), 0 20px 60px rgba(0,0,0,0.6);
-    }
-    .video-frame-wrap iframe {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    .video-placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      background: radial-gradient(ellipse at center, #1a0505 0%, #0d0303 100%);
-      gap: 16px; cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .video-placeholder:hover .play-icon { transform: scale(1.15); }
-
-    .play-icon {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: var(--red);
-      border: 3px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem;
-      box-shadow: 0 0 40px var(--shadow-red);
-      transition: transform 0.3s ease;
-    }
-
-    .video-meta-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(139,0,0,0.3);
-      border: 1px solid rgba(255,215,0,0.3);
-      border-radius: 30px;
-      padding: 6px 16px;
-      font-size: 0.72rem; color: var(--gold-pale);
-      font-family: 'Lato', sans-serif;
-      letter-spacing: 0.06em;
-    }
-
-    #search-status {
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(255,215,0,0.6);
-      font-style: italic;
-      min-height: 24px;
-      margin-top: 10px;
-      font-family: 'Lato', sans-serif;
-    }
-
-    .load-btn {
-      display: block; margin: 16px auto 0;
-      padding: 12px 32px;
-      background: linear-gradient(135deg, var(--red), #5C0000);
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .load-btn:hover {
-      background: linear-gradient(135deg, var(--red-light), var(--red));
-      box-shadow: 0 0 20px var(--shadow-red);
-      transform: translateY(-2px);
-    }
-    .load-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    /* ================================================
-       LIRIK INTERAKTIF
-    ================================================ */
-    #lirik-section { padding: 0 20px 60px; }
-
-    .lirik-card {
-      max-width: 720px; margin: 0 auto;
-      background: linear-gradient(135deg, rgba(139,0,0,0.12) 0%, rgba(26,10,10,0.95) 100%);
-      border-radius: 16px;
-      border: 1px solid rgba(255,215,0,0.2);
-      overflow: hidden;
-    }
-
-    .lirik-header {
-      padding: 18px 28px;
-      background: linear-gradient(90deg, rgba(139,0,0,0.4) 0%, transparent 100%);
-      border-bottom: 1px solid rgba(255,215,0,0.15);
-      display: flex; align-items: center; gap: 12px;
-    }
-    .lirik-icon {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--red);
-      border: 1px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-    }
-    .lirik-title-text {
-      font-family: 'Cinzel', serif;
-      font-size: 0.72rem; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--gold-dim);
-    }
-
-    .lirik-body { padding: 28px; }
-
-    .lirik-line {
-      margin-bottom: 28px;
-      padding: 20px 24px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 12px;
-      border-left: 3px solid var(--red);
-      transition: all 0.3s;
-    }
-    .lirik-line:hover {
-      background: rgba(139,0,0,0.15);
-      border-left-color: var(--gold);
-      transform: translateX(4px);
-    }
-    .lirik-line:last-child { margin-bottom: 0; }
-
-    .line-hanzi {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(1.3rem, 3vw, 1.7rem);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
-    }
-    .line-pinyin {
-      font-size: 0.82rem;
-      color: rgba(253,246,227,0.65);
-      font-style: italic;
-      letter-spacing: 0.06em;
-      margin-bottom: 5px;
-    }
-    .line-id {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.88rem;
-      color: rgba(255,215,0,0.55);
-      font-weight: 300;
-    }
-
-    /* ================================================
-       VOCAB CARDS
-    ================================================ */
-    #vocab-section {
-      padding: 60px 20px 100px;
-      background: linear-gradient(180deg, #0A0303 0%, #0D0505 100%);
-    }
-
-    .vocab-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 18px;
-      max-width: 900px; margin: 36px auto 0;
-    }
-
-    .vocab-card {
-      background: linear-gradient(135deg, rgba(139,0,0,0.15) 0%, rgba(26,10,10,0.92) 100%);
-      border: 1px solid rgba(255,215,0,0.2);
-      border-radius: 14px;
-      padding: 24px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .vocab-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.07), transparent 70%);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .vocab-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 16px 40px rgba(139,0,0,0.35), 0 0 20px var(--shadow-gold);
-    }
-    .vocab-card:hover::before { opacity: 1; }
-
-    .vocab-num {
-      position: absolute; top: 10px; right: 12px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.58rem; color: rgba(255,215,0,0.3);
-    }
-    .vocab-hanzi {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 2.4rem; font-weight: 900;
-      color: var(--gold);
-      margin-bottom: 6px;
-      text-shadow: 0 0 20px rgba(255,215,0,0.3);
-    }
-    .vocab-pinyin {
-      font-size: 0.75rem;
-      color: rgba(253,246,227,0.6);
-      font-style: italic; margin-bottom: 10px;
-      letter-spacing: 0.06em;
-    }
-    .vocab-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
-      margin-bottom: 10px;
-    }
-    .vocab-arti {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.82rem;
-      color: rgba(255,215,0,0.65);
-      font-weight: 300;
-    }
-    .vocab-song-tag {
-      display: inline-block; margin-top: 10px;
-      font-size: 0.58rem; letter-spacing: 0.12em;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: rgba(139,0,0,0.4);
-      border: 1px solid rgba(255,215,0,0.2);
-      color: rgba(255,215,0,0.5);
-      font-family: 'Cinzel', serif;
-    }
-
-    /* ================================================
-       FOOTER
-    ================================================ */
-    footer {
-      padding: 40px 20px;
-      background: #080202;
-      text-align: center;
-      border-top: 1px solid rgba(255,215,0,0.1);
-    }
-    footer .footer-seal {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 2rem; color: rgba(139,0,0,0.6);
-      margin-bottom: 10px;
-    }
-    footer p {
-      font-size: 0.72rem;
-      color: rgba(253,246,227,0.3);
-      letter-spacing: 0.1em;
-    }
-
-    /* ================================================
-       SCROLL ANIMATIONS
-    ================================================ */
-    .fade-up {
-      opacity: 0; transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    .fade-up-delay-1 { transition-delay: 0.1s; }
-    .fade-up-delay-2 { transition-delay: 0.2s; }
-    .fade-up-delay-3 { transition-delay: 0.3s; }
-    .fade-up-delay-4 { transition-delay: 0.4s; }
-
-    /* ================================================
-       RESPONSIVE TWEAKS
-    ================================================ */
-    @media (max-width: 600px) {
-      .gen-row { flex-direction: column; align-items: center; gap: 6px; }
-      .gen-connector-h { width: 2px; height: 20px; }
-      .vocab-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ================================================
-       CUSTOM SCROLLBAR
-    ================================================ */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--ink); }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--red), #5C0000);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover { background: var(--red-light); }
-
-    /* spinner */
-    .spinner {
-      display: inline-block; width: 18px; height: 18px;
-      border: 2px solid rgba(255,215,0,0.2);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      vertical-align: middle; margin-right: 6px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+@media(max-width:640px){
+  .gen-row{flex-direction:column;align-items:center;gap:6px;}
+  .gen-connector-h{width:2px;height:20px;}
+  .vocab-grid{grid-template-columns:repeat(2,1fr);}
+  #game-hud{bottom:10px;right:10px;padding:12px 14px;min-width:175px;}
+  .toast-inner{padding:20px 24px;}
+  .cert-box{padding:28px 20px;}
+}
+</style>
 </head>
 <body>
+
+<!-- OVERLAYS -->
+<div id="coin-overlay"></div>
+<div id="score-toast">
+  <div class="toast-inner">
+    <span class="toast-emoji" id="toast-emoji">🎉</span>
+    <span class="toast-msg" id="toast-msg">Sempurna!</span>
+    <span class="toast-sub" id="toast-sub">+50 XP</span>
+  </div>
+</div>
+
+<!-- HUD -->
+<div id="game-hud">
+  <div class="hud-title">🏯 汉语 SULTAN HUD</div>
+  <div class="hud-row"><span class="hud-icon">⚡</span>
+    <div><div class="hud-label">Total XP</div><div class="hud-value" id="hud-xp">0 XP</div></div></div>
+  <div class="hud-row"><span class="hud-icon">🎤</span>
+    <div><div class="hud-label">Latihan</div><div class="hud-value" id="hud-practice">0 Baris</div></div></div>
+  <div class="hud-row"><span class="hud-icon">📊</span>
+    <div><div class="hud-label">Avg Skor</div><div class="hud-value" id="hud-avg">—</div></div></div>
+  <div class="hud-row"><span class="hud-icon">🏅</span>
+    <div><div class="hud-label">Gelar</div><div class="hud-value" id="hud-rank" style="font-size:.78rem;">Pelajar Baru</div></div></div>
+  <div class="hud-xp-bar"><div class="hud-xp-fill" id="hud-xp-fill"></div></div>
+</div>
+
 <div class="content-wrap">
 
-<!-- ====================================================
-     HERO / HEADER
-===================================================== -->
+<!-- HERO -->
 <section id="hero">
-
-  <!-- BG floating chars -->
   <span class="bg-char" style="font-size:200px;top:5%;left:-4%;animation-duration:22s;">汉</span>
   <span class="bg-char" style="font-size:160px;top:15%;right:-2%;animation-delay:4s;animation-duration:18s;">语</span>
   <span class="bg-char" style="font-size:220px;bottom:5%;left:30%;animation-delay:8s;animation-duration:26s;">声</span>
   <span class="bg-char" style="font-size:130px;bottom:20%;right:5%;animation-delay:2s;">歌</span>
-
-  <!-- Seal -->
-  <div class="hero-seal">
-    <span class="font-noto text-gold-grad" style="font-size:2.8rem;font-weight:900;">汪</span>
-  </div>
-
-  <p class="section-label" style="letter-spacing:0.6em;">漢語之聲 · SUARA MANDARIN</p>
-
+  <div class="hero-seal"><span class="font-noto text-gold-grad" style="font-size:2.8rem;font-weight:900;">汪</span></div>
+  <p class="section-label" style="letter-spacing:.6em;">漢語之聲 · SUARA MANDARIN · SULTAN EDITION</p>
   <h1 class="hero-title text-gold-grad">Wang Weize</h1>
   <p class="hero-hanzi">汪 为 泽</p>
-
-  <p class="hero-tagline">
-    "Darah Shaanxi mengalir, jiwa Medan merajut. Keras bos!"
-  </p>
-
+  <p class="hero-tagline">"Darah Shaanxi mengalir, jiwa Medan merajut. Keras bos!"</p>
   <div class="gold-line" style="width:200px;margin:0 auto 36px;"></div>
-
-  <!-- Nav Buttons -->
-  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-    <button class="nav-pill" onclick="scrollTo('#silsilah')">
-      <span>🏮</span> Silsilah Keluarga
-    </button>
-    <button class="nav-pill" onclick="scrollTo('#lagu')">
-      <span>🎵</span> Belajar Mandarin
-    </button>
-    <button class="nav-pill" onclick="scrollTo('#vocab-section')">
-      <span>📖</span> Kosakata
-    </button>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <button class="nav-pill" onclick="gotoSection('#silsilah')">🏮 Silsilah</button>
+    <button class="nav-pill" onclick="gotoSection('#lagu')">🎵 Belajar Lagu</button>
+    <button class="nav-pill" onclick="gotoSection('#vocab-section')">📖 Kosakata</button>
+    <button class="nav-pill" onclick="gotoSection('#cert-section')">📜 Sertifikat</button>
   </div>
-
 </section>
 
-<!-- ====================================================
-     SILSILAH KELUARGA
-===================================================== -->
+<!-- SILSILAH -->
 <section id="silsilah">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-
     <p class="section-label fade-up">世 系 · SILSILAH KELUARGA</p>
     <h2 class="section-title text-gold-grad fade-up fade-up-delay-1">Warisan Tiga Generasi</h2>
-    <p style="font-size:0.88rem;color:rgba(253,246,227,0.5);margin-bottom:10px;font-style:italic;" class="fade-up fade-up-delay-2">
-      Dari Lembah Wei River Shaanxi · Hingga Pesisir Medan Pancing
-    </p>
-    <div class="gold-line" style="width:240px;margin:0 auto 50px;" ></div>
-
-    <!-- ── GEN TREE ── -->
+    <p style="font-size:.88rem;color:rgba(253,246,227,.5);margin-bottom:10px;font-style:italic;" class="fade-up fade-up-delay-2">Dari Lembah Wei River Shaanxi · Hingga Pesisir Medan Pancing</p>
+    <div class="gold-line" style="width:240px;margin:0 auto 50px;"></div>
     <div class="gen-tree fade-up fade-up-delay-2">
-
-      <!-- GENERASI 1 -->
       <div class="gen-row">
-        <!-- Kakek -->
-        <div class="person-card">
-          <div class="corner-deco tl"></div><div class="corner-deco br"></div>
-          <p class="person-gen-label">祖 父 · Kakek</p>
-          <p class="person-name-cn">王</p>
-          <p class="person-name-id">Marga Wang</p>
-          <span class="person-origin">陕西 · Shaanxi</span>
-          <p class="person-role">Generasi I · Perantau Pertama</p>
-        </div>
+        <div class="person-card"><div class="corner-deco tl"></div><div class="corner-deco br"></div>
+          <p class="person-gen-label">祖 父 · Kakek</p><p class="person-name-cn">王</p>
+          <p class="person-name-id">Marga Wang</p><span class="person-origin">陕西 · Shaanxi</span>
+          <p class="person-role">Generasi I · Perantau Pertama</p></div>
         <div class="gen-connector-h"></div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-          <span style="font-family:'Noto Serif SC';font-size:0.7rem;color:rgba(255,215,0,0.35);letter-spacing:0.2em;">第 一 代</span>
-          <span style="font-size:1.2rem;color:rgba(255,215,0,0.25);">∞</span>
-          <span style="font-family:'Noto Serif SC';font-size:0.7rem;color:rgba(255,215,0,0.35);letter-spacing:0.2em;">GEN. I</span>
+          <span style="font-family:'Noto Serif SC';font-size:.7rem;color:rgba(255,215,0,.35);letter-spacing:.2em;">第 一 代</span>
+          <span style="font-size:1.2rem;color:rgba(255,215,0,.25);">∞</span>
+          <span style="font-family:'Noto Serif SC';font-size:.7rem;color:rgba(255,215,0,.35);letter-spacing:.2em;">GEN. I</span>
         </div>
         <div class="gen-connector-h"></div>
-        <!-- Nenek -->
-        <div class="person-card">
-          <div class="corner-deco tl"></div><div class="corner-deco br"></div>
-          <p class="person-gen-label">祖 母 · Nenek</p>
-          <p class="person-name-cn">吴</p>
-          <p class="person-name-id">Marga Wu</p>
-          <span class="person-origin">福建 · Hokkian</span>
-          <p class="person-role">Generasi I · Darah Hokkian</p>
-        </div>
+        <div class="person-card"><div class="corner-deco tl"></div><div class="corner-deco br"></div>
+          <p class="person-gen-label">祖 母 · Nenek</p><p class="person-name-cn">吴</p>
+          <p class="person-name-id">Marga Wu</p><span class="person-origin">福建 · Hokkian</span>
+          <p class="person-role">Generasi I · Darah Hokkian</p></div>
       </div>
-
       <div class="gen-connector-v"></div>
-
-      <!-- GENERASI 2 -->
       <div class="gen-row">
-        <!-- Ayah -->
-        <div class="person-card">
-          <div class="corner-deco tl"></div><div class="corner-deco br"></div>
-          <p class="person-gen-label">父 亲 · Ayah</p>
-          <p class="person-name-cn">王</p>
-          <p class="person-name-id">Marga Wang</p>
-          <span class="person-origin">陕西 · Shaanxi</span>
-          <p class="person-role">Generasi II</p>
-        </div>
+        <div class="person-card"><div class="corner-deco tl"></div><div class="corner-deco br"></div>
+          <p class="person-gen-label">父 亲 · Ayah</p><p class="person-name-cn">王</p>
+          <p class="person-name-id">Marga Wang</p><span class="person-origin">陕西 · Shaanxi</span>
+          <p class="person-role">Generasi II</p></div>
         <div class="gen-connector-h"></div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-          <span style="font-family:'Noto Serif SC';font-size:0.7rem;color:rgba(255,215,0,0.35);letter-spacing:0.2em;">第 二 代</span>
-          <span style="font-size:1.2rem;color:rgba(255,215,0,0.25);">∞</span>
-          <span style="font-family:'Noto Serif SC';font-size:0.7rem;color:rgba(255,215,0,0.35);letter-spacing:0.2em;">GEN. II</span>
+          <span style="font-family:'Noto Serif SC';font-size:.7rem;color:rgba(255,215,0,.35);letter-spacing:.2em;">第 二 代</span>
+          <span style="font-size:1.2rem;color:rgba(255,215,0,.25);">∞</span>
+          <span style="font-family:'Noto Serif SC';font-size:.7rem;color:rgba(255,215,0,.35);letter-spacing:.2em;">GEN. II</span>
         </div>
         <div class="gen-connector-h"></div>
-        <!-- Ibu -->
-        <div class="person-card">
-          <div class="corner-deco tl"></div><div class="corner-deco br"></div>
-          <p class="person-gen-label">母 亲 · Ibu</p>
-          <p class="person-name-cn">黄</p>
-          <p class="person-name-id">Marga Huang</p>
-          <span class="person-origin">Medan Hokkian</span>
-          <p class="person-role">Generasi II · Peranakan</p>
-        </div>
+        <div class="person-card"><div class="corner-deco tl"></div><div class="corner-deco br"></div>
+          <p class="person-gen-label">母 亲 · Ibu</p><p class="person-name-cn">黄</p>
+          <p class="person-name-id">Marga Huang</p><span class="person-origin">Medan Hokkian</span>
+          <p class="person-role">Generasi II · Peranakan</p></div>
       </div>
-
       <div class="gen-connector-v"></div>
-
-      <!-- GENERASI 3 — HIGHLIGHT -->
       <div class="gen-row">
         <div class="person-card highlight" style="position:relative;">
           <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
           <div class="corner-deco bl"></div><div class="corner-deco br"></div>
           <p class="person-gen-label" style="color:var(--gold);">第 三 代 · Generasi III</p>
           <p class="person-name-cn" style="font-size:2rem;">汪为泽</p>
-          <p class="person-name-id" style="font-size:0.85rem;color:var(--parchment);">Wang Weize</p>
-          <span class="person-origin" style="background:rgba(139,0,0,0.7);border-color:var(--gold);color:var(--gold);">Medan Pancing · 棉兰</span>
-          <p class="person-role" style="color:rgba(255,215,0,0.9);font-size:0.65rem;margin-top:8px;">
-            ✦ Satu-satunya Marga 汪 di Medan Pancing ✦
-          </p>
-          <!-- Glow ring -->
-          <div style="position:absolute;inset:-4px;border-radius:14px;border:1px solid rgba(255,215,0,0.15);pointer-events:none;"></div>
+          <p class="person-name-id" style="font-size:.85rem;color:var(--parchment);">Wang Weize</p>
+          <span class="person-origin" style="background:rgba(139,0,0,.7);border-color:var(--gold);color:var(--gold);">Medan Pancing · 棉兰</span>
+          <p class="person-role" style="color:rgba(255,215,0,.9);font-size:.65rem;margin-top:8px;">✦ Satu-satunya Marga 汪 di Medan Pancing ✦</p>
         </div>
       </div>
-
-    </div><!-- /gen-tree -->
-
-    <!-- Quote -->
+    </div>
     <div style="margin-top:48px;max-width:540px;margin-left:auto;margin-right:auto;" class="fade-up">
-      <div style="padding:24px 28px;background:rgba(139,0,0,0.12);border:1px solid rgba(255,215,0,0.15);border-radius:12px;position:relative;">
-        <span style="position:absolute;top:-14px;left:24px;font-family:'Noto Serif SC';font-size:2.5rem;color:rgba(255,215,0,0.15);">"</span>
-        <p style="font-family:'Noto Serif SC';font-size:1.05rem;color:rgba(255,215,0,0.8);letter-spacing:0.12em;line-height:1.8;">
-          饮水思源，落叶归根
-        </p>
-        <p style="font-size:0.75rem;color:rgba(253,246,227,0.45);margin-top:8px;font-style:italic;">
-          "Minum air ingat sumbernya, daun gugur kembali ke akarnya."
-        </p>
+      <div style="padding:24px 28px;background:rgba(139,0,0,.12);border:1px solid rgba(255,215,0,.15);border-radius:12px;position:relative;">
+        <span style="position:absolute;top:-14px;left:24px;font-family:'Noto Serif SC';font-size:2.5rem;color:rgba(255,215,0,.15);">"</span>
+        <p style="font-family:'Noto Serif SC';font-size:1.05rem;color:rgba(255,215,0,.8);letter-spacing:.12em;line-height:1.8;">饮水思源，落叶归根</p>
+        <p style="font-size:.75rem;color:rgba(253,246,227,.45);margin-top:8px;font-style:italic;">"Minum air ingat sumbernya, daun gugur kembali ke akarnya."</p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ====================================================
-     BELAJAR MANDARIN DARI LAGU
-===================================================== -->
+<!-- LAGU + VIDEO -->
 <section id="lagu">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-
     <p class="section-label fade-up">学 普 通 话 · BELAJAR MANDARIN</p>
-    <h2 class="section-title text-gold-grad fade-up fade-up-delay-1">Dari Lagu yang Menyayat Hati</h2>
-    <p style="font-size:0.88rem;color:rgba(253,246,227,0.45);margin-bottom:10px;font-style:italic;" class="fade-up fade-up-delay-2">
-      Pilih lagu · Putar video · Pelajari lirik
-    </p>
-    <div class="gold-line" style="width:220px;margin:0 auto 40px;"></div>
-
-    <!-- Song Tabs -->
-    <div class="song-tabs fade-up fade-up-delay-2">
-      <div class="song-tab active" id="tab-0" onclick="selectSong(0)">
-        <span class="song-tab-hanzi">诺 言</span>
-        <span class="song-tab-pinyin">Nuò Yán</span>
-        <span class="song-tab-id">Janji</span>
-      </div>
-      <div class="song-tab" id="tab-1" onclick="selectSong(1)">
-        <span class="song-tab-hanzi">你永远不懂我</span>
-        <span class="song-tab-pinyin">Nǐ Yǒngyuǎn Bù Dǒng Wǒ</span>
-        <span class="song-tab-id">Kamu Selamanya Tidak Mengerti Aku</span>
-      </div>
-    </div>
-
-    <!-- Video Player -->
+    <h2 class="section-title text-gold-grad fade-up fade-up-delay-1">6 Lagu Viral China</h2>
+    <p style="font-size:.88rem;color:rgba(253,246,227,.45);margin-bottom:10px;font-style:italic;" class="fade-up fade-up-delay-2">Pilih lagu · Putar video · 👆 Klik lirik untuk pecah kata · 🎤 Latih pelafalan</p>
+    <div class="gold-line" style="width:220px;margin:0 auto 28px;"></div>
+    <div class="song-tabs-scroll fade-up fade-up-delay-2"><div class="song-tabs" id="song-tabs"></div></div>
     <div class="video-container fade-up fade-up-delay-3">
-      <div class="video-frame-wrap" id="video-wrap">
-        <!-- Placeholder shown before video loads -->
+      <div class="video-frame-wrap">
         <div class="video-placeholder" id="video-placeholder">
           <div class="play-icon">▶</div>
-          <p class="font-noto" style="font-size:1.6rem;color:var(--gold);" id="ph-title">诺 言</p>
-          <p style="font-size:0.8rem;color:rgba(253,246,227,0.5);font-style:italic;" id="ph-sub">Nuò Yán · Janji</p>
-          <div class="video-meta-badge">
-            <span>▶ Klik untuk memuat video YouTube</span>
-          </div>
+          <p class="font-noto" style="font-size:1.5rem;color:var(--gold);" id="ph-title">诺言</p>
+          <p style="font-size:.8rem;color:rgba(253,246,227,.5);font-style:italic;" id="ph-sub">Nuò Yán · Janji</p>
+          <div class="video-meta-badge"><span>▶ Klik tombol di bawah untuk memuat video</span></div>
         </div>
-        <!-- iFrame injected here by JS -->
         <div id="yt-player-container" style="position:absolute;inset:0;display:none;"></div>
       </div>
-
       <p id="search-status"></p>
-
-      <button class="load-btn" id="load-btn" onclick="loadVideo()">
-        ▶&nbsp; Muat Video YouTube
-      </button>
+      <button class="load-btn" id="load-btn" onclick="loadVideo()">▶&nbsp; Muat Video YouTube</button>
     </div>
-
   </div>
 </section>
 
-<!-- ====================================================
-     LIRIK INTERAKTIF
-===================================================== -->
+<!-- LIRIK -->
 <section id="lirik-section">
   <div style="max-width:720px;margin:0 auto;text-align:center;">
-
     <p class="section-label fade-up">歌 词 · LIRIK INTERAKTIF</p>
     <h3 class="font-cinzel text-gold-grad fade-up fade-up-delay-1"
-        style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:8px;" id="lirik-song-name">
-      Chorus · 诺言
-    </h3>
-    <div class="gold-line" style="width:160px;margin:0 auto 30px;"></div>
-
-    <div class="lirik-card fade-up fade-up-delay-2" id="lirik-card">
+        style="font-size:clamp(1.1rem,3vw,1.8rem);margin-bottom:6px;" id="lirik-song-name">Chorus · 诺言</h3>
+    <p class="fade-up fade-up-delay-2" style="font-size:.66rem;color:rgba(255,215,0,.32);margin-bottom:16px;font-style:italic;">
+      👆 Klik teks lirik → pecah per kata &nbsp;|&nbsp; 🎤 Klik tombol mic → latihan & dapatkan XP
+    </p>
+    <div class="gold-line" style="width:160px;margin:0 auto 22px;"></div>
+    <div class="lirik-card fade-up fade-up-delay-2">
       <div class="lirik-header">
         <div class="lirik-icon">♪</div>
-        <div>
-          <p class="lirik-title-text">Penggalan Chorus / Refren</p>
-        </div>
+        <div><p class="lirik-title-text">Penggalan Chorus / Refren</p></div>
       </div>
-      <div class="lirik-body" id="lirik-body">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="lirik-body" id="lirik-body"></div>
     </div>
-
   </div>
 </section>
 
-<!-- ====================================================
-     VOCAB CARDS
-===================================================== -->
+<!-- VOCAB -->
 <section id="vocab-section">
   <div style="max-width:900px;margin:0 auto;text-align:center;">
-
     <p class="section-label fade-up">词 汇 表 · KOSAKATA PENTING</p>
-    <h2 class="section-title text-gold-grad fade-up fade-up-delay-1" id="vocab-title">
-      5 Kosakata dari 诺言
-    </h2>
-    <p style="font-size:0.82rem;color:rgba(253,246,227,0.4);font-style:italic;" class="fade-up fade-up-delay-2">
-      Hover / klik kartu untuk mempelajari lebih lanjut
-    </p>
+    <h2 class="section-title text-gold-grad fade-up fade-up-delay-1" id="vocab-title">5 Kosakata dari 诺言</h2>
+    <p style="font-size:.82rem;color:rgba(253,246,227,.4);font-style:italic;" class="fade-up fade-up-delay-2">Hover kartu untuk detail</p>
     <div class="gold-line" style="width:200px;margin:0 auto 0;"></div>
-
-    <div class="vocab-grid fade-up fade-up-delay-3" id="vocab-grid">
-      <!-- Rendered by JS -->
-    </div>
-
+    <div class="vocab-grid fade-up fade-up-delay-3" id="vocab-grid"></div>
   </div>
 </section>
 
-<!-- ====================================================
-     FOOTER
-===================================================== -->
+<!-- CERTIFICATE -->
+<section id="cert-section">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <p class="section-label fade-up">皇 家 证 书 · SERTIFIKAT KERAJAAN</p>
+    <h2 class="section-title text-gold-grad fade-up fade-up-delay-1">Imperial Edict Generator</h2>
+    <p style="font-size:.88rem;color:rgba(253,246,227,.45);margin-bottom:10px;font-style:italic;" class="fade-up fade-up-delay-2">Gelar Sultan diberikan berdasarkan rata-rata skor pelafalan Anda</p>
+    <div class="gold-line" style="width:220px;margin:0 auto 40px;"></div>
+    <div class="cert-box fade-up fade-up-delay-3">
+      <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+      <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+      <p class="font-noto" style="font-size:2.8rem;margin-bottom:6px;">📜</p>
+      <h3 class="font-cinzel-deco" style="font-size:1.15rem;color:var(--gold);margin-bottom:8px;">Klaim Sertifikat Sultan</h3>
+      <div class="cert-score-info" id="cert-score-info">Latih minimal 1 baris lirik untuk mendapatkan gelar resmi</div>
+      <input type="text" id="cert-name" class="cert-input" placeholder="Masukkan nama lengkap Anda…" maxlength="45"/>
+      <button class="cert-gen-btn" onclick="generateCertificate()">🏮&nbsp; Generate Sertifikat Kerajaan</button>
+      <div class="cert-preview" id="cert-preview">
+        <canvas id="cert-canvas" width="900" height="636"></canvas><br>
+        <button class="cert-dl-btn" onclick="downloadCert()">⬇️&nbsp; Download Sertifikat (.PNG)</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-seal">汪</div>
   <div class="gold-line" style="width:180px;margin:12px auto;"></div>
   <p>汉语之声 · 汪为泽 · Wang Weize · Medan Pancing</p>
   <p style="margin-top:6px;">Darah Shaanxi mengalir, jiwa Medan merajut. Keras bos! 🔥</p>
-  <p style="margin-top:14px;font-size:0.62rem;opacity:.3;">
-    Dibuat dengan ❤ · YouTube Data API v3 · Vanilla JS · Tailwind CSS
-  </p>
+  <p style="margin-top:14px;font-size:.62rem;opacity:.3;">YouTube Data API v3 · Web Speech API · Canvas API · Vanilla JS · Tailwind CSS</p>
 </footer>
+</div>
 
-</div><!-- /content-wrap -->
-
-<!-- ====================================================
-     JAVASCRIPT
-===================================================== -->
 <script>
-/* =====================================================
-   DATA: SONGS, LYRICS, VOCAB
-===================================================== */
-const SONGS = [
-  {
-    id: 0,
-    title_cn:    "诺言",
-    title_pinyin:"Nuò Yán",
-    title_id:    "Janji",
-    artist:      "Tank",
-    searchQuery: "诺言 Tank 歌词",
-    lyrics: [
-      {
-        hanzi:  "我用一生只换你一个诺言",
-        pinyin: "Wǒ yòng yīshēng zhǐ huàn nǐ yīgè nuòyán",
-        id:     "Aku gunakan seumur hidup hanya untuk satu janjimu"
-      },
-      {
-        hanzi:  "承诺就算沉重也愿意扛在肩",
-        pinyin: "Chéngnuò jiùsuàn chénzhòng yě yuànyì káng zài jiān",
-        id:     "Meski janji itu berat, aku rela memikulnya di bahu"
-      },
-      {
-        hanzi:  "只要你牵起我的手不放开",
-        pinyin: "Zhǐyào nǐ qiān qǐ wǒ de shǒu bù fàngkāi",
-        id:     "Selama kau menggenggam tanganku dan tak melepasnya"
-      },
-      {
-        hanzi:  "我就什么都不怕",
-        pinyin: "Wǒ jiù shénme dōu bùpà",
-        id:     "Aku tidak takut akan apapun"
-      }
-    ],
-    vocab: [
-      { hanzi:"诺言", pinyin:"nuòyán",    arti:"janji; kata-kata yang diucapkan" },
-      { hanzi:"承诺", pinyin:"chéngnuò",  arti:"berjanji; komitmen" },
-      { hanzi:"一生", pinyin:"yīshēng",   arti:"seumur hidup; sepanjang hayat" },
-      { hanzi:"牵手", pinyin:"qiānshǒu",  arti:"bergandengan tangan; menggandeng" },
-      { hanzi:"沉重", pinyin:"chénzhòng", arti:"berat; beban yang besar" }
-    ]
-  },
-  {
-    id: 1,
-    title_cn:    "你永远不懂我",
-    title_pinyin:"Nǐ Yǒngyuǎn Bù Dǒng Wǒ",
-    title_id:    "Kamu Selamanya Tidak Mengerti Aku",
-    artist:      "S.H.E / Stefanie Sun",
-    searchQuery: "你永远不懂我 歌词",
-    lyrics: [
-      {
-        hanzi:  "你永远不懂我伤悲",
-        pinyin: "Nǐ yǒngyuǎn bù dǒng wǒ shāngbēi",
-        id:     "Kamu selamanya tidak mengerti kesedihanku"
-      },
-      {
-        hanzi:  "就像白天不懂夜的黑",
-        pinyin: "Jiù xiàng báitiān bù dǒng yè de hēi",
-        id:     "Seperti siang yang tidak mengerti kegelapan malam"
-      },
-      {
-        hanzi:  "你不懂我有多爱你",
-        pinyin: "Nǐ bù dǒng wǒ yǒu duō ài nǐ",
-        id:     "Kamu tidak mengerti betapa aku mencintaimu"
-      },
-      {
-        hanzi:  "我的心事你怎能知道",
-        pinyin: "Wǒ de xīnshì nǐ zěn néng zhīdào",
-        id:     "Bagaimana kamu bisa tahu isi hatiku"
-      }
-    ],
-    vocab: [
-      { hanzi:"永远", pinyin:"yǒngyuǎn", arti:"selamanya; untuk selalu" },
-      { hanzi:"懂",   pinyin:"dǒng",     arti:"mengerti; memahami" },
-      { hanzi:"伤悲", pinyin:"shāngbēi", arti:"kesedihan; duka cita" },
-      { hanzi:"黑夜", pinyin:"hēiyè",    arti:"malam yang gelap; kegelapan" },
-      { hanzi:"心事", pinyin:"xīnshì",   arti:"isi hati; ganjalan di hati" }
-    ]
-  }
+/* ============================================================
+   DATA — 6 SONGS
+============================================================ */
+const SONGS=[
+  {title_cn:"诺言",title_pinyin:"Nuò Yán",title_id:"Janji",
+   artist:"张信哲",searchQuery:"诺言 张信哲 official MV",
+   lyrics:[
+     {hanzi:"我用一生只换你一个诺言",pinyin:"Wǒ yòng yīshēng zhǐ huàn nǐ yīgè nuòyán",
+      id:"Aku gunakan seumur hidup hanya untuk satu janjimu",
+      words:[{h:"我",p:"wǒ",a:"aku"},{h:"用",p:"yòng",a:"menggunakan"},{h:"一生",p:"yīshēng",a:"seumur hidup"},
+             {h:"只",p:"zhǐ",a:"hanya"},{h:"换",p:"huàn",a:"menukar"},{h:"你",p:"nǐ",a:"kamu"},
+             {h:"一个",p:"yīgè",a:"satu"},{h:"诺言",p:"nuòyán",a:"janji"}]},
+     {hanzi:"承诺就算沉重也愿意扛在肩",pinyin:"Chéngnuò jiùsuàn chénzhòng yě yuànyì káng zài jiān",
+      id:"Meski janji itu berat, aku rela memikulnya di bahu",
+      words:[{h:"承诺",p:"chéngnuò",a:"berjanji"},{h:"就算",p:"jiùsuàn",a:"meskipun"},{h:"沉重",p:"chénzhòng",a:"berat"},
+             {h:"也",p:"yě",a:"juga"},{h:"愿意",p:"yuànyì",a:"rela"},{h:"扛",p:"káng",a:"memikul"},
+             {h:"在",p:"zài",a:"di"},{h:"肩",p:"jiān",a:"bahu"}]},
+     {hanzi:"只要你牵起我的手不放开",pinyin:"Zhǐyào nǐ qiān qǐ wǒ de shǒu bù fàngkāi",
+      id:"Selama kau menggenggam tanganku dan tak melepasnya",
+      words:[{h:"只要",p:"zhǐyào",a:"selama"},{h:"你",p:"nǐ",a:"kamu"},{h:"牵起",p:"qiānqǐ",a:"menggenggam"},
+             {h:"我的",p:"wǒde",a:"milikku"},{h:"手",p:"shǒu",a:"tangan"},{h:"不",p:"bù",a:"tidak"},
+             {h:"放开",p:"fàngkāi",a:"melepaskan"}]},
+     {hanzi:"我就什么都不怕",pinyin:"Wǒ jiù shénme dōu bùpà",id:"Aku tidak takut akan apapun",
+      words:[{h:"我",p:"wǒ",a:"aku"},{h:"就",p:"jiù",a:"maka"},{h:"什么",p:"shénme",a:"apa"},
+             {h:"都",p:"dōu",a:"semua"},{h:"不怕",p:"bùpà",a:"tidak takut"}]}
+   ],
+   vocab:[{hanzi:"诺言",pinyin:"nuòyán",arti:"janji; kata yang diucapkan"},
+          {hanzi:"承诺",pinyin:"chéngnuò",arti:"berjanji; komitmen"},
+          {hanzi:"一生",pinyin:"yīshēng",arti:"seumur hidup; sepanjang hayat"},
+          {hanzi:"牵手",pinyin:"qiānshǒu",arti:"bergandengan tangan"},
+          {hanzi:"沉重",pinyin:"chénzhòng",arti:"berat; beban yang besar"}]},
+
+  {title_cn:"你永远不懂我",title_pinyin:"Nǐ Yǒngyuǎn Bù Dǒng Wǒ",title_id:"Kamu Tak Pernah Mengerti Aku",
+   artist:"辛晓琪",searchQuery:"你永远不懂我 辛晓琪 MV",
+   lyrics:[
+     {hanzi:"你永远不懂我伤悲",pinyin:"Nǐ yǒngyuǎn bù dǒng wǒ shāngbēi",id:"Kamu selamanya tidak mengerti kesedihanku",
+      words:[{h:"你",p:"nǐ",a:"kamu"},{h:"永远",p:"yǒngyuǎn",a:"selamanya"},{h:"不",p:"bù",a:"tidak"},
+             {h:"懂",p:"dǒng",a:"mengerti"},{h:"我",p:"wǒ",a:"aku"},{h:"伤悲",p:"shāngbēi",a:"kesedihan"}]},
+     {hanzi:"就像白天不懂夜的黑",pinyin:"Jiù xiàng báitiān bù dǒng yè de hēi",id:"Seperti siang tak mengerti kegelapan malam",
+      words:[{h:"就像",p:"jiùxiàng",a:"seperti"},{h:"白天",p:"báitiān",a:"siang hari"},{h:"不",p:"bù",a:"tidak"},
+             {h:"懂",p:"dǒng",a:"mengerti"},{h:"夜",p:"yè",a:"malam"},{h:"的",p:"de",a:"partikel milik"},
+             {h:"黑",p:"hēi",a:"kegelapan"}]},
+     {hanzi:"你不懂我有多爱你",pinyin:"Nǐ bù dǒng wǒ yǒu duō ài nǐ",id:"Kamu tidak tahu betapa aku mencintaimu",
+      words:[{h:"你",p:"nǐ",a:"kamu"},{h:"不",p:"bù",a:"tidak"},{h:"懂",p:"dǒng",a:"mengerti"},
+             {h:"我",p:"wǒ",a:"aku"},{h:"有多",p:"yǒuduō",a:"betapa"},{h:"爱",p:"ài",a:"cinta"},{h:"你",p:"nǐ",a:"kamu"}]},
+     {hanzi:"我的心事你怎能知道",pinyin:"Wǒ de xīnshì nǐ zěn néng zhīdào",id:"Bagaimana mungkin kamu tahu isi hatiku",
+      words:[{h:"我的",p:"wǒde",a:"milikku"},{h:"心事",p:"xīnshì",a:"isi hati"},{h:"你",p:"nǐ",a:"kamu"},
+             {h:"怎",p:"zěn",a:"bagaimana"},{h:"能",p:"néng",a:"bisa"},{h:"知道",p:"zhīdào",a:"mengetahui"}]}
+   ],
+   vocab:[{hanzi:"永远",pinyin:"yǒngyuǎn",arti:"selamanya; untuk selalu"},
+          {hanzi:"懂",pinyin:"dǒng",arti:"mengerti; memahami; paham"},
+          {hanzi:"伤悲",pinyin:"shāngbēi",arti:"kesedihan mendalam; duka cita"},
+          {hanzi:"心事",pinyin:"xīnshì",arti:"isi hati; ganjalan yang disimpan"},
+          {hanzi:"黑夜",pinyin:"hēiyè",arti:"malam gelap; kegelapan malam"}]},
+
+  {title_cn:"芒种",title_pinyin:"Máng Zhòng",title_id:"Musim Panen Padi",
+   artist:"音阙诗听",searchQuery:"芒种 音阙诗听 动漫 MV official",
+   lyrics:[
+     {hanzi:"芒种烧去种种迷惑",pinyin:"Máng zhòng shāo qù zhǒng zhǒng míhuò",id:"Musim panen membakar segala kebingungan",
+      words:[{h:"芒种",p:"máng zhòng",a:"musim panen"},{h:"烧",p:"shāo",a:"membakar"},{h:"去",p:"qù",a:"enyahkan"},
+             {h:"种种",p:"zhǒngzhǒng",a:"berbagai macam"},{h:"迷惑",p:"míhuò",a:"kebingungan"}]},
+     {hanzi:"夏雨透彻了天地颜色",pinyin:"Xià yǔ tòuchè le tiāndì yánsè",id:"Hujan musim panas menembus warna langit dan bumi",
+      words:[{h:"夏雨",p:"xià yǔ",a:"hujan musim panas"},{h:"透彻",p:"tòuchè",a:"menembus"},
+             {h:"了",p:"le",a:"partikel"},{h:"天地",p:"tiāndì",a:"langit dan bumi"},{h:"颜色",p:"yánsè",a:"warna"}]},
+     {hanzi:"向来痴从此醉",pinyin:"Xiàng lái chī cóngcǐ zuì",id:"Sejak dulu tergila-gila, kini tenggelam dalam mabuk",
+      words:[{h:"向来",p:"xiànglái",a:"dari dulu"},{h:"痴",p:"chī",a:"tergila-gila"},
+             {h:"从此",p:"cóngcǐ",a:"sejak ini"},{h:"醉",p:"zuì",a:"mabuk cinta"}]},
+     {hanzi:"水中花岁月催",pinyin:"Shuǐ zhōng huā suìyuè cuī",id:"Bunga di air, waktu terus mendesak",
+      words:[{h:"水中",p:"shuǐzhōng",a:"dalam air"},{h:"花",p:"huā",a:"bunga"},
+             {h:"岁月",p:"suìyuè",a:"waktu berlalu"},{h:"催",p:"cuī",a:"mendesak"}]}
+   ],
+   vocab:[{hanzi:"芒种",pinyin:"máng zhòng",arti:"salah satu dari 24 solar term Tiongkok (musim panen)"},
+          {hanzi:"迷惑",pinyin:"míhuò",arti:"bingung; tergoda; tersesat arah"},
+          {hanzi:"透彻",pinyin:"tòuchè",arti:"menyeluruh; mendalam; menembus"},
+          {hanzi:"岁月",pinyin:"suìyuè",arti:"waktu berlalu; tahun-tahun yang terlewat"},
+          {hanzi:"痴",pinyin:"chī",arti:"terobsesi; tergila-gila; gila cinta"}]},
+
+  {title_cn:"学猫叫",title_pinyin:"Xué Māo Jiào",title_id:"Belajar Bersuara Seperti Kucing",
+   artist:"小峰峰",searchQuery:"学猫叫 小峰峰 MV official",
+   lyrics:[
+     {hanzi:"我想和你学猫叫",pinyin:"Wǒ xiǎng hé nǐ xué māo jiào",id:"Aku ingin belajar bersuara kucing bersamamu",
+      words:[{h:"我",p:"wǒ",a:"aku"},{h:"想",p:"xiǎng",a:"ingin"},{h:"和",p:"hé",a:"bersama"},
+             {h:"你",p:"nǐ",a:"kamu"},{h:"学",p:"xué",a:"belajar"},{h:"猫叫",p:"māo jiào",a:"suara kucing"}]},
+     {hanzi:"一起喵喵喵喵喵",pinyin:"Yīqǐ miāo miāo miāo miāo miāo",id:"Bersama-sama miau miau miau miau miau",
+      words:[{h:"一起",p:"yīqǐ",a:"bersama"},{h:"喵",p:"miāo",a:"miau (suara kucing)"}]},
+     {hanzi:"在你怀里撒个娇",pinyin:"Zài nǐ huáilǐ sǎ gè jiāo",id:"Manja-manjaan di dalam pelukanmu",
+      words:[{h:"在",p:"zài",a:"di"},{h:"你",p:"nǐ",a:"kamu"},{h:"怀里",p:"huáilǐ",a:"dalam pelukan"},
+             {h:"撒娇",p:"sǎjiāo",a:"manja; cari perhatian"}]},
+     {hanzi:"你不在乎我也无所谓",pinyin:"Nǐ bù zàihū wǒ yě wú suǒ wèi",id:"Kamu tidak peduli, aku pun tidak apa-apa",
+      words:[{h:"你",p:"nǐ",a:"kamu"},{h:"不",p:"bù",a:"tidak"},{h:"在乎",p:"zàihū",a:"peduli"},
+             {h:"我",p:"wǒ",a:"aku"},{h:"也",p:"yě",a:"juga"},{h:"无所谓",p:"wúsuǒwèi",a:"tidak masalah"}]}
+   ],
+   vocab:[{hanzi:"学猫叫",pinyin:"xué māo jiào",arti:"belajar bersuara seperti kucing (miau)"},
+          {hanzi:"撒娇",pinyin:"sǎjiāo",arti:"manja; cari perhatian secara menggemaskan"},
+          {hanzi:"怀里",pinyin:"huáilǐ",arti:"di dalam pelukan seseorang"},
+          {hanzi:"在乎",pinyin:"zàihū",arti:"peduli; mempedulikan; ambil pusing"},
+          {hanzi:"喵",pinyin:"miāo",arti:"miau — onomatopoeia suara kucing"}]},
+
+  {title_cn:"可可托海的牧羊人",title_pinyin:"Kěkě Tuō Hǎi De Mùyáng Rén",title_id:"Penggembala dari Keketuohai",
+   artist:"王琪",searchQuery:"可可托海的牧羊人 王琪 MV official",
+   lyrics:[
+     {hanzi:"那夜的雨也没能留住你",pinyin:"Nà yè de yǔ yě méi néng liú zhù nǐ",id:"Hujan malam itu pun tak mampu menahanmu pergi",
+      words:[{h:"那夜",p:"nà yè",a:"malam itu"},{h:"的",p:"de",a:"partikel"},{h:"雨",p:"yǔ",a:"hujan"},
+             {h:"也",p:"yě",a:"pun"},{h:"没能",p:"méi néng",a:"tidak mampu"},{h:"留住",p:"liúzhù",a:"menahan"},
+             {h:"你",p:"nǐ",a:"kamu"}]},
+     {hanzi:"山谷里的风它陪我哭泣",pinyin:"Shāngǔ lǐ de fēng tā péi wǒ kūqì",id:"Angin di lembah menemani tangisanku",
+      words:[{h:"山谷",p:"shāngǔ",a:"lembah"},{h:"里",p:"lǐ",a:"dalam"},{h:"的",p:"de",a:"partikel"},
+             {h:"风",p:"fēng",a:"angin"},{h:"它",p:"tā",a:"ia"},{h:"陪",p:"péi",a:"menemani"},
+             {h:"我",p:"wǒ",a:"aku"},{h:"哭泣",p:"kūqì",a:"menangis"}]},
+     {hanzi:"你说你还在等一个人",pinyin:"Nǐ shuō nǐ hái zài děng yīgè rén",id:"Kau bilang masih menunggu seseorang",
+      words:[{h:"你",p:"nǐ",a:"kamu"},{h:"说",p:"shuō",a:"berkata"},{h:"还",p:"hái",a:"masih"},
+             {h:"在",p:"zài",a:"sedang"},{h:"等",p:"děng",a:"menunggu"},{h:"一个人",p:"yīgè rén",a:"seseorang"}]},
+     {hanzi:"是不是那个人就是我",pinyin:"Shì bùshì nà gè rén jiùshì wǒ",id:"Apakah orang itu justru adalah aku?",
+      words:[{h:"是不是",p:"shì bùshì",a:"apakah"},{h:"那个",p:"nàgè",a:"itu"},{h:"人",p:"rén",a:"orang"},
+             {h:"就是",p:"jiùshì",a:"justru adalah"},{h:"我",p:"wǒ",a:"aku"}]}
+   ],
+   vocab:[{hanzi:"牧羊人",pinyin:"mùyángrén",arti:"penggembala domba"},
+          {hanzi:"哭泣",pinyin:"kūqì",arti:"menangis; meratap; bersedih"},
+          {hanzi:"山谷",pinyin:"shāngǔ",arti:"lembah; celah di antara gunung"},
+          {hanzi:"留住",pinyin:"liúzhù",arti:"menahan; mencegah seseorang pergi"},
+          {hanzi:"等待",pinyin:"děngdài",arti:"menunggu; menanti dengan sabar"}]},
+
+  {title_cn:"白月光与朱砂痣",title_pinyin:"Bái Yuèguāng Yǔ Zhū Shā Zhì",title_id:"Cahaya Bulan & Tanda Lahir Merah",
+   artist:"大籽",searchQuery:"白月光与朱砂痣 大籽 MV official",
+   lyrics:[
+     {hanzi:"白月光在照耀",pinyin:"Bái yuèguāng zài zhàoyào",id:"Cahaya bulan putih sedang menyinari",
+      words:[{h:"白",p:"bái",a:"putih"},{h:"月光",p:"yuèguāng",a:"cahaya bulan"},
+             {h:"在",p:"zài",a:"sedang"},{h:"照耀",p:"zhàoyào",a:"menyinari"}]},
+     {hanzi:"你是我的朱砂痣",pinyin:"Nǐ shì wǒ de zhū shā zhì",id:"Kau adalah tanda merah abadi di hatiku",
+      words:[{h:"你",p:"nǐ",a:"kamu"},{h:"是",p:"shì",a:"adalah"},{h:"我的",p:"wǒde",a:"milikku"},
+             {h:"朱砂",p:"zhūshā",a:"cinnabar merah"},{h:"痣",p:"zhì",a:"tanda lahir"}]},
+     {hanzi:"得不到的永远在骚动",pinyin:"Dé bù dào de yǒngyuǎn zài sāodòng",id:"Yang tak terjangkau selalu mengusik pikiran",
+      words:[{h:"得不到",p:"débùdào",a:"tidak bisa didapat"},{h:"的",p:"de",a:"partikel"},
+             {h:"永远",p:"yǒngyuǎn",a:"selamanya"},{h:"在",p:"zài",a:"sedang"},
+             {h:"骚动",p:"sāodòng",a:"bergejolak; mengusik"}]},
+     {hanzi:"得到了又不在意",pinyin:"Dé dào le yòu bù zàiyì",id:"Setelah didapat malah tidak dihargai",
+      words:[{h:"得到",p:"dédào",a:"mendapatkan"},{h:"了",p:"le",a:"partikel selesai"},
+             {h:"又",p:"yòu",a:"malah"},{h:"不",p:"bù",a:"tidak"},{h:"在意",p:"zàiyì",a:"mempedulikan"}]}
+   ],
+   vocab:[{hanzi:"白月光",pinyin:"bái yuèguāng",arti:"cahaya bulan putih; metafora cinta tak terjangkau"},
+          {hanzi:"朱砂痣",pinyin:"zhū shā zhì",arti:"tanda lahir merah; metafora obsesi yang menyakitkan"},
+          {hanzi:"照耀",pinyin:"zhàoyào",arti:"menyinari; bersinar dengan terang"},
+          {hanzi:"骚动",pinyin:"sāodòng",arti:"bergejolak; kegelisahan batin"},
+          {hanzi:"在意",pinyin:"zàiyì",arti:"mempedulikan; menghargai; ambil hati"}]}
 ];
 
-/* =====================================================
+/* ============================================================
    STATE
-===================================================== */
-let currentSong = 0;
-let videoLoaded = false;
+============================================================ */
+let currentSong=0,videoLoaded=false,totalXP=0,practiceCount=0;
+let scoreHistory=[],recognition=null,activeRecLine=-1,isRecording=false;
 
-/* =====================================================
-   YOUTUBE API
-===================================================== */
-const YT_API_KEY  = "AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8";
-const YT_SEARCH   = "https://www.googleapis.com/youtube/v3/search";
+/* ============================================================
+   YOUTUBE
+============================================================ */
+const YT_KEY="AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8";
+const YT_BASE="https://www.googleapis.com/youtube/v3/search";
 
-async function fetchYouTubeVideoId(query) {
-  const params = new URLSearchParams({
-    part:       "snippet",
-    q:          query,
-    type:       "video",
-    maxResults: "5",
-    key:        YT_API_KEY
-  });
-  const res  = await fetch(`${YT_SEARCH}?${params}`);
-  if (!res.ok) throw new Error(`YouTube API error: ${res.status}`);
-  const data = await res.json();
-  if (!data.items || data.items.length === 0) throw new Error("Tidak ada hasil ditemukan");
-  return data.items[0].id.videoId;
+async function fetchVideoId(q){
+  const p=new URLSearchParams({part:"snippet",q,type:"video",maxResults:"5",key:YT_KEY});
+  const r=await fetch(`${YT_BASE}?${p}`);
+  if(!r.ok)throw new Error(`API error ${r.status}`);
+  const d=await r.json();
+  if(!d.items||!d.items.length)throw new Error("Video tidak ditemukan");
+  return d.items[0].id.videoId;
 }
-
-async function loadVideo() {
-  const btn    = document.getElementById("load-btn");
-  const status = document.getElementById("search-status");
-  const song   = SONGS[currentSong];
-
-  btn.disabled = true;
-  btn.innerHTML = `<span class="spinner"></span> Mencari di YouTube…`;
-  status.innerHTML = `<span class="spinner"></span> Mencari "<em>${song.searchQuery}</em>"…`;
-
-  try {
-    const videoId = await fetchYouTubeVideoId(song.searchQuery);
-    embedVideo(videoId);
-    status.innerHTML = `✅ Video ditemukan & dimuat — ID: <code style="color:var(--gold-dim);">${videoId}</code>`;
-    btn.innerHTML = "🔄&nbsp; Muat Ulang Video";
-    btn.disabled = false;
-  } catch (err) {
-    status.innerHTML = `⚠️ Gagal: ${err.message}. Memuat fallback search…`;
-    // Fallback: embed YouTube search via iframe
-    embedFallbackSearch(song.title_cn + " " + song.artist);
-    btn.innerHTML = "🔄&nbsp; Coba Lagi";
-    btn.disabled  = false;
+async function loadVideo(){
+  const btn=document.getElementById("load-btn"),st=document.getElementById("search-status"),song=SONGS[currentSong];
+  btn.disabled=true; btn.innerHTML=`<span class="spinner"></span>Mencari…`;
+  st.innerHTML=`<span class="spinner"></span>Mencari "<em>${song.searchQuery}</em>"…`;
+  try{
+    const vid=await fetchVideoId(song.searchQuery);
+    embedVideo(vid);
+    st.innerHTML=`✅ Video dimuat — ID: <code style="color:var(--gold-dim)">${vid}</code>`;
+    btn.innerHTML="🔄&nbsp; Muat Ulang"; btn.disabled=false;
+  }catch(e){
+    st.innerHTML=`⚠️ ${e.message} — fallback search…`;
+    embedFallback(song.title_cn+" "+song.artist);
+    btn.innerHTML="🔄&nbsp; Coba Lagi"; btn.disabled=false;
   }
 }
-
-function embedVideo(videoId) {
-  const container = document.getElementById("yt-player-container");
-  const placeholder = document.getElementById("video-placeholder");
-  container.innerHTML = `
-    <iframe
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      style="position:absolute;inset:0;width:100%;height:100%;border:none;">
-    </iframe>`;
-  container.style.display = "block";
-  placeholder.style.display = "none";
-  videoLoaded = true;
+function embedVideo(vid){
+  const c=document.getElementById("yt-player-container"),p=document.getElementById("video-placeholder");
+  c.innerHTML=`<iframe src="https://www.youtube.com/embed/${vid}?autoplay=1&rel=0"
+    allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+    allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>`;
+  c.style.display="block"; p.style.display="none"; videoLoaded=true;
+}
+function embedFallback(q){
+  const c=document.getElementById("yt-player-container"),p=document.getElementById("video-placeholder");
+  c.innerHTML=`<iframe src="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}"
+    style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>`;
+  c.style.display="block"; p.style.display="none";
 }
 
-function embedFallbackSearch(query) {
-  const container = document.getElementById("yt-player-container");
-  const placeholder = document.getElementById("video-placeholder");
-  const encoded = encodeURIComponent(query);
-  container.innerHTML = `
-    <iframe
-      src="https://www.youtube.com/results?search_query=${encoded}"
-      style="position:absolute;inset:0;width:100%;height:100%;border:none;">
-    </iframe>`;
-  container.style.display = "block";
-  placeholder.style.display = "none";
+/* ============================================================
+   TABS
+============================================================ */
+function buildTabs(){
+  document.getElementById("song-tabs").innerHTML=SONGS.map((s,i)=>`
+    <div class="song-tab${i===0?" active":""}" id="tab-${i}" onclick="selectSong(${i})">
+      <span class="song-tab-hanzi">${s.title_cn}</span>
+      <span class="song-tab-pinyin">${s.title_pinyin}</span>
+      <span class="song-tab-id">${s.title_id}</span>
+    </div>`).join("");
+}
+function selectSong(idx){
+  currentSong=idx; videoLoaded=false;
+  document.querySelectorAll(".song-tab").forEach((t,i)=>t.classList.toggle("active",i===idx));
+  const c=document.getElementById("yt-player-container"),p=document.getElementById("video-placeholder"),s=SONGS[idx];
+  c.innerHTML=""; c.style.display="none"; p.style.display="flex";
+  document.getElementById("search-status").innerHTML="";
+  const btn=document.getElementById("load-btn"); btn.disabled=false; btn.innerHTML="▶&nbsp; Muat Video YouTube";
+  document.getElementById("ph-title").textContent=s.title_cn;
+  document.getElementById("ph-sub").textContent=`${s.title_pinyin} · ${s.title_id}`;
+  renderLyrics(idx); renderVocab(idx);
 }
 
-/* =====================================================
-   SONG SELECTION
-===================================================== */
-function selectSong(idx) {
-  if (idx === currentSong && videoLoaded) return;
-  currentSong = idx;
-  videoLoaded = false;
-
-  // Update tabs
-  document.querySelectorAll('.song-tab').forEach((t, i) => {
-    t.classList.toggle('active', i === idx);
+/* ============================================================
+   LIRIK
+============================================================ */
+function renderLyrics(idx){
+  const song=SONGS[idx];
+  document.getElementById("lirik-song-name").innerHTML=`Chorus · <span class="text-gold-grad">${song.title_cn}</span>`;
+  const body=document.getElementById("lirik-body");
+  body.innerHTML=song.lyrics.map((l,i)=>`
+    <div class="lyric-block" id="lb-${i}" style="opacity:0;transform:translateX(-16px);transition:all .5s ease ${i*.1}s;">
+      <div class="lyric-main" onclick="toggleBD(${i})">
+        <div class="lyric-text">
+          <p class="line-hanzi">${l.hanzi}</p>
+          <p class="line-pinyin">🗣 ${l.pinyin}</p>
+          <p class="line-id">🇮🇩 ${l.id}</p>
+          <p class="line-hint">👆 Klik untuk pecah kata · 🎤 Klik mic untuk latihan</p>
+        </div>
+        <button class="mic-btn" id="mic-${i}" onclick="event.stopPropagation();handleMic(${i})" title="Latih Pelafalan">🎤</button>
+      </div>
+      <div class="word-panel" id="wp-${i}">
+        ${l.words.map(w=>`<div class="word-chip"><span class="wc-hanzi">${w.h}</span><span class="wc-pinyin">${w.p}</span><span class="wc-arti">${w.a}</span></div>`).join("")}
+      </div>
+      <div class="score-panel" id="sp-${i}"></div>
+    </div>`).join("");
+  requestAnimationFrame(()=>{
+    body.querySelectorAll(".lyric-block").forEach(el=>{el.style.opacity="1";el.style.transform="translateX(0)";});
   });
-
-  // Reset player
-  const container   = document.getElementById("yt-player-container");
-  const placeholder = document.getElementById("video-placeholder");
-  container.innerHTML = "";
-  container.style.display = "none";
-  placeholder.style.display = "flex";
-  document.getElementById("search-status").innerHTML = "";
-
-  const btn = document.getElementById("load-btn");
-  btn.disabled = false;
-  btn.innerHTML = "▶&nbsp; Muat Video YouTube";
-
-  const song = SONGS[idx];
-  document.getElementById("ph-title").textContent = song.title_cn;
-  document.getElementById("ph-sub").textContent   = `${song.title_pinyin} · ${song.title_id}`;
-
-  // Update lyrics
-  renderLyrics(idx);
-
-  // Update vocab
-  renderVocab(idx);
 }
+function toggleBD(i){document.getElementById(`wp-${i}`).classList.toggle("open");}
 
-/* =====================================================
-   RENDER LYRICS
-===================================================== */
-function renderLyrics(idx) {
-  const song = SONGS[idx];
-  document.getElementById("lirik-song-name").innerHTML =
-    `Chorus · <span class="text-gold-grad">${song.title_cn}</span>`;
-
-  const body = document.getElementById("lirik-body");
-  body.innerHTML = song.lyrics.map((l, i) => `
-    <div class="lirik-line" style="animation-delay:${i*0.12}s;opacity:0;transform:translateX(-16px);transition:all 0.5s ease ${i*0.1}s;">
-      <p class="line-hanzi">${l.hanzi}</p>
-      <p class="line-pinyin">🗣 ${l.pinyin}</p>
-      <p class="line-id">🇮🇩 ${l.id}</p>
+/* ============================================================
+   MIC / SPEECH
+============================================================ */
+function handleMic(li){
+  if(!("webkitSpeechRecognition" in window||"SpeechRecognition" in window)){
+    simulateScore(li); return;
+  }
+  if(isRecording&&activeRecLine===li){recognition&&recognition.stop();return;}
+  if(isRecording){recognition&&recognition.stop();}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR(); recognition.lang="zh-CN"; recognition.interimResults=false; recognition.maxAlternatives=1;
+  activeRecLine=li; isRecording=true; setMic(li,true);
+  recognition.start();
+  recognition.onresult=function(e){
+    const tr=e.results[0][0].transcript,conf=e.results[0][0].confidence;
+    const target=SONGS[currentSong].lyrics[li].hanzi;
+    const score=calcScore(tr,target,conf);
+    isRecording=false; activeRecLine=-1; setMic(li,false);
+    showScore(li,score,tr); scoreHistory.push(score); practiceCount++; updateHUD();
+  };
+  recognition.onerror=function(e){
+    isRecording=false; activeRecLine=-1; setMic(li,false);
+    if(e.error==="no-speech"||e.error==="aborted")return;
+    simulateScore(li);
+  };
+  recognition.onend=function(){isRecording=false;setMic(li,false);};
+}
+function simulateScore(li){
+  const score=Math.floor(Math.random()*101);
+  showScore(li,score,"(simulasi)"); scoreHistory.push(score); practiceCount++; updateHUD();
+}
+function setMic(li,rec){
+  const btn=document.getElementById(`mic-${li}`);
+  if(!btn)return; btn.classList.toggle("recording",rec); btn.textContent=rec?"⏹":"🎤";
+}
+function calcScore(tr,target,conf){
+  const t1=tr.replace(/\s/g,""),t2=target.replace(/\s/g,"");
+  const m=[...t1].filter((c,i)=>t2[i]===c).length;
+  const cs=(m/Math.max(t1.length,t2.length,1))*100;
+  const fs=(conf||0.5)*100;
+  return Math.round(cs*.5+fs*.5);
+}
+function showScore(li,score,tr){
+  const panel=document.getElementById(`sp-${li}`);
+  const rc=score>=80?"excellent":score>=50?"good":"poor";
+  const nc=score>=80?"var(--gold)":score>=50?"#90EE90":"#FF6B6B";
+  let fb="",xp="";
+  if(score>=80){fb="🎉 Luar biasa! Pelafalan Sultan!";xp="+50 XP";triggerCoinRain();showToast("🏆","Sempurna!","+50 XP — Pelafalan Sultan!");addXP(50);}
+  else if(score>=50){fb="👍 Lumayan! Terus berlatih ya!";xp="+20 XP";showToast("👍","Cukup Bagus!","+20 XP — Semangat terus!");addXP(20);}
+  else{fb="😂 Waduh, boncos dong! Belajar lagi sana!";xp="+5 XP";showToast("😅","Boncos!","Belajar lagi sana! +5 XP");addXP(5);}
+  panel.innerHTML=`
+    <div class="score-ring ${rc}">
+      <span class="score-num" style="color:${nc}">${score}</span>
+      <span class="score-lbl" style="color:${nc}">/ 100</span>
     </div>
-  `).join("");
-
-  // Trigger entrance animation
-  requestAnimationFrame(() => {
-    body.querySelectorAll('.lirik-line').forEach(el => {
-      el.style.opacity = "1";
-      el.style.transform = "translateX(0)";
-    });
-  });
+    <div style="flex:1;">
+      <div class="score-feedback">${fb}</div>
+      <span class="score-xp-badge">${xp}</span>
+      ${tr!=="(simulasi)"?`<div style="font-size:.62rem;color:rgba(255,255,255,.3);margin-top:3px;">Terdeteksi: "${tr}"</div>`:""}
+    </div>`;
+  panel.classList.add("show");
 }
 
-/* =====================================================
-   RENDER VOCAB CARDS
-===================================================== */
-function renderVocab(idx) {
-  const song = SONGS[idx];
-  document.getElementById("vocab-title").innerHTML =
-    `5 Kosakata dari <span class="text-gold-grad">${song.title_cn}</span>`;
+/* ============================================================
+   GAMIFICATION
+============================================================ */
+function addXP(n){totalXP+=n;updateHUD();}
+function getRank(avg){
+  if(avg===null)return"Pelajar Baru";
+  if(avg>=90)return"Pewaris Tahta Sultan 👑";
+  if(avg>=80)return"Panglima Istana ⚔️";
+  if(avg>=70)return"Bangsawan Kehormatan 🏅";
+  if(avg>=60)return"Rakyat Kehormatan 🎖️";
+  if(avg>=50)return"Pejuang Jalanan 🥋";
+  return"Kacung Istana 😂";
+}
+function updateHUD(){
+  document.getElementById("hud-xp").textContent=totalXP+" XP";
+  document.getElementById("hud-practice").textContent=practiceCount+" Baris";
+  const avg=scoreHistory.length?Math.round(scoreHistory.reduce((a,b)=>a+b,0)/scoreHistory.length):null;
+  document.getElementById("hud-avg").textContent=avg!==null?avg+"/100":"—";
+  document.getElementById("hud-rank").textContent=getRank(avg);
+  document.getElementById("hud-xp-fill").style.width=Math.min((totalXP%500)/500*100,100)+"%";
+  const ci=document.getElementById("cert-score-info");
+  if(ci)ci.textContent=avg!==null?`Skor rata-rata: ${avg}/100 → Gelar: "${getRank(avg)}"`:
+    "Latih minimal 1 baris lirik untuk mendapatkan gelar resmi";
+}
 
-  const grid = document.getElementById("vocab-grid");
-  grid.innerHTML = song.vocab.map((v, i) => `
-    <div class="vocab-card"
-         style="animation-delay:${i*0.08}s;opacity:0;transform:translateY(20px);transition:all 0.5s ease ${i*0.08}s;">
-      <span class="vocab-num">#${String(i+1).padStart(2,'0')}</span>
+/* ============================================================
+   COIN RAIN
+============================================================ */
+function triggerCoinRain(){
+  const ov=document.getElementById("coin-overlay");
+  ov.classList.add("active"); ov.innerHTML="";
+  const items=["🪙","🧧","💰","🎊","⭐","✨","💛","🎉"];
+  for(let i=0;i<50;i++){
+    const el=document.createElement("div"); el.className="rain-item";
+    el.textContent=items[Math.floor(Math.random()*items.length)];
+    const left=Math.random()*100,size=1.2+Math.random()*1.8,dur=1.8+Math.random()*1.8,delay=Math.random()*1.2;
+    el.style.cssText=`left:${left}%;font-size:${size}rem;animation-duration:${dur}s;animation-delay:${delay}s;`;
+    ov.appendChild(el);
+  }
+  setTimeout(()=>{ov.classList.remove("active");ov.innerHTML="";},4500);
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+let toastTimer=null;
+function showToast(emoji,msg,sub){
+  const t=document.getElementById("score-toast");
+  document.getElementById("toast-emoji").textContent=emoji;
+  document.getElementById("toast-msg").textContent=msg;
+  document.getElementById("toast-sub").textContent=sub;
+  t.classList.add("show"); clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove("show"),3200);
+}
+
+/* ============================================================
+   VOCAB
+============================================================ */
+function renderVocab(idx){
+  const song=SONGS[idx];
+  document.getElementById("vocab-title").innerHTML=`5 Kosakata dari <span class="text-gold-grad">${song.title_cn}</span>`;
+  const grid=document.getElementById("vocab-grid");
+  grid.innerHTML=song.vocab.map((v,i)=>`
+    <div class="vocab-card" style="opacity:0;transform:translateY(20px);transition:all .5s ease ${i*.08}s;">
+      <span class="vocab-num">#${String(i+1).padStart(2,"0")}</span>
       <p class="vocab-hanzi">${v.hanzi}</p>
       <p class="vocab-pinyin">${v.pinyin}</p>
-      <div class="vocab-divider"></div>
+      <div class="vocab-div"></div>
       <p class="vocab-arti">${v.arti}</p>
-      <span class="vocab-song-tag">${song.title_cn}</span>
-    </div>
-  `).join("");
-
-  requestAnimationFrame(() => {
-    grid.querySelectorAll('.vocab-card').forEach(el => {
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    });
-  });
+      <span class="vocab-tag">${song.title_cn}</span>
+    </div>`).join("");
+  requestAnimationFrame(()=>{grid.querySelectorAll(".vocab-card").forEach(el=>{el.style.opacity="1";el.style.transform="translateY(0)";});});
 }
 
-/* =====================================================
-   SCROLL UTILITIES
-===================================================== */
-function scrollTo(selector) {
-  const el = document.querySelector(selector);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+/* ============================================================
+   CERTIFICATE
+============================================================ */
+function generateCertificate(){
+  const name=(document.getElementById("cert-name").value||"").trim();
+  if(!name){
+    const inp=document.getElementById("cert-name"); inp.focus();
+    inp.style.borderColor="var(--red-light)";
+    setTimeout(()=>inp.style.borderColor="rgba(255,215,0,.35)",1500); return;
+  }
+  const avg=scoreHistory.length?Math.round(scoreHistory.reduce((a,b)=>a+b,0)/scoreHistory.length):38;
+  drawCertificate(name,getRank(avg),avg);
+  const w=document.getElementById("cert-preview"); w.classList.add("show");
+  setTimeout(()=>w.scrollIntoView({behavior:"smooth",block:"center"}),100);
 }
 
-/* =====================================================
-   INTERSECTION OBSERVER (fade-up)
-===================================================== */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
+function drawCertificate(name,rank,avg){
+  const cv=document.getElementById("cert-canvas"),ctx=cv.getContext("2d"),W=900,H=636;
+  ctx.clearRect(0,0,W,H);
 
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  // Background parchment
+  const bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,"#F7EDCC"); bg.addColorStop(.35,"#EFE0A8");
+  bg.addColorStop(.7,"#E8D498"); bg.addColorStop(1,"#DCCA88");
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
 
-/* =====================================================
+  // Texture
+  ctx.save(); ctx.globalAlpha=.055;
+  for(let i=0;i<H;i+=4){ctx.fillStyle=i%8===0?"#8B6914":"#A07820";ctx.fillRect(0,i,W,2);}
+  ctx.restore();
+
+  // Borders
+  ctx.strokeStyle="#8B0000"; ctx.lineWidth=7; ctx.strokeRect(8,8,W-16,H-16);
+  ctx.strokeStyle="#CCA800"; ctx.lineWidth=2; ctx.strokeRect(18,18,W-36,H-36);
+  ctx.strokeStyle="#8B0000"; ctx.lineWidth=1; ctx.strokeRect(25,25,W-50,H-50);
+
+  // Corner ornaments
+  [40,W-40].forEach(cx=>[40,H-40].forEach(cy=>drawCorner(ctx,cx,cy,30)));
+
+  // Top strip
+  ctx.fillStyle="rgba(139,0,0,.1)"; ctx.fillRect(28,28,W-56,48);
+  ctx.fillStyle="#8B0000"; ctx.font="bold 18px 'Noto Serif SC',serif";
+  ctx.textAlign="center";
+  ctx.fillText("✦ 龙 凤 呈 祥 ✦ 汪 氏 皇 家 学 院 · 棉 兰 ✦ 龙 凤 呈 祥 ✦",W/2,60);
+
+  // Main title
+  ctx.fillStyle="#5C0000"; ctx.font="bold 11px 'Cinzel',serif";
+  ctx.fillText("SURAT KEPUTUSAN RESMI AKADEMI BAHASA MANDARIN KERAJAAN",W/2,102);
+
+  ctx.fillStyle="#8B0000"; ctx.font="bold 44px 'Noto Serif SC',serif";
+  ctx.fillText("皇家证书",W/2,158);
+
+  // Gold underline
+  const gl=ctx.createLinearGradient(200,0,W-200,0);
+  gl.addColorStop(0,"transparent"); gl.addColorStop(.3,"#CCA800");
+  gl.addColorStop(.7,"#FFD700"); gl.addColorStop(1,"transparent");
+  ctx.strokeStyle=gl; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(130,172); ctx.lineTo(W-130,172); ctx.stroke();
+
+  // Body
+  ctx.fillStyle="#3D1A00"; ctx.font="16px 'Lato',sans-serif";
+  ctx.fillText("Dengan ini dinyatakan dengan hormat bahwa:",W/2,210);
+
+  // Name
+  const ng=ctx.createLinearGradient(0,230,0,275);
+  ng.addColorStop(0,"#8B0000"); ng.addColorStop(.5,"#C41E1E"); ng.addColorStop(1,"#8B0000");
+  ctx.fillStyle=ng;
+  const fs=Math.min(52,1900/Math.max(name.length,1));
+  ctx.font=`bold ${fs}px 'Cinzel Decorative',serif`;
+  ctx.fillText(name,W/2,265);
+
+  ctx.strokeStyle="#CCA800"; ctx.lineWidth=1.5;
+  const nw=ctx.measureText(name).width;
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2-24,276); ctx.lineTo(W/2+nw/2+24,276); ctx.stroke();
+
+  ctx.fillStyle="#3D1A00"; ctx.font="15px 'Lato',sans-serif";
+  ctx.fillText("telah menyelesaikan Program Studi Mandarin Melalui Lagu dan",W/2,312);
+  ctx.fillText("dengan bangga menyandang gelar terhormat:",W/2,332);
+
+  // Rank
+  ctx.fillStyle="#8B0000"; ctx.font="bold 26px 'Cinzel',serif";
+  ctx.fillText(`"${rank}"`,W/2,372);
+
+  // Score and date
+  ctx.fillStyle="#5C3310"; ctx.font="13px 'Cinzel',serif";
+  const today=new Date().toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
+  ctx.fillText(`Skor Rata-rata Pelafalan: ${avg} / 100  ·  ${today}`,W/2,404);
+
+  // Divider
+  ctx.strokeStyle="#CCA800"; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(90,420); ctx.lineTo(W-90,420); ctx.stroke();
+  ctx.fillStyle="#8B0000"; ctx.font="16px sans-serif";
+  ctx.fillText("✦  ✦  ✦",W/2,437);
+
+  // Signature
+  ctx.fillStyle="#5C0000"; ctx.font="italic 13px 'Lato',serif";
+  ctx.fillText("Dikeluarkan dan ditandatangani oleh:",W/2,468);
+  ctx.fillStyle="#8B0000"; ctx.font="bold 22px 'Cinzel Decorative',serif";
+  ctx.fillText("Wang Weize · 汪为泽",W/2,498);
+  ctx.fillStyle="#7A4A00"; ctx.font="11px 'Cinzel',serif";
+  ctx.fillText("Satu-satunya Marga 汪 di Medan Pancing · Kepala Akademi Bahasa Mandarin Sultan",W/2,516);
+
+  // Seals
+  drawSeal(ctx,W-128,H-128,66);
+  drawSeal(ctx,112,H-128,46,"副");
+
+  // Bottom strip
+  ctx.fillStyle="rgba(139,0,0,.09)"; ctx.fillRect(28,H-54,W-56,36);
+  ctx.fillStyle="#8B0000"; ctx.font="11px 'Noto Serif SC',serif";
+  ctx.fillText("汉语之声 · 汪氏皇家学院 · 学而时习之，不亦说乎 · 棉兰 Medan Pancing",W/2,H-30);
+}
+
+function drawSeal(ctx,cx,cy,r,char="汪"){
+  ctx.save(); ctx.globalAlpha=.85;
+  ctx.strokeStyle="#CC0000"; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.stroke();
+  ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(cx,cy,r-7,0,Math.PI*2); ctx.stroke();
+  ctx.fillStyle="#CC0000"; ctx.font=`bold ${r*1.1}px 'Noto Serif SC',serif`;
+  ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(char,cx,cy);
+  ctx.font=`${r*.2}px 'Noto Serif SC',serif`; ctx.fillText("皇家印章",cx,cy+r-11);
+  ctx.restore(); ctx.textBaseline="alphabetic";
+}
+
+function drawCorner(ctx,cx,cy,r){
+  ctx.save(); ctx.strokeStyle="#8B0000"; ctx.lineWidth=1.5; ctx.globalAlpha=.45;
+  for(let i=0;i<8;i++){
+    const a=i*Math.PI/4;
+    ctx.beginPath(); ctx.arc(cx+Math.cos(a)*r*.45,cy+Math.sin(a)*r*.45,r*.25,0,Math.PI*2); ctx.stroke();
+  }
+  ctx.beginPath(); ctx.arc(cx,cy,r*.25,0,Math.PI*2); ctx.stroke();
+  ctx.globalAlpha=.28; ctx.fillStyle="#CCA800";
+  ctx.beginPath(); ctx.arc(cx,cy,r*.16,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+}
+
+function downloadCert(){
+  const cv=document.getElementById("cert-canvas"),a=document.createElement("a");
+  const n=(document.getElementById("cert-name").value||"Sultan").trim().replace(/\s+/g,"_");
+  a.download=`Sertifikat_Mandarin_${n}.png`; a.href=cv.toDataURL("image/png",1); a.click();
+}
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+function gotoSection(sel){
+  const el=document.querySelector(sel);
+  if(el)el.scrollIntoView({behavior:"smooth"});
+}
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
+
+/* ============================================================
    INIT
-===================================================== */
-(function init() {
-  renderLyrics(0);
-  renderVocab(0);
-})();
+============================================================ */
+(function(){buildTabs();renderLyrics(0);renderVocab(0);updateHUD();})();
 </script>
 </body>
 </html>
