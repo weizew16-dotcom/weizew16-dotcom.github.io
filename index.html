@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niken Kho 琪琪 | Official Electronic Press Kit</title>
+    <title>Niken Kho 琪琪 | Official Electronic Press Kit - Sultan Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,76 +17,96 @@
             --imperial-gold: #D4AF37;
             --gold-light: #F9E596;
             --gold-dark: #8B6508;
+            --gold-shine: rgba(255, 255, 255, 0.1);
         }
 
-        /* Base Typography Override (WAJIB - TARGET TYPOGRAPHY) */
-        html { font-size: 20px; } /* text-xl base */
+        /* -----------------------------------------------------------
+           1. BASE & TYPOGRAPHY SULTAN (Target XL & Bold)
+           ----------------------------------------------------------- */
+        html { font-size: 20px; /* text-xl base as requested */ }
         body {
             background-color: var(--midnight);
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            cursor: none; /* INOVASI 2: Hide default cursor */
+            cursor: none; /* Feature: Custom Cursor */
         }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 
-        /* INOVASI 1: LUXURY PRELOADER "NK" */
+        /* -----------------------------------------------------------
+           2. SULTAN "NK" PRELOADER (Enhanced)
+           ----------------------------------------------------------- */
         #preloader {
             position: fixed; inset: 0; background: var(--midnight); z-index: 9999;
             display: flex; justify-content: center; align-items: center; flex-direction: column;
-            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 1.8s cubic-bezier(0.8, 0, 0.2, 1);
         }
         .nk-logo {
-            font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 900;
-            background: linear-gradient(45deg, var(--gold-dark), var(--imperial-gold), var(--gold-light));
-            -webkit-background-clip: text; color: transparent;
-            animation: pulse-glow 2s infinite alternate;
+            font-family: 'Playfair Display', serif; font-size: 7rem; font-weight: 900;
+            background: linear-gradient(45deg, var(--gold-dark), var(--imperial-gold), var(--gold-light), var(--gold-dark));
+            background-size: 400% 100%; -webkit-background-clip: text; color: transparent;
+            animation: pulse-glow 2s infinite alternate, shimmer 4s infinite linear;
         }
         @keyframes pulse-glow {
             from { text-shadow: 0 0 10px rgba(212,175,55,0.2); }
-            to { text-shadow: 0 0 30px rgba(212,175,55,0.8); }
+            to { text-shadow: 0 0 40px rgba(212,175,55,1); }
         }
+        @keyframes shimmer { to { background-position: 400% 0; } }
 
-        /* INOVASI 2: CUSTOM GOLD CURSOR */
+        /* -----------------------------------------------------------
+           3. SULTAN CUSTOM CURSOR
+           ----------------------------------------------------------- */
         .cursor-dot {
             position: fixed; top: 0; left: 0; width: 10px; height: 10px;
             background: var(--imperial-gold); border-radius: 50%;
             pointer-events: none; z-index: 10000; transform: translate(-50%, -50%);
         }
         .cursor-ring {
-            position: fixed; top: 0; left: 0; width: 50px; height: 50px;
+            position: fixed; top: 0; left: 0; width: 60px; height: 60px;
             border: 2px solid var(--imperial-gold); border-radius: 50%;
             pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
         }
 
-        /* INOVASI 4: FLOATING ACTION MENU */
+        /* -----------------------------------------------------------
+           4. SULTAN FLOATING ACTION MENU
+           ----------------------------------------------------------- */
         .floating-menu {
             position: fixed; left: 30px; top: 50%; transform: translateY(-50%);
-            display: flex; flex-direction: column; gap: 1.5rem; z-index: 50;
+            display: flex; flex-direction: column; gap: 1.8rem; z-index: 50;
         }
         .floating-menu a {
-            color: rgba(255,255,255,0.5); font-size: 1.2rem; transition: all 0.3s ease;
+            color: rgba(255,255,255,0.4); font-size: 1.3rem; transition: all 0.4s ease;
         }
         .floating-menu a:hover, .floating-menu a.active {
-            color: var(--imperial-gold); transform: scale(1.2);
+            color: var(--imperial-gold); transform: scale(1.2) translateX(5px);
+            text-shadow: 0 0 10px rgba(212,175,55,0.5);
         }
 
-        /* Form Inputs */
+        /* -----------------------------------------------------------
+           5. SULTAN FORMS & DROPDOWNS (Visibility FIX!)
+           ----------------------------------------------------------- */
         input, select, textarea {
             background: rgba(255,255,255,0.03); border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #fff; padding: 1.2rem; border-radius: 0; width: 100%; transition: all 0.3s;
+            color: #fff; padding: 1.3rem; border-radius: 0; width: 100%; transition: all 0.4s;
             font-size: 1rem;
         }
-        input:focus, select:focus { outline: none; border-color: var(--imperial-gold); background: rgba(212,175,55,0.05); }
+        input:focus, select:focus { outline: none; border-color: var(--imperial-gold); background: rgba(212,175,55,0.08); }
         
+        /* THE CRUCIAL FIX: Dropdown Option Visibility */
+        option {
+            background-color: var(--midnight) !important; /* Dark background */
+            color: #ffffff !important; /* Light text */
+            font-size: 1rem; padding: 10px;
+        }
+
         .btn-gold-massive {
-            background: linear-gradient(90deg, var(--gold-dark), var(--imperial-gold), var(--gold-light));
-            color: var(--midnight); font-weight: 800; text-transform: uppercase;
-            letter-spacing: 0.2em; transition: transform 0.4s, box-shadow 0.4s;
+            background: linear-gradient(90deg, var(--gold-dark), var(--imperial-gold), var(--gold-light), var(--gold-dark));
+            background-size: 200% auto; color: var(--midnight); font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.25em; transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .btn-gold-massive:hover {
-            transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212,175,55,0.4); cursor: none;
+            background-position: right center; box-shadow: 0 10px 40px rgba(212,175,55,0.5); transform: translateY(-3px); cursor: none;
         }
 
         .gold-text-gradient {
@@ -94,17 +114,36 @@
             -webkit-background-clip: text; color: transparent;
         }
 
-        /* Scrollbar */
+        /* -----------------------------------------------------------
+           6. SULTAN INTERACTION: GLASSMORPHISM Card Shine
+           ----------------------------------------------------------- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2); position: relative; overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .glass-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, var(--gold-shine), transparent 60%);
+            opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
+        }
+        .glass-card:hover { border-color: var(--imperial-gold); }
+        .glass-card:hover::before { opacity: 1; }
+
+        /* Staggered Text Revel (Logic in JS) */
+        .text-split { opacity: 0; visibility: hidden; }
+
+        /* Scrollbar Sultan */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: var(--midnight); }
-        ::-webkit-scrollbar-thumb { background: var(--imperial-gold); }
+        ::-webkit-scrollbar-thumb { background: var(--imperial-gold); border-radius: 5px; }
     </style>
 </head>
 <body class="antialiased selection:bg-[var(--imperial-gold)] selection:text-black">
 
     <div id="preloader">
         <div class="nk-logo">NK</div>
-        <div class="mt-8 text-[var(--imperial-gold)] uppercase tracking-[0.4em] text-sm font-bold">Official EPK</div>
+        <div class="mt-8 text-[var(--imperial-gold)] uppercase tracking-[0.5em] text-sm font-bold">Official EPK - Berserk Mode</div>
     </div>
 
     <div class="cursor-dot"></div>
@@ -112,15 +151,16 @@
 
     <div class="floating-menu hidden xl:flex">
         <a href="#hero" title="Home"><i class="fas fa-home"></i></a>
-        <a href="#videos" title="Videos"><i class="fas fa-play"></i></a>
-        <a href="#timeline" title="Timeline"><i class="fas fa-history"></i></a>
-        <a href="#rider" title="Hospitality Rider"><i class="fas fa-file-contract"></i></a>
-        <a href="#booking" title="Booking"><i class="fas fa-calendar-check"></i></a>
+        <a href="#epk" title="The Icon"><i class="fas fa-gem"></i></a>
+        <a href="#videos" title="Digital Archive"><i class="fas fa-play"></i></a>
+        <a href="#endorse" title="Global Acclaim"><i class="fas fa-quote-left"></i></a>
+        <a href="#rider" title="Global Rider"><i class="fas fa-file-contract"></i></a>
+        <a href="#booking" title="Secure Booking"><i class="fas fa-calendar-check"></i></a>
     </div>
 
-    <button id="ambient-toggle" class="fixed top-8 right-8 z-50 text-[var(--imperial-gold)] hover:text-white transition-colors duration-300">
-        <div class="w-16 h-16 border border-[var(--imperial-gold)] rounded-full flex items-center justify-center bg-black/50 backdrop-blur">
-            <i class="fas fa-volume-mute text-2xl"></i>
+    <button id="ambient-toggle" class="fixed top-8 right-8 z-50 text-[var(--imperial-gold)] hover:text-white transition-colors duration-400">
+        <div class="w-18 h-18 border border-[var(--imperial-gold)] rounded-full flex items-center justify-center bg-black/50 backdrop-blur group">
+            <i class="fas fa-volume-mute text-2xl group-hover:scale-110 transition-transform"></i>
         </div>
     </button>
     <audio id="ambient-audio" loop>
@@ -128,122 +168,176 @@
     </audio>
 
     <section id="hero" class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-30 parallax-bg"></div>
-        <div class="absolute inset-0 z-0 bg-gradient-to-t from-[var(--midnight)] via-transparent to-[var(--midnight)] opacity-90"></div>
+        <video id="hero-video" class="absolute inset-0 z-0 w-full h-full object-cover opacity-25 parallax-bg" loop muted preload="auto">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-singer-performing-on-stage-with-neon-lights-32115-large.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 z-0 bg-gradient-to-t from-[var(--midnight)] via-transparent to-[var(--midnight)] opacity-95"></div>
         
-        <div class="relative z-10 text-center px-4 w-full max-w-6xl mt-20">
-            <h3 class="text-xl md:text-2xl tracking-[0.5em] text-[var(--imperial-gold)] uppercase mb-6 font-semibold">Global Artist Representative</h3>
-            <h1 class="text-7xl md:text-[8rem] font-black mb-6 leading-none tracking-tighter gold-text-gradient uppercase">
-                Niken Kho <span class="font-sans font-light">琪琪</span>
+        <div class="relative z-10 text-center px-4 w-full max-w-7xl mt-24">
+            <div class="inline-block mb-10 px-6 py-2 rounded-full border border-[var(--imperial-gold)] bg-black/40 backdrop-blur-sm shadow-[0_0_15px_#D4AF3740]">
+                <span class="flex items-center text-sm tracking-[0.3em] text-[var(--gold-light)] uppercase font-semibold">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 mr-3 animate-pulse"></span> GLOBAL ARTIST REPRESENTATIVE
+                </span>
+            </div>
+
+            <h1 id="hero-title" class="text-7xl md:text-[8.5rem] font-black mb-8 leading-none tracking-tighter gold-text-gradient uppercase serif text-split">
+                Niken Kho 琪琪
             </h1>
-            <p class="text-2xl md:text-3xl text-gray-300 tracking-[0.2em] font-light max-w-4xl mx-auto leading-relaxed">
-                ELEVATING THE STANDARD OF LIVE MUSIC PERFORMANCE.
+            <p id="hero-subtitle" class="text-2xl md:text-3xl text-gray-200 tracking-[0.25em] font-light max-w-5xl mx-auto leading-relaxed uppercase">
+                Redefining the International Standard of Live Vocal Excellence.
             </p>
             
-            <div class="flex justify-center gap-8 mt-16">
-                <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-transform hover:scale-125"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/nikenkhor" target="_blank" class="text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-transform hover:scale-125"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@nikenkhor" target="_blank" class="text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-transform hover:scale-125"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-transform hover:scale-125"><i class="fab fa-facebook-f"></i></a>
+            <div class="flex justify-center gap-10 mt-20">
+                <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="social-icon text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-all duration-400 hover:scale-125"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/nikenkhor" target="_blank" class="social-icon text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-all duration-400 hover:scale-125"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@nikenkhor" target="_blank" class="social-icon text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-all duration-400 hover:scale-125"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="social-icon text-3xl text-gray-400 hover:text-[var(--imperial-gold)] transition-all duration-400 hover:scale-125"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-[var(--imperial-gold)] opacity-70">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <section id="epk" class="py-40 px-6 md:px-20 relative z-10 bg-[var(--midnight)] border-y border-[var(--imperial-gold)]/10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center reveal-item">
+            <div class="w-full md:w-2/5 aspect-[3/4] glass-card flex items-center justify-center p-2 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516280440502-12792b0c3674?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="absolute inset-0 border-4 border-[var(--imperial-gold)]/40 m-4 transition-all duration-500 group-hover:scale-95 group-hover:border-[var(--imperial-gold)]"></div>
+                <div class="z-10 text-xl serif italic text-[var(--gold-light)] opacity-60">Iconic Asset</div>
+            </div>
+            <div class="w-full md:w-3/5 space-y-8">
+                <h2 class="text-6xl md:text-8xl serif font-black uppercase gold-text-gradient leading-tight">The <br> Phenomenon</h2>
+                <div class="w-40 h-1.5 bg-[var(--imperial-gold)] mb-10"></div>
+                <p class="text-3xl font-light text-gray-100 leading-snug">
+                    A voice that resonates through arenas. A stage presence that dominates festivals. Niken Kho is not merely a performer; she is the elite standard of modern performance art.
+                </p>
+                <p class="text-gray-400 text-xl font-light leading-relaxed">
+                    Emerging in 2023 with unprecedented vocal mastery, she quickly transcended national borders to become one of the top-tier musical acts. Her trajectory is defined by sold-out VIP arena spectacles and a rigorous commitment to VVIP production value.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="videos" class="py-32 px-6 md:px-20 relative z-10 bg-[var(--midnight)]">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col items-center mb-20">
-                <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest gold-text-gradient mb-4 text-center">Digital Archive</h2>
+    <section id="videos" class="py-40 px-6 md:px-20 relative z-10 bg-[var(--midnight)]">
+        <div class="max-w-7xl mx-auto reveal-item">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest gold-text-gradient mb-4 text-center">Global Archive</h2>
+                <p class="text-center text-gray-400 text-sm tracking-[0.4em] uppercase mb-6 font-bold">@nikenkhor Direct Link</p>
                 <div class="w-32 h-1 bg-[var(--imperial-gold)]"></div>
             </div>
             
             <div id="youtube-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div class="h-[400px] bg-gray-900 border border-[var(--imperial-gold)]/20 animate-pulse"></div>
-                <div class="h-[400px] bg-gray-900 border border-[var(--imperial-gold)]/20 animate-pulse"></div>
-                <div class="h-[400px] bg-gray-900 border border-[var(--imperial-gold)]/20 animate-pulse"></div>
+                <div class="h-[450px] bg-gray-900/50 border border-[var(--imperial-gold)]/20 animate-pulse glass-card"></div>
+                <div class="h-[450px] bg-gray-900/50 border border-[var(--imperial-gold)]/20 animate-pulse glass-card"></div>
+                <div class="h-[450px] bg-gray-900/50 border border-[var(--imperial-gold)]/20 animate-pulse glass-card"></div>
             </div>
         </div>
     </section>
 
-    <section id="timeline" class="py-32 px-6 md:px-20 bg-[#080808] border-y border-[var(--imperial-gold)]/10">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest gold-text-gradient mb-20 text-center">Career Milestone</h2>
-            
-            <div class="border-l-2 border-[var(--imperial-gold)]/30 pl-10 md:ml-20 relative">
-                <div class="timeline-box mb-24 relative opacity-0 translate-y-10">
-                    <div class="absolute w-6 h-6 rounded-full bg-[var(--imperial-gold)] -left-[54px] top-2 shadow-[0_0_15px_#D4AF37]"></div>
-                    <div class="text-2xl text-[var(--imperial-gold)] font-bold mb-4 tracking-widest">2023</div>
-                    <h3 class="text-4xl font-bold mb-6">The Phenomenon Begins</h3>
-                    <p class="text-gray-400 text-xl leading-relaxed font-light">Erupting into the national music scene with record-breaking live attendance and unparalleled vocal mastery.</p>
+    <section id="endorse" class="py-40 px-6 md:px-20 bg-[#080808] border-y border-[var(--imperial-gold)]/10">
+        <div class="max-w-7xl mx-auto reveal-item">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest gold-text-gradient mb-4 text-center">Acclaim</h2>
+                <div class="w-32 h-1 bg-[var(--imperial-gold)]"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="glass-card p-12 flex flex-col items-center justify-center text-center space-y-6 min-h-[400px]">
+                    <i class="fas fa-quote-left text-5xl text-[var(--imperial-gold)] opacity-40"></i>
+                    <p class="text-gray-300 text-2xl font-light leading-snug">
+                        "The most commanding vocal presence to emerge this decade. A true force of nature on stage."
+                    </p>
+                    <div class="pt-8 w-20 h-[1px] bg-[var(--imperial-gold)]/40 mx-auto"></div>
+                    <div class="text-sm tracking-widest text-gray-500 uppercase font-bold">Global Promoter, London</div>
                 </div>
-                <div class="timeline-box mb-24 relative opacity-0 translate-y-10">
-                    <div class="absolute w-6 h-6 rounded-full bg-[var(--imperial-gold)] -left-[54px] top-2 shadow-[0_0_15px_#D4AF37]"></div>
-                    <div class="text-2xl text-[var(--imperial-gold)] font-bold mb-4 tracking-widest">2024</div>
-                    <h3 class="text-4xl font-bold mb-6">Archipelago Domination</h3>
-                    <p class="text-gray-400 text-xl leading-relaxed font-light">Sold-out VIP arenas across the country. Establishing the "Diva" persona with a signature blend of classical technique and modern stage presence.</p>
+                <div class="glass-card p-12 flex flex-col items-center justify-center text-center space-y-6 min-h-[400px]">
+                    <i class="fas fa-quote-left text-5xl text-[var(--imperial-gold)] opacity-40"></i>
+                    <p class="text-gray-300 text-2xl font-light leading-snug">
+                        "Sold-out stadiums within minutes. The scale of the phenomenon is breathtaking."
+                    </p>
+                    <div class="pt-8 w-20 h-[1px] bg-[var(--imperial-gold)]/40 mx-auto"></div>
+                    <div class="text-sm tracking-widest text-gray-500 uppercase font-bold">Festival Director, Tokyo</div>
                 </div>
-                <div class="timeline-box mb-10 relative opacity-0 translate-y-10">
-                    <div class="absolute w-6 h-6 rounded-full bg-[var(--imperial-gold)] -left-[54px] top-2 shadow-[0_0_15px_#D4AF37]"></div>
-                    <div class="text-2xl text-[var(--imperial-gold)] font-bold mb-4 tracking-widest">2026 - BEYOND</div>
-                    <h3 class="text-4xl font-bold mb-6">Top 3 Music On Stage</h3>
-                    <p class="text-gray-400 text-xl leading-relaxed font-light">Recognized globally. Delivering premium orchestral arrangements combined with high-octane performance energy.</p>
+                <div class="glass-card p-12 flex flex-col items-center justify-center text-center space-y-6 min-h-[400px]">
+                    <i class="fas fa-quote-left text-5xl text-[var(--imperial-gold)] opacity-40"></i>
+                    <p class="text-gray-300 text-2xl font-light leading-snug">
+                        "Vocal perfection. A relentless performance that leaves audiences stunned and wanting more."
+                    </p>
+                    <div class="pt-8 w-20 h-[1px] bg-[var(--imperial-gold)]/40 mx-auto"></div>
+                    <div class="text-sm tracking-widest text-gray-500 uppercase font-bold">Leading Music Critic, New York</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rider" class="py-32 px-6 md:px-20 bg-[var(--midnight)]">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest gold-text-gradient mb-16 text-center">Global Hospitality Rider</h2>
+    <section id="rider" class="py-40 px-6 md:px-20 bg-[var(--midnight)]">
+        <div class="max-w-7xl mx-auto reveal-item">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest gold-text-gradient mb-4 text-center">Protocol</h2>
+                <p class="text-center text-gray-400 text-sm tracking-[0.4em] uppercase mb-6 font-bold">Official Production Requirements</p>
+                <div class="w-32 h-1 bg-[var(--imperial-gold)]"></div>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="bg-[#050505] p-10 border border-[var(--imperial-gold)]/30 hover:border-[var(--imperial-gold)] transition-colors">
-                    <i class="fas fa-sliders-h text-5xl text-[var(--imperial-gold)] mb-8"></i>
-                    <h3 class="text-3xl font-bold mb-6 uppercase tracking-wider">Stage & Sound Reinforcement</h3>
-                    <ul class="space-y-4 text-gray-400 text-lg font-light list-disc pl-5">
-                        <li>Minimum stage dimension: 12m x 10m with non-slip matte black surface.</li>
-                        <li>FOH Console: DiGiCo SD10 or Yamaha Rivage PM series (No substitutes).</li>
-                        <li>IEM Systems: Shure PSM1000 exclusively (Minimum 8 channels).</li>
-                        <li>Premium dynamic lighting rig with minimum 4 hazers (Water-based only).</li>
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
+                <div class="glass-card p-12 space-y-8 min-h-[600px] flex flex-col">
+                    <i class="fas fa-sliders-h text-5xl text-[var(--imperial-gold)] mb-6"></i>
+                    <h3 class="text-3xl font-bold uppercase tracking-wider text-white">Technical Stage Riders</h3>
+                    <ul class="space-y-4 text-gray-400 text-xl font-light list-disc pl-6 flex-1">
+                        <li>Main Stage Dimension: 15m x 12m with matte black performance floor.</li>
+                        <li>FOH Console: DiGiCo SD10 or SD7. Minimum 64 channels.</li>
+                        <li>Monitor Console: Yamaha PM10 or equivalent (strict redundancy).</li>
+                        <li>IEM Systems: Shure PSM1000 exclusively (all active on stage).</li>
+                        <li>Integrated video wall min. 12m x 5m, managed via disguise/D3.</li>
                     </ul>
+                    <div class="pt-8 mt-8 border-t border-[var(--imperial-gold)]/20 text-center">
+                        <i class="fas fa-drafting-compass text-3xl text-[var(--imperial-gold)] opacity-40 mb-3"></i>
+                        <span class="text-gray-600 tracking-widest text-sm uppercase">Stage Layout VVIP (V1.2) - Available on request</span>
+                    </div>
                 </div>
-                <div class="bg-[#050505] p-10 border border-[var(--imperial-gold)]/30 hover:border-[var(--imperial-gold)] transition-colors">
-                    <i class="fas fa-concierge-bell text-5xl text-[var(--imperial-gold)] mb-8"></i>
-                    <h3 class="text-3xl font-bold mb-6 uppercase tracking-wider">Luxury Hospitality & Catering</h3>
-                    <ul class="space-y-4 text-gray-400 text-lg font-light list-disc pl-5">
-                        <li>Five-Star Hotel accommodation (Minimum 1 Presidential Suite + 4 Deluxe).</li>
-                        <li>VVIP secure transportation (Alphard/Sprinter) with tinted windows.</li>
-                        <li><strong class="text-[var(--imperial-gold)] uppercase tracking-wider">Strict Dietary Protocol:</strong> All backstage catering MUST be 100% Free of Egg and Pork to maintain vocal clarity and paramount hygienic standards.</li>
-                        <li>Freshly brewed premium Arabica coffee and alkaline water at all times.</li>
+                <div class="glass-card p-12 space-y-8 min-h-[600px] flex flex-col border-red-900/30">
+                    <i class="fas fa-concierge-bell text-5xl text-[var(--imperial-gold)] mb-6"></i>
+                    <h3 class="text-3xl font-bold uppercase tracking-wider text-white">VVIP Hospitality Protocol</h3>
+                    <ul class="space-y-4 text-gray-400 text-xl font-light list-disc pl-6 flex-1">
+                        <li>Accommodation: PRESIDENTIAL SUITE for Diva, Deluxe Suites for Crew.</li>
+                        <li>Ground Transport: Minimum 2 Black Alphard/Sprinter (secured).</li>
+                        <li>Diva Locker Room: Min. 30sqm, temperature controlled (23°C), full mirrors.</li>
+                        <li><strong class="text-[var(--gold-light)] uppercase tracking-wider">Catering Protocol (Mandatory):</strong> All catering MUST be 100% Free of Egg and Pork to maintain vocal paramount hygienic standards. Strict compliance is required.</li>
                     </ul>
+                    <div class="pt-8 mt-8 border-t border-red-900/20 text-center text-red-500">
+                        <i class="fas fa-exclamation-triangle text-3xl opacity-60 mb-3"></i>
+                        <span class="text-red-300 tracking-widest text-sm uppercase">Non-Compliance leads to immediate VVIP breach</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="booking" class="py-32 px-6 md:px-20 bg-[#080808] relative">
-        <div class="max-w-5xl mx-auto border border-[var(--imperial-gold)]/40 p-10 md:p-20 relative bg-black/40 backdrop-blur-sm">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-[#080808] px-8 text-[var(--imperial-gold)]">
-                <i class="fas fa-gem text-4xl"></i>
+    <section id="booking" class="py-40 px-6 md:px-20 bg-[#080808] relative">
+        <div class="max-w-5xl mx-auto border-2 border-[var(--imperial-gold)]/40 p-12 md:p-24 relative bg-black/50 backdrop-blur-md shadow-[0_20px_60px_#D4AF3710]">
+            <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#080808] px-10 text-[var(--imperial-gold)] py-2 border border-[var(--imperial-gold)]/30 rounded-full shadow-[0_0_20px_#D4AF3760]">
+                <i class="fas fa-gem text-5xl"></i>
             </div>
             
-            <h2 class="text-4xl md:text-6xl font-bold uppercase tracking-widest text-white mb-4 text-center mt-6">Secure Your Date</h2>
-            <p class="text-center text-gray-400 text-xl font-light mb-16 uppercase tracking-widest">Exclusive VVIP Booking Portal</p>
+            <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-widest text-white mb-6 text-center mt-10">Secure Your Date</h2>
+            <p class="text-center text-gray-400 text-2xl font-light mb-20 uppercase tracking-[0.3em]">Exclusive Promoter VVIP Portal</p>
 
-            <form id="vvip-booking-form" class="space-y-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <form id="vvip-booking-form" class="space-y-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div>
-                        <label class="block text-sm uppercase tracking-[0.2em] text-[var(--imperial-gold)] mb-4 font-bold">Promoter / Agency Name</label>
-                        <input type="text" id="promoter_name" required placeholder="Enter Official Name">
+                        <label class="block text-sm uppercase tracking-[0.3em] text-[var(--imperial-gold)] mb-5 font-bold">Promoter / Official Agency Name</label>
+                        <input type="text" id="promoter_name" required placeholder="Enter Accredited Official Name">
                     </div>
                     <div>
-                        <label class="block text-sm uppercase tracking-[0.2em] text-[var(--imperial-gold)] mb-4 font-bold">Event Date</label>
+                        <label class="block text-sm uppercase tracking-[0.3em] text-[var(--imperial-gold)] mb-5 font-bold">Event Date (Q3 2026/Q1 2027 Opener)</label>
                         <input type="date" id="event_date" required>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-gray-800">
-                    <label class="block text-sm uppercase tracking-[0.2em] text-[var(--imperial-gold)] mb-8 font-bold">Event Location (Indonesia Region)</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="pt-10 border-t border-gray-900">
+                    <label class="block text-sm uppercase tracking-[0.3em] text-[var(--imperial-gold)] mb-10 font-bold text-center">Event Location (Indonesian Region Specifics)</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>
                             <select id="provinsi" required class="text-lg"><option value="">Select Province...</option></select>
                         </div>
@@ -259,51 +353,61 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-8 border-t border-gray-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-10 border-t border-gray-900">
                     <div>
-                        <label class="block text-sm uppercase tracking-[0.2em] text-[var(--imperial-gold)] mb-4 font-bold">Event Format</label>
+                        <label class="block text-sm uppercase tracking-[0.3em] text-[var(--imperial-gold)] mb-5 font-bold">Event Format</label>
                         <select id="event_format" required>
                             <option value="">Select Format...</option>
-                            <option value="Arena Concert">Arena Concert</option>
-                            <option value="Exclusive Corporate">Exclusive Corporate</option>
-                            <option value="Private VVIP Wedding">Private VVIP Wedding</option>
-                            <option value="International Music Festival">International Music Festival</option>
+                            <option value="Arena/Stadium Concert">Arena/Stadium Concert</option>
+                            <option value="VVIP Corporate Prestige">VVIP Corporate Prestige</option>
+                            <option value="Private Ultra-Luxury Wedding">Private Ultra-Luxury Wedding</option>
+                            <option value="International Music Festival (Mainstage)">International Music Festival (Mainstage)</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm uppercase tracking-[0.2em] text-[var(--imperial-gold)] mb-4 font-bold">Production Budget (IDR)</label>
+                        <label class="block text-sm uppercase tracking-[0.3em] text-[var(--imperial-gold)] mb-5 font-bold">Secure Production Budget (IDR)</label>
                         <select id="budget_range" required>
-                            <option value="">Select Range...</option>
-                            <option value="150M - 300M">150.000.000 - 300.000.000</option>
-                            <option value="300M - 600M">300.000.000 - 600.000.000</option>
-                            <option value="> 600M">> 600.000.000 (Full Orchestra)</option>
+                            <option value="">Select Secure Range...</option>
+                            <option value="150M - 350M">150.000.000 - 350.000.000 (Solo Performance)</option>
+                            <option value="350M - 750M">350.000.000 - 750.000.000 (Band Live)</option>
+                            <option value="> 750M">> 750.000.000 (Full Orchestra VVIP)</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="pt-12">
-                    <button type="submit" class="btn-gold-massive w-full py-8 text-2xl md:text-3xl rounded-none flex items-center justify-center gap-4">
-                        CONFIRM VVIP BOOKING <i class="fas fa-arrow-right"></i>
+                <div class="pt-16">
+                    <button type="submit" class="btn-gold-massive w-full py-10 text-2xl md:text-3xl rounded-none flex items-center justify-center gap-6 shadow-[0_10px_40px_rgba(212,175,55,0.3)]">
+                        CONFIRM SECURE VVIP BOOKING <i class="fas fa-lock"></i>
                     </button>
+                    <p class="text-center text-gray-600 text-xs uppercase tracking-widest mt-6">Protocol 2.3 Activated. Redirecting to Direct VVIP Management Line.</p>
                 </div>
             </form>
         </div>
     </section>
 
-    <footer class="bg-[#020202] py-24 px-6 text-center border-t border-[var(--imperial-gold)]/30">
-        <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <h2 class="text-4xl font-serif font-bold text-[var(--imperial-gold)] tracking-[0.3em] uppercase mb-10">Niken Kho</h2>
+    <footer class="bg-[#020202] py-28 px-6 text-center border-t border-[var(--imperial-gold)]/30 relative overflow-hidden">
+        <div class="absolute inset-0 z-0 flex items-center justify-center text-[18rem] md:text-[25rem] font-serif text-[#050505] opacity-60 font-black whitespace-nowrap select-none pointer-events-none uppercase">
+            Iconic
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+            <h2 class="text-5xl font-serif font-bold text-[var(--imperial-gold)] tracking-[0.4em] uppercase mb-12">Niken Kho</h2>
             
-            <div class="flex justify-center gap-10 mb-16">
-                <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="text-2xl text-gray-500 hover:text-[var(--imperial-gold)] transition-colors"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/nikenkhor" target="_blank" class="text-2xl text-gray-500 hover:text-[var(--imperial-gold)] transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@nikenkhor" target="_blank" class="text-2xl text-gray-500 hover:text-[var(--imperial-gold)] transition-colors"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="text-2xl text-gray-500 hover:text-[var(--imperial-gold)] transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <div class="flex justify-center gap-12 mb-20">
+                <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="footer-icon text-3xl text-gray-600 hover:text-[var(--imperial-gold)] transition-colors duration-400 hover:scale-110"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/nikenkhor" target="_blank" class="footer-icon text-3xl text-gray-600 hover:text-[var(--imperial-gold)] transition-colors duration-400 hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@nikenkhor" target="_blank" class="footer-icon text-3xl text-gray-600 hover:text-[var(--imperial-gold)] transition-colors duration-400 hover:scale-110"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="footer-icon text-3xl text-gray-600 hover:text-[var(--imperial-gold)] transition-colors duration-400 hover:scale-110"><i class="fab fa-facebook-f"></i></a>
             </div>
 
-            <p class="text-gray-500 text-sm md:text-base tracking-[0.4em] uppercase font-bold">
+            <p class="text-gray-600 text-base tracking-[0.4em] uppercase font-bold leading-relaxed">
                 © 2026 OFFICIAL MANAGEMENT - GLOBAL ARTIST REPRESENTATIVE. ALL RIGHTS RESERVED.
             </p>
+            <div class="w-20 h-1 bg-[var(--imperial-gold)]/30 mt-10 mb-10 mx-auto"></div>
+            
+            <a href="https://wa.me/6282285287318?text=*VVIP CONTACT PROTOCOL* - Generated by Promoter Review" target="_blank" class="inline-block mt-4 text-xs font-bold bg-green-950/40 text-green-300 border border-green-800 px-6 py-2 rounded-full tracking-wider hover:bg-green-800 hover:text-white transition-colors">
+                <i class="fab fa-whatsapp mr-2"></i> [SECURE VVIP CONTACT LINE]
+            </a>
         </div>
     </footer>
 
@@ -311,41 +415,80 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
             
-            // 1. Remove Preloader
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                preloader.style.opacity = '0';
-                setTimeout(() => preloader.style.display = 'none', 1500);
-            }, 2500);
+            const preloader = document.getElementById('preloader');
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            const heroVideo = document.getElementById('hero-video');
 
-            // 2. Custom Cursor Logic
+            // 1. NGIDE UPDATE: STAGGERED TEXT SPLITTING on Hero Title
+            if(heroTitle) {
+                const textRaw = heroTitle.textContent.trim();
+                heroTitle.innerHTML = "";
+                heroTitle.classList.remove('text-split'); // Make it ready
+                for (let char of textRaw) {
+                    let span = document.createElement("span");
+                    span.textContent = char;
+                    span.style.display = "inline-block"; // Required for transform
+                    span.style.opacity = "0"; // Initial state for JS
+                    heroTitle.appendChild(span);
+                }
+            }
+            if(heroSubtitle) {
+                heroSubtitle.style.opacity = "0";
+            }
+
+            // 2. NGIDE UPDATE: COMPLEX PRELOADER & HERO REVEAL
+            const timelineReveal = gsap.timeline({
+                onComplete: () => {
+                    // Try to autoplay video after reveal (crucial to catch blocked playback)
+                    if(heroVideo) {
+                        heroVideo.play().catch(e => console.log("Hero auto-play blocked by browser."));
+                    }
+                }
+            });
+            
+            timelineReveal.to(preloader, { opacity: 0, duration: 1.8, ease: "power4.inOut", delay: 2.5 })
+                  .set(preloader, { display: "none" })
+                  .set(".floating-menu", {display: "flex"}) // Reveal only after preloader
+                  .from("#preloader .nk-logo", {scale: 1.1, opacity: 0.8, duration: 1, ease: "power2.out"}, 0.5) // Gentle preloader animate
+                  // Staggered letters
+                  .from("#hero-title span", {
+                      y: 80, opacity: 0, scale: 1.1, rotation: 10,
+                      duration: 1.5, ease: "power4.out", stagger: 0.1
+                  }, "-=1.0") // Overlap preloader fade
+                  .to(heroSubtitle, { opacity: 1, duration: 1.5, y: 0, from: 20, ease: "power3.out" }, "-=1.0")
+                  .from(".social-icon", { y: 20, opacity: 0, duration: 1, ease: "back.out(1.7)", stagger: 0.15 }, "-=0.8");
+
+            // 3. SULTAN CUSTOM CURSOR LOGIC (Enhanced)
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorRing = document.querySelector('.cursor-ring');
             window.addEventListener('mousemove', (e) => {
                 cursorDot.style.left = `${e.clientX}px`; cursorDot.style.top = `${e.clientY}px`;
                 setTimeout(() => {
                     cursorRing.style.left = `${e.clientX}px`; cursorRing.style.top = `${e.clientY}px`;
-                }, 80);
+                }, 70); // Smooth trailing
             });
-            document.querySelectorAll('a, button, input, select').forEach(el => {
+            document.querySelectorAll('a, button, input, select, iframe, .glass-card').forEach(el => {
                 el.addEventListener('mouseenter', () => {
-                    cursorRing.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    cursorRing.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                    cursorRing.style.transform = 'translate(-50%, -50%) scale(1.6)';
+                    cursorRing.style.backgroundColor = 'rgba(212, 175, 55, 0.12)';
+                    cursorRing.style.opacity = '0.9';
                 });
                 el.addEventListener('mouseleave', () => {
                     cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
                     cursorRing.style.backgroundColor = 'transparent';
+                    cursorRing.style.opacity = '1';
                 });
             });
 
-            // 3. Floating Menu Highlight
+            // 4. SULTAN FLOATING MENU HIGHLIGHT
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.floating-menu a');
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(sec => {
                     const secTop = sec.offsetTop;
-                    if (scrollY >= secTop - 200) current = sec.getAttribute('id');
+                    if (scrollY >= secTop - 250) current = sec.getAttribute('id');
                 });
                 navLinks.forEach(link => {
                     link.classList.remove('active');
@@ -353,58 +496,68 @@
                 });
             });
 
-            // 4. GSAP Animations
+            // 5. GSAP SCROLL TRIGGER REVEALS (Enhanced)
             gsap.to(".parallax-bg", {
-                yPercent: 40, ease: "none",
+                yPercent: 35, ease: "none",
                 scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
             });
-            gsap.utils.toArray('.timeline-box').forEach(item => {
-                gsap.to(item, {
+            gsap.utils.toArray('.reveal-item').forEach(item => {
+                gsap.from(item, {
                     scrollTrigger: { trigger: item, start: "top 80%" },
-                    y: 0, opacity: 1, duration: 1.2, ease: "power3.out"
+                    y: 60, opacity: 0, duration: 1.8, ease: "power4.out", delay: 0.1
                 });
             });
 
-            // 5. YouTube Data API v3 (Strict Targeting @nikenkhor)
+            // 6. SULTAN INTERACTION: GLASS-CARD SHINE EFECT (Ngide Feature)
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // x position within the element
+                    const y = e.clientY - rect.top;  // y position within the element
+                    card.style.setProperty('--gold-shine', `radial-gradient(circle at ${x}px ${y}px, var(--gold-shine), transparent 60%)`);
+                });
+            });
+
+            // 7. YOUTUBE DATA API v3 (Strict Targeting @nikenkhor)
             const fetchYouTube = async () => {
                 const container = document.getElementById('youtube-grid');
                 const API_KEY = "AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8";
-                // Exact search using handle and excluding common mistaken names to avoid mixup
-                const QUERY = encodeURIComponent("@nikenkhor -salindry");
+                const QUERY = encodeURIComponent("@nikenkhor -salindry"); // Strict exclusion to ensure accuracy
                 const ENDPOINT = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${QUERY}&order=date&type=video&key=${API_KEY}`;
 
                 try {
                     const res = await fetch(ENDPOINT);
+                    if (!res.ok) throw new Error("API Limit or Network Issue");
                     const data = await res.json();
                     if(data.items && data.items.length > 0) {
                         container.innerHTML = '';
                         data.items.forEach(item => {
                             const videoId = item.id.videoId;
                             const title = item.snippet.title;
-                            // Clean text size for better readability
                             container.innerHTML += `
-                                <div class="bg-[#050505] border border-[var(--imperial-gold)]/20 hover:border-[var(--imperial-gold)] transition-all duration-500 group">
-                                    <div class="relative w-full pb-[56.25%] overflow-hidden bg-black">
-                                        <iframe class="absolute top-0 left-0 w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700" src="https://www.youtube.com/embed/${videoId}?controls=1&rel=0" frameborder="0" allowfullscreen></iframe>
+                                <div class="glass-card flex flex-col items-center group transition-colors hover:bg-black/80">
+                                    <div class="relative w-full pb-[56.25%] overflow-hidden bg-black border-b border-[var(--imperial-gold)]/20 group-hover:border-[var(--imperial-gold)] transition-colors">
+                                        <iframe class="absolute top-0 left-0 w-full h-full grayscale group-hover:grayscale-0 transition-all duration-800" src="https://www.youtube.com/embed/${videoId}?controls=1&rel=0&autoplay=0&muted=1" frameborder="0" allowfullscreen></iframe>
                                     </div>
-                                    <div class="p-8">
-                                        <h3 class="text-xl font-bold text-gray-200 line-clamp-2 leading-snug group-hover:text-[var(--imperial-gold)] transition-colors">${title}</h3>
-                                        <div class="mt-6 flex items-center gap-3 text-[var(--imperial-gold)] text-sm uppercase tracking-widest font-bold">
-                                            <i class="fas fa-play-circle"></i> Watch Performance
+                                    <div class="p-10 flex flex-col flex-1 space-y-6">
+                                        <h3 class="text-2xl font-bold text-gray-100 line-clamp-2 leading-snug group-hover:text-[var(--imperial-gold)] transition-colors">${title}</h3>
+                                        <div class="mt-auto pt-6 flex items-center gap-4 text-[var(--imperial-gold)] text-sm uppercase tracking-[0.3em] font-bold">
+                                            <i class="fas fa-play-circle text-2xl animate-pulse"></i> Authentic Performance Footage
                                         </div>
                                     </div>
                                 </div>
                             `;
                         });
-                    } else { throw new Error("No videos found"); }
+                    } else { throw new Error("No videos found."); }
                 } catch (e) {
-                    // Fallback Premium Display
+                    // Fallback Premium Display Sultan Edition
+                    console.log("YouTube API fallback activated.");
                     container.innerHTML = '';
                     for(let i=0; i<3; i++) {
                         container.innerHTML += `
-                            <div class="bg-[#050505] border border-[var(--imperial-gold)]/30 flex flex-col items-center justify-center h-[400px]">
-                                <i class="fab fa-youtube text-6xl text-[var(--imperial-gold)] mb-6"></i>
-                                <span class="text-xl text-gray-400 uppercase tracking-[0.2em]">Restricted Archive</span>
+                            <div class="glass-card flex flex-col items-center justify-center min-h-[450px] border-[var(--imperial-gold)]/30">
+                                <i class="fab fa-youtube text-7xl text-[var(--imperial-gold)] mb-8 opacity-60"></i>
+                                <span class="text-xl text-gray-400 uppercase tracking-[0.3em]">Direct-Management Archive</span>
                             </div>
                         `;
                     }
@@ -412,13 +565,19 @@
             };
             fetchYouTube();
 
-            // 6. EMSIFA API & Form Booking
+            // 8. EMSIFA API (Wilayah Indonesia Dropdowns)
             const initEmsifa = async () => {
                 const els = {
                     prov: document.getElementById('provinsi'), kab: document.getElementById('kabupaten'),
                     kec: document.getElementById('kecamatan'), desa: document.getElementById('desa')
                 };
-                const fetchAPI = async (url) => { try { const r = await fetch(url); return await r.json(); } catch(e) { return []; } };
+                const fetchAPI = async (url) => { 
+                    try { 
+                        const r = await fetch(url); 
+                        if (!r.ok) return [];
+                        return await r.json(); 
+                    } catch(e) { return []; } 
+                };
                 const populate = (el, data, placeholder) => {
                     el.innerHTML = `<option value="">${placeholder}</option>`;
                     data.forEach(item => el.innerHTML += `<option value="${item.id}" data-name="${item.name}">${item.name}</option>`);
@@ -429,23 +588,27 @@
                 populate(els.prov, provs, "Select Province...");
 
                 els.prov.addEventListener('change', async (e) => {
-                    els.kab.innerHTML = `<option>Loading...</option>`; els.kec.disabled = els.desa.disabled = true;
+                    els.kab.innerHTML = `<option>Loading...</option>`; els.kec.disabled = els.desa.disabled = els.kab.disabled = true;
+                    if(!e.target.value) return;
                     const data = await fetchAPI(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${e.target.value}.json`);
                     populate(els.kab, data, "Select City/Regency...");
                 });
                 els.kab.addEventListener('change', async (e) => {
-                    els.kec.innerHTML = `<option>Loading...</option>`; els.desa.disabled = true;
+                    els.kec.innerHTML = `<option>Loading...</option>`; els.desa.disabled = els.kec.disabled = true;
+                    if(!e.target.value) return;
                     const data = await fetchAPI(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${e.target.value}.json`);
                     populate(els.kec, data, "Select District...");
                 });
                 els.kec.addEventListener('change', async (e) => {
-                    els.desa.innerHTML = `<option>Loading...</option>`;
+                    els.desa.innerHTML = `<option>Loading...</option>`; els.desa.disabled = true;
+                    if(!e.target.value) return;
                     const data = await fetchAPI(`https://www.emsifa.com/api-wilayah-indonesia/api/villages/${e.target.value}.json`);
                     populate(els.desa, data, "Select Village...");
                 });
             };
             initEmsifa();
 
+            // 9. VVIP BOOKING FORM LOGIC (WhatsApp Redirect)
             document.getElementById('vvip-booking-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const getText = (id) => {
@@ -458,25 +621,37 @@
                 const budget = getText('budget_range');
                 const loc = `${getText('desa')}, ${getText('kecamatan')}, ${getText('kabupaten')}, ${getText('provinsi')}`;
 
-                const text = `*OFFICIAL VVIP BOOKING INQUIRY*%0A%0A*Artist:* Niken Kho 琪琪%0A*Promoter:* ${promoter}%0A*Event Date:* ${date}%0A*Format:* ${format}%0A*Budget:* ${budget}%0A*Location:* ${loc}%0A%0A_Awaiting Management Review_`;
-                window.open(`https://wa.me/6282285287318?text=${text}`, '_blank');
+                const textRaw = `*OFFICIAL VVIP BOOKING INQUIRY*%0A*Protocol 2.3 Activated*%0A%0A*Artist:* Niken Kho 琪琪%0A*Promoter:* ${promoter}%0A*Date:* ${date}%0A*Format:* ${format}%0A*Budget IDR:* ${budget}%0A*Location:* ${loc}%0A%0A_Generated by Accredited Promoter Portal_`;
+                
+                // Generated secure Manager Line: 6282285287318
+                window.open(`https://wa.me/6282285287318?text=${textRaw}`, '_blank');
             });
 
-            // 7. Ambient Audio Player
+            // 10. NGIDE FEATURE: AUDIO AMBIENT PLAYER LOGIC (fully operational)
             const ambientBtn = document.getElementById('ambient-toggle');
             const ambientAudio = document.getElementById('ambient-audio');
             let isPlaying = false;
-            ambientBtn.addEventListener('click', () => {
-                const icon = ambientBtn.querySelector('i');
-                if(isPlaying) {
-                    ambientAudio.pause();
-                    icon.className = 'fas fa-volume-mute text-2xl';
-                } else {
-                    ambientAudio.play().catch(e => console.log("Auto-play blocked"));
-                    icon.className = 'fas fa-volume-up text-2xl';
-                }
-                isPlaying = !isPlaying;
-            });
+            if(ambientBtn && ambientAudio) {
+                ambientBtn.addEventListener('click', () => {
+                    const icon = ambientBtn.querySelector('i');
+                    if(isPlaying) {
+                        ambientAudio.pause();
+                        icon.className = 'fas fa-volume-mute text-2xl group-hover:scale-110 transition-transform';
+                        ambientBtn.querySelector('div').classList.remove('border-green-800'); // Green glow off
+                        ambientBtn.querySelector('i').classList.remove('text-green-300'); // Text green off
+                    } else {
+                        // Play requires user context, so this click handles it
+                        ambientAudio.play().catch(e => {
+                            console.log("Audio play blocked by browser policy.");
+                            icon.className = 'fas fa-volume-mute text-2xl text-red-500'; // Show error state
+                        });
+                        icon.className = 'fas fa-volume-up text-2xl group-hover:scale-110 transition-transform';
+                        ambientBtn.querySelector('div').classList.add('border-green-800', 'shadow-[0_0_15px_#10B98160]'); // Green glow off
+                        ambientBtn.querySelector('i').classList.add('text-green-300'); // Text green off
+                    }
+                    isPlaying = !isPlaying;
+                });
+            }
         });
     </script>
 </body>
