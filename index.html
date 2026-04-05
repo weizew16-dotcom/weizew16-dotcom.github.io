@@ -1,3833 +1,1223 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>Wang Dynasty Mandarin Academy · 汪氏皇家学院</title>
-
-    <!-- ── EXTERNAL DEPENDENCIES ────────────────────────────────────── -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
-        rel="stylesheet"
-    />
-
-    <style>
-        /* ════════════════════════════════════════════════════════════════
-           §1  DESIGN TOKEN SYSTEM  (CSS Custom Properties)
-           ════════════════════════════════════════════════════════════════ */
-        :root {
-            /* Color palette */
-            --red:           #8B0000;
-            --red-mid:       #A80000;
-            --red-light:     #C41E1E;
-            --gold:          #D4AF37;
-            --gold-dim:      #B8860B;
-            --gold-pale:     #F5E7B2;
-            --ink:           #0A0A0A;
-            --parchment:     #FCF7F0;
-
-            /* Shadow tokens */
-            --shadow-red:    rgba(139, 0, 0, 0.25);
-            --shadow-gold:   rgba(212, 175, 55, 0.3);
-
-            /* Theme-switched tokens (dark defaults) */
-            --bg-body:       #0A0A0A;
-            --bg-body-alt:   #0F0F0F;
-            --text-body:     #E6E6E6;
-            --card-bg:       rgba(0, 0, 0, 0.50);
-            --card-hover-bg: rgba(20, 0, 0, 0.70);
-            --border-light:  rgba(212, 175, 55, 0.30);
-            --border-mid:    rgba(212, 175, 55, 0.55);
-        }
-
-        /* ── Light-theme overrides ── */
-        [data-theme="light"] {
-            --bg-body:       #FEF9E8;
-            --bg-body-alt:   #F7F0D8;
-            --text-body:     #1A1A1A;
-            --card-bg:       rgba(255, 248, 220, 0.85);
-            --card-hover-bg: rgba(255, 240, 200, 0.95);
-            --border-light:  rgba(139, 0, 0, 0.20);
-            --border-mid:    rgba(139, 0, 0, 0.45);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §2  BASE RESET & GLOBAL STYLES
-           ════════════════════════════════════════════════════════════════ */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        body {
-            background:  var(--bg-body);
-            color:       var(--text-body);
-            font-family: 'Inter', sans-serif;
-            transition:  background 0.35s ease, color 0.25s ease;
-            overflow-x:  hidden;
-            line-height: 1.65;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar              { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track        { background: var(--card-bg); }
-        ::-webkit-scrollbar-thumb        { background: var(--gold); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover  { background: var(--gold-dim); }
-
-        /* ════════════════════════════════════════════════════════════════
-           §3  TYPOGRAPHY HELPERS
-           ════════════════════════════════════════════════════════════════ */
-        .font-cinzel      { font-family: 'Cinzel', serif; }
-        .font-cinzel-deco { font-family: 'Cinzel Decorative', serif; }
-        .font-noto        { font-family: 'Noto Serif SC', serif; }
-        .font-garamond    { font-family: 'EB Garamond', serif; }
-
-        /* Gold gradient text */
-        .text-gold-grad {
-            background: linear-gradient(
-                135deg,
-                #D4AF37 0%,
-                #F5E7B2 40%,
-                #B8860B 70%,
-                #D4AF37 100%
-            );
-            -webkit-background-clip: text;
-            background-clip:         text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Subtle section-label caps */
-        .section-label {
-            font-family:     'Cinzel', serif;
-            font-size:       0.70rem;
-            letter-spacing:  0.30em;
-            text-transform:  uppercase;
-            color:           var(--gold-dim);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §4  DECORATIVE ELEMENTS
-           ════════════════════════════════════════════════════════════════ */
-        /* Horizontal divider with gradient */
-        .gold-line {
-            height:     2px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--gold),
-                var(--gold-dim),
-                var(--gold),
-                transparent
-            );
-        }
-
-        /* Corner bracket ornament */
-        .corner-deco {
-            position:     absolute;
-            width:        28px;
-            height:       28px;
-            border-color: var(--gold);
-            border-style: solid;
-        }
-        .corner-deco.tl { top: 0;    left: 0;  border-width: 2px 0 0 2px; }
-        .corner-deco.tr { top: 0;    right: 0; border-width: 2px 2px 0 0; }
-        .corner-deco.bl { bottom: 0; left: 0;  border-width: 0 0 2px 2px; }
-        .corner-deco.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-
-        /* ════════════════════════════════════════════════════════════════
-           §5  FLOATING HUD (PLAYER PROFILE)
-           ════════════════════════════════════════════════════════════════ */
-        #game-hud {
-            position:         fixed;
-            bottom:           20px;
-            right:            20px;
-            z-index:          500;
-            background:       var(--card-bg);
-            backdrop-filter:  blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border:           1px solid var(--border-light);
-            border-radius:    20px;
-            padding:          14px 18px;
-            box-shadow:       0 8px 24px rgba(0, 0, 0, 0.30);
-            min-width:        200px;
-            transition:       all 0.25s ease;
-        }
-
-        #game-hud:hover {
-            border-color: var(--border-mid);
-            box-shadow:   0 12px 32px rgba(212, 175, 55, 0.15);
-        }
-
-        .hud-title {
-            text-align:      center;
-            font-family:     'Cinzel', serif;
-            font-size:       0.65rem;
-            letter-spacing:  0.25em;
-            color:           var(--gold);
-        }
-
-        .hud-row {
-            display:         flex;
-            justify-content: space-between;
-            align-items:     center;
-            font-size:       0.80rem;
-            margin-top:      4px;
-        }
-
-        .hud-row .val {
-            font-weight: 700;
-            color:       var(--gold);
-        }
-
-        .hud-xp-bar {
-            height:        4px;
-            background:    rgba(255, 255, 255, 0.12);
-            border-radius: 2px;
-            overflow:      hidden;
-            margin-top:    10px;
-        }
-
-        .hud-xp-fill {
-            height:     100%;
-            background: linear-gradient(90deg, var(--red), var(--gold));
-            width:      0%;
-            transition: width 0.40s ease;
-        }
-
-        /* Streak badge on HUD */
-        .hud-streak-badge {
-            display:         flex;
-            align-items:     center;
-            justify-content: center;
-            gap:             4px;
-            margin-top:      6px;
-            background:      rgba(139, 0, 0, 0.25);
-            border:          1px solid var(--border-light);
-            border-radius:   8px;
-            padding:         3px 8px;
-            font-size:       0.72rem;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §6  NAVIGATION PILLS
-           ════════════════════════════════════════════════════════════════ */
-        .nav-pill {
-            font-family:  'Cinzel', serif;
-            font-size:    0.78rem;
-            padding:      8px 20px;
-            border-radius: 9999px;
-            background:   rgba(139, 0, 0, 0.20);
-            border:       1px solid rgba(212, 175, 55, 0.35);
-            color:        var(--text-body);
-            cursor:       pointer;
-            transition:   all 0.20s ease;
-        }
-
-        .nav-pill:hover {
-            background:   var(--red);
-            border-color: var(--gold);
-            color:        #fff;
-            transform:    translateY(-2px);
-            box-shadow:   0 4px 12px var(--shadow-red);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §7  SONG TABS
-           ════════════════════════════════════════════════════════════════ */
-        .song-tabs-scroll {
-            overflow-x: auto;
-            padding-bottom: 4px;
-        }
-
-        .song-tabs {
-            display: flex;
-            gap:     12px;
-            /* Prevent tabs from wrapping */
-            flex-wrap: nowrap;
-        }
-
-        .song-tab {
-            flex-shrink:   0;
-            background:    var(--card-bg);
-            border:        1px solid var(--border-light);
-            border-radius: 12px;
-            padding:       10px 16px;
-            cursor:        pointer;
-            transition:    all 0.20s ease;
-            white-space:   nowrap;
-        }
-
-        .song-tab:hover {
-            border-color: var(--border-mid);
-            transform:    translateY(-2px);
-        }
-
-        .song-tab.active {
-            background: linear-gradient(
-                135deg,
-                rgba(139, 0, 0, 0.60),
-                rgba(80,  0, 0, 0.90)
-            );
-            border-color: var(--gold);
-            box-shadow:   0 0 10px rgba(212, 175, 55, 0.25);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §8  LYRIC BLOCKS
-           ════════════════════════════════════════════════════════════════ */
-        .lyric-block {
-            border:        1px solid rgba(212, 175, 55, 0.20);
-            border-radius: 14px;
-            overflow:      hidden;
-            margin-bottom: 12px;
-            transition:    border-color 0.20s;
-        }
-
-        .lyric-block:hover {
-            border-color: rgba(212, 175, 55, 0.45);
-        }
-
-        .lyric-main {
-            display:         flex;
-            justify-content: space-between;
-            align-items:     flex-start;
-            padding:         14px;
-            background:      rgba(0, 0, 0, 0.30);
-            cursor:          pointer;
-        }
-
-        /* Microphone button */
-        .mic-btn {
-            flex-shrink:   0;
-            width:         44px;
-            height:        44px;
-            border-radius: 50%;
-            border:        1px solid var(--gold);
-            background:    transparent;
-            cursor:        pointer;
-            font-size:     1.1rem;
-            transition:    all 0.20s ease;
-            display:       flex;
-            align-items:   center;
-            justify-content: center;
-        }
-
-        .mic-btn:hover {
-            background:   rgba(139, 0, 0, 0.40);
-            border-color: var(--gold);
-        }
-
-        /* Recording state */
-        .mic-btn.recording {
-            background:  #C41E1E;
-            animation:   mic-pulse 0.80s infinite;
-        }
-
-        @keyframes mic-pulse {
-            0%   { transform: scale(1); }
-            50%  { transform: scale(1.10); }
-            100% { transform: scale(1); }
-        }
-
-        /* Word breakdown panel */
-        .word-panel {
-            display:    flex;
-            flex-wrap:  wrap;
-            gap:        6px;
-            padding:    10px 14px;
-            background: rgba(0, 0, 0, 0.40);
-        }
-
-        .word-chip {
-            display:       inline-flex;
-            align-items:   center;
-            gap:           4px;
-            background:    rgba(139, 0, 0, 0.25);
-            border:        1px solid rgba(212, 175, 55, 0.20);
-            border-radius: 20px;
-            padding:       4px 10px;
-            font-size:     0.75rem;
-            cursor:        pointer;
-            transition:    all 0.15s;
-        }
-
-        .word-chip:hover {
-            background:   rgba(139, 0, 0, 0.50);
-            border-color: var(--gold);
-        }
-
-        /* Bookmarked word chip */
-        .word-chip.bookmarked {
-            border-color: var(--gold);
-            background:   rgba(212, 175, 55, 0.15);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §9  TONE CARDS
-           ════════════════════════════════════════════════════════════════ */
-        .tone-card {
-            background:    var(--card-bg);
-            border:        1px solid var(--border-light);
-            border-radius: 14px;
-            padding:       16px;
-            text-align:    center;
-            cursor:        pointer;
-            transition:    all 0.20s ease;
-        }
-
-        .tone-card:hover {
-            transform:    translateY(-5px);
-            border-color: var(--gold);
-            box-shadow:   0 8px 20px var(--shadow-gold);
-        }
-
-        .tone-card:active {
-            transform: translateY(-2px);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §10  QUIZ OPTIONS
-           ════════════════════════════════════════════════════════════════ */
-        .quiz-option {
-            background:    var(--card-bg);
-            border:        1px solid var(--border-light);
-            border-radius: 9999px;
-            padding:       8px 4px;
-            font-size:     0.78rem;
-            cursor:        pointer;
-            transition:    all 0.15s ease;
-            color:         var(--text-body);
-        }
-
-        .quiz-option:hover {
-            background:   var(--red);
-            border-color: var(--gold);
-            color:        #fff;
-        }
-
-        .quiz-option.correct {
-            background:   rgba(22, 163, 74, 0.40);
-            border-color: #4ade80;
-            color:        #4ade80;
-        }
-
-        .quiz-option.wrong {
-            background:   rgba(220, 38, 38, 0.30);
-            border-color: #f87171;
-            color:        #f87171;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §11  AUDIO VISUALIZER BARS
-           ════════════════════════════════════════════════════════════════ */
-        .visualizer-bar {
-            display:       inline-block;
-            width:         3px;
-            background:    var(--gold);
-            margin:        0 1px;
-            border-radius: 2px;
-            transition:    height 0.05s linear;
-            vertical-align: bottom;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §12  COIN RAIN ANIMATION
-           ════════════════════════════════════════════════════════════════ */
-        @keyframes rainFall {
-            0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-
-        .rain-item {
-            position:       absolute;
-            animation:      rainFall 1.80s linear forwards;
-            pointer-events: none;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §13  LOADING SPINNER
-           ════════════════════════════════════════════════════════════════ */
-        .spinner {
-            display:       inline-block;
-            width:         14px;
-            height:        14px;
-            border:        2px solid rgba(212, 175, 55, 0.25);
-            border-top-color: #D4AF37;
-            border-radius: 50%;
-            animation:     spin 0.60s linear infinite;
-            margin-right:  6px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §14  FLASHCARD SYSTEM  (NEW FEATURE §1)
-           ════════════════════════════════════════════════════════════════ */
-        .flashcard-wrapper {
-            perspective: 1000px;
-            width:       320px;
-            height:      220px;
-            margin:      0 auto;
-            cursor:      pointer;
-        }
-
-        .flashcard-inner {
-            position:          relative;
-            width:             100%;
-            height:            100%;
-            transform-style:   preserve-3d;
-            transition:        transform 0.60s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .flashcard-wrapper.flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flashcard-front,
-        .flashcard-back {
-            position:            absolute;
-            inset:               0;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius:       18px;
-            border:              1px solid var(--border-mid);
-            display:             flex;
-            flex-direction:      column;
-            align-items:         center;
-            justify-content:     center;
-            padding:             24px;
-            text-align:          center;
-        }
-
-        .flashcard-front {
-            background: linear-gradient(
-                135deg,
-                rgba(139, 0, 0, 0.40),
-                rgba(0, 0, 0, 0.70)
-            );
-        }
-
-        .flashcard-back {
-            background: linear-gradient(
-                135deg,
-                rgba(212, 175, 55, 0.15),
-                rgba(0, 0, 0, 0.70)
-            );
-            transform: rotateY(180deg);
-        }
-
-        /* Flashcard progress bar */
-        .fc-progress-bar {
-            height:        6px;
-            background:    rgba(255, 255, 255, 0.10);
-            border-radius: 3px;
-            overflow:      hidden;
-            margin-top:    12px;
-        }
-
-        .fc-progress-fill {
-            height:     100%;
-            background: linear-gradient(90deg, var(--red), var(--gold));
-            transition: width 0.35s ease;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §15  DAILY STREAK TRACKER  (NEW FEATURE §2)
-           ════════════════════════════════════════════════════════════════ */
-        .streak-calendar {
-            display:               grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap:                   6px;
-            max-width:             340px;
-            margin:                16px auto 0;
-        }
-
-        .streak-day {
-            aspect-ratio:  1;
-            border-radius: 8px;
-            display:       flex;
-            align-items:   center;
-            justify-content: center;
-            font-size:     0.68rem;
-            font-weight:   600;
-            transition:    all 0.15s ease;
-        }
-
-        .streak-day.active {
-            background: linear-gradient(135deg, var(--red), var(--red-light));
-            border:     1px solid var(--gold);
-            color:      var(--gold);
-        }
-
-        .streak-day.today {
-            background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-            color:      var(--ink);
-            box-shadow: 0 0 10px var(--shadow-gold);
-        }
-
-        .streak-day.inactive {
-            background: rgba(255, 255, 255, 0.05);
-            border:     1px solid rgba(255, 255, 255, 0.08);
-            color:      rgba(255, 255, 255, 0.25);
-        }
-
-        /* Flame animation for active streak */
-        @keyframes flame-flicker {
-            0%, 100% { transform: scale(1)   rotate(-2deg); }
-            50%      { transform: scale(1.10) rotate(2deg); }
-        }
-
-        .flame-icon {
-            display:   inline-block;
-            animation: flame-flicker 1.20s ease-in-out infinite;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §16  VOCABULARY BOOKMARKS  (NEW FEATURE §3)
-           ════════════════════════════════════════════════════════════════ */
-        .bookmark-card {
-            background:    var(--card-bg);
-            border:        1px solid var(--border-light);
-            border-radius: 12px;
-            padding:       12px 16px;
-            display:       flex;
-            align-items:   center;
-            justify-content: space-between;
-            gap:           12px;
-            transition:    all 0.20s ease;
-        }
-
-        .bookmark-card:hover {
-            border-color: var(--border-mid);
-            background:   var(--card-hover-bg);
-        }
-
-        .bookmark-card .remove-btn {
-            flex-shrink:   0;
-            width:         28px;
-            height:        28px;
-            border-radius: 50%;
-            border:        1px solid rgba(220, 38, 38, 0.40);
-            background:    transparent;
-            cursor:        pointer;
-            display:       flex;
-            align-items:   center;
-            justify-content: center;
-            font-size:     0.75rem;
-            transition:    all 0.15s;
-            color:         #f87171;
-        }
-
-        .bookmark-card .remove-btn:hover {
-            background:   rgba(220, 38, 38, 0.30);
-            border-color: #f87171;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §17  AI CHAT BUBBLES
-           ════════════════════════════════════════════════════════════════ */
-        .chat-message {
-            display:   flex;
-            margin-bottom: 10px;
-        }
-
-        .chat-message.user  { justify-content: flex-end; }
-        .chat-message.ai    { justify-content: flex-start; }
-
-        .message-bubble {
-            max-width:     75%;
-            border-radius: 18px;
-            padding:       10px 16px;
-            font-size:     0.88rem;
-            line-height:   1.55;
-        }
-
-        .message-bubble.user-bubble {
-            background:    var(--red);
-            color:         #fff;
-            border-bottom-right-radius: 4px;
-        }
-
-        .message-bubble.ai-bubble {
-            background:    var(--card-bg);
-            border:        1px solid var(--border-light);
-            border-bottom-left-radius: 4px;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §18  SCORE PANEL & TOAST
-           ════════════════════════════════════════════════════════════════ */
-        .score-panel {
-            padding:     12px 14px;
-            border-top:  1px solid rgba(212, 175, 55, 0.20);
-            transition:  all 0.25s ease;
-        }
-
-        #score-toast {
-            position:   fixed;
-            top:        50%;
-            left:       50%;
-            transform:  translate(-50%, -50%);
-            z-index:    9999;
-            background: rgba(0, 0, 0, 0.90);
-            border:     2px solid var(--gold);
-            border-radius: 18px;
-            padding:    20px 28px;
-            text-align: center;
-            min-width:  160px;
-            backdrop-filter: blur(12px);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §19  GENERIC UTILITY CLASSES
-           ════════════════════════════════════════════════════════════════ */
-        .hidden  { display: none !important; }
-        .visible { display: block !important; }
-
-        /* Primary action button */
-        .btn-primary {
-            background:    var(--red);
-            color:         #fff;
-            border:        none;
-            border-radius: 9999px;
-            padding:       8px 24px;
-            font-family:   'Cinzel', serif;
-            font-size:     0.80rem;
-            cursor:        pointer;
-            transition:    all 0.20s ease;
-        }
-
-        .btn-primary:hover {
-            background:   var(--red-mid);
-            box-shadow:   0 4px 14px var(--shadow-red);
-            transform:    translateY(-1px);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.55;
-            cursor:  not-allowed;
-            transform: none;
-        }
-
-        /* Gold outline button */
-        .btn-outline {
-            background:    transparent;
-            color:         var(--gold);
-            border:        1px solid var(--gold);
-            border-radius: 9999px;
-            padding:       7px 20px;
-            font-family:   'Cinzel', serif;
-            font-size:     0.78rem;
-            cursor:        pointer;
-            transition:    all 0.20s ease;
-        }
-
-        .btn-outline:hover {
-            background: rgba(212, 175, 55, 0.12);
-        }
-
-        /* Text input / textarea base */
-        .input-field {
-            background:    rgba(0, 0, 0, 0.40);
-            border:        1px solid var(--border-light);
-            border-radius: 9999px;
-            padding:       8px 18px;
-            color:         var(--text-body);
-            outline:       none;
-            transition:    border-color 0.20s;
-            width:         100%;
-        }
-
-        .input-field:focus {
-            border-color: var(--border-mid);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §20  HERO SECTION  &  SEAL ANIMATION
-           ════════════════════════════════════════════════════════════════ */
-        @keyframes seal-rotate {
-            0%   { transform: rotate(0deg);  box-shadow: 0 0 20px var(--shadow-gold); }
-            50%  { transform: rotate(5deg);  box-shadow: 0 0 40px var(--shadow-gold); }
-            100% { transform: rotate(0deg);  box-shadow: 0 0 20px var(--shadow-gold); }
-        }
-
-        .hero-seal {
-            animation: seal-rotate 4s ease-in-out infinite;
-        }
-
-        /* Genealogy cards */
-        .gen-card {
-            background:    rgba(0, 0, 0, 0.30);
-            border:        1px solid rgba(212, 175, 55, 0.30);
-            border-radius: 16px;
-            padding:       16px;
-            width:         160px;
-            text-align:    center;
-            transition:    all 0.20s ease;
-        }
-
-        .gen-card:hover {
-            transform:    translateY(-3px);
-            border-color: var(--border-mid);
-            box-shadow:   0 6px 16px var(--shadow-gold);
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §21  VIDEO FRAME
-           ════════════════════════════════════════════════════════════════ */
-        .video-frame-wrap {
-            position:      relative;
-            padding-bottom: 56.25%;
-            border-radius: 18px;
-            overflow:      hidden;
-            border:        1px solid rgba(212, 175, 55, 0.40);
-        }
-
-        .video-placeholder {
-            position:        absolute;
-            inset:           0;
-            display:         flex;
-            flex-direction:  column;
-            align-items:     center;
-            justify-content: center;
-            background:      rgba(0, 0, 0, 0.70);
-        }
-
-        #yt-player-container {
-            position: absolute;
-            inset:    0;
-        }
-
-        #yt-player-container iframe {
-            position: absolute;
-            inset:    0;
-            width:    100%;
-            height:   100%;
-            border:   none;
-        }
-
-        /* ════════════════════════════════════════════════════════════════
-           §22  LEADERBOARD LIST
-           ════════════════════════════════════════════════════════════════ */
-        .lb-row {
-            display:         flex;
-            justify-content: space-between;
-            align-items:     center;
-            padding:         8px 0;
-            border-bottom:   1px solid rgba(212, 175, 55, 0.15);
-            font-size:       0.85rem;
-        }
-
-        .lb-row .rank-badge {
-            width:         24px;
-            height:        24px;
-            border-radius: 50%;
-            background:    rgba(212, 175, 55, 0.15);
-            border:        1px solid var(--border-light);
-            display:       flex;
-            align-items:   center;
-            justify-content: center;
-            font-size:     0.70rem;
-            font-weight:   700;
-            color:         var(--gold);
-            flex-shrink:   0;
-        }
-
-        /* Top-3 special colors */
-        .lb-row:nth-child(1) .rank-badge { background: rgba(255, 215, 0, 0.25); border-color: gold; }
-        .lb-row:nth-child(2) .rank-badge { background: rgba(192, 192, 192, 0.25); border-color: silver; }
-        .lb-row:nth-child(3) .rank-badge { background: rgba(205, 127, 50, 0.25); border-color: #CD7F32; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Niken Kho 许芬琪 — Official Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS VARIABLES ─────────────────────────────────── */
+    :root {
+      --black:        #080808;
+      --onyx:         #0f0f0f;
+      --onyx-2:       #161616;
+      --onyx-3:       #1e1e1e;
+      --gold:         #c9a84c;
+      --gold-light:   #e8c97a;
+      --gold-pale:    #f5e6b8;
+      --gold-dim:     #7a6130;
+      --white:        #f5f0e8;
+      --white-muted:  #b8b0a0;
+      --glass-bg:     rgba(255,255,255,0.04);
+      --glass-border: rgba(201,168,76,0.18);
+      --glass-blur:   blur(18px);
+      --radius-sm:    8px;
+      --radius-md:    16px;
+      --radius-lg:    24px;
+      --shadow-gold:  0 4px 32px rgba(201,168,76,0.18);
+      --shadow-deep:  0 20px 60px rgba(0,0,0,0.8);
+    }
+
+    /* ─── RESET & BASE ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NOISE OVERLAY ─────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ─── GOLD GRADIENT UTILITY ─────────────────────────── */
+    .gold-text {
+      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 35%, var(--gold-light) 55%, var(--gold) 75%, var(--gold-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ─── DECORATIVE LINE ───────────────────────────────── */
+    .deco-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+    .deco-line::before,
+    .deco-line::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .deco-diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px 60px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Ambient glow behind image */
+    .hero-glow {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(520px, 100vw);
+      height: min(520px, 100vw);
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Corner ornaments */
+    .corner-ornament {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .corner-ornament.tl { top: 20px; left: 20px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .corner-ornament.tr { top: 20px; right: 20px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+    .corner-ornament.bl { bottom: 80px; left: 20px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+    .corner-ornament.br { bottom: 80px; right: 20px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+    /* Hero image placeholder */
+    .hero-image-placeholder {
+      position: relative;
+      width: min(280px, 75vw);
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, var(--onyx-3) 0%, var(--onyx-2) 50%, #120f08 100%);
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.08),
+        0 0 40px rgba(201,168,76,0.08),
+        var(--shadow-deep);
+      overflow: hidden;
+      margin-bottom: 32px;
+      animation: float 6s ease-in-out infinite;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .hero-image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.9) 100%);
+      z-index: 1;
+    }
+
+    .hero-image-placeholder::after {
+      content: '✦  Foto Diva Niken Kho  ✦';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--gold-dim);
+      text-align: center;
+      z-index: 2;
+    }
+
+    /* Gold frame accent on image */
+    .hero-image-placeholder .frame-accent {
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: calc(var(--radius-lg) - 4px);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* Hero text content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      animation: fadeInDown 0.8s ease both;
+    }
+    .hero-badge .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.6); }
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 12vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      animation: fadeInUp 0.9s ease 0.1s both;
+    }
+
+    .hero-name-chinese {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 5vw, 28px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white-muted);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-top: 4px;
+      animation: fadeInUp 0.9s ease 0.2s both;
+    }
+
+    .hero-divider {
+      margin: 16px auto;
+      animation: fadeIn 1s ease 0.3s both;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(11px, 3vw, 14px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+      font-weight: 400;
+      line-height: 1.8;
+      animation: fadeInUp 0.9s ease 0.35s both;
+    }
+    .hero-subtitle strong {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    /* CTA Button */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 32px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 50%, var(--gold-light) 100%);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4), 0 0 40px rgba(201,168,76,0.15);
+      animation: fadeInUp 0.9s ease 0.45s both, pulse-glow 2.5s ease-in-out 1.5s infinite;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    .btn-cta:hover::before { transform: translateX(100%); }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.55), 0 0 60px rgba(201,168,76,0.2);
+    }
+    .btn-cta:active { transform: translateY(0); }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 4px 20px rgba(201,168,76,0.4), 0 0 40px rgba(201,168,76,0.15); }
+      50%       { box-shadow: 0 6px 30px rgba(201,168,76,0.65), 0 0 70px rgba(201,168,76,0.3); }
+    }
+
+    .btn-cta svg { flex-shrink: 0; }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.45;
+      animation: fadeIn 1s ease 2s both;
+    }
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .scroll-hint .arrow {
+      width: 16px;
+      height: 24px;
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      position: relative;
+    }
+    .scroll-hint .arrow::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: scroll-bounce 1.5s ease-in-out infinite;
+    }
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+      100%      { transform: translateX(-50%) translateY(8px); opacity: 0; }
+    }
+
+    /* ─── FADE ANIMATIONS ───────────────────────────────── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════════════════════ */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 24px;
+      margin: 0 auto;
+      max-width: 560px;
+    }
+    .section-divider .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+    }
+    .section-divider .icon {
+      padding: 0 16px;
+      font-size: 14px;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       BOOKING SECTION
+    ══════════════════════════════════════════════════════ */
+    #booking {
+      position: relative;
+      z-index: 1;
+      padding: 60px 20px 80px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '—';
+      color: var(--gold-dim);
+    }
+
+    .booking-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 8vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .booking-desc {
+      font-size: 13px;
+      color: var(--white-muted);
+      line-height: 1.7;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    /* ─── GLASSMORPHISM FORM CARD ────────────────────────── */
+    .form-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      padding: 28px 24px 32px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 2px 60px rgba(0,0,0,0.6),
+        var(--shadow-gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle glow top-right corner of form */
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── FORM GROUP ────────────────────────────────────── */
+    .form-row {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .form-label svg { opacity: 0.7; }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-sm);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-control::placeholder {
+      color: rgba(181,171,155,0.4);
+      font-size: 13px;
+    }
+    .form-control:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1), 0 2px 12px rgba(201,168,76,0.1);
+    }
+    .form-control:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Custom select arrow */
+    .select-wrapper {
+      position: relative;
+    }
+    .select-wrapper select {
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .select-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 7px;
+      height: 7px;
+      border-right: 2px solid var(--gold-dim);
+      border-bottom: 2px solid var(--gold-dim);
+      pointer-events: none;
+      transition: transform 0.2s ease;
+    }
+    .select-wrapper select:focus + .arr::after,
+    .select-wrapper:focus-within::after {
+      transform: translateY(-65%) rotate(-135deg);
+    }
+
+    select option {
+      background: #1a1a1a;
+      color: var(--white);
+    }
+
+    /* Input number spinner hide */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+    input[type=number] { -moz-appearance: textfield; }
+
+    /* Duration row */
+    .duration-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .duration-wrapper .form-control {
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+      text-align: center;
+      flex: 1;
+    }
+    .duration-unit {
+      padding: 13px 14px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-left: none;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ─── LOCATION SECTION ──────────────────────────────── */
+    .location-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .location-header span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+    .location-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(201,168,76,0.12);
+    }
+
+    /* Loading spinner inside select */
+    .select-loading {
+      position: relative;
+    }
+    .spinner {
+      display: none;
+      position: absolute;
+      right: 34px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(201,168,76,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    .select-loading.loading .spinner { display: block; }
+    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+    /* ─── SUBMIT BUTTON ─────────────────────────────────── */
+    .btn-submit {
+      width: 100%;
+      margin-top: 28px;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, #7a6130 0%, var(--gold) 40%, var(--gold-light) 65%, var(--gold) 85%, #7a6130 100%);
+      background-size: 200% 100%;
+      color: #0a0800;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.35), 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .btn-submit:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(201,168,76,0.5), 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+    .btn-submit .wa-icon {
+      width: 22px;
+      height: 22px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    /* ─── TRUST BADGES ──────────────────────────────────── */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+      opacity: 0.7;
+    }
+    .trust-badge .icon { color: var(--gold); font-size: 12px; }
+
+    /* ─── TOAST NOTIFICATION ────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, var(--onyx-3), #1a1600);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 13px;
+      color: var(--gold-light);
+      box-shadow: var(--shadow-gold), var(--shadow-deep);
+      z-index: 9999;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px 24px 48px;
+      border-top: 1px solid rgba(201,168,76,0.08);
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: var(--white-muted);
+      opacity: 0.5;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── VALIDATION ERRORS ─────────────────────────────── */
+    .error-msg {
+      font-size: 11px;
+      color: #ff7070;
+      margin-top: 4px;
+      display: none;
+    }
+    .form-group.has-error .form-control,
+    .form-group.has-error .select-wrapper .form-control {
+      border-color: #ff5050;
+      box-shadow: 0 0 0 3px rgba(255,80,80,0.1);
+    }
+    .form-group.has-error .error-msg { display: block; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .form-card { padding: 22px 16px 26px; }
+      .form-row.cols-2 { grid-template-columns: 1fr; }
+      .trust-badges { gap: 14px; }
+    }
+    @media (min-width: 768px) {
+      #hero {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        padding: 80px 60px;
+        text-align: left;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .hero-image-placeholder {
+        width: 320px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+      }
+      .hero-content { text-align: left; }
+      .deco-line { justify-content: flex-start; }
+      .deco-line::before { display: none; }
+      .hero-badge { display: inline-flex; }
+      .btn-cta { display: inline-flex; }
+      .scroll-hint { display: none; }
+      .corner-ornament.tr { display: none; }
+      .corner-ornament.bl { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     FLOATING GAME HUD  (fixed bottom-right)
-     ══════════════════════════════════════════════════════════════════════ -->
-<div id="game-hud">
-    <div class="hud-title">⚜️ ACADEMY PROFILE ⚜️</div>
+  <!-- ════════════════════ HERO ════════════════════════ -->
+  <section id="hero">
+    <div class="hero-glow"></div>
 
-    <div class="hud-row">
-        <span>🏆 XP</span>
-        <span class="val" id="hud-xp">0</span>
-    </div>
-    <div class="hud-row">
-        <span>🎤 Practices</span>
-        <span class="val" id="hud-practice">0</span>
-    </div>
-    <div class="hud-row">
-        <span>📊 Avg Score</span>
-        <span class="val" id="hud-avg">—</span>
-    </div>
-    <div class="hud-row">
-        <span>🎓 Rank</span>
-        <span class="val" id="hud-rank">Beginner</span>
+    <!-- Corner ornaments -->
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament tr"></div>
+    <div class="corner-ornament bl"></div>
+    <div class="corner-ornament br"></div>
+
+    <!-- Diva Photo -->
+    <div class="hero-image-placeholder" aria-label="Foto Niken Kho">
+      <div class="frame-accent"></div>
     </div>
 
-    <div class="hud-streak-badge">
-        <span class="flame-icon">🔥</span>
-        <span id="hud-streak">0</span>
-        <span>day streak</span>
+    <!-- Text Content -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="dot"></div>
+        Available For Booking 2025 – 2026
+      </div>
+
+      <h1 class="hero-name gold-text">Niken Kho<br>琪琪</h1>
+      <span class="hero-name-chinese">许芬琪 — Penyanyi Profesional</span>
+
+      <div class="hero-divider deco-line">
+        <div class="deco-diamond"></div>
+      </div>
+
+      <p class="hero-subtitle">
+        <strong>Top 3 · Music On Stage Indonesia</strong><br>
+        Mandarin &nbsp;·&nbsp; Hokkien &nbsp;·&nbsp; Remix &nbsp;·&nbsp; Ballad
+      </p>
+
+      <a href="#booking" class="btn-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+        BOOKING SEKARANG
+      </a>
     </div>
 
-    <div class="hud-xp-bar">
-        <div class="hud-xp-fill" id="hud-xp-fill"></div>
+    <!-- Scroll Hint -->
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="arrow"></div>
     </div>
-</div>
-
-
-<!-- ══════════════════════════════════════════════════════════════════════
-     MAIN CONTENT WRAPPER
-     ══════════════════════════════════════════════════════════════════════ -->
-<div class="max-w-7xl mx-auto px-4 py-8 relative z-10">
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §A  HERO SECTION
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="hero" class="min-h-[80vh] flex flex-col items-center justify-center text-center py-16">
-
-        <!-- Seal emblem -->
-        <div class="hero-seal w-24 h-24 rounded-full bg-red-800 border-2 border-yellow-600
-                    flex items-center justify-center mb-6 shadow-2xl">
-            <span class="font-noto text-4xl" style="color: var(--gold);">汪</span>
-        </div>
-
-        <p class="section-label">WANG DYNASTY MANDARIN ACADEMY</p>
-
-        <h1 class="text-4xl md:text-6xl font-cinzel-deco font-bold text-gold-grad mt-2">
-            Wang Weize
-        </h1>
-
-        <p class="font-noto text-2xl tracking-wider mt-1">汪 为 泽</p>
-
-        <p class="max-w-xl mt-4" style="color: rgba(230,230,230,0.75);">
-            Preserving Heritage · Mastering Mandarin through Music &amp; AI
-        </p>
-
-        <div class="gold-line w-40 my-6 mx-auto"></div>
-
-        <!-- Navigation pills -->
-        <div class="flex flex-wrap gap-3 justify-center">
-            <button class="nav-pill" onclick="gotoSection('#silsilah')">📜 Genealogy</button>
-            <button class="nav-pill" onclick="gotoSection('#lagu')">🎵 Music Lab</button>
-            <button class="nav-pill" onclick="gotoSection('#tone-guide')">🎵 Tone Guide</button>
-            <button class="nav-pill" onclick="gotoSection('#quiz-section')">🎮 Tone Quiz</button>
-            <button class="nav-pill" onclick="gotoSection('#flashcard-section')">🃏 Flashcards</button>
-            <button class="nav-pill" onclick="gotoSection('#streak-section')">🔥 Streak</button>
-            <button class="nav-pill" onclick="gotoSection('#bookmark-section')">🔖 Bookmarks</button>
-            <button class="nav-pill" onclick="gotoSection('#leaderboard')">🏆 Leaderboard</button>
-            <button class="nav-pill" onclick="toggleTheme()">🌓 Light/Dark</button>
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §B  GENEALOGY  (SILSILAH)
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="silsilah" class="py-16 text-center">
-        <p class="section-label">世系 · GENEALOGY</p>
-        <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Three Generations of Legacy</h2>
-
-        <div class="gold-line w-48 mx-auto my-6"></div>
-
-        <!-- Grandparents row -->
-        <div class="flex flex-wrap justify-center gap-6 mt-6">
-            <div class="gen-card">
-                <div class="font-noto text-3xl mb-1" style="color: var(--gold);">王</div>
-                <div class="text-sm font-cinzel">祖父 · Shaanxi</div>
-                <div class="text-xs mt-1" style="color: rgba(212,175,55,0.60);">Paternal Grandfather</div>
-            </div>
-            <div class="gen-card">
-                <div class="font-noto text-3xl mb-1" style="color: var(--gold);">吴</div>
-                <div class="text-sm font-cinzel">祖母 · Fujian</div>
-                <div class="text-xs mt-1" style="color: rgba(212,175,55,0.60);">Paternal Grandmother</div>
-            </div>
-            <div class="gen-card">
-                <div class="font-noto text-3xl mb-1" style="color: var(--gold);">王</div>
-                <div class="text-sm font-cinzel">父亲 · Shaanxi</div>
-                <div class="text-xs mt-1" style="color: rgba(212,175,55,0.60);">Father</div>
-            </div>
-            <div class="gen-card">
-                <div class="font-noto text-3xl mb-1" style="color: var(--gold);">黄</div>
-                <div class="text-sm font-cinzel">母亲 · Medan</div>
-                <div class="text-xs mt-1" style="color: rgba(212,175,55,0.60);">Mother</div>
-            </div>
-        </div>
-
-        <div class="mt-6 mb-2">
-            <div class="gold-line w-24 mx-auto"></div>
-        </div>
-
-        <!-- Subject card -->
-        <div class="mt-4 inline-block rounded-2xl p-5 px-10"
-             style="background: rgba(139,0,0,0.35); border: 2px solid var(--gold);">
-            <div class="font-noto text-3xl" style="color: var(--gold);">汪为泽</div>
-            <div class="text-sm mt-1">Wang Weize · Satu-satunya Marga 汪 di Medan Pancing</div>
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §C  MUSIC LAB  (6 lagu dengan lirik lengkap)
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="lagu" class="py-16">
-
-        <div class="text-center mb-6">
-            <p class="section-label">MUSIC IMMERSION</p>
-            <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">6 Viral Chinese Songs</h2>
-        </div>
-
-        <!-- Song tab bar (horizontally scrollable) -->
-        <div class="song-tabs-scroll mt-6 pb-2">
-            <div class="song-tabs" id="song-tabs">
-                <!-- populated by JS -->
-            </div>
-        </div>
-
-        <!-- YouTube embed area -->
-        <div class="mt-8 max-w-3xl mx-auto">
-            <div class="video-frame-wrap">
-                <!-- Placeholder shown before video loads -->
-                <div class="video-placeholder" id="video-placeholder">
-                    <div class="text-5xl mb-2">▶</div>
-                    <p id="ph-title" class="text-xl" style="color: var(--gold);">诺言</p>
-                    <button id="load-btn" class="btn-primary mt-4" onclick="loadVideo()">
-                        Load YouTube
-                    </button>
-                </div>
-
-                <!-- Actual iframe injected here -->
-                <div id="yt-player-container" class="hidden"></div>
-            </div>
-
-            <!-- Custom song search -->
-            <div class="flex gap-2 mt-4 justify-center">
-                <input
-                    id="custom-search"
-                    class="input-field"
-                    style="max-width: 260px; border-radius: 9999px;"
-                    placeholder="Search any Chinese song..."
-                />
-                <button class="btn-primary" onclick="searchCustomVideo()">Search</button>
-            </div>
-            <p id="search-status" class="text-center text-sm mt-2"
-               style="color: rgba(212,175,55,0.60);"></p>
-        </div>
-
-        <!-- ── Interactive Lyrics ── -->
-        <div class="max-w-3xl mx-auto mt-12">
-            <h3 id="lirik-song-name" class="text-center text-2xl font-cinzel mb-2"
-                style="color: var(--gold);">诺言 · Janji</h3>
-            <p class="text-center text-xs mb-4" style="color: rgba(255,255,255,0.40);">
-                Click a lyric line to expand word breakdown · Click 🎤 to practice pronunciation ·
-                Click a word to bookmark it 🔖
-            </p>
-
-            <div class="bg-black/30 border rounded-2xl p-4"
-                 style="border-color: rgba(212,175,55,0.25);">
-                <div id="lirik-body" class="space-y-3">
-                    <!-- populated by JS -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §D  CORE VOCABULARY GRID
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="vocab-section" class="py-16 text-center">
-        <p class="section-label">CORE VOCABULARY</p>
-        <h2 id="vocab-title" class="text-3xl font-cinzel-deco text-gold-grad mt-1">Key Terms</h2>
-        <p class="text-sm mt-1" style="color: rgba(255,255,255,0.40);">
-            Click any vocab card to bookmark it for review
-        </p>
-
-        <div id="vocab-grid"
-             class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8 max-w-4xl mx-auto">
-            <!-- populated by JS -->
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §E  PINYIN TONE GUIDE
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="tone-guide" class="py-16">
-        <div class="text-center">
-            <p class="section-label">PINYIN TONE GUIDE</p>
-            <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Master the 5 Tones</h2>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8 max-w-4xl mx-auto">
-            <div class="tone-card" onclick="playTone('ā', 'first')">
-                <div class="text-5xl font-noto" style="color: var(--gold);">ā</div>
-                <div class="font-bold mt-2">1st · Flat</div>
-                <div class="text-xs mt-1" style="color: rgba(255,255,255,0.55);">高平调 → ─</div>
-                <div class="text-xs" style="color: rgba(212,175,55,0.70);">māo (猫)</div>
-            </div>
-            <div class="tone-card" onclick="playTone('á', 'second')">
-                <div class="text-5xl font-noto" style="color: var(--gold);">á</div>
-                <div class="font-bold mt-2">2nd · Rising</div>
-                <div class="text-xs mt-1" style="color: rgba(255,255,255,0.55);">上声调 → ╱</div>
-                <div class="text-xs" style="color: rgba(212,175,55,0.70);">rén (人)</div>
-            </div>
-            <div class="tone-card" onclick="playTone('ǎ', 'third')">
-                <div class="text-5xl font-noto" style="color: var(--gold);">ǎ</div>
-                <div class="font-bold mt-2">3rd · Dip-Rise</div>
-                <div class="text-xs mt-1" style="color: rgba(255,255,255,0.55);">去声调 → ╲╱</div>
-                <div class="text-xs" style="color: rgba(212,175,55,0.70);">wǒ (我)</div>
-            </div>
-            <div class="tone-card" onclick="playTone('à', 'fourth')">
-                <div class="text-5xl font-noto" style="color: var(--gold);">à</div>
-                <div class="font-bold mt-2">4th · Falling</div>
-                <div class="text-xs mt-1" style="color: rgba(255,255,255,0.55);">入声调 → ╲</div>
-                <div class="text-xs" style="color: rgba(212,175,55,0.70);">àn (暗)</div>
-            </div>
-            <div class="tone-card" onclick="playTone('a', 'neutral')">
-                <div class="text-5xl font-noto" style="color: var(--gold);">a</div>
-                <div class="font-bold mt-2">Neutral</div>
-                <div class="text-xs mt-1" style="color: rgba(255,255,255,0.55);">轻声 → •</div>
-                <div class="text-xs" style="color: rgba(212,175,55,0.70);">ma (吗)</div>
-            </div>
-        </div>
-
-        <p class="text-center text-sm mt-6" style="color: rgba(212,175,55,0.55);">
-            Click any card to hear pronunciation via Text-to-Speech
-        </p>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §F  TONE MATCHING QUIZ
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="quiz-section" class="py-16 rounded-3xl"
-             style="background: rgba(0,0,0,0.20);">
-
-        <div class="text-center">
-            <p class="section-label">🎮 TONE CHALLENGE</p>
-            <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Match the Tone</h2>
-        </div>
-
-        <div class="max-w-md mx-auto mt-8 text-center">
-            <!-- Current word display -->
-            <div id="quiz-word"
-                 class="text-5xl font-noto inline-block px-8 py-4 rounded-2xl"
-                 style="background: rgba(0,0,0,0.35); border: 1px solid rgba(212,175,55,0.40);">
-                mā
-            </div>
-
-            <!-- Optional pinyin hint toggle -->
-            <p class="text-xs mt-2" style="color: rgba(255,255,255,0.35);">
-                Identify the tone of the word above
-            </p>
-
-            <!-- Answer options grid -->
-            <div class="grid grid-cols-5 gap-2 mt-6">
-                <button class="quiz-option" data-tone="1">1st (ā)</button>
-                <button class="quiz-option" data-tone="2">2nd (á)</button>
-                <button class="quiz-option" data-tone="3">3rd (ǎ)</button>
-                <button class="quiz-option" data-tone="4">4th (à)</button>
-                <button class="quiz-option" data-tone="5">Neutral</button>
-            </div>
-
-            <div id="quiz-feedback" class="mt-4 text-base font-semibold"
-                 style="color: var(--gold); min-height: 28px;"></div>
-
-            <button class="btn-primary mt-3" onclick="nextQuizWord()">
-                Next Word ›
-            </button>
-
-            <p class="text-xs mt-3" style="color: rgba(255,255,255,0.40);">
-                Score: <span id="quiz-score" class="font-bold">0</span>
-                / <span id="quiz-total" class="font-bold">0</span>
-            </p>
-        </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         ✦  NEW FEATURE §1  –  SMART FLASHCARD DECK
-            Auto-generated from all song vocabulary with spaced-repetition
-            style "Know / Don't Know" scoring.
-         ══════════════════════════════════════════════════════════════════ -->
-    <section id="flashcard-section" class="py-16 text-center">
-        <p class="section-label">🃏 SMART FLASHCARD DECK</p>
-        <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Auto-Generated from Songs</h2>
-        <p class="text-sm mt-2 mb-8" style="color: rgba(255,255,255,0.45);">
-            Click the card to flip · Mark Known or Review to advance your deck
-        </p>
-
-        <!-- Deck filter -->
-        <div class="flex flex-wrap gap-2 justify-center mb-8">
-            <button class="btn-outline" onclick="filterFlashcards('all')">All Songs</button>
-            <button class="btn-outline" id="fc-filter-btn"></button>
-            <!-- Song-specific filter buttons rendered by JS -->
-            <div id="fc-filter-row" class="flex flex-wrap gap-2 justify-center"></div>
-        </div>
-
-        <!-- Card display -->
-        <div class="flashcard-wrapper" id="flashcard-wrapper" onclick="flipCard()">
-            <div class="flashcard-inner" id="flashcard-inner">
-                <div class="flashcard-front">
-                    <div class="text-5xl font-noto" style="color: var(--gold);" id="fc-hanzi">汉字</div>
-                    <div class="text-sm mt-3" style="color: rgba(255,255,255,0.50);">
-                        Tap to reveal answer
-                    </div>
-                </div>
-                <div class="flashcard-back">
-                    <div class="text-2xl font-noto mb-1" id="fc-back-hanzi"
-                         style="color: var(--gold);"></div>
-                    <div class="text-base font-semibold" id="fc-pinyin"
-                         style="color: rgba(212,175,55,0.80);"></div>
-                    <div class="text-sm mt-1" id="fc-meaning"></div>
-                    <div class="text-xs mt-2" id="fc-song-label"
-                         style="color: rgba(255,255,255,0.40);"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Action buttons (only visible after flip) -->
-        <div id="fc-actions" class="hidden flex gap-4 justify-center mt-6">
-            <button class="btn-outline" onclick="markCard('review')">🔁 Need Review</button>
-            <button class="btn-primary" onclick="markCard('known')">✅ I Know This</button>
-        </div>
-
-        <!-- Progress bar -->
-        <div class="fc-progress-bar max-w-xs mx-auto mt-6">
-            <div class="fc-progress-fill" id="fc-progress-fill"></div>
-        </div>
-        <p class="text-xs mt-2" style="color: rgba(255,255,255,0.40);">
-            Card <span id="fc-current">1</span> / <span id="fc-total">1</span> ·
-            Known: <span id="fc-known">0</span>
-        </p>
-
-        <!-- Session stats -->
-        <div class="mt-6 inline-flex gap-6 text-sm"
-             style="background: var(--card-bg); border: 1px solid var(--border-light);
-                    border-radius: 14px; padding: 10px 24px;">
-            <span>✅ Known: <strong id="fc-stat-known">0</strong></span>
-            <span>🔁 Review: <strong id="fc-stat-review">0</strong></span>
-            <span>⏳ Remaining: <strong id="fc-stat-remaining">0</strong></span>
-        </div>
-
-        <div class="mt-4">
-            <button class="btn-outline" onclick="shuffleFlashcards()">🔀 Shuffle Deck</button>
-            <button class="btn-outline ml-2" onclick="resetFlashcards()">↺ Reset</button>
-        </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         ✦  NEW FEATURE §2  –  DAILY STREAK TRACKER
-            Records each day the user practices, shows a 28-day calendar
-            heatmap, fire animation for active streaks.
-         ══════════════════════════════════════════════════════════════════ -->
-    <section id="streak-section" class="py-16 text-center rounded-3xl"
-             style="background: rgba(0,0,0,0.18);">
-
-        <p class="section-label">🔥 DAILY STREAK TRACKER</p>
-        <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Practice Every Day</h2>
-
-        <!-- Big streak counter -->
-        <div class="mt-8 inline-flex flex-col items-center justify-center
-                    rounded-full border-2 w-36 h-36"
-             style="background: radial-gradient(circle, rgba(139,0,0,0.40), transparent);
-                    border-color: var(--gold);">
-            <span class="flame-icon text-4xl">🔥</span>
-            <span id="streak-count" class="text-4xl font-bold font-cinzel"
-                  style="color: var(--gold);">0</span>
-            <span class="text-xs" style="color: rgba(255,255,255,0.50);">day streak</span>
-        </div>
-
-        <!-- Stats row -->
-        <div class="flex flex-wrap gap-4 justify-center mt-6 text-sm">
-            <div class="px-5 py-3 rounded-xl" style="background: var(--card-bg);
-                 border: 1px solid var(--border-light);">
-                🏅 Best Streak: <strong id="best-streak">0</strong> days
-            </div>
-            <div class="px-5 py-3 rounded-xl" style="background: var(--card-bg);
-                 border: 1px solid var(--border-light);">
-                📅 Total Days: <strong id="total-practice-days">0</strong>
-            </div>
-            <div class="px-5 py-3 rounded-xl" style="background: var(--card-bg);
-                 border: 1px solid var(--border-light);">
-                📆 Last Active: <strong id="last-active">—</strong>
-            </div>
-        </div>
-
-        <!-- 28-day calendar heatmap -->
-        <div class="mt-8">
-            <p class="text-xs mb-3" style="color: rgba(255,255,255,0.40);">
-                Last 28 days  (🟥 = practiced · 🟨 = today)
-            </p>
-            <div class="streak-calendar" id="streak-calendar">
-                <!-- populated by JS -->
-            </div>
-        </div>
-
-        <!-- Motivational milestone badges -->
-        <div class="flex flex-wrap gap-3 justify-center mt-8" id="milestone-badges">
-            <!-- populated by JS -->
-        </div>
-
-        <!-- Manual check-in button (fallback when auto-detection hasn't triggered) -->
-        <button class="btn-primary mt-6" onclick="checkInToday()">
-            ✅ Mark Today as Practiced
-        </button>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         ✦  NEW FEATURE §3  –  VOCABULARY BOOKMARK LIBRARY
-            Users bookmark words from lyrics / vocab cards.
-            Library persists in localStorage with export functionality.
-         ══════════════════════════════════════════════════════════════════ -->
-    <section id="bookmark-section" class="py-16">
-        <div class="text-center">
-            <p class="section-label">🔖 VOCABULARY BOOKMARK LIBRARY</p>
-            <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Your Personal Word Bank</h2>
-            <p class="text-sm mt-2" style="color: rgba(255,255,255,0.40);">
-                Bookmark words from lyrics &amp; vocab cards · Export as CSV or Review Mode
-            </p>
-        </div>
-
-        <!-- Toolbar -->
-        <div class="flex flex-wrap gap-3 justify-center mt-8 mb-6">
-            <button class="btn-primary" onclick="reviewBookmarks()">▶ Review Mode</button>
-            <button class="btn-outline" onclick="exportBookmarksCSV()">⬇ Export CSV</button>
-            <button class="btn-outline" onclick="clearAllBookmarks()">🗑 Clear All</button>
-        </div>
-
-        <!-- Stats -->
-        <p class="text-center text-sm mb-6" style="color: rgba(212,175,55,0.70);">
-            <span id="bookmark-count">0</span> words saved
-        </p>
-
-        <!-- Review overlay (shown in review mode) -->
-        <div id="bookmark-review-overlay" class="hidden mb-8">
-            <div class="max-w-sm mx-auto text-center">
-                <div class="flashcard-wrapper" id="bm-fc-wrapper" onclick="flipBmCard()">
-                    <div class="flashcard-inner" id="bm-fc-inner">
-                        <div class="flashcard-front">
-                            <div class="text-5xl font-noto" style="color: var(--gold);"
-                                 id="bm-fc-front">汉</div>
-                            <div class="text-xs mt-2" style="color: rgba(255,255,255,0.40);">
-                                Tap to reveal
-                            </div>
-                        </div>
-                        <div class="flashcard-back">
-                            <div class="text-3xl font-noto mb-1" style="color: var(--gold);"
-                                 id="bm-fc-back-h"></div>
-                            <div class="text-base" id="bm-fc-pin"
-                                 style="color: rgba(212,175,55,0.80);"></div>
-                            <div class="text-sm mt-1" id="bm-fc-mean"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex gap-4 justify-center mt-5">
-                    <button class="btn-outline" onclick="nextBmCard(-1)">‹ Prev</button>
-                    <button class="btn-primary" onclick="nextBmCard(1)">Next ›</button>
-                </div>
-                <button class="btn-outline mt-3 text-sm" onclick="exitBookmarkReview()">
-                    ✕ Exit Review
-                </button>
-            </div>
-        </div>
-
-        <!-- Bookmark list grid -->
-        <div id="bookmark-grid"
-             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
-            <!-- populated by JS -->
-        </div>
-
-        <!-- Empty state -->
-        <div id="bookmark-empty" class="text-center py-12" style="color: rgba(255,255,255,0.30);">
-            <div class="text-5xl mb-3">📭</div>
-            <p class="font-cinzel">No bookmarks yet.</p>
-            <p class="text-sm mt-1">Click any word in the lyrics to save it here.</p>
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §G  LEADERBOARD
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="leaderboard" class="py-16">
-        <div class="text-center">
-            <p class="section-label">🏆 ACADEMY LEADERBOARD</p>
-            <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Top Mandarin Scholars</h2>
-        </div>
-
-        <div class="max-w-md mx-auto mt-8 rounded-2xl p-6"
-             style="background: rgba(0,0,0,0.30); border: 1px solid rgba(212,175,55,0.30);">
-
-            <div class="flex gap-2 mb-5">
-                <input id="leader-name" class="input-field flex-1" placeholder="Your Name" />
-                <button class="btn-primary" onclick="submitScoreToLeaderboard()">
-                    Submit
-                </button>
-            </div>
-
-            <div id="leaderboard-list" class="space-y-1">
-                <!-- populated by JS -->
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §H  IMPERIAL CERTIFICATE  (Canvas)
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="cert-section" class="py-16 text-center">
-        <p class="section-label">CERTIFICATION</p>
-        <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Imperial Edict · 皇榜</h2>
-
-        <div class="max-w-2xl mx-auto mt-8 rounded-2xl p-6"
-             style="background: rgba(0,0,0,0.30); border: 1px solid rgba(212,175,55,0.40);">
-
-            <div id="cert-score-info" class="text-sm mb-4"
-                 style="color: rgba(212,175,55,0.70);">
-                Complete a pronunciation practice to generate your certificate
-            </div>
-
+  </section>
+
+  <!-- ════════════ SECTION DIVIDER ════════════════════ -->
+  <div class="section-divider">
+    <div class="line"></div>
+    <div class="icon">✦</div>
+    <div class="line"></div>
+  </div>
+
+  <!-- ════════════════ BOOKING FORM ═══════════════════ -->
+  <section id="booking">
+    <div class="booking-header">
+      <div class="section-label">Form Pemesanan Resmi</div>
+      <h2 class="booking-title gold-text">Undang Niken Kho<br>ke Acara Anda</h2>
+      <p class="booking-desc">
+        Isi formulir di bawah ini dan tim manajemen kami akan segera merespons permintaan Anda.
+      </p>
+    </div>
+
+    <div class="form-card">
+
+      <form id="bookingForm" novalidate>
+
+        <!-- ── Nama Pemesan ─────────────────────────── -->
+        <div class="form-row">
+          <div class="form-group" id="grp-nama">
+            <label class="form-label" for="namaPemesan">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Nama Pemesan / EO
+            </label>
             <input
-                type="text"
-                id="cert-name"
-                placeholder="Full Name for Certificate"
-                class="input-field max-w-xs mx-auto block mb-4"
-                style="border-radius: 12px;"
+              type="text"
+              id="namaPemesan"
+              class="form-control"
+              placeholder="Contoh: PT. Gemilang Event"
+              autocomplete="name"
             />
-
-            <button class="btn-primary" onclick="generateCertificate()">
-                Generate Imperial Certificate
-            </button>
-
-            <div id="cert-preview" class="mt-6 hidden">
-                <canvas id="cert-canvas" width="900" height="636"
-                        class="w-full rounded-xl shadow-2xl"></canvas>
-                <button class="btn-outline mt-3" onclick="downloadCert()">
-                    ⬇ Download PNG
-                </button>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §I  AI MANDARIN TUTOR (Gemini)
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="ai-chat-section" class="py-16">
-        <div class="text-center">
-            <p class="section-label">🤖 AI MANDARIN TUTOR</p>
-            <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Gemini Assistant</h2>
-            <p class="text-sm mt-2" style="color: rgba(255,255,255,0.40);">
-                Ask anything about Mandarin, tones, grammar, or song meanings
-            </p>
+            <span class="error-msg">Nama pemesan wajib diisi.</span>
+          </div>
         </div>
 
-        <div class="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden"
-             style="background: rgba(0,0,0,0.30); border: 1px solid rgba(212,175,55,0.30);">
-
-            <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-2">
-                <!-- Chat bubbles injected here -->
+        <!-- ── Jenis Acara + Durasi ──────────────────── -->
+        <div class="form-row cols-2">
+          <div class="form-group" id="grp-jenis">
+            <label class="form-label" for="jenisAcara">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Jenis Acara
+            </label>
+            <div class="select-wrapper">
+              <select id="jenisAcara" class="form-control">
+                <option value="">— Pilih Jenis —</option>
+                <option value="Imlek">🎊 Imlek</option>
+                <option value="Wedding">💍 Wedding</option>
+                <option value="Festival">🎪 Festival</option>
+                <option value="Ulang Tahun">🎂 Ulang Tahun</option>
+                <option value="Corporate">🏢 Corporate</option>
+                <option value="Lainnya">✨ Lainnya</option>
+              </select>
             </div>
+            <span class="error-msg">Pilih jenis acara terlebih dahulu.</span>
+          </div>
 
-            <div class="flex border-t p-3 gap-2"
-                 style="border-color: rgba(212,175,55,0.25);">
-                <textarea
-                    id="chat-input"
-                    rows="1"
-                    class="input-field flex-1 resize-none"
-                    style="border-radius: 18px;"
-                    placeholder="Ask about Mandarin, songs, tones..."
-                    onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatMessage();}"
-                ></textarea>
-                <button class="btn-primary" onclick="sendChatMessage()">Send</button>
+          <div class="form-group" id="grp-durasi">
+            <label class="form-label" for="durasi">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Durasi
+            </label>
+            <div class="duration-wrapper">
+              <input
+                type="number"
+                id="durasi"
+                class="form-control"
+                placeholder="1"
+                min="1"
+                max="30"
+              />
+              <span class="duration-unit">Hari</span>
             </div>
+            <span class="error-msg">Isi durasi (min. 1 hari).</span>
+          </div>
         </div>
-    </section>
 
-
-    <!-- ──────────────────────────────────────────────────────────────────
-         §J  CONTACT SECTION
-         ────────────────────────────────────────────────────────────────── -->
-    <section id="contact-section" class="py-16 text-center">
-        <p class="section-label">OFFICIAL CONTACT</p>
-        <h2 class="text-3xl font-cinzel-deco text-gold-grad mt-1">Wang Weize · Founder</h2>
-
-        <div class="grid md:grid-cols-3 gap-6 mt-8 max-w-3xl mx-auto">
-            <a href="https://wa.me/6288277200044" target="_blank"
-               class="flex items-center gap-3 justify-center rounded-2xl p-4 transition-all"
-               style="background: rgba(0,0,0,0.30); border: 1px solid rgba(212,175,55,0.30);"
-               onmouseover="this.style.borderColor='var(--gold)'"
-               onmouseout="this.style.borderColor='rgba(212,175,55,0.30)'">
-                <span class="text-2xl">📞</span>
-                <div class="text-left">
-                    <div class="font-cinzel text-sm">WhatsApp</div>
-                    <div class="text-xs" style="color: rgba(255,255,255,0.45);">+62 882-7720-0044</div>
-                </div>
-            </a>
-            <a href="https://www.tiktok.com/@wangweize10" target="_blank"
-               class="flex items-center gap-3 justify-center rounded-2xl p-4 transition-all"
-               style="background: rgba(0,0,0,0.30); border: 1px solid rgba(212,175,55,0.30);"
-               onmouseover="this.style.borderColor='var(--gold)'"
-               onmouseout="this.style.borderColor='rgba(212,175,55,0.30)'">
-                <span class="text-2xl">🎵</span>
-                <div class="text-left">
-                    <div class="font-cinzel text-sm">TikTok</div>
-                    <div class="text-xs" style="color: rgba(255,255,255,0.45);">@wangweize10</div>
-                </div>
-            </a>
-            <a href="mailto:wangweize434@gmail.com"
-               class="flex items-center gap-3 justify-center rounded-2xl p-4 transition-all"
-               style="background: rgba(0,0,0,0.30); border: 1px solid rgba(212,175,55,0.30);"
-               onmouseover="this.style.borderColor='var(--gold)'"
-               onmouseout="this.style.borderColor='rgba(212,175,55,0.30)'">
-                <span class="text-2xl">✉️</span>
-                <div class="text-left">
-                    <div class="font-cinzel text-sm">Email</div>
-                    <div class="text-xs" style="color: rgba(255,255,255,0.45);">wangweize434@gmail.com</div>
-                </div>
-            </a>
+        <!-- ── Lokasi Cascading ──────────────────────── -->
+        <div class="location-header">
+          <span>📍 Lokasi Acara</span>
         </div>
-    </section>
 
-
-    <!-- Footer -->
-    <footer class="text-center text-xs py-8 mt-8"
-            style="color: rgba(212,175,55,0.40); border-top: 1px solid rgba(212,175,55,0.18);">
-        © 2025 Wang Dynasty Mandarin Academy · Preserving Heritage, Mastering Mandarin
-    </footer>
-
-</div><!-- /main wrapper -->
-
-
-<!-- ══════════════════════════════════════════════════════════════════════
-     TOAST NOTIFICATION  (injected dynamically)
-     ══════════════════════════════════════════════════════════════════════ -->
-<div id="score-toast" class="hidden"
-     style="position: fixed; top: 50%; left: 50%;
-            transform: translate(-50%,-50%); z-index: 9999;
-            background: rgba(0,0,0,0.92); border: 2px solid var(--gold);
-            border-radius: 20px; padding: 20px 32px; text-align: center;
-            backdrop-filter: blur(14px); min-width: 180px;">
-</div>
-
-
-<!-- ══════════════════════════════════════════════════════════════════════
-
-     JAVASCRIPT  —  Wang Dynasty Mandarin Academy
-     Fully clean, readable, and commented.
-
-     ══════════════════════════════════════════════════════════════════════ -->
-<script>
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-1  SONG DATA  (6 songs · full lyrics · word breakdowns)
-       ════════════════════════════════════════════════════════════════════ */
-    const SONGS = [
-
-        /* ── 1. 诺言 (Nuò Yán) – 张信哲 ──────────────────────────────── */
-        {
-            title_cn:    "诺言",
-            title_pinyin:"Nuò Yán",
-            title_id:    "Janji",
-            artist:      "张信哲",
-            searchQuery: "诺言 张信哲 official MV",
-            lyrics: [
-                {
-                    hanzi:  "如果你已厌倦了承诺",
-                    pinyin: "Rúguǒ nǐ yǐ yànjiuàn le chéngnuò",
-                    id:     "Jika kamu sudah bosan dengan janji-janji",
-                    words: [
-                        { h:"如果",  p:"rúguǒ",    a:"jika" },
-                        { h:"你",    p:"nǐ",        a:"kamu" },
-                        { h:"已",    p:"yǐ",        a:"sudah" },
-                        { h:"厌倦",  p:"yànjiuàn",  a:"bosan" },
-                        { h:"了",    p:"le",         a:"(aspek)" },
-                        { h:"承诺",  p:"chéngnuò",  a:"janji" }
-                    ]
-                },
-                {
-                    hanzi:  "如果你愿意相信爱情",
-                    pinyin: "Rúguǒ nǐ yuànyì xiāngxìn àiqíng",
-                    id:     "Jika kamu bersedia percaya pada cinta",
-                    words: [
-                        { h:"如果",  p:"rúguǒ",    a:"jika" },
-                        { h:"你",    p:"nǐ",        a:"kamu" },
-                        { h:"愿意",  p:"yuànyì",   a:"bersedia" },
-                        { h:"相信",  p:"xiāngxìn", a:"percaya" },
-                        { h:"爱情",  p:"àiqíng",   a:"cinta" }
-                    ]
-                },
-                {
-                    hanzi:  "我用一生只换你一个诺言",
-                    pinyin: "Wǒ yòng yīshēng zhǐ huàn nǐ yīgè nuòyán",
-                    id:     "Aku gunakan seumur hidup hanya untuk satu janjimu",
-                    words: [
-                        { h:"我",   p:"wǒ",      a:"aku" },
-                        { h:"用",   p:"yòng",    a:"menggunakan" },
-                        { h:"一生", p:"yīshēng", a:"seumur hidup" },
-                        { h:"只",   p:"zhǐ",     a:"hanya" },
-                        { h:"换",   p:"huàn",    a:"menukar" },
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"一个", p:"yīgè",    a:"satu" },
-                        { h:"诺言", p:"nuòyán",  a:"janji" }
-                    ]
-                },
-                {
-                    hanzi:  "承诺就算沉重也愿意扛在肩",
-                    pinyin: "Chéngnuò jiùsuàn chénzhòng yě yuànyì káng zài jiān",
-                    id:     "Meski janji itu berat, aku rela memikulnya di bahu",
-                    words: [
-                        { h:"承诺", p:"chéngnuò",  a:"berjanji" },
-                        { h:"就算", p:"jiùsuàn",   a:"meskipun" },
-                        { h:"沉重", p:"chénzhòng", a:"berat" },
-                        { h:"也",   p:"yě",         a:"juga" },
-                        { h:"愿意", p:"yuànyì",    a:"rela" },
-                        { h:"扛",   p:"káng",       a:"memikul" },
-                        { h:"在",   p:"zài",        a:"di" },
-                        { h:"肩",   p:"jiān",       a:"bahu" }
-                    ]
-                },
-                {
-                    hanzi:  "只要你牵起我的手不放开",
-                    pinyin: "Zhǐyào nǐ qiān qǐ wǒ de shǒu bù fàngkāi",
-                    id:     "Selama kau menggenggam tanganku dan tak melepasnya",
-                    words: [
-                        { h:"只要", p:"zhǐyào",   a:"selama" },
-                        { h:"你",   p:"nǐ",        a:"kamu" },
-                        { h:"牵起", p:"qiānqǐ",   a:"menggenggam" },
-                        { h:"我的", p:"wǒde",      a:"milikku" },
-                        { h:"手",   p:"shǒu",      a:"tangan" },
-                        { h:"不",   p:"bù",        a:"tidak" },
-                        { h:"放开", p:"fàngkāi",  a:"melepaskan" }
-                    ]
-                },
-                {
-                    hanzi:  "我就什么都不怕",
-                    pinyin: "Wǒ jiù shénme dōu bùpà",
-                    id:     "Aku tidak takut akan apapun",
-                    words: [
-                        { h:"我",   p:"wǒ",    a:"aku" },
-                        { h:"就",   p:"jiù",   a:"maka" },
-                        { h:"什么", p:"shénme",a:"apa" },
-                        { h:"都",   p:"dōu",   a:"semua" },
-                        { h:"不怕", p:"bùpà",  a:"tidak takut" }
-                    ]
-                },
-                {
-                    hanzi:  "因为爱情不会轻易说分开",
-                    pinyin: "Yīnwèi àiqíng bù huì qīngyì shuō fēnkāi",
-                    id:     "Karena cinta tidak akan dengan mudah berkata berpisah",
-                    words: [
-                        { h:"因为", p:"yīnwèi",  a:"karena" },
-                        { h:"爱情", p:"àiqíng",  a:"cinta" },
-                        { h:"不会", p:"bùhuì",   a:"tidak akan" },
-                        { h:"轻易", p:"qīngyì",  a:"mudah" },
-                        { h:"说",   p:"shuō",    a:"berkata" },
-                        { h:"分开", p:"fēnkāi",  a:"berpisah" }
-                    ]
-                },
-                {
-                    hanzi:  "你说爱我就是爱我不会改变",
-                    pinyin: "Nǐ shuō ài wǒ jiùshì ài wǒ bù huì gǎibiàn",
-                    id:     "Kamu bilang mencintaiku berarti tidak akan berubah",
-                    words: [
-                        { h:"你",   p:"nǐ",       a:"kamu" },
-                        { h:"说",   p:"shuō",     a:"berkata" },
-                        { h:"爱",   p:"ài",        a:"cinta" },
-                        { h:"我",   p:"wǒ",       a:"aku" },
-                        { h:"就是", p:"jiùshì",   a:"berarti" },
-                        { h:"不会", p:"bùhuì",    a:"tidak akan" },
-                        { h:"改变", p:"gǎibiàn",  a:"berubah" }
-                    ]
-                }
-            ],
-            vocab: [
-                { hanzi:"诺言",  pinyin:"nuòyán",    arti:"janji" },
-                { hanzi:"承诺",  pinyin:"chéngnuò",  arti:"berjanji" },
-                { hanzi:"一生",  pinyin:"yīshēng",   arti:"seumur hidup" },
-                { hanzi:"牵手",  pinyin:"qiānshǒu",  arti:"bergandengan tangan" },
-                { hanzi:"沉重",  pinyin:"chénzhòng", arti:"berat" }
-            ]
-        },
-
-        /* ── 2. 你永远不懂我 (Nǐ Yǒngyuǎn Bù Dǒng Wǒ) – 辛晓琪 ─────── */
-        {
-            title_cn:    "你永远不懂我",
-            title_pinyin:"Nǐ Yǒngyuǎn Bù Dǒng Wǒ",
-            title_id:    "Kamu Tak Pernah Mengerti Aku",
-            artist:      "辛晓琪",
-            searchQuery: "你永远不懂我 辛晓琪 MV",
-            lyrics: [
-                {
-                    hanzi:  "如果你不明白爱的深刻",
-                    pinyin: "Rúguǒ nǐ bù míngbai ài de shēnkè",
-                    id:     "Jika kamu tidak mengerti dalamnya cinta",
-                    words: [
-                        { h:"如果",  p:"rúguǒ",   a:"jika" },
-                        { h:"你",    p:"nǐ",       a:"kamu" },
-                        { h:"不",    p:"bù",       a:"tidak" },
-                        { h:"明白",  p:"míngbai",  a:"mengerti" },
-                        { h:"爱",    p:"ài",        a:"cinta" },
-                        { h:"的",    p:"de",        a:"(partikel)" },
-                        { h:"深刻",  p:"shēnkè",  a:"mendalam" }
-                    ]
-                },
-                {
-                    hanzi:  "你永远不懂我伤悲",
-                    pinyin: "Nǐ yǒngyuǎn bù dǒng wǒ shāngbēi",
-                    id:     "Kamu selamanya tidak mengerti kesedihanku",
-                    words: [
-                        { h:"你",   p:"nǐ",       a:"kamu" },
-                        { h:"永远", p:"yǒngyuǎn", a:"selamanya" },
-                        { h:"不",   p:"bù",       a:"tidak" },
-                        { h:"懂",   p:"dǒng",     a:"mengerti" },
-                        { h:"我",   p:"wǒ",       a:"aku" },
-                        { h:"伤悲", p:"shāngbēi", a:"kesedihan" }
-                    ]
-                },
-                {
-                    hanzi:  "就像白天不懂夜的黑",
-                    pinyin: "Jiù xiàng báitiān bù dǒng yè de hēi",
-                    id:     "Seperti siang tak mengerti kegelapan malam",
-                    words: [
-                        { h:"就像", p:"jiùxiàng", a:"seperti" },
-                        { h:"白天", p:"báitiān",  a:"siang hari" },
-                        { h:"不",   p:"bù",       a:"tidak" },
-                        { h:"懂",   p:"dǒng",     a:"mengerti" },
-                        { h:"夜",   p:"yè",        a:"malam" },
-                        { h:"的",   p:"de",        a:"(partikel)" },
-                        { h:"黑",   p:"hēi",       a:"kegelapan" }
-                    ]
-                },
-                {
-                    hanzi:  "你不懂我有多爱你",
-                    pinyin: "Nǐ bù dǒng wǒ yǒu duō ài nǐ",
-                    id:     "Kamu tidak tahu betapa aku mencintaimu",
-                    words: [
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"不",   p:"bù",      a:"tidak" },
-                        { h:"懂",   p:"dǒng",    a:"mengerti" },
-                        { h:"我",   p:"wǒ",      a:"aku" },
-                        { h:"有多", p:"yǒuduō",  a:"betapa" },
-                        { h:"爱",   p:"ài",       a:"cinta" },
-                        { h:"你",   p:"nǐ",      a:"kamu" }
-                    ]
-                },
-                {
-                    hanzi:  "我的心事你怎能知道",
-                    pinyin: "Wǒ de xīnshì nǐ zěn néng zhīdào",
-                    id:     "Bagaimana mungkin kamu tahu isi hatiku",
-                    words: [
-                        { h:"我的", p:"wǒde",    a:"milikku" },
-                        { h:"心事", p:"xīnshì",  a:"isi hati" },
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"怎",   p:"zěn",     a:"bagaimana" },
-                        { h:"能",   p:"néng",    a:"bisa" },
-                        { h:"知道", p:"zhīdào",  a:"mengetahui" }
-                    ]
-                },
-                {
-                    hanzi:  "我的思念你也无法猜透",
-                    pinyin: "Wǒ de sīniàn nǐ yě wúfǎ cāi tòu",
-                    id:     "Kerinduanku pun tidak bisa kamu tebak",
-                    words: [
-                        { h:"我的", p:"wǒde",    a:"milikku" },
-                        { h:"思念", p:"sīniàn",  a:"kerinduan" },
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"也",   p:"yě",       a:"juga" },
-                        { h:"无法", p:"wúfǎ",    a:"tidak bisa" },
-                        { h:"猜透", p:"cāitòu",  a:"menebak tembus" }
-                    ]
-                },
-                {
-                    hanzi:  "不是我不想说清楚",
-                    pinyin: "Bù shì wǒ bù xiǎng shuō qīngchǔ",
-                    id:     "Bukan aku tidak mau menjelaskan dengan jelas",
-                    words: [
-                        { h:"不是", p:"bùshì",    a:"bukan" },
-                        { h:"我",   p:"wǒ",        a:"aku" },
-                        { h:"不想", p:"bùxiǎng",  a:"tidak mau" },
-                        { h:"说",   p:"shuō",      a:"berkata" },
-                        { h:"清楚", p:"qīngchǔ",  a:"jelas" }
-                    ]
-                },
-                {
-                    hanzi:  "是你根本就不想听我诉苦",
-                    pinyin: "Shì nǐ gēnběn jiù bù xiǎng tīng wǒ sùkǔ",
-                    id:     "Tapi kamu memang tidak mau mendengar keluhanku",
-                    words: [
-                        { h:"是",   p:"shì",      a:"adalah" },
-                        { h:"你",   p:"nǐ",       a:"kamu" },
-                        { h:"根本", p:"gēnběn",   a:"sama sekali" },
-                        { h:"就",   p:"jiù",      a:"memang" },
-                        { h:"不想", p:"bùxiǎng",  a:"tidak mau" },
-                        { h:"听",   p:"tīng",     a:"mendengar" },
-                        { h:"我",   p:"wǒ",       a:"aku" },
-                        { h:"诉苦", p:"sùkǔ",     a:"mengeluh" }
-                    ]
-                }
-            ],
-            vocab: [
-                { hanzi:"永远", pinyin:"yǒngyuǎn",  arti:"selamanya" },
-                { hanzi:"懂",   pinyin:"dǒng",       arti:"mengerti" },
-                { hanzi:"伤悲", pinyin:"shāngbēi",   arti:"kesedihan" },
-                { hanzi:"心事", pinyin:"xīnshì",     arti:"isi hati" },
-                { hanzi:"黑夜", pinyin:"hēiyè",      arti:"malam gelap" }
-            ]
-        },
-
-        /* ── 3. 芒种 (Máng Zhòng) – 音阙诗听 ──────────────────────────── */
-        {
-            title_cn:    "芒种",
-            title_pinyin:"Máng Zhòng",
-            title_id:    "Musim Tanam Padi",
-            artist:      "音阙诗听",
-            searchQuery: "芒种 音阙诗听 MV",
-            lyrics: [
-                {
-                    hanzi:  "芒种烧去种种迷惑",
-                    pinyin: "Máng zhòng shāo qù zhǒng zhǒng míhuò",
-                    id:     "Musim tanam membakar segala kebingungan",
-                    words: [
-                        { h:"芒种", p:"máng zhòng", a:"musim tanam" },
-                        { h:"烧",   p:"shāo",        a:"membakar" },
-                        { h:"去",   p:"qù",           a:"pergi" },
-                        { h:"种种", p:"zhǒngzhǒng",  a:"berbagai" },
-                        { h:"迷惑", p:"míhuò",        a:"kebingungan" }
-                    ]
-                },
-                {
-                    hanzi:  "夏雨透彻了天地颜色",
-                    pinyin: "Xià yǔ tòuchè le tiāndì yánsè",
-                    id:     "Hujan musim panas menembus warna langit dan bumi",
-                    words: [
-                        { h:"夏雨", p:"xià yǔ",  a:"hujan musim panas" },
-                        { h:"透彻", p:"tòuchè",  a:"menembus" },
-                        { h:"了",   p:"le",       a:"(aspek)" },
-                        { h:"天地", p:"tiāndì",  a:"langit dan bumi" },
-                        { h:"颜色", p:"yánsè",   a:"warna" }
-                    ]
-                },
-                {
-                    hanzi:  "向来痴从此醉",
-                    pinyin: "Xiàng lái chī cóngcǐ zuì",
-                    id:     "Sejak dulu tergila-gila, kini tenggelam dalam mabuk",
-                    words: [
-                        { h:"向来", p:"xiànglái", a:"selama ini" },
-                        { h:"痴",   p:"chī",       a:"tergila-gila" },
-                        { h:"从此", p:"cóngcǐ",   a:"sejak ini" },
-                        { h:"醉",   p:"zuì",       a:"mabuk" }
-                    ]
-                },
-                {
-                    hanzi:  "水中花岁月催",
-                    pinyin: "Shuǐ zhōng huā suìyuè cuī",
-                    id:     "Bunga di air, waktu terus mendesak",
-                    words: [
-                        { h:"水中", p:"shuǐzhōng", a:"dalam air" },
-                        { h:"花",   p:"huā",        a:"bunga" },
-                        { h:"岁月", p:"suìyuè",     a:"waktu / tahun" },
-                        { h:"催",   p:"cuī",        a:"mendesak / mempercepat" }
-                    ]
-                },
-                {
-                    hanzi:  "红颜弃轩冕",
-                    pinyin: "Hóng yán qì xuān miǎn",
-                    id:     "Kecantikan meninggalkan jabatan dan mahkota",
-                    words: [
-                        { h:"红颜", p:"hóng yán",  a:"wanita cantik" },
-                        { h:"弃",   p:"qì",         a:"meninggalkan" },
-                        { h:"轩冕", p:"xuān miǎn",  a:"jabatan / mahkota" }
-                    ]
-                },
-                {
-                    hanzi:  "哪管他身后骂名滚滚来",
-                    pinyin: "Nǎ guǎn tā shēn hòu màmíng gǔngǔn lái",
-                    id:     "Siapa peduli cacian yang datang bergulung di belakangnya",
-                    words: [
-                        { h:"哪管", p:"nǎ guǎn",  a:"siapa peduli" },
-                        { h:"他",   p:"tā",         a:"dia" },
-                        { h:"身后", p:"shēn hòu",  a:"di belakang" },
-                        { h:"骂名", p:"màmíng",    a:"nama buruk" },
-                        { h:"滚滚来",p:"gǔngǔn lái",a:"datang bergulung" }
-                    ]
-                },
-                {
-                    hanzi:  "情字何解怎落笔都不对",
-                    pinyin: "Qíng zì hé jiě zěn luòbǐ dōu bùduì",
-                    id:     "Bagaimana menjelaskan 'cinta', tak ada kata yang tepat",
-                    words: [
-                        { h:"情字",  p:"qíng zì",  a:"karakter 'cinta'" },
-                        { h:"何解",  p:"hé jiě",   a:"bagaimana menjelaskan" },
-                        { h:"怎",    p:"zěn",       a:"bagaimana" },
-                        { h:"落笔",  p:"luòbǐ",    a:"menulis" },
-                        { h:"都",    p:"dōu",       a:"semua" },
-                        { h:"不对",  p:"bùduì",    a:"tidak tepat" }
-                    ]
-                },
-                {
-                    hanzi:  "如花美眷似水流年回头一笑",
-                    pinyin: "Rú huā měi juàn sì shuǐ liúnián huítóu yī xiào",
-                    id:     "Pasangan seindah bunga, tahun-tahun mengalir bagai air, menoleh tersenyum",
-                    words: [
-                        { h:"如花",   p:"rú huā",    a:"bagai bunga" },
-                        { h:"美眷",   p:"měi juàn",  a:"pasangan indah" },
-                        { h:"似水",   p:"sì shuǐ",   a:"bagai air" },
-                        { h:"流年",   p:"liúnián",   a:"tahun berlalu" },
-                        { h:"回头",   p:"huítóu",    a:"menoleh" },
-                        { h:"一笑",   p:"yī xiào",   a:"senyum sekilas" }
-                    ]
-                }
-            ],
-            vocab: [
-                { hanzi:"芒种", pinyin:"máng zhòng", arti:"musim tanam padi (solar term)" },
-                { hanzi:"迷惑", pinyin:"míhuò",      arti:"bingung / tersesat" },
-                { hanzi:"透彻", pinyin:"tòuchè",     arti:"menembus / mendalam" },
-                { hanzi:"岁月", pinyin:"suìyuè",     arti:"waktu berlalu" },
-                { hanzi:"痴",   pinyin:"chī",         arti:"terobsesi / gila" }
-            ]
-        },
-
-        /* ── 4. 学猫叫 (Xué Māo Jiào) – 小峰峰 ────────────────────────── */
-        {
-            title_cn:    "学猫叫",
-            title_pinyin:"Xué Māo Jiào",
-            title_id:    "Belajar Bersuara Kucing",
-            artist:      "小峰峰",
-            searchQuery: "学猫叫 小峰峰 MV",
-            lyrics: [
-                {
-                    hanzi:  "我想和你学猫叫",
-                    pinyin: "Wǒ xiǎng hé nǐ xué māo jiào",
-                    id:     "Aku ingin belajar bersuara kucing bersamamu",
-                    words: [
-                        { h:"我",   p:"wǒ",       a:"aku" },
-                        { h:"想",   p:"xiǎng",    a:"ingin" },
-                        { h:"和",   p:"hé",        a:"dengan / bersama" },
-                        { h:"你",   p:"nǐ",       a:"kamu" },
-                        { h:"学",   p:"xué",      a:"belajar" },
-                        { h:"猫叫", p:"māo jiào", a:"suara kucing" }
-                    ]
-                },
-                {
-                    hanzi:  "一起喵喵喵喵喵",
-                    pinyin: "Yīqǐ miāo miāo miāo miāo miāo",
-                    id:     "Bersama-sama miau miau miau miau miau",
-                    words: [
-                        { h:"一起", p:"yīqǐ",  a:"bersama-sama" },
-                        { h:"喵",   p:"miāo",  a:"miau (suara kucing)" }
-                    ]
-                },
-                {
-                    hanzi:  "在你怀里撒个娇",
-                    pinyin: "Zài nǐ huáilǐ sǎ gè jiāo",
-                    id:     "Manja di dalam pelukanmu",
-                    words: [
-                        { h:"在",   p:"zài",     a:"di" },
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"怀里", p:"huáilǐ",  a:"dalam pelukan" },
-                        { h:"撒娇", p:"sǎjiāo",  a:"manja / merengek" }
-                    ]
-                },
-                {
-                    hanzi:  "你不在乎我也无所谓",
-                    pinyin: "Nǐ bù zàihū wǒ yě wú suǒ wèi",
-                    id:     "Kamu tidak peduli, aku pun tidak apa-apa",
-                    words: [
-                        { h:"你",    p:"nǐ",       a:"kamu" },
-                        { h:"不在乎",p:"bù zàihū", a:"tidak peduli" },
-                        { h:"我",    p:"wǒ",       a:"aku" },
-                        { h:"也",    p:"yě",        a:"juga" },
-                        { h:"无所谓",p:"wúsuǒwèi", a:"tidak masalah" }
-                    ]
-                },
-                {
-                    hanzi:  "你喜欢猫咪的温柔",
-                    pinyin: "Nǐ xǐhuān māomī de wēnróu",
-                    id:     "Kamu suka kelembutan anak kucing",
-                    words: [
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"喜欢", p:"xǐhuān",  a:"suka" },
-                        { h:"猫咪", p:"māomī",   a:"anak kucing" },
-                        { h:"的",   p:"de",       a:"(partikel)" },
-                        { h:"温柔", p:"wēnróu",  a:"lembut / manis" }
-                    ]
-                },
-                {
-                    hanzi:  "那我就变成你的小猫",
-                    pinyin: "Nà wǒ jiù biànchéng nǐ de xiǎo māo",
-                    id:     "Kalau begitu aku akan menjadi kucing kecilmu",
-                    words: [
-                        { h:"那",   p:"nà",         a:"kalau begitu" },
-                        { h:"我",   p:"wǒ",         a:"aku" },
-                        { h:"就",   p:"jiù",         a:"maka" },
-                        { h:"变成", p:"biànchéng",  a:"menjadi" },
-                        { h:"你的", p:"nǐ de",       a:"milikmu" },
-                        { h:"小猫", p:"xiǎo māo",   a:"kucing kecil" }
-                    ]
-                },
-                {
-                    hanzi:  "陪你到天亮不会跑",
-                    pinyin: "Péi nǐ dào tiān liàng bù huì pǎo",
-                    id:     "Menemanimu sampai fajar, tidak akan pergi",
-                    words: [
-                        { h:"陪",     p:"péi",         a:"menemani" },
-                        { h:"你",     p:"nǐ",          a:"kamu" },
-                        { h:"到",     p:"dào",         a:"sampai" },
-                        { h:"天亮",   p:"tiān liàng",  a:"fajar menyingsing" },
-                        { h:"不会跑", p:"bù huì pǎo",  a:"tidak akan lari" }
-                    ]
-                },
-                {
-                    hanzi:  "做你的专属小猫咪",
-                    pinyin: "Zuò nǐ de zhuānshǔ xiǎo māomī",
-                    id:     "Menjadi anak kucing eksklusifmu",
-                    words: [
-                        { h:"做",   p:"zuò",        a:"menjadi / melakukan" },
-                        { h:"你的", p:"nǐ de",      a:"milikmu" },
-                        { h:"专属", p:"zhuānshǔ",  a:"eksklusif" },
-                        { h:"小猫咪",p:"xiǎo māomī",a:"anak kucing kecil" }
-                    ]
-                }
-            ],
-            vocab: [
-                { hanzi:"学猫叫", pinyin:"xué māo jiào", arti:"belajar mengeong" },
-                { hanzi:"撒娇",   pinyin:"sǎjiāo",       arti:"manja / merengek" },
-                { hanzi:"怀里",   pinyin:"huáilǐ",       arti:"dalam pelukan" },
-                { hanzi:"在乎",   pinyin:"zàihū",        arti:"peduli" },
-                { hanzi:"喵",     pinyin:"miāo",         arti:"miau" }
-            ]
-        },
-
-        /* ── 5. 可可托海的牧羊人 (Kěkě Tuō Hǎi De Mùyáng Rén) – 王琪 ─── */
-        {
-            title_cn:    "可可托海的牧羊人",
-            title_pinyin:"Kěkě Tuō Hǎi De Mùyáng Rén",
-            title_id:    "Penggembala Keketuohai",
-            artist:      "王琪",
-            searchQuery: "可可托海的牧羊人 王琪 MV",
-            lyrics: [
-                {
-                    hanzi:  "那夜的雨也没能留住你",
-                    pinyin: "Nà yè de yǔ yě méi néng liú zhù nǐ",
-                    id:     "Hujan malam itu pun tak mampu menahanmu pergi",
-                    words: [
-                        { h:"那夜",  p:"nà yè",      a:"malam itu" },
-                        { h:"的",    p:"de",           a:"(partikel)" },
-                        { h:"雨",    p:"yǔ",           a:"hujan" },
-                        { h:"也",    p:"yě",            a:"pun" },
-                        { h:"没能",  p:"méi néng",    a:"tidak mampu" },
-                        { h:"留住",  p:"liúzhù",      a:"menahan" },
-                        { h:"你",    p:"nǐ",           a:"kamu" }
-                    ]
-                },
-                {
-                    hanzi:  "山谷里的风它陪我哭泣",
-                    pinyin: "Shāngǔ lǐ de fēng tā péi wǒ kūqì",
-                    id:     "Angin di lembah menemani tangisanku",
-                    words: [
-                        { h:"山谷", p:"shāngǔ",  a:"lembah" },
-                        { h:"里",   p:"lǐ",       a:"di dalam" },
-                        { h:"的",   p:"de",        a:"(partikel)" },
-                        { h:"风",   p:"fēng",     a:"angin" },
-                        { h:"它",   p:"tā",        a:"ia" },
-                        { h:"陪",   p:"péi",      a:"menemani" },
-                        { h:"我",   p:"wǒ",       a:"aku" },
-                        { h:"哭泣", p:"kūqì",     a:"menangis" }
-                    ]
-                },
-                {
-                    hanzi:  "你说你还在等一个人",
-                    pinyin: "Nǐ shuō nǐ hái zài děng yīgè rén",
-                    id:     "Kau bilang masih menunggu seseorang",
-                    words: [
-                        { h:"你",    p:"nǐ",        a:"kamu" },
-                        { h:"说",    p:"shuō",      a:"berkata" },
-                        { h:"还",    p:"hái",       a:"masih" },
-                        { h:"在",    p:"zài",       a:"sedang" },
-                        { h:"等",    p:"děng",      a:"menunggu" },
-                        { h:"一个人",p:"yīgè rén",  a:"seseorang" }
-                    ]
-                },
-                {
-                    hanzi:  "是不是那个人就是我",
-                    pinyin: "Shì bùshì nà gè rén jiùshì wǒ",
-                    id:     "Apakah orang itu justru adalah aku?",
-                    words: [
-                        { h:"是不是", p:"shì bùshì", a:"apakah" },
-                        { h:"那个",   p:"nàgè",       a:"itu" },
-                        { h:"人",     p:"rén",        a:"orang" },
-                        { h:"就是",   p:"jiùshì",     a:"adalah" },
-                        { h:"我",     p:"wǒ",         a:"aku" }
-                    ]
-                },
-                {
-                    hanzi:  "我就在伊犁等你到白头",
-                    pinyin: "Wǒ jiù zài Yīlí děng nǐ dào báitóu",
-                    id:     "Aku menunggu kamu di Ili hingga rambut memutih",
-                    words: [
-                        { h:"我",   p:"wǒ",       a:"aku" },
-                        { h:"就",   p:"jiù",      a:"memang" },
-                        { h:"在",   p:"zài",      a:"di" },
-                        { h:"伊犁", p:"Yīlí",     a:"Ili (kota di Xinjiang)" },
-                        { h:"等",   p:"děng",     a:"menunggu" },
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"到",   p:"dào",     a:"sampai" },
-                        { h:"白头", p:"báitóu",  a:"rambut putih (tua)" }
-                    ]
-                },
-                {
-                    hanzi:  "赛里木湖边你扬起笑脸",
-                    pinyin: "Sài lǐ mù hú biān nǐ yánqǐ xiàoliǎn",
-                    id:     "Di tepi Danau Sayram kamu mengangkat senyummu",
-                    words: [
-                        { h:"赛里木湖",p:"Sài lǐ mù hú", a:"Danau Sayram" },
-                        { h:"边",     p:"biān",           a:"tepi" },
-                        { h:"你",     p:"nǐ",             a:"kamu" },
-                        { h:"扬起",   p:"yánqǐ",         a:"mengangkat" },
-                        { h:"笑脸",   p:"xiàoliǎn",      a:"wajah tersenyum" }
-                    ]
-                },
-                {
-                    hanzi:  "好像格桑花一样灿烂",
-                    pinyin: "Hǎo xiàng gésānghuā yīyàng cànlàn",
-                    id:     "Seperti bunga Gesang yang cemerlang",
-                    words: [
-                        { h:"好像", p:"hǎo xiàng",  a:"seperti" },
-                        { h:"格桑花",p:"gésāng huā", a:"bunga Gesang" },
-                        { h:"一样", p:"yīyàng",      a:"sama seperti" },
-                        { h:"灿烂", p:"cànlàn",      a:"cemerlang" }
-                    ]
-                },
-                {
-                    hanzi:  "你说你已嫁为人妻",
-                    pinyin: "Nǐ shuō nǐ yǐ jià wéi rén qī",
-                    id:     "Kamu bilang kamu sudah menikah menjadi orang lain punya",
-                    words: [
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"说",   p:"shuō",    a:"berkata" },
-                        { h:"你",   p:"nǐ",      a:"kamu" },
-                        { h:"已",   p:"yǐ",      a:"sudah" },
-                        { h:"嫁",   p:"jià",     a:"menikah (wanita)" },
-                        { h:"为",   p:"wéi",     a:"menjadi" },
-                        { h:"人妻", p:"rén qī",  a:"istri orang" }
-                    ]
-                }
-            ],
-            vocab: [
-                { hanzi:"牧羊人", pinyin:"mùyángrén", arti:"penggembala domba" },
-                { hanzi:"哭泣",   pinyin:"kūqì",      arti:"menangis" },
-                { hanzi:"山谷",   pinyin:"shāngǔ",    arti:"lembah" },
-                { hanzi:"留住",   pinyin:"liúzhù",    arti:"menahan / menjaga" },
-                { hanzi:"白头",   pinyin:"báitóu",    arti:"rambut putih / usia tua" }
-            ]
-        },
-
-        /* ── 6. 白月光与朱砂痣 (Bái Yuèguāng Yǔ Zhū Shā Zhì) – 大籽 ─── */
-        {
-            title_cn:    "白月光与朱砂痣",
-            title_pinyin:"Bái Yuèguāng Yǔ Zhū Shā Zhì",
-            title_id:    "Cahaya Bulan & Tanda Merah",
-            artist:      "大籽",
-            searchQuery: "白月光与朱砂痣 大籽 MV",
-            lyrics: [
-                {
-                    hanzi:  "白月光在照耀",
-                    pinyin: "Bái yuèguāng zài zhàoyào",
-                    id:     "Cahaya bulan putih sedang menyinari",
-                    words: [
-                        { h:"白",   p:"bái",       a:"putih" },
-                        { h:"月光", p:"yuèguāng",  a:"cahaya bulan" },
-                        { h:"在",   p:"zài",       a:"sedang" },
-                        { h:"照耀", p:"zhàoyào",   a:"menyinari" }
-                    ]
-                },
-                {
-                    hanzi:  "你是我的朱砂痣",
-                    pinyin: "Nǐ shì wǒ de zhūshāzhì",
-                    id:     "Kau adalah tanda merah abadi di hatiku",
-                    words: [
-                        { h:"你",   p:"nǐ",       a:"kamu" },
-                        { h:"是",   p:"shì",      a:"adalah" },
-                        { h:"我的", p:"wǒde",     a:"milikku" },
-                        { h:"朱砂", p:"zhūshā",   a:"cinnabar (batu merah)" },
-                        { h:"痣",   p:"zhì",      a:"tanda lahir" }
-                    ]
-                },
-                {
-                    hanzi:  "得不到的永远在骚动",
-                    pinyin: "Dé bù dào de yǒngyuǎn zài sāodòng",
-                    id:     "Yang tak terjangkau selalu mengusik pikiran",
-                    words: [
-                        { h:"得不到", p:"dé bù dào",  a:"tidak bisa didapat" },
-                        { h:"的",     p:"de",           a:"(partikel)" },
-                        { h:"永远",   p:"yǒngyuǎn",   a:"selamanya" },
-                        { h:"在",     p:"zài",          a:"sedang" },
-                        { h:"骚动",   p:"sāodòng",     a:"mengusik / bergejolak" }
-                    ]
-                },
-                {
-                    hanzi:  "得到了又不在意",
-                    pinyin: "Dé dào le yòu bù zàiyì",
-                    id:     "Setelah didapat malah tidak dihargai",
-                    words: [
-                        { h:"得到", p:"dédào",  a:"mendapat" },
-                        { h:"了",   p:"le",      a:"(aspek)" },
-                        { h:"又",   p:"yòu",    a:"malah" },
-                        { h:"不",   p:"bù",     a:"tidak" },
-                        { h:"在意", p:"zàiyì",  a:"peduli / menghargai" }
-                    ]
-                },
-                {
-                    hanzi:  "白月光照不进我的床",
-                    pinyin: "Bái yuèguāng zhào bù jìn wǒ de chuáng",
-                    id:     "Cahaya bulan putih tidak bisa menyinari tempat tidurku",
-                    words: [
-                        { h:"白月光", p:"bái yuèguāng", a:"cahaya bulan putih" },
-                        { h:"照不进", p:"zhào bù jìn",  a:"tidak bisa masuk menyinari" },
-                        { h:"我的",   p:"wǒ de",         a:"milikku" },
-                        { h:"床",     p:"chuáng",        a:"tempat tidur" }
-                    ]
-                },
-                {
-                    hanzi:  "朱砂痣染红了我的心房",
-                    pinyin: "Zhūshāzhì rǎn hóng le wǒ de xīnfáng",
-                    id:     "Tanda cinnabar menodai merah ruang hatiku",
-                    words: [
-                        { h:"朱砂痣", p:"zhūshāzhì",  a:"tanda cinnabar" },
-                        { h:"染红",   p:"rǎn hóng",   a:"mewarnai merah" },
-                        { h:"了",     p:"le",           a:"(aspek)" },
-                        { h:"我的",   p:"wǒ de",       a:"milikku" },
-                        { h:"心房",   p:"xīnfáng",    a:"ruang hati" }
-                    ]
-                },
-                {
-                    hanzi:  "是你让我相信了爱情",
-                    pinyin: "Shì nǐ ràng wǒ xiāngxìn le àiqíng",
-                    id:     "Kamulah yang membuatku percaya pada cinta",
-                    words: [
-                        { h:"是",   p:"shì",       a:"adalah / kamulah" },
-                        { h:"你",   p:"nǐ",        a:"kamu" },
-                        { h:"让",   p:"ràng",      a:"membuat / membiarkan" },
-                        { h:"我",   p:"wǒ",        a:"aku" },
-                        { h:"相信", p:"xiāngxìn",  a:"percaya" },
-                        { h:"了",   p:"le",         a:"(aspek)" },
-                        { h:"爱情", p:"àiqíng",    a:"cinta" }
-                    ]
-                },
-                {
-                    hanzi:  "又是你让我伤心了半生",
-                    pinyin: "Yòu shì nǐ ràng wǒ shāngxīn le bàn shēng",
-                    id:     "Dan kamulah juga yang membuatku bersedih setengah hidup",
-                    words: [
-                        { h:"又是",  p:"yòu shì",  a:"dan juga" },
-                        { h:"你",    p:"nǐ",        a:"kamu" },
-                        { h:"让",    p:"ràng",      a:"membuat" },
-                        { h:"我",    p:"wǒ",        a:"aku" },
-                        { h:"伤心",  p:"shāngxīn", a:"bersedih" },
-                        { h:"了",    p:"le",         a:"(aspek)" },
-                        { h:"半生",  p:"bàn shēng", a:"setengah hidup" }
-                    ]
-                }
-            ],
-            vocab: [
-                { hanzi:"白月光", pinyin:"bái yuèguāng", arti:"cahaya bulan putih" },
-                { hanzi:"朱砂痣", pinyin:"zhūshāzhì",    arti:"tanda cinnabar merah" },
-                { hanzi:"照耀",   pinyin:"zhàoyào",       arti:"menyinari" },
-                { hanzi:"骚动",   pinyin:"sāodòng",       arti:"bergejolak" },
-                { hanzi:"在意",   pinyin:"zàiyì",         arti:"mempedulikan" }
-            ]
-        }
-
-    ]; // end SONGS
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-2  API KEYS
-       ════════════════════════════════════════════════════════════════════ */
-    const YT_KEY     = "AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8";
-    const GEMINI_KEY = "AIzaSyAyiwYYrifsEnjBLzHqa-prD_-AwE8kf-Y";
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-3  GLOBAL STATE
-       ════════════════════════════════════════════════════════════════════ */
-    let currentSong      = 0;       // Index of selected song
-    let totalXP          = 0;       // Total experience points
-    let practiceCount    = 0;       // Number of pronunciation practices
-    let scoreHistory     = [];      // Array of { score, date }
-
-    // Microphone / recording state
-    let recognition      = null;
-    let activeRecLine    = -1;
-    let isRecording      = false;
-    let visualizerInterval = null;
-
-    // Tone quiz state
-    const quizWords = [
-        { word:"mā",  tone:1 }, { word:"má",  tone:2 }, { word:"mǎ",  tone:3 },
-        { word:"mà",  tone:4 }, { word:"ma",  tone:5 }, { word:"lā",  tone:1 },
-        { word:"lá",  tone:2 }, { word:"lǎ",  tone:3 }, { word:"là",  tone:4 },
-        { word:"ba",  tone:5 }, { word:"yī",  tone:1 }, { word:"yí",  tone:2 },
-        { word:"yǐ",  tone:3 }, { word:"yì",  tone:4 }, { word:"hē",  tone:1 },
-        { word:"hé",  tone:2 }, { word:"hěi", tone:3 }, { word:"hèi", tone:4 }
-    ];
-    let quizIndex   = 0;
-    let quizCorrect = 0;
-    let quizTotal   = 0;
-
-    // Leaderboard
-    let leaderboard = [];
-
-    /* ── Flashcard state ── */
-    let flashcardDeck      = [];   // Current active deck
-    let flashcardOrigDeck  = [];   // Original unshuffled deck
-    let flashcardIndex     = 0;    // Current card index
-    let flashcardKnownCount= 0;    // Cards marked "known" this session
-    let flashcardFlipped   = false;// Whether card is currently flipped
-
-    /* ── Bookmarks state ── */
-    let bookmarks       = [];   // Array of { hanzi, pinyin, arti, song }
-    let bmReviewIndex   = 0;    // Index in bookmark review mode
-    let bmFlipped       = false;
-
-    /* ── Streak state ── */
-    let streakData = {
-        currentStreak: 0,
-        bestStreak:    0,
-        activeDays:    [],  // Array of ISO date strings "YYYY-MM-DD"
-        lastCheckin:   null
-    };
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-4  LOCAL STORAGE  –  SAVE / LOAD
-       ════════════════════════════════════════════════════════════════════ */
-
-    /**
-     * Load all persisted data from localStorage.
-     * Called once on page load.
-     */
-    function loadGameData() {
-        const raw = localStorage.getItem("mandarin_academy");
-        if (raw) {
-            try {
-                const d     = JSON.parse(raw);
-                totalXP      = d.totalXP      || 0;
-                practiceCount= d.practiceCount || 0;
-                scoreHistory = d.scoreHistory  || [];
-            } catch (e) { /* ignore corrupt data */ }
-        }
-        updateHUD();
-    }
-
-    /** Persist game data. */
-    function saveGameData() {
-        localStorage.setItem("mandarin_academy", JSON.stringify({
-            totalXP,
-            practiceCount,
-            scoreHistory
-        }));
-    }
-
-    /** Load leaderboard from storage. */
-    function loadLeaderboard() {
-        const raw = localStorage.getItem("mandarin_leaderboard");
-        leaderboard = raw ? JSON.parse(raw) : [];
-        renderLeaderboard();
-    }
-
-    /** Load bookmarks from storage. */
-    function loadBookmarks() {
-        const raw = localStorage.getItem("mandarin_bookmarks");
-        bookmarks = raw ? JSON.parse(raw) : [];
-        renderBookmarkGrid();
-    }
-
-    /** Persist bookmarks. */
-    function saveBookmarks() {
-        localStorage.setItem("mandarin_bookmarks", JSON.stringify(bookmarks));
-    }
-
-    /** Load streak data from storage. */
-    function loadStreakData() {
-        const raw = localStorage.getItem("mandarin_streak");
-        if (raw) {
-            try { streakData = JSON.parse(raw); } catch(e) {}
-        }
-        computeStreak();
-        renderStreakCalendar();
-        updateHUD();
-    }
-
-    /** Persist streak data. */
-    function saveStreakData() {
-        localStorage.setItem("mandarin_streak", JSON.stringify(streakData));
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-5  HUD  (Heads-Up Display)
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Rank labels mapped to average score thresholds. */
-    function getProficiency(avg) {
-        if (avg === null || avg === undefined) return "Beginner";
-        if (avg >= 90) return "Sultan of Mandarin";
-        if (avg >= 80) return "Proficient Scholar";
-        if (avg >= 65) return "Advanced Disciple";
-        if (avg >= 50) return "Intermediate Learner";
-        return "Beginner";
-    }
-
-    /** Refresh all HUD values. */
-    function updateHUD() {
-        const avg = scoreHistory.length
-            ? Math.round(scoreHistory.reduce((a, b) => a + b.score, 0) / scoreHistory.length)
-            : null;
-
-        document.getElementById("hud-xp").innerText      = totalXP;
-        document.getElementById("hud-practice").innerText = practiceCount;
-        document.getElementById("hud-avg").innerText      = avg ? `${avg}/100` : "—";
-        document.getElementById("hud-rank").innerText     = getProficiency(avg);
-
-        // XP bar fill (0→500 per level)
-        const pct = Math.min((totalXP % 500) / 500 * 100, 100);
-        document.getElementById("hud-xp-fill").style.width = pct + "%";
-
-        // Certificate info
-        document.getElementById("cert-score-info").innerHTML = avg
-            ? `Average Score: <strong>${avg}/100</strong> → Rank: <em>${getProficiency(avg)}</em>`
-            : "Complete a pronunciation practice to generate your certificate";
-
-        // Streak on HUD
-        document.getElementById("hud-streak").innerText = streakData.currentStreak || 0;
-    }
-
-    /** Add XP points and refresh HUD. */
-    function addXP(n) {
-        totalXP += n;
-        updateHUD();
-        saveGameData();
-    }
-
-    /** Record a practice score and auto-checkin streak. */
-    function addPracticeScore(score) {
-        scoreHistory.push({ score, date: Date.now() });
-        practiceCount++;
-        checkInToday();    // auto-mark today as practiced
-        updateHUD();
-        saveGameData();
-        renderLeaderboardFromScores();
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-6  YOUTUBE VIDEO LOADER
-       ════════════════════════════════════════════════════════════════════ */
-
-    /**
-     * Fetch YouTube video ID via Data API v3 search.
-     * @param {string} query - Search query string.
-     * @returns {Promise<string>} Video ID.
-     */
-    async function fetchVideoId(query) {
-        const params = new URLSearchParams({
-            part:       "snippet",
-            q:          query,
-            type:       "video",
-            maxResults: "5",
-            key:        YT_KEY
-        });
-
-        const resp = await fetch(`https://www.googleapis.com/youtube/v3/search?${params}`);
-        if (!resp.ok) throw new Error("YouTube API error");
-
-        const data = await resp.json();
-        if (!data.items || !data.items.length) throw new Error("No results");
-
-        return data.items[0].id.videoId;
-    }
-
-    /** Load the currently selected song's video. */
-    async function loadVideo() {
-        const song    = SONGS[currentSong];
-        const loadBtn = document.getElementById("load-btn");
-        const status  = document.getElementById("search-status");
-
-        if (loadBtn) loadBtn.disabled = true;
-        status.innerHTML = `<span class="spinner"></span> Searching YouTube...`;
-
-        try {
-            const videoId = await fetchVideoId(song.searchQuery);
-            embedVideo(videoId);
-            status.innerHTML = "✅ Video loaded successfully.";
-        } catch (err) {
-            status.innerHTML = "⚠️ Falling back to YouTube search page.";
-            embedFallback(song.title_cn + " " + song.artist);
-        } finally {
-            if (loadBtn) loadBtn.disabled = false;
-        }
-    }
-
-    /** Embed a YouTube video by ID. */
-    function embedVideo(videoId) {
-        const container   = document.getElementById("yt-player-container");
-        const placeholder = document.getElementById("video-placeholder");
-
-        container.innerHTML = `
-            <iframe
-                src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
-                allowfullscreen
-            ></iframe>
-        `;
-        container.classList.remove("hidden");
-        placeholder.style.display = "none";
-    }
-
-    /** Fallback: embed YouTube search results page. */
-    function embedFallback(query) {
-        const container   = document.getElementById("yt-player-container");
-        const placeholder = document.getElementById("video-placeholder");
-
-        container.innerHTML = `
-            <iframe
-                src="https://www.youtube.com/results?search_query=${encodeURIComponent(query)}"
-            ></iframe>
-        `;
-        container.classList.remove("hidden");
-        placeholder.style.display = "none";
-    }
-
-    /** Handle custom search bar. */
-    async function searchCustomVideo() {
-        const query  = document.getElementById("custom-search").value.trim();
-        const status = document.getElementById("search-status");
-        if (!query) return;
-
-        status.innerHTML = `<span class="spinner"></span> Searching...`;
-
-        try {
-            const videoId = await fetchVideoId(query);
-            embedVideo(videoId);
-            status.innerHTML = "✅ Custom video loaded.";
-        } catch (err) {
-            status.innerHTML = "❌ Video not found. Try a different query.";
-        }
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-7  TABS AND LYRICS RENDERING
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Build song tab buttons (called once on init). */
-    function buildTabs() {
-        const container = document.getElementById("song-tabs");
-        container.innerHTML = SONGS.map((song, idx) => `
-            <div
-                class="song-tab ${idx === 0 ? "active" : ""}"
-                onclick="selectSong(${idx})"
-            >
-                <span class="font-noto text-base"
-                      style="color: var(--gold);">${song.title_cn}</span>
-                <div class="text-xs mt-1"
-                     style="color: rgba(255,255,255,0.55);">${song.title_id}</div>
+        <!-- Provinsi -->
+        <div class="form-row">
+          <div class="form-group" id="grp-prov">
+            <label class="form-label" for="provinsi">Provinsi</label>
+            <div class="select-wrapper select-loading" id="wrap-prov">
+              <select id="provinsi" class="form-control" disabled>
+                <option value="">Memuat data provinsi...</option>
+              </select>
+              <div class="spinner"></div>
             </div>
-        `).join("");
-    }
+            <span class="error-msg">Pilih provinsi terlebih dahulu.</span>
+          </div>
+        </div>
 
-    /** Select a song: update tabs, lyrics, vocab, and video placeholder title. */
-    function selectSong(idx) {
-        currentSong = idx;
-
-        // Highlight active tab
-        document.querySelectorAll(".song-tab").forEach((tab, i) => {
-            tab.classList.toggle("active", i === idx);
-        });
-
-        renderLyrics(idx);
-        renderVocab(idx);
-
-        // Reset video placeholder title
-        const phTitle = document.getElementById("ph-title");
-        if (phTitle) phTitle.innerText = SONGS[idx].title_cn;
-
-        // Reset player so next click loads fresh video
-        const container   = document.getElementById("yt-player-container");
-        const placeholder = document.getElementById("video-placeholder");
-        container.innerHTML = "";
-        container.classList.add("hidden");
-        if (placeholder) placeholder.style.display = "";
-    }
-
-    /** Render lyric lines for song at index idx. */
-    function renderLyrics(idx) {
-        const song = SONGS[idx];
-        document.getElementById("lirik-song-name").innerHTML =
-            `${song.title_cn} &nbsp;·&nbsp; ${song.title_id}`;
-
-        const body = document.getElementById("lirik-body");
-        body.innerHTML = song.lyrics.map((line, lineIdx) => `
-            <div class="lyric-block">
-                <!-- Main lyric row: click to toggle word breakdown -->
-                <div class="lyric-main" onclick="toggleWordPanel(${lineIdx})">
-                    <div class="flex-1 pr-3">
-                        <div class="font-noto text-xl"
-                             style="color: var(--gold);">${line.hanzi}</div>
-                        <div class="text-xs mt-1"
-                             style="color: rgba(212,175,55,0.70);">${line.pinyin}</div>
-                        <div class="text-xs"
-                             style="color: rgba(255,255,255,0.45);">${line.id}</div>
-                    </div>
-                    <button
-                        id="mic-${lineIdx}"
-                        class="mic-btn"
-                        onclick="event.stopPropagation(); handleMic(${lineIdx})"
-                        title="Practice pronunciation"
-                    >🎤</button>
-                </div>
-
-                <!-- Word breakdown panel (hidden by default) -->
-                <div id="wp-${lineIdx}" class="word-panel hidden">
-                    ${line.words.map(w => `
-                        <span
-                            class="word-chip ${isBookmarked(w.h, w.p) ? 'bookmarked' : ''}"
-                            onclick="toggleWordBookmark('${escJS(w.h)}','${escJS(w.p)}','${escJS(w.a)}','${escJS(song.title_cn)}')"
-                            title="Click to bookmark this word"
-                        >
-                            <span class="font-noto">${w.h}</span>
-                            <span style="color: rgba(212,175,55,0.80);">${w.p}</span>
-                            <span style="color: rgba(255,255,255,0.55);">(${w.a})</span>
-                        </span>
-                    `).join("")}
-                </div>
-
-                <!-- Score panel (shown briefly after mic practice) -->
-                <div id="sp-${lineIdx}" class="score-panel hidden"></div>
+        <!-- Kabupaten/Kota -->
+        <div class="form-row">
+          <div class="form-group" id="grp-kab">
+            <label class="form-label" for="kabupaten">Kabupaten / Kota</label>
+            <div class="select-wrapper select-loading" id="wrap-kab">
+              <select id="kabupaten" class="form-control" disabled>
+                <option value="">— Pilih provinsi dulu —</option>
+              </select>
+              <div class="spinner"></div>
             </div>
-        `).join("");
-    }
+            <span class="error-msg">Pilih kabupaten/kota terlebih dahulu.</span>
+          </div>
+        </div>
 
-    /** Toggle the word breakdown panel for a lyric line. */
-    function toggleWordPanel(lineIdx) {
-        const panel = document.getElementById(`wp-${lineIdx}`);
-        if (panel) panel.classList.toggle("hidden");
-    }
-
-    /** Render vocabulary grid for song at index idx. */
-    function renderVocab(idx) {
-        const song = SONGS[idx];
-        document.getElementById("vocab-title").innerText =
-            `${song.title_cn} · Key Vocabulary`;
-
-        const grid = document.getElementById("vocab-grid");
-        grid.innerHTML = song.vocab.map(v => `
-            <div
-                class="rounded-xl p-4 text-center cursor-pointer transition-all
-                       ${isBookmarked(v.hanzi, v.pinyin) ? 'ring-2 ring-yellow-400/50' : ''}"
-                style="background: var(--card-bg); border: 1px solid var(--border-light);"
-                onclick="toggleWordBookmark('${escJS(v.hanzi)}','${escJS(v.pinyin)}','${escJS(v.arti)}','${escJS(song.title_cn)}')"
-                title="Click to bookmark"
-                onmouseover="this.style.borderColor='var(--gold)'"
-                onmouseout="this.style.borderColor='var(--border-light)'"
-            >
-                <div class="text-2xl font-noto" style="color: var(--gold);">${v.hanzi}</div>
-                <div class="text-xs mt-1"
-                     style="color: rgba(212,175,55,0.70);">${v.pinyin}</div>
-                <div class="text-sm mt-1">${v.arti}</div>
-                <div class="text-xs mt-1"
-                     style="color: rgba(255,255,255,0.30);">
-                    ${isBookmarked(v.hanzi, v.pinyin) ? "🔖 Saved" : "+ Bookmark"}
-                </div>
+        <!-- Kecamatan -->
+        <div class="form-row">
+          <div class="form-group" id="grp-kec">
+            <label class="form-label" for="kecamatan">Kecamatan</label>
+            <div class="select-wrapper select-loading" id="wrap-kec">
+              <select id="kecamatan" class="form-control" disabled>
+                <option value="">— Pilih kab/kota dulu —</option>
+              </select>
+              <div class="spinner"></div>
             </div>
-        `).join("");
+            <span class="error-msg">Pilih kecamatan terlebih dahulu.</span>
+          </div>
+        </div>
+
+        <!-- ── Submit Button ─────────────────────────── -->
+        <button type="submit" class="btn-submit" id="btnSubmit">
+          <span class="wa-icon">📲</span>
+          KIRIM PERMINTAAN KE WHATSAPP
+        </button>
+
+      </form>
+
+      <!-- Trust Badges -->
+      <div class="trust-badges">
+        <div class="trust-badge"><span class="icon">⚡</span> Respon Cepat</div>
+        <div class="trust-badge"><span class="icon">🔒</span> Data Aman</div>
+        <div class="trust-badge"><span class="icon">✦</span> Profesional</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FOOTER ═════════════════════ -->
+  <footer>
+    <p class="footer-name gold-text">Niken Kho 许芬琪</p>
+    <p class="footer-copy">© 2025 Official Management · All Rights Reserved</p>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" role="alert" aria-live="polite"></div>
+
+
+  <!-- ═══════════════════ JAVASCRIPT ══════════════════ -->
+  <script>
+  (function() {
+    "use strict";
+
+    /* ── WhatsApp Number ────────────────────────── */
+    const WA_NUMBER = "6282285287318";
+
+    /* ── API Base URL ────────────────────────────── */
+    const API_BASE = "https://emsifa.github.io/api-wilayah-indonesia/api";
+
+    /* ── Elements ────────────────────────────────── */
+    const selProv = document.getElementById("provinsi");
+    const selKab  = document.getElementById("kabupaten");
+    const selKec  = document.getElementById("kecamatan");
+
+    const wrapProv = document.getElementById("wrap-prov");
+    const wrapKab  = document.getElementById("wrap-kab");
+    const wrapKec  = document.getElementById("wrap-kec");
+
+    /* ── Toast ───────────────────────────────────── */
+    const toastEl = document.getElementById("toast");
+    let toastTimer = null;
+
+    function showToast(msg, icon = "⚠️") {
+      toastEl.innerHTML = `<span>${icon}</span> ${msg}`;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 3500);
     }
 
-    /** Escape strings for inline onclick attributes. */
-    function escJS(str) {
-        return (str || "").replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    /* ── Validation helpers ──────────────────────── */
+    function setError(groupId, hasError) {
+      const grp = document.getElementById(groupId);
+      if (!grp) return;
+      grp.classList.toggle("has-error", hasError);
     }
 
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-8  MICROPHONE PRONUNCIATION SCORER
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Start/stop mic for a lyric line. Falls back to simulation if no API. */
-    function handleMic(lineIdx) {
-        // Fallback: browser doesn't support Speech Recognition
-        if (!(window.SpeechRecognition || window.webkitSpeechRecognition)) {
-            simulateScore(lineIdx);
-            return;
-        }
-
-        // If already recording this line, stop
-        if (isRecording && activeRecLine === lineIdx) {
-            if (recognition) recognition.stop();
-            return;
-        }
-
-        // Stop any previous recording
-        if (recognition) recognition.stop();
-
-        const SR      = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition   = new SR();
-        recognition.lang            = "zh-CN";
-        recognition.interimResults  = false;
-        recognition.maxAlternatives = 1;
-
-        activeRecLine = lineIdx;
-        isRecording   = true;
-        setMicState(lineIdx, true);
-        startVisualizer(lineIdx);
-        recognition.start();
-
-        recognition.onresult = function (event) {
-            const transcript  = event.results[0][0].transcript;
-            const confidence  = event.results[0][0].confidence;
-            const target      = SONGS[currentSong].lyrics[lineIdx].hanzi;
-            const score       = calcScore(transcript, target, confidence);
-
-            stopVisualizer();
-            isRecording   = false;
-            activeRecLine = -1;
-            setMicState(lineIdx, false);
-
-            showScore(lineIdx, score, transcript);
-            addPracticeScore(score);
-            awardXPForScore(score);
-        };
-
-        recognition.onerror = function () {
-            stopVisualizer();
-            isRecording   = false;
-            setMicState(lineIdx, false);
-            simulateScore(lineIdx);
-        };
-
-        recognition.onend = function () {
-            stopVisualizer();
-            isRecording   = false;
-            setMicState(lineIdx, false);
-        };
+    function clearAllErrors() {
+      document.querySelectorAll(".form-group.has-error").forEach(el => el.classList.remove("has-error"));
     }
 
-    /** Simulate a score when no real recognition is available. */
-    function simulateScore(lineIdx) {
-        const score = Math.floor(Math.random() * 101);
-        showScore(lineIdx, score, "(simulated)");
-        addPracticeScore(score);
-        awardXPForScore(score);
+    /* ── Loading state ───────────────────────────── */
+    function setLoading(wrapEl, loading) {
+      wrapEl.classList.toggle("loading", loading);
     }
 
-    /** Award XP and toast based on score bracket. */
-    function awardXPForScore(score) {
-        if (score >= 80) {
-            addXP(50);
-            showToast("🎉", "Excellent!", "+50 XP");
-            triggerCoinRain();
-        } else if (score >= 50) {
-            addXP(20);
-            showToast("👍", "Good effort!", "+20 XP");
-        } else {
-            addXP(5);
-            showToast("📘", "Keep practicing", "+5 XP");
-        }
+    /* ── Fetch helper with fallback ──────────────── */
+    async function fetchData(url) {
+      const res = await fetch(url, { cache: "force-cache" });
+      if (!res.ok) throw new Error("Fetch failed: " + url);
+      return res.json();
     }
 
-    /** Toggle mic button recording appearance. */
-    function setMicState(lineIdx, recording) {
-        const btn = document.getElementById(`mic-${lineIdx}`);
-        if (!btn) return;
-        btn.classList.toggle("recording", recording);
-        btn.textContent = recording ? "⏹" : "🎤";
+    /* ── Populate a select ───────────────────────── */
+    function populateSelect(sel, items, valueFn, labelFn, placeholder) {
+      sel.innerHTML = `<option value="">${placeholder}</option>`;
+      items.forEach(item => {
+        const opt = document.createElement("option");
+        opt.value = valueFn(item);
+        opt.textContent = labelFn(item);
+        sel.appendChild(opt);
+      });
+      sel.disabled = false;
     }
 
-    /**
-     * Calculate a score from transcript vs target.
-     * Blends character-level accuracy with confidence.
-     */
-    function calcScore(transcript, target, confidence) {
-        const t1 = transcript.replace(/\s/g, "");
-        const t2 = target.replace(/\s/g, "");
-
-        let matches = 0;
-        const minLen = Math.min(t1.length, t2.length);
-        for (let i = 0; i < minLen; i++) {
-            if (t1[i] === t2[i]) matches++;
-        }
-
-        const charScore       = (matches / Math.max(t1.length, t2.length, 1)) * 100;
-        const confidenceScore = (confidence || 0.5) * 100;
-
-        return Math.round(charScore * 0.5 + confidenceScore * 0.5);
+    /* ── Reset downstream ────────────────────────── */
+    function resetSelect(sel, msg) {
+      sel.innerHTML = `<option value="">${msg}</option>`;
+      sel.disabled = true;
     }
 
-    /** Show score panel below lyric line briefly. */
-    function showScore(lineIdx, score, transcript) {
-        const panel = document.getElementById(`sp-${lineIdx}`);
-        if (!panel) return;
-
-        const color = score >= 80 ? "#4ade80" : score >= 50 ? "#facc15" : "#f87171";
-        panel.innerHTML = `
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center
-                            font-bold text-sm"
-                     style="border: 2px solid ${color}; color: ${color};">
-                    ${score}
-                </div>
-                <div>
-                    <div class="text-sm">Accuracy: <strong>${score}%</strong></div>
-                    ${transcript !== "(simulated)"
-                        ? `<div class="text-xs" style="color: rgba(255,255,255,0.50);">
-                               Heard: "${transcript}"
-                           </div>`
-                        : '<div class="text-xs" style="color: rgba(255,255,255,0.35);">Simulated score</div>'
-                    }
-                </div>
-            </div>
-        `;
-        panel.classList.remove("hidden");
-        setTimeout(() => panel.classList.add("hidden"), 5000);
+    /* ── Load Provinces ──────────────────────────── */
+    async function loadProvinces() {
+      setLoading(wrapProv, true);
+      try {
+        const data = await fetchData(`${API_BASE}/provinces.json`);
+        populateSelect(
+          selProv, data,
+          d => JSON.stringify({ id: d.id, name: d.name }),
+          d => d.name,
+          "— Pilih Provinsi —"
+        );
+      } catch (e) {
+        selProv.innerHTML = `<option value="">Gagal memuat. Coba refresh.</option>`;
+        console.error("Provinces:", e);
+      } finally {
+        setLoading(wrapProv, false);
+      }
     }
 
-    /* ── Audio Visualizer (animated bars during recording) ── */
-
-    function startVisualizer(lineIdx) {
-        const micBtn = document.getElementById(`mic-${lineIdx}`);
-        if (!micBtn) return;
-
-        // Append 6 animated bars next to the mic button
-        for (let i = 0; i < 6; i++) {
-            const bar = document.createElement("div");
-            bar.className     = "visualizer-bar";
-            bar.style.height  = "4px";
-            micBtn.parentElement.appendChild(bar);
-        }
-
-        visualizerInterval = setInterval(() => {
-            document.querySelectorAll(".visualizer-bar").forEach(bar => {
-                bar.style.height = (4 + Math.random() * 22) + "px";
-            });
-        }, 50);
+    /* ── Load Regencies ──────────────────────────── */
+    async function loadRegencies(provinceId) {
+      resetSelect(selKab, "Memuat kab/kota...");
+      resetSelect(selKec, "— Pilih kab/kota dulu —");
+      setLoading(wrapKab, true);
+      try {
+        const data = await fetchData(`${API_BASE}/regencies/${provinceId}.json`);
+        populateSelect(
+          selKab, data,
+          d => JSON.stringify({ id: d.id, name: d.name }),
+          d => d.name,
+          "— Pilih Kabupaten/Kota —"
+        );
+      } catch (e) {
+        selKab.innerHTML = `<option value="">Gagal memuat.</option>`;
+        console.error("Regencies:", e);
+      } finally {
+        setLoading(wrapKab, false);
+      }
     }
 
-    function stopVisualizer() {
-        if (visualizerInterval) {
-            clearInterval(visualizerInterval);
-            visualizerInterval = null;
-        }
-        document.querySelectorAll(".visualizer-bar").forEach(bar => bar.remove());
+    /* ── Load Districts ──────────────────────────── */
+    async function loadDistricts(regencyId) {
+      resetSelect(selKec, "Memuat kecamatan...");
+      setLoading(wrapKec, true);
+      try {
+        const data = await fetchData(`${API_BASE}/districts/${regencyId}.json`);
+        populateSelect(
+          selKec, data,
+          d => JSON.stringify({ id: d.id, name: d.name }),
+          d => d.name,
+          "— Pilih Kecamatan —"
+        );
+      } catch (e) {
+        selKec.innerHTML = `<option value="">Gagal memuat.</option>`;
+        console.error("Districts:", e);
+      } finally {
+        setLoading(wrapKec, false);
+      }
     }
 
-    /* ── Coin rain celebration ── */
-
-    function triggerCoinRain() {
-        const overlay = document.createElement("div");
-        overlay.style.cssText = `
-            position: fixed; inset: 0; pointer-events: none; z-index: 9998;
-        `;
-
-        for (let i = 0; i < 35; i++) {
-            const coin            = document.createElement("div");
-            coin.textContent      = "🪙";
-            coin.style.position   = "absolute";
-            coin.style.left       = Math.random() * 100 + "%";
-            coin.style.top        = "-20px";
-            coin.style.fontSize   = (14 + Math.random() * 22) + "px";
-            coin.style.animation  = `rainFall ${1.5 + Math.random() * 0.8}s linear forwards`;
-            coin.style.animationDelay = Math.random() * 0.5 + "s";
-            overlay.appendChild(coin);
-        }
-
-        document.body.appendChild(overlay);
-        setTimeout(() => overlay.remove(), 2500);
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-9  TONE GUIDE  –  TTS playback
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Play syllable via browser speech synthesis. */
-    function playTone(syllable) {
-        const utterance  = new SpeechSynthesisUtterance(syllable);
-        utterance.lang   = "zh-CN";
-        utterance.rate   = 0.75;
-        utterance.pitch  = 1.1;
-        speechSynthesis.cancel();   // stop any previous
-        speechSynthesis.speak(utterance);
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-10  TONE MATCHING QUIZ
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Display the current quiz word. */
-    function loadQuizWord() {
-        if (quizIndex >= quizWords.length) quizIndex = 0;
-        document.getElementById("quiz-word").innerText = quizWords[quizIndex].word;
-        document.getElementById("quiz-feedback").innerText = "";
-
-        // Reset option button colors
-        document.querySelectorAll(".quiz-option").forEach(btn => {
-            btn.classList.remove("correct", "wrong");
-        });
-    }
-
-    /** Advance to next word. */
-    function nextQuizWord() {
-        quizIndex++;
-        if (quizIndex >= quizWords.length) quizIndex = 0;
-        loadQuizWord();
-    }
-
-    /** Evaluate selected tone. */
-    function checkTone(selectedTone) {
-        const current  = quizWords[quizIndex];
-        const feedback = document.getElementById("quiz-feedback");
-
-        // Highlight all buttons: green for correct, red for chosen-wrong
-        document.querySelectorAll(".quiz-option").forEach(btn => {
-            const t = parseInt(btn.getAttribute("data-tone"));
-            if (t === current.tone) {
-                btn.classList.add("correct");
-            } else if (t === selectedTone && t !== current.tone) {
-                btn.classList.add("wrong");
-            }
-        });
-
-        if (current.tone === selectedTone) {
-            quizCorrect++;
-            feedback.innerHTML   = "✅ Correct! +10 XP";
-            feedback.style.color = "#4ade80";
-            addXP(10);
-        } else {
-            feedback.innerHTML   = `❌ Wrong. Correct tone: ${current.tone}.`;
-            feedback.style.color = "#f87171";
-        }
-
-        quizTotal++;
-        document.getElementById("quiz-score").innerText = quizCorrect;
-        document.getElementById("quiz-total").innerText = quizTotal;
-
-        // Auto-advance after 1.2 seconds
-        setTimeout(nextQuizWord, 1200);
-    }
-
-    // Bind quiz option click handlers
-    document.querySelectorAll(".quiz-option").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const tone = parseInt(btn.getAttribute("data-tone"));
-            checkTone(tone);
-        });
+    /* ── Change Listeners ────────────────────────── */
+    selProv.addEventListener("change", () => {
+      setError("grp-prov", false);
+      if (!selProv.value) {
+        resetSelect(selKab, "— Pilih provinsi dulu —");
+        resetSelect(selKec, "— Pilih kab/kota dulu —");
+        return;
+      }
+      const { id } = JSON.parse(selProv.value);
+      loadRegencies(id);
     });
 
+    selKab.addEventListener("change", () => {
+      setError("grp-kab", false);
+      if (!selKab.value) {
+        resetSelect(selKec, "— Pilih kab/kota dulu —");
+        return;
+      }
+      const { id } = JSON.parse(selKab.value);
+      loadDistricts(id);
+    });
+
+    selKec.addEventListener("change", () => setError("grp-kec", false));
+
+    /* ── Form Validation & Submit ────────────────── */
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      clearAllErrors();
+
+      const nama   = document.getElementById("namaPemesan").value.trim();
+      const jenis  = document.getElementById("jenisAcara").value;
+      const durasi = document.getElementById("durasi").value.trim();
+      const provVal = selProv.value;
+      const kabVal  = selKab.value;
+      const kecVal  = selKec.value;
+
+      let valid = true;
+
+      if (!nama)            { setError("grp-nama",  true); valid = false; }
+      if (!jenis)           { setError("grp-jenis", true); valid = false; }
+      if (!durasi || parseInt(durasi) < 1) { setError("grp-durasi", true); valid = false; }
+      if (!provVal)         { setError("grp-prov",  true); valid = false; }
+      if (!kabVal || selKab.disabled)  { setError("grp-kab",  true); valid = false; }
+      if (!kecVal || selKec.disabled)  { setError("grp-kec",  true); valid = false; }
+
+      if (!valid) {
+        showToast("Lengkapi semua field yang wajib diisi.", "📋");
+        // Scroll to first error
+        const firstErr = document.querySelector(".form-group.has-error");
+        if (firstErr) firstErr.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      /* Parse location names */
+      const provName = JSON.parse(provVal).name;
+      const kabName  = JSON.parse(kabVal).name;
+      const kecName  = JSON.parse(kecVal).name;
+
+      /* Build WhatsApp message */
+      const message =
+        `Halo Manajemen Niken Kho 许芬琪 🌟\n\n` +
+        `Perkenalkan, saya *${nama}* ingin mengundang Niken Kho untuk tampil di acara kami.\n\n` +
+        `━━━━━━━━━━━━━━━━━\n` +
+        `📋 *DETAIL PEMESANAN*\n` +
+        `━━━━━━━━━━━━━━━━━\n` +
+        `👤 Pemesan / EO : ${nama}\n` +
+        `🎊 Jenis Acara   : ${jenis}\n` +
+        `⏳ Durasi         : ${durasi} Hari\n` +
+        `📍 Lokasi          :\n` +
+        `   • Provinsi       : ${provName}\n` +
+        `   • Kab/Kota      : ${kabName}\n` +
+        `   • Kecamatan    : ${kecName}\n` +
+        `━━━━━━━━━━━━━━━━━\n\n` +
+        `Mohon informasi lebih lanjut mengenai ketersediaan jadwal, paket, dan harga. Terima kasih! 🙏✨`;
+
+      const encoded = encodeURIComponent(message);
+      const waURL   = `https://wa.me/${WA_NUMBER}?text=${encoded}`;
+
+      /* Open WhatsApp */
+      window.open(waURL, "_blank", "noopener,noreferrer");
+      showToast("Membuka WhatsApp... ✅", "📲");
+    });
+
+    /* ── Input real-time error clear ─────────────── */
+    document.getElementById("namaPemesan").addEventListener("input", () => setError("grp-nama", false));
+    document.getElementById("jenisAcara").addEventListener("change", () => setError("grp-jenis", false));
+    document.getElementById("durasi").addEventListener("input", () => setError("grp-durasi", false));
+
+    /* ── Init ────────────────────────────────────── */
+    loadProvinces();
+
+  })();
+  </script>
 
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-11  LEADERBOARD
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Render leaderboard list DOM. */
-    function renderLeaderboard() {
-        const list = document.getElementById("leaderboard-list");
-
-        if (!leaderboard.length) {
-            list.innerHTML = `
-                <div class="text-center py-4"
-                     style="color: rgba(255,255,255,0.30);">
-                    No scores yet. Practice and submit your score!
-                </div>
-            `;
-            return;
-        }
-
-        const medals = ["🥇", "🥈", "🥉"];
-        list.innerHTML = leaderboard.slice(0, 10).map((entry, idx) => `
-            <div class="lb-row">
-                <div class="flex items-center gap-3">
-                    <span class="rank-badge">${medals[idx] || (idx + 1)}</span>
-                    <span>${entry.name}</span>
-                </div>
-                <span style="color: var(--gold); font-weight: 700;">
-                    ${entry.score}/100
-                </span>
-            </div>
-        `).join("");
-    }
-
-    /** Submit current average score to leaderboard. */
-    function submitScoreToLeaderboard() {
-        const name = document.getElementById("leader-name").value.trim();
-        if (!name) {
-            showToast("⚠️", "Name required", "Enter your name first");
-            return;
-        }
-
-        const avg = scoreHistory.length
-            ? Math.round(scoreHistory.reduce((a, b) => a + b.score, 0) / scoreHistory.length)
-            : 0;
-
-        leaderboard.push({ name, score: avg });
-        leaderboard.sort((a, b) => b.score - a.score);
-        leaderboard = leaderboard.slice(0, 10);
-
-        localStorage.setItem("mandarin_leaderboard", JSON.stringify(leaderboard));
-        renderLeaderboard();
-        showToast("🏆", "Score submitted!", `${name}: ${avg}/100`);
-    }
-
-    /**
-     * Called automatically after every practice to keep leaderboard
-     * reflecting the user's latest average (under a default name).
-     */
-    function renderLeaderboardFromScores() {
-        const avg = scoreHistory.length
-            ? Math.round(scoreHistory.reduce((a, b) => a + b.score, 0) / scoreHistory.length)
-            : 0;
-
-        if (avg <= 0) return;
-
-        const tempName  = localStorage.getItem("tempUserName") || "Scholar";
-        const existsIdx = leaderboard.findIndex(e => e.name === tempName);
-
-        if (existsIdx >= 0) {
-            leaderboard[existsIdx].score = avg;
-        } else {
-            leaderboard.push({ name: tempName, score: avg });
-        }
-
-        leaderboard.sort((a, b) => b.score - a.score);
-        leaderboard = leaderboard.slice(0, 10);
-        localStorage.setItem("mandarin_leaderboard", JSON.stringify(leaderboard));
-        renderLeaderboard();
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-12  IMPERIAL CERTIFICATE  (HTML5 Canvas)
-       ════════════════════════════════════════════════════════════════════ */
-
-    function generateCertificate() {
-        const name = document.getElementById("cert-name").value.trim();
-        if (!name) {
-            showToast("⚠️", "Name required", "Enter your name first");
-            return;
-        }
-
-        const avg  = scoreHistory.length
-            ? Math.round(scoreHistory.reduce((a, b) => a + b.score, 0) / scoreHistory.length)
-            : 0;
-        const rank = getProficiency(avg);
-
-        drawCertificate(name, rank, avg);
-        document.getElementById("cert-preview").classList.remove("hidden");
-    }
-
-    /** Draw the full certificate on canvas. */
-    function drawCertificate(name, level, avg) {
-        const canvas = document.getElementById("cert-canvas");
-        const ctx    = canvas.getContext("2d");
-        const W = 900, H = 636;
-
-        // ── Background parchment gradient ──
-        const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-        bgGrad.addColorStop(0.0, "#F7EDCC");
-        bgGrad.addColorStop(0.4, "#EFE0A8");
-        bgGrad.addColorStop(0.7, "#E8D498");
-        bgGrad.addColorStop(1.0, "#DCCA88");
-        ctx.fillStyle = bgGrad;
-        ctx.fillRect(0, 0, W, H);
-
-        // ── Double border ──
-        ctx.strokeStyle = "#8B0000"; ctx.lineWidth = 8;
-        ctx.strokeRect(12, 12, W - 24, H - 24);
-        ctx.strokeStyle = "#D4AF37"; ctx.lineWidth = 2;
-        ctx.strokeRect(24, 24, W - 48, H - 48);
-
-        // ── Corner ornaments ──
-        [[40, 40], [W - 40, 40], [40, H - 40], [W - 40, H - 40]].forEach(([x, y]) => {
-            drawCertCorner(ctx, x, y, 28);
-        });
-
-        // ── Academy name ──
-        ctx.fillStyle  = "#8B0000";
-        ctx.font       = "bold 36px 'Cinzel Decorative', serif";
-        ctx.textAlign  = "center";
-        ctx.fillText("WANG DYNASTY MANDARIN ACADEMY", W / 2, 80);
-
-        // ── Subtitle ──
-        ctx.fillStyle  = "#B8860B";
-        ctx.font       = "18px 'Cinzel', serif";
-        ctx.fillText("IMPERIAL EDICT OF PROFICIENCY", W / 2, 118);
-
-        // ── Gold divider line ──
-        ctx.beginPath();
-        ctx.strokeStyle = "#D4AF37"; ctx.lineWidth = 1.5;
-        ctx.moveTo(100, 135); ctx.lineTo(W - 100, 135);
-        ctx.stroke();
-
-        // ── Body text ──
-        ctx.fillStyle  = "#3D1A00";
-        ctx.font       = "22px 'EB Garamond', serif";
-        ctx.fillText("This is to certify that", W / 2, 190);
-
-        ctx.fillStyle  = "#8B0000";
-        ctx.font       = "bold 46px 'Noto Serif SC', serif";
-        ctx.fillText(name, W / 2, 264);
-
-        ctx.fillStyle  = "#3D1A00";
-        ctx.font       = "20px 'EB Garamond', serif";
-        ctx.fillText("has attained the distinguished rank of:", W / 2, 320);
-
-        ctx.fillStyle  = "#D4AF37";
-        ctx.font       = "bold 34px 'Cinzel', serif";
-        ctx.fillText(level, W / 2, 378);
-
-        ctx.fillStyle  = "#5C3310";
-        ctx.font       = "15px 'EB Garamond', serif";
-        ctx.fillText(`Based on an average pronunciation score of ${avg}/100`, W / 2, 440);
-
-        ctx.fillStyle  = "#5C3310";
-        ctx.font       = "13px 'EB Garamond', serif";
-        ctx.fillText(`Awarded on ${new Date().toLocaleDateString("en-GB", {
-            day: "numeric", month: "long", year: "numeric"
-        })}`, W / 2, 470);
-
-        // ── Gold divider line ──
-        ctx.beginPath();
-        ctx.strokeStyle = "#D4AF37"; ctx.lineWidth = 1.5;
-        ctx.moveTo(100, 495); ctx.lineTo(W - 100, 495);
-        ctx.stroke();
-
-        // ── Seals ──
-        drawCertSeal(ctx, 120, 560, 52, "汪");
-        drawCertSeal(ctx, W - 120, 560, 52, "王");
-
-        // ── Footer ──
-        ctx.fillStyle  = "#8B0000";
-        ctx.font       = "italic 12px 'EB Garamond', serif";
-        ctx.fillText("Official Seal · Wang Dynasty Mandarin Academy · Medan, Indonesia", W / 2, 610);
-    }
-
-    function drawCertCorner(ctx, x, y, radius) {
-        ctx.save();
-        ctx.strokeStyle  = "#8B0000";
-        ctx.lineWidth    = 1.8;
-        ctx.globalAlpha  = 0.65;
-        ctx.beginPath(); ctx.arc(x, y, radius,     0, Math.PI * 2); ctx.stroke();
-        ctx.beginPath(); ctx.arc(x, y, radius - 9, 0, Math.PI * 2); ctx.stroke();
-        ctx.fillStyle    = "#D4AF37";
-        ctx.globalAlpha  = 0.28;
-        ctx.beginPath(); ctx.arc(x, y, 10, 0, Math.PI * 2); ctx.fill();
-        ctx.restore();
-    }
-
-    function drawCertSeal(ctx, x, y, radius, char) {
-        ctx.save();
-        ctx.strokeStyle    = "#CC0000";
-        ctx.lineWidth      = 3;
-        ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.stroke();
-        ctx.fillStyle      = "#CC0000";
-        ctx.font           = `bold ${radius * 1.1}px 'Noto Serif SC', serif`;
-        ctx.textAlign      = "center";
-        ctx.textBaseline   = "middle";
-        ctx.fillText(char, x, y + 2);
-        ctx.restore();
-        ctx.textBaseline   = "alphabetic";
-    }
-
-    /** Download the certificate canvas as PNG. */
-    function downloadCert() {
-        const canvas = document.getElementById("cert-canvas");
-        const link   = document.createElement("a");
-        link.download = "wang_imperial_certificate.png";
-        link.href     = canvas.toDataURL();
-        link.click();
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-13  GEMINI AI CHAT
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Send a message to Gemini and display the response. */
-    async function sendChatMessage() {
-        const inputEl = document.getElementById("chat-input");
-        const sendBtn = document.querySelector("#ai-chat-section button");
-        const message = inputEl.value.trim();
-        if (!message) return;
-
-        appendChatBubble(message, "user");
-        inputEl.value    = "";
-        inputEl.disabled = true;
-        if (sendBtn) sendBtn.disabled = true;
-
-        // Loading indicator
-        const loadingId = "chat-loading-" + Date.now();
-        appendChatBubble(
-            `<span class="spinner"></span> Thinking...`,
-            "ai",
-            loadingId
-        );
-
-        try {
-            const resp = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `You are a professional, friendly Mandarin tutor for Indonesian learners.
-                                       Answer concisely in a mix of English and Indonesian as appropriate.
-                                       User question: ${message}`
-                            }]
-                        }]
-                    })
-                }
-            );
-
-            // Remove loading bubble
-            const loadingEl = document.getElementById(loadingId);
-            if (loadingEl) loadingEl.remove();
-
-            if (!resp.ok) throw new Error("API error " + resp.status);
-
-            const data  = await resp.json();
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text
-                || "Maaf, saya tidak bisa menjawab sekarang.";
-
-            appendChatBubble(reply, "ai");
-
-        } catch (err) {
-            const loadingEl = document.getElementById(loadingId);
-            if (loadingEl) loadingEl.remove();
-            appendChatBubble(
-                "⚠️ AI service temporarily unavailable. Please try again.",
-                "ai"
-            );
-        } finally {
-            inputEl.disabled = false;
-            if (sendBtn) sendBtn.disabled = false;
-            inputEl.focus();
-        }
-    }
-
-    /** Add a chat bubble to the messages container. */
-    function appendChatBubble(text, sender, id = null) {
-        const container = document.getElementById("chat-messages");
-        const wrap      = document.createElement("div");
-        wrap.className  = `chat-message ${sender}`;
-        if (id) wrap.id = id;
-
-        const bubble = document.createElement("div");
-        bubble.className = `message-bubble ${sender === "user" ? "user-bubble" : "ai-bubble"}`;
-        bubble.innerHTML = text;
-
-        wrap.appendChild(bubble);
-        container.appendChild(wrap);
-        container.scrollTop = container.scrollHeight;
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-14  ✦ NEW FEATURE 1 — SMART FLASHCARD DECK
-       ════════════════════════════════════════════════════════════════════
-
-       Auto-generates a deck from all song vocabulary.
-       Users flip cards, then mark "Known" or "Need Review".
-       Session stats track progress. Supports per-song filter.
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Build flashcard deck from all songs (or a single song). */
-    function buildFlashcardDeck(songIdx = "all") {
-        flashcardDeck = [];
-
-        const songList = (songIdx === "all") ? SONGS : [SONGS[songIdx]];
-
-        songList.forEach((song, localIdx) => {
-            const songRef = (songIdx === "all") ? song.title_cn : song.title_cn;
-            song.vocab.forEach(v => {
-                flashcardDeck.push({
-                    hanzi:  v.hanzi,
-                    pinyin: v.pinyin,
-                    arti:   v.arti,
-                    song:   songRef,
-                    status: "pending"   // "pending" | "known" | "review"
-                });
-            });
-            // Also add individual words from lyrics for richer deck
-            song.lyrics.forEach(line => {
-                line.words.forEach(w => {
-                    // Avoid duplicates by checking hanzi
-                    const exists = flashcardDeck.some(c => c.hanzi === w.h);
-                    if (!exists) {
-                        flashcardDeck.push({
-                            hanzi:  w.h,
-                            pinyin: w.p,
-                            arti:   w.a,
-                            song:   songRef,
-                            status: "pending"
-                        });
-                    }
-                });
-            });
-        });
-
-        flashcardOrigDeck   = [...flashcardDeck];
-        flashcardIndex       = 0;
-        flashcardKnownCount  = 0;
-        flashcardFlipped     = false;
-        renderCurrentFlashcard();
-        updateFlashcardStats();
-    }
-
-    /** Filter deck by song. */
-    function filterFlashcards(songIdx) {
-        buildFlashcardDeck(songIdx);
-    }
-
-    /** Display the current card in the deck. */
-    function renderCurrentFlashcard() {
-        if (!flashcardDeck.length) return;
-
-        const card   = flashcardDeck[flashcardIndex];
-        const wrapper = document.getElementById("flashcard-wrapper");
-
-        // Reset flip state
-        flashcardFlipped = false;
-        wrapper.classList.remove("flipped");
-
-        // Fill card faces
-        document.getElementById("fc-hanzi").innerText      = card.hanzi;
-        document.getElementById("fc-back-hanzi").innerText = card.hanzi;
-        document.getElementById("fc-pinyin").innerText     = card.pinyin;
-        document.getElementById("fc-meaning").innerText    = card.arti;
-        document.getElementById("fc-song-label").innerText = `📀 ${card.song}`;
-
-        // Hide action buttons until flipped
-        document.getElementById("fc-actions").classList.add("hidden");
-
-        updateFlashcardStats();
-    }
-
-    /** Flip the flashcard front↔back. */
-    function flipCard() {
-        const wrapper = document.getElementById("flashcard-wrapper");
-        flashcardFlipped = !flashcardFlipped;
-        wrapper.classList.toggle("flipped", flashcardFlipped);
-
-        // Show action buttons only when showing the answer
-        const actions = document.getElementById("fc-actions");
-        if (flashcardFlipped) {
-            actions.classList.remove("hidden");
-        } else {
-            actions.classList.add("hidden");
-        }
-    }
-
-    /** Mark current card as 'known' or 'review', advance to next. */
-    function markCard(status) {
-        if (!flashcardDeck.length) return;
-
-        flashcardDeck[flashcardIndex].status = status;
-        if (status === "known") {
-            flashcardKnownCount++;
-            addXP(5);
-        }
-
-        // Advance to next pending card
-        let next = -1;
-        for (let i = flashcardIndex + 1; i < flashcardDeck.length; i++) {
-            if (flashcardDeck[i].status === "pending" ||
-                flashcardDeck[i].status === "review") {
-                next = i;
-                break;
-            }
-        }
-
-        if (next >= 0) {
-            flashcardIndex = next;
-            renderCurrentFlashcard();
-        } else {
-            // Deck complete
-            const known   = flashcardDeck.filter(c => c.status === "known").length;
-            const review  = flashcardDeck.filter(c => c.status === "review").length;
-            showToast("🎓", "Deck Complete!", `Known: ${known} · Review: ${review}`);
-        }
-
-        updateFlashcardStats();
-    }
-
-    /** Update progress bar and stat counters. */
-    function updateFlashcardStats() {
-        const total     = flashcardDeck.length;
-        const known     = flashcardDeck.filter(c => c.status === "known").length;
-        const review    = flashcardDeck.filter(c => c.status === "review").length;
-        const remaining = flashcardDeck.filter(c => c.status === "pending").length;
-
-        document.getElementById("fc-current").innerText       = flashcardIndex + 1;
-        document.getElementById("fc-total").innerText         = total;
-        document.getElementById("fc-known").innerText         = known;
-        document.getElementById("fc-stat-known").innerText    = known;
-        document.getElementById("fc-stat-review").innerText   = review;
-        document.getElementById("fc-stat-remaining").innerText= remaining;
-
-        const pct = total ? (known / total * 100) : 0;
-        document.getElementById("fc-progress-fill").style.width = pct + "%";
-    }
-
-    /** Shuffle the deck randomly (Fisher-Yates). */
-    function shuffleFlashcards() {
-        for (let i = flashcardDeck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [flashcardDeck[i], flashcardDeck[j]] = [flashcardDeck[j], flashcardDeck[i]];
-        }
-        flashcardDeck.forEach(c => c.status = "pending");
-        flashcardIndex      = 0;
-        flashcardKnownCount = 0;
-        renderCurrentFlashcard();
-    }
-
-    /** Reset deck to original order with all pending. */
-    function resetFlashcards() {
-        flashcardDeck = flashcardOrigDeck.map(c => ({ ...c, status: "pending" }));
-        flashcardIndex      = 0;
-        flashcardKnownCount = 0;
-        renderCurrentFlashcard();
-    }
-
-    /** Build per-song filter buttons. */
-    function buildFlashcardFilters() {
-        const row = document.getElementById("fc-filter-row");
-        // Remove the placeholder btn
-        const placeholder = document.getElementById("fc-filter-btn");
-        if (placeholder) placeholder.remove();
-
-        row.innerHTML = SONGS.map((song, idx) => `
-            <button class="btn-outline" onclick="filterFlashcards(${idx})">
-                ${song.title_cn}
-            </button>
-        `).join("");
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-15  ✦ NEW FEATURE 2 — DAILY STREAK TRACKER
-       ════════════════════════════════════════════════════════════════════
-
-       Tracks practice on each calendar date using ISO date strings.
-       Shows a 28-day heatmap calendar and milestone badges.
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Return today's date as "YYYY-MM-DD". */
-    function todayISO() {
-        return new Date().toISOString().split("T")[0];
-    }
-
-    /** Mark today as practiced (idempotent). */
-    function checkInToday() {
-        const today = todayISO();
-
-        if (!streakData.activeDays.includes(today)) {
-            streakData.activeDays.push(today);
-            streakData.lastCheckin = today;
-        }
-
-        computeStreak();
-        saveStreakData();
-        renderStreakCalendar();
-        updateHUD();
-    }
-
-    /**
-     * Recompute currentStreak and bestStreak from activeDays.
-     * A streak is consecutive calendar days up to and including today.
-     */
-    function computeStreak() {
-        const days = [...new Set(streakData.activeDays)].sort();
-
-        // Compute current streak (counting back from today)
-        let current = 0;
-        const today = todayISO();
-        let check   = today;
-
-        while (days.includes(check)) {
-            current++;
-            const prev  = new Date(check);
-            prev.setDate(prev.getDate() - 1);
-            check = prev.toISOString().split("T")[0];
-        }
-
-        streakData.currentStreak = current;
-
-        // Compute best streak
-        let best = 0, run = 0;
-        for (let i = 0; i < days.length; i++) {
-            if (i === 0) {
-                run = 1;
-            } else {
-                const prev = new Date(days[i - 1]);
-                prev.setDate(prev.getDate() + 1);
-                const expected = prev.toISOString().split("T")[0];
-                if (days[i] === expected) {
-                    run++;
-                } else {
-                    run = 1;
-                }
-            }
-            if (run > best) best = run;
-        }
-
-        streakData.bestStreak = Math.max(best, streakData.bestStreak || 0);
-    }
-
-    /** Render the 28-day calendar grid. */
-    function renderStreakCalendar() {
-        const calendar = document.getElementById("streak-calendar");
-        const today    = todayISO();
-        const days     = [...new Set(streakData.activeDays)];
-
-        // Generate last 28 days
-        const grid = [];
-        for (let i = 27; i >= 0; i--) {
-            const d = new Date();
-            d.setDate(d.getDate() - i);
-            grid.push(d.toISOString().split("T")[0]);
-        }
-
-        calendar.innerHTML = grid.map(dateStr => {
-            const isToday  = dateStr === today;
-            const isActive = days.includes(dateStr) && !isToday;
-            const dayNum   = new Date(dateStr).getDate();
-
-            let cls = "streak-day ";
-            let lbl = dayNum;
-
-            if (isToday)       { cls += "today";    lbl = "★"; }
-            else if (isActive) { cls += "active";   }
-            else               { cls += "inactive"; }
-
-            return `<div class="${cls}" title="${dateStr}">${lbl}</div>`;
-        }).join("");
-
-        // Update stat displays
-        document.getElementById("streak-count").innerText        = streakData.currentStreak || 0;
-        document.getElementById("best-streak").innerText         = streakData.bestStreak     || 0;
-        document.getElementById("total-practice-days").innerText = days.length;
-        document.getElementById("last-active").innerText         = streakData.lastCheckin
-            ? new Date(streakData.lastCheckin).toLocaleDateString("id-ID", {
-                day: "numeric", month: "short"
-              })
-            : "—";
-
-        renderMilestoneBadges();
-    }
-
-    /** Render milestone achievement badges based on streaks. */
-    function renderMilestoneBadges() {
-        const milestones = [
-            { days: 1,   emoji: "🌱", label: "First Step"   },
-            { days: 3,   emoji: "🔥", label: "3-Day Fire"   },
-            { days: 7,   emoji: "⭐", label: "1-Week Star"  },
-            { days: 14,  emoji: "🏅", label: "2-Week Hero"  },
-            { days: 30,  emoji: "🏆", label: "30-Day Legend"},
-            { days: 100, emoji: "👑", label: "Centurion"    }
-        ];
-
-        const totalDays = [...new Set(streakData.activeDays)].length;
-        const container = document.getElementById("milestone-badges");
-
-        container.innerHTML = milestones.map(m => {
-            const unlocked = totalDays >= m.days;
-            return `
-                <div class="px-4 py-2 rounded-xl text-sm text-center transition-all"
-                     style="background: ${unlocked
-                         ? "rgba(212,175,55,0.20)"
-                         : "rgba(255,255,255,0.04)"};
-                            border: 1px solid ${unlocked
-                         ? "rgba(212,175,55,0.60)"
-                         : "rgba(255,255,255,0.10)"};
-                            opacity: ${unlocked ? 1 : 0.45};">
-                    <div class="text-2xl">${m.emoji}</div>
-                    <div class="font-cinzel text-xs mt-1"
-                         style="color: ${unlocked ? "var(--gold)" : "rgba(255,255,255,0.40)"};">
-                        ${m.label}
-                    </div>
-                    <div class="text-xs" style="color: rgba(255,255,255,0.30);">
-                        ${m.days} days
-                    </div>
-                </div>
-            `;
-        }).join("");
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-16  ✦ NEW FEATURE 3 — VOCABULARY BOOKMARK LIBRARY
-       ════════════════════════════════════════════════════════════════════
-
-       Words from lyrics/vocab cards can be bookmarked for later review.
-       Library displays in a clean grid, supports CSV export and
-       flashcard-style review mode.
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Check if a word is already bookmarked. */
-    function isBookmarked(hanzi, pinyin) {
-        return bookmarks.some(b => b.hanzi === hanzi && b.pinyin === pinyin);
-    }
-
-    /** Toggle bookmark status of a word. */
-    function toggleWordBookmark(hanzi, pinyin, arti, song) {
-        const existsIdx = bookmarks.findIndex(b => b.hanzi === hanzi && b.pinyin === pinyin);
-
-        if (existsIdx >= 0) {
-            // Remove bookmark
-            bookmarks.splice(existsIdx, 1);
-            showToast("🗑", "Removed", hanzi + " removed from library");
-        } else {
-            // Add bookmark
-            bookmarks.push({ hanzi, pinyin, arti, song, addedAt: Date.now() });
-            addXP(3);
-            showToast("🔖", "Bookmarked!", hanzi + " saved to library");
-        }
-
-        saveBookmarks();
-        renderBookmarkGrid();
-
-        // Re-render lyrics and vocab to reflect new bookmark state
-        renderLyrics(currentSong);
-        renderVocab(currentSong);
-    }
-
-    /** Render the bookmark grid. */
-    function renderBookmarkGrid() {
-        const grid  = document.getElementById("bookmark-grid");
-        const empty = document.getElementById("bookmark-empty");
-        const count = document.getElementById("bookmark-count");
-
-        count.innerText = bookmarks.length;
-
-        if (!bookmarks.length) {
-            grid.innerHTML  = "";
-            empty.classList.remove("hidden");
-            return;
-        }
-
-        empty.classList.add("hidden");
-
-        grid.innerHTML = bookmarks
-            .slice()
-            .reverse()  // newest first
-            .map((bm, idx) => `
-                <div class="bookmark-card">
-                    <div class="flex items-center gap-3">
-                        <div class="text-3xl font-noto"
-                             style="color: var(--gold);">${bm.hanzi}</div>
-                        <div>
-                            <div class="text-sm font-semibold"
-                                 style="color: rgba(212,175,55,0.85);">${bm.pinyin}</div>
-                            <div class="text-sm">${bm.arti}</div>
-                            <div class="text-xs mt-1"
-                                 style="color: rgba(255,255,255,0.30);">
-                                📀 ${bm.song}
-                            </div>
-                        </div>
-                    </div>
-                    <button
-                        class="remove-btn"
-                        onclick="removeBookmark(${bookmarks.length - 1 - idx})"
-                        title="Remove bookmark"
-                    >✕</button>
-                </div>
-            `).join("");
-    }
-
-    /** Remove a bookmark by index. */
-    function removeBookmark(idx) {
-        bookmarks.splice(idx, 1);
-        saveBookmarks();
-        renderBookmarkGrid();
-        renderLyrics(currentSong);
-        renderVocab(currentSong);
-    }
-
-    /** Clear all bookmarks after confirmation. */
-    function clearAllBookmarks() {
-        if (!bookmarks.length) return;
-        if (!confirm(`Clear all ${bookmarks.length} bookmarks? This cannot be undone.`)) return;
-        bookmarks = [];
-        saveBookmarks();
-        renderBookmarkGrid();
-        renderLyrics(currentSong);
-        renderVocab(currentSong);
-        showToast("🗑", "Cleared", "All bookmarks removed");
-    }
-
-    /** Export bookmarks as a CSV download. */
-    function exportBookmarksCSV() {
-        if (!bookmarks.length) {
-            showToast("⚠️", "No bookmarks", "Add some words first");
-            return;
-        }
-
-        const header = "Hanzi,Pinyin,Meaning,Song\n";
-        const rows   = bookmarks
-            .map(bm => `"${bm.hanzi}","${bm.pinyin}","${bm.arti}","${bm.song}"`)
-            .join("\n");
-
-        const blob = new Blob([header + rows], { type: "text/csv;charset=utf-8;" });
-        const url  = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href     = url;
-        link.download = "mandarin_bookmarks.csv";
-        link.click();
-        URL.revokeObjectURL(url);
-    }
-
-    /* ── Bookmark Review Mode ── */
-
-    /** Enter flashcard review mode for bookmarks. */
-    function reviewBookmarks() {
-        if (!bookmarks.length) {
-            showToast("⚠️", "No bookmarks", "Add words to review first");
-            return;
-        }
-
-        bmReviewIndex = 0;
-        bmFlipped     = false;
-
-        document.getElementById("bookmark-review-overlay").classList.remove("hidden");
-        gotoSection("#bookmark-section");
-        renderBmCard();
-    }
-
-    function renderBmCard() {
-        const bm = bookmarks[bmReviewIndex];
-        if (!bm) return;
-
-        const wrapper = document.getElementById("bm-fc-wrapper");
-        bmFlipped     = false;
-        wrapper.classList.remove("flipped");
-
-        document.getElementById("bm-fc-front").innerText   = bm.hanzi;
-        document.getElementById("bm-fc-back-h").innerText  = bm.hanzi;
-        document.getElementById("bm-fc-pin").innerText     = bm.pinyin;
-        document.getElementById("bm-fc-mean").innerText    = bm.arti;
-    }
-
-    function flipBmCard() {
-        const wrapper = document.getElementById("bm-fc-wrapper");
-        bmFlipped     = !bmFlipped;
-        wrapper.classList.toggle("flipped", bmFlipped);
-    }
-
-    function nextBmCard(direction) {
-        bmReviewIndex = (bmReviewIndex + direction + bookmarks.length) % bookmarks.length;
-        renderBmCard();
-    }
-
-    function exitBookmarkReview() {
-        document.getElementById("bookmark-review-overlay").classList.add("hidden");
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-17  UTILITIES  (toast, scroll, theme)
-       ════════════════════════════════════════════════════════════════════ */
-
-    /** Smooth-scroll to a section. */
-    function gotoSection(selector) {
-        const el = document.querySelector(selector);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-
-    /** Toggle between dark and light theme. */
-    function toggleTheme() {
-        const html    = document.documentElement;
-        const current = html.getAttribute("data-theme");
-        const next    = (current === "light") ? "dark" : "light";
-        html.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
-    }
-
-    /** Load saved theme preference. */
-    function loadTheme() {
-        const saved = localStorage.getItem("theme") || "dark";
-        document.documentElement.setAttribute("data-theme", saved);
-    }
-
-    /**
-     * Show a brief centered toast notification.
-     * @param {string} emoji
-     * @param {string} title
-     * @param {string} sub
-     */
-    function showToast(emoji, title, sub) {
-        const toast = document.getElementById("score-toast");
-        toast.innerHTML = `
-            <div style="font-size: 2rem; margin-bottom: 4px;">${emoji}</div>
-            <div style="font-family: 'Cinzel', serif; color: var(--gold);
-                        font-weight: 700; font-size: 1rem;">${title}</div>
-            <div style="font-size: 0.80rem; color: rgba(255,255,255,0.60);
-                        margin-top: 2px;">${sub}</div>
-        `;
-        toast.classList.remove("hidden");
-        setTimeout(() => toast.classList.add("hidden"), 2500);
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════════
-       §JS-18  INITIALISATION
-       Called once when the page finishes loading.
-       ════════════════════════════════════════════════════════════════════ */
-    window.onload = function () {
-        // Apply saved theme before any paint
-        loadTheme();
-
-        // Load persisted data
-        loadGameData();
-        loadLeaderboard();
-        loadBookmarks();
-        loadStreakData();
-
-        // Build UI components
-        buildTabs();
-        selectSong(0);     // triggers renderLyrics + renderVocab
-        loadQuizWord();
-
-        // Build flashcard deck from all songs
-        buildFlashcardDeck("all");
-        buildFlashcardFilters();
-
-        // Greet the user with a welcome bubble in AI chat
-        setTimeout(() => {
-            appendChatBubble(
-                "🀄 <strong>Hao! 你好！</strong><br>Saya adalah AI tutor Mandarin Anda. " +
-                "Tanyakan apa saja — arti kata, cara pelafalan, grammar, atau makna lirik lagu! 😊",
-                "ai"
-            );
-        }, 800);
-
-        // Auto-check in today if user has practiced before (returning user)
-        if (practiceCount > 0) {
-            checkInToday();
-        }
-    };
-
-</script>
 </body>
 </html>
