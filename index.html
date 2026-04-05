@@ -3,243 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NIKEN KHO 许芬琪 | THE VVIP EXPERIENCE</title>
+<title>NIKEN KHO 许芬琪 | Official VVIP EPK</title>
+<meta name="description" content="Electronic Press Kit - Niken Kho 许芬琪. Diva Pop Mandarin & Hokkien dari Bengkalis.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Noto+Serif+TC:wght@300;600;900&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+TC:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          'void': '#050505',
-          'gold-leaf': '#D4AF37',
-          'gold-dust': '#F3E5AB',
-          'glass': 'rgba(255, 255, 255, 0.03)',
-          'glass-border': 'rgba(212, 175, 55, 0.15)'
+          'pearl': '#FCFCFA',
+          'ivory': '#F4F1EA',
+          'imperial-gold': '#C9A84C',
+          'gold-light': '#E8D28A',
+          'crimson': '#8B0000',
+          'charcoal': '#1A1A1A',
+          'glass': 'rgba(255, 255, 255, 0.7)'
         },
         fontFamily: {
-          cinzel: ['Cinzel', 'serif'],
+          serif: ['"Playfair Display"', 'serif'],
           chinese: ['"Noto Serif TC"', 'serif'],
-          mont: ['Montserrat', 'sans-serif'],
+          sans: ['"Lato"', 'sans-serif']
         },
-        backgroundImage: {
-          'radial-glow': 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.15) 0%, rgba(5,5,5,1) 70%)',
+        boxShadow: {
+          'luxury': '0 20px 40px rgba(201, 168, 76, 0.1)',
+          'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)'
         }
       }
     }
   }
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 <style>
-  /* GLOBAL LUXURY RESET */
-  body { background-color: #050505; color: #F3E5AB; overflow-x: hidden; cursor: crosshair; }
-  ::selection { background: #D4AF37; color: #050505; }
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #050505; }
-  ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-
-  /* NOISE TEXTURE OVERLAY FOR CINEMATIC FEEL */
-  .noise-bg {
-    position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
-    background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-  }
-
-  /* GLASSMORPHISM & NEUMORPHISM FOR SULTAN */
-  .glass-panel {
-    background: rgba(20, 20, 20, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
-  }
-
-  /* GLOWING TEXT EFFECT */
-  .text-glow {
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.2);
-  }
-
-  /* HOVER BUTTON ANIMATIONS */
-  .btn-gold {
-    position: relative; overflow: hidden; transition: all 0.5s ease;
-    background: linear-gradient(45deg, #050505, #1a1500);
-    border: 1px solid #D4AF37;
-  }
-  .btn-gold::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
-    transition: all 0.5s ease;
-  }
-  .btn-gold:hover::before { left: 100%; }
-  .btn-gold:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); transform: translateY(-3px); }
-
-  /* BENTO GRID SOCIAL MEDIA */
-  .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-  .bento-card {
-    height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-decoration: none; position: relative; overflow: hidden; border-radius: 20px;
-    background: linear-gradient(145deg, #111, #0a0a0a);
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  .bento-card:hover { border-color: #D4AF37; box-shadow: 0 20px 40px rgba(212,175,55,0.15); z-index: 10; }
-  .bento-icon { font-size: 4rem; margin-bottom: 15px; color: #D4AF37; transition: transform 0.4s ease; }
-  .bento-card:hover .bento-icon { transform: scale(1.2) translateY(-10px); color: #FFF; text-shadow: 0 0 20px #D4AF37; }
-  .bento-text { font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 2px; color: #F3E5AB; text-transform: uppercase; }
+  /* GLOBAL STYLES */
+  body { background-color: #FCFCFA; color: #1A1A1A; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #F4F1EA; }
+  ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 4px; }
   
-  /* THEATER MODE VIDEO */
-  .video-container { position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid rgba(212,175,55,0.3); }
-  .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-  /* HORIZONTAL SCROLL */
-  .h-scroll-container { width: 300vw; display: flex; height: 100vh; }
-  .h-panel { width: 100vw; height: 100vh; display: flex; align-items: center; padding: 0 10vw; position: relative; }
-
-  /* FLOATING AI CONCIERGE */
-  .ai-orb {
-    position: fixed; bottom: 40px; right: 40px; width: 70px; height: 70px;
-    border-radius: 50%; background: radial-gradient(circle at 30% 30%, #D4AF37, #4a3b00);
-    box-shadow: 0 0 20px rgba(212,175,55,0.4), inset 0 0 20px rgba(255,255,255,0.5);
-    z-index: 100; cursor: pointer; animation: breathe 3s infinite alternate;
-    display: flex; justify-content: center; align-items: center; font-size: 1.5rem; color: #000;
+  /* TEXT GRADIENTS & ACCENTS */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #9A7A2C 0%, #C9A84C 50%, #E8D28A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  @keyframes breathe { 0% { transform: scale(1) translateY(0); box-shadow: 0 0 20px rgba(212,175,55,0.4); } 100% { transform: scale(1.05) translateY(-10px); box-shadow: 0 0 40px rgba(212,175,55,0.8); } }
+  .accent-line { width: 80px; height: 2px; background: #C9A84C; margin: 1.5rem auto; }
+  
+  /* BUTTON LUXURY */
+  .btn-luxury {
+    position: relative; overflow: hidden; transition: all 0.4s ease;
+    background: #FCFCFA; border: 1px solid #C9A84C; color: #1A1A1A;
+    font-family: 'Playfair Display', serif; text-transform: uppercase; letter-spacing: 2px;
+  }
+  .btn-luxury::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: #C9A84C; transition: all 0.4s ease; z-index: -1;
+  }
+  .btn-luxury:hover::before { left: 0; }
+  .btn-luxury:hover { color: #FFFFFF; box-shadow: 0 10px 20px rgba(201,168,76,0.3); transform: translateY(-3px); }
+
+  /* BENTO GRID LUXURY (LIGHT MODE) */
+  .bento-card {
+    background: #FFFFFF; border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; text-align: center;
+    transition: all 0.4s ease; text-decoration: none; position: relative; overflow: hidden;
+  }
+  .bento-card:hover {
+    border-color: #C9A84C; box-shadow: 0 15px 35px rgba(201,168,76,0.15); transform: translateY(-5px);
+  }
+  .bento-icon { font-size: 3rem; color: #C9A84C; margin-bottom: 1rem; transition: transform 0.4s ease; }
+  .bento-card:hover .bento-icon { transform: scale(1.1); }
+
+  /* HORIZONTAL SCROLL (JEJAK DIGITAL) */
+  .horizontal-wrapper { width: 100%; height: 100vh; overflow: hidden; position: relative; background: #F4F1EA; }
+  .horizontal-container { display: flex; width: 400vw; height: 100%; }
+  .horizontal-panel {
+    width: 100vw; height: 100%; display: flex; flex-direction: column; justify-content: center;
+    padding: 0 10vw; position: relative; border-right: 1px solid rgba(201,168,76,0.3);
+  }
+  .year-mark {
+    font-size: 8rem; font-family: 'Playfair Display', serif; font-weight: 900;
+    color: rgba(201,168,76,0.1); position: absolute; top: 10%; left: 10%; z-index: 0;
+  }
+
+  /* IN-SITE YOUTUBE PLAYER */
+  .iframe-container {
+    position: relative; width: 100%; padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 2px solid rgba(201,168,76,0.3); background: #1A1A1A;
+  }
+  .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+  /* FLOATING AI BOT */
+  .ai-bot-btn {
+    position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+    background: #FFFFFF; border: 2px solid #C9A84C; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    box-shadow: 0 10px 25px rgba(201,168,76,0.3); cursor: pointer; z-index: 9999;
+    transition: transform 0.3s ease; animation: floatBot 3s infinite ease-in-out;
+  }
+  .ai-bot-btn:hover { transform: scale(1.1); background: #C9A84C; color: white; }
+  @keyframes floatBot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  
+  .ai-bot-window {
+    position: fixed; bottom: 110px; right: 30px; width: 350px;
+    background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+    border: 1px solid #C9A84C; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    z-index: 9998; display: none; overflow: hidden; flex-direction: column;
+  }
+  .ai-header { background: #F4F1EA; padding: 1rem; border-bottom: 1px solid rgba(201,168,76,0.3); text-align: center; font-family: 'Playfair Display', serif; font-weight: bold; color: #1A1A1A; }
+  .ai-body { padding: 1.5rem; max-height: 350px; overflow-y: auto; font-family: 'Lato', sans-serif; font-size: 0.9rem; display: flex; flex-direction: column; gap: 1rem; }
+  .ai-msg { background: #F8F9FA; padding: 12px 16px; border-radius: 12px 12px 12px 0; border: 1px solid #EAEAEA; line-height: 1.5; }
+  .ai-options { display: flex; flex-direction: column; gap: 8px; }
+  .ai-opt-btn { background: white; border: 1px solid #C9A84C; color: #C9A84C; padding: 10px; border-radius: 8px; cursor: pointer; text-align: left; transition: all 0.2s; }
+  .ai-opt-btn:hover { background: #C9A84C; color: white; }
 </style>
 </head>
-<body class="bg-radial-glow">
-  <div class="noise-bg"></div>
+<body class="antialiased">
 
-  <section class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden">
-    <div class="absolute w-[800px] h-[800px] bg-gold-leaf rounded-full blur-[150px] opacity-10 -top-20 -right-20 pointer-events-none"></div>
-    
-    <div class="z-10 gs-reveal">
-      <p class="font-mont text-xs tracking-[0.6em] text-gold-leaf mb-6 uppercase">The Ultimate Masterpiece</p>
-      <h1 class="font-cinzel text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500 tracking-widest text-glow mb-2">NIKEN KHO</h1>
-      <h2 class="font-chinese text-6xl md:text-8xl text-gold-leaf mb-10 drop-shadow-2xl">许芬琪</h2>
-      
-      <div class="flex items-center justify-center gap-6 mb-12">
-        <div class="w-24 h-[1px] bg-gold-leaf opacity-50"></div>
-        <span class="font-cinzel text-gold-leaf text-xl">✤</span>
-        <div class="w-24 h-[1px] bg-gold-leaf opacity-50"></div>
-      </div>
-      
-      <a href="#booking-wizard" class="btn-gold inline-block px-12 py-5 font-cinzel text-gold-leaf font-bold tracking-[0.3em] uppercase text-sm rounded-full">
-        Reserve The Diva
+  <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-imperial-gold/20 shadow-sm">
+      <a href="#" class="font-serif text-2xl font-black text-charcoal tracking-widest">
+        NIKEN KHO <span class="font-chinese text-imperial-gold">许芬琪</span>
       </a>
-    </div>
-  </section>
-
-  <section class="py-32 px-6 relative">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-20 gs-reveal">
-        <h2 class="font-cinzel text-4xl md:text-5xl text-white mb-4">Digital <span class="text-gold-leaf italic">Eminence</span></h2>
-        <p class="font-mont text-sm tracking-widest text-gray-400 uppercase">Jejak Karya di Multi-Platform</p>
-      </div>
-
-      <div class="bento-grid gs-reveal">
-        <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="bento-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3">
-          <div class="bento-icon">🎵</div>
-          <div class="bento-text">TikTok</div>
-          <p class="font-mont text-xs text-gray-500 mt-2 tracking-widest">Viral Hits</p>
-        </a>
-        <a href="https://www.instagram.com/nikenkhor" target="_blank" class="bento-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3">
-          <div class="bento-icon">📸</div>
-          <div class="bento-text">Instagram</div>
-          <p class="font-mont text-xs text-gray-500 mt-2 tracking-widest">Visual Diary</p>
-        </a>
-        <a href="https://youtube.com/@nikenkhor" target="_blank" class="bento-card md:col-span-2" data-tilt data-tilt-glare data-tilt-max-glare="0.3" style="background: linear-gradient(145deg, #1a0f00, #000);">
-          <div class="bento-icon">▶</div>
-          <div class="bento-text text-2xl">YouTube Official</div>
-          <p class="font-mont text-xs text-gold-leaf mt-2 tracking-widest">Millions of Views</p>
-        </a>
-        <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="bento-card md:col-span-2" data-tilt data-tilt-glare data-tilt-max-glare="0.3">
-          <div class="bento-icon">🌐</div>
-          <div class="bento-text text-2xl">Facebook Community</div>
-          <p class="font-mont text-xs text-gray-500 mt-2 tracking-widest">Global Connect</p>
-        </a>
+      <div class="hidden md:flex gap-8 font-sans text-xs tracking-[0.2em] font-bold text-gray-600 uppercase">
+        <a href="#jejak-digital" class="hover:text-imperial-gold transition">The Journey</a>
+        <a href="#showcase" class="hover:text-imperial-gold transition">Media Showcase</a>
+        <a href="#social-bento" class="hover:text-imperial-gold transition">Connect</a>
+        <a href="#booking" class="text-imperial-gold">VVIP Booking</a>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <section class="py-32 bg-black relative border-y border-glass-border">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gs-reveal">
-        <div>
-          <h2 class="font-cinzel text-4xl md:text-5xl text-white mb-2">Live <span class="text-gold-leaf italic">Mastery</span></h2>
-          <p class="font-mont text-sm tracking-widest text-gray-400 uppercase">Saksikan Pesona Panggung Sebenarnya</p>
-        </div>
-      </div>
-
-      <div id="video-theater" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 gs-reveal">
-        <div class="col-span-full text-center py-20 font-cinzel text-gold-leaf animate-pulse">Menghubungkan ke Satelit YouTube...</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="booking-wizard" class="py-32 relative overflow-hidden">
-    <div class="absolute w-[600px] h-[600px] bg-gold-leaf rounded-full blur-[200px] opacity-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+  <section class="relative w-full min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
+    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23C9A84C\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     
-    <div class="max-w-5xl mx-auto px-6 relative z-10 gs-reveal">
-      <div class="text-center mb-16">
-        <h2 class="font-cinzel text-5xl md:text-6xl text-white mb-4">The <span class="text-gold-leaf italic">Concierge</span></h2>
-        <p class="font-mont text-sm tracking-[0.3em] text-gray-400 uppercase">Sistem Reservasi Eksklusif</p>
+    <div class="z-10 fade-in-up max-w-4xl mx-auto">
+      <p class="font-sans text-xs md:text-sm tracking-[0.5em] text-imperial-gold mb-6 uppercase font-bold">
+        Official Electronic Press Kit
+      </p>
+      
+      <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-black text-charcoal mb-2 tracking-tighter">
+        NIKEN KHO
+      </h1>
+      <h2 class="font-chinese text-5xl md:text-7xl lg:text-8xl text-gold-gradient mb-8 drop-shadow-sm">
+        许芬琪
+      </h2>
+      
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="w-16 md:w-32 h-[1px] bg-imperial-gold/50"></div>
+        <span class="text-crimson text-xl font-serif">✤</span>
+        <div class="w-16 md:w-32 h-[1px] bg-imperial-gold/50"></div>
+      </div>
+      
+      <p class="font-serif italic text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 px-4">
+        "Menyuarakan harmoni dari Bengkalis hingga ke panggung global. Perpaduan sempurna antara keanggunan Pop Mandarin dan kedalaman jiwa Hokkien."
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="#booking" class="btn-luxury px-10 py-4 font-bold text-sm z-10">
+          Reservasi Eksklusif
+        </a>
+        <a href="https://youtube.com/@nikenkhor" target="_blank" class="px-10 py-4 bg-transparent border border-gray-300 text-charcoal font-serif uppercase tracking-[2px] text-sm hover:border-imperial-gold hover:text-imperial-gold transition duration-300">
+          Official YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="jejak-digital" class="horizontal-wrapper">
+    <div class="horizontal-container" id="journey-container">
+      
+      <div class="horizontal-panel">
+        <div class="year-mark">2015</div>
+        <div class="z-10 max-w-2xl">
+          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Akar & Asal Usul ✦</p>
+          <h2 class="font-serif text-5xl md:text-7xl font-bold text-charcoal mb-6">Gema dari Bengkalis</h2>
+          <div class="w-16 h-[2px] bg-imperial-gold mb-6"></div>
+          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
+            Perjalanan dimulai dari kota Bengkalis, Riau. Lahir dengan nama Niken Angesti, bakat emasnya dalam mengolah vokal mulai terdengar. Di sinilah pondasi musikalitasnya terbentuk, menyerap kekayaan budaya Nusantara dan tradisi Tionghoa.
+          </p>
+        </div>
       </div>
 
-      <div class="glass-panel p-10 md:p-16 rounded-[30px] relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="horizontal-panel bg-pearl">
+        <div class="year-mark">2018</div>
+        <div class="z-10 max-w-2xl">
+          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Transformasi Diva ✦</p>
+          <h2 class="font-serif text-5xl md:text-7xl font-bold text-charcoal mb-6">Lahirnya Niken Kho <span class="font-chinese">许芬琪</span></h2>
+          <div class="w-16 h-[2px] bg-imperial-gold mb-6"></div>
+          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
+            Menemukan identitas panggung sebagai Niken Kho 许芬琪. Ia mulai mendominasi panggung-panggung Chinese Wedding VVIP dan Festival Imlek. Repertoar lagunya meluas, menguasai tembang hits Mandarin dan lagu Hokkien legendaris seperti "Long Cu E Sim Jieng".
+          </p>
+        </div>
+      </div>
+
+      <div class="horizontal-panel">
+        <div class="year-mark">2022</div>
+        <div class="z-10 max-w-2xl">
+          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Penaklukan Digital ✦</p>
+          <h2 class="font-serif text-5xl md:text-7xl font-bold text-charcoal mb-6">Jutaan Penonton</h2>
+          <div class="w-16 h-[2px] bg-imperial-gold mb-6"></div>
+          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
+            Melalui channel YouTube @nikenkhor, suara emasnya menembus batas negara. Vlog dan video penampilannya meraup puluhan juta tayangan. Basis penggemarnya tidak hanya di Indonesia, tetapi merambah ke Malaysia, Taiwan, dan Singapura.
+          </p>
+        </div>
+      </div>
+
+      <div class="horizontal-panel bg-pearl">
+        <div class="year-mark">2026</div>
+        <div class="z-10 max-w-2xl">
+          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Masa Depan ✦</p>
+          <h2 class="font-serif text-5xl md:text-7xl font-bold text-imperial-gold mb-6">Top Music On Stage</h2>
+          <div class="w-16 h-[2px] bg-charcoal mb-6"></div>
+          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
+            Kini, Niken Kho bukan sekadar penyanyi, melainkan jaminan mutu dan kemewahan untuk setiap acara elit. Dengan jam terbang yang tak terhitung, ia siap menghadirkan *masterpiece* di panggung Anda.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="showcase" class="py-32 px-6 bg-white relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 fade-in-up">
+        <span class="text-crimson font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ The Stage Mastery ✦</span>
+        <h2 class="font-serif text-5xl md:text-6xl font-bold text-charcoal mt-4 mb-6">Official Media Showcase</h2>
+        <div class="w-24 h-1 bg-imperial-gold mx-auto"></div>
+        <p class="font-sans mt-6 text-gray-500 max-w-2xl mx-auto">
+          Nikmati penampilan eksklusif dari channel YouTube resmi @nikenkhor langsung di halaman ini. Kualitas vokal, aksi panggung, dan kemegahan performa.
+        </p>
+      </div>
+
+      <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="col-span-full text-center py-20 text-imperial-gold font-serif text-xl animate-pulse">
+          Menyinkronkan data dengan YouTube Official...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="social-bento" class="py-32 px-6 bg-ivory border-y border-imperial-gold/20">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in-up">
+        <h2 class="font-serif text-4xl md:text-5xl text-charcoal mb-4">Digital Connect</h2>
+        <p class="font-sans text-sm tracking-widest text-gray-500 uppercase">Ikuti Perjalanan di Platform Resmi</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-up">
+        <a href="https://youtube.com/@nikenkhor" target="_blank" class="bento-card lg:col-span-2 lg:row-span-2" style="background: #FCFCFA;">
+          <div class="w-full h-full flex flex-col items-center justify-center">
+            <svg class="bento-icon w-20 h-20 mb-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            <h3 class="font-serif text-3xl font-bold text-charcoal mb-2">YouTube</h3>
+            <p class="font-sans text-imperial-gold tracking-[0.2em] uppercase text-sm font-bold">Official Channel</p>
+            <p class="font-sans text-gray-500 mt-4 max-w-xs">Pusat dokumentasi live performance dan Vlog eksklusif Niken Kho.</p>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/nikenkhor" target="_blank" class="bento-card">
+          <svg class="bento-icon w-12 h-12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-charcoal">Instagram</h3>
+          <p class="font-sans text-gray-500 text-xs uppercase mt-2 tracking-widest">Visual Diary</p>
+        </a>
+
+        <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="bento-card">
+          <svg class="bento-icon w-12 h-12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.94a8.17 8.17 0 004.78 1.52V7.01a4.85 4.85 0 01-1.01-.32z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-charcoal">TikTok</h3>
+          <p class="font-sans text-gray-500 text-xs uppercase mt-2 tracking-widest">Viral Moments</p>
+        </a>
+
+        <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="bento-card lg:col-span-2">
+          <svg class="bento-icon w-12 h-12 mb-2" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-charcoal">Facebook Page</h3>
+          <p class="font-sans text-gray-500 text-xs uppercase mt-2 tracking-widest">Fan Community</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="py-32 bg-white px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 fade-in-up">
+        <span class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ Global Booking ✦</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal mt-4">Sistem Reservasi VVIP</h2>
+        <p class="font-sans mt-4 text-gray-500">Lengkapi formulir di bawah ini untuk terhubung langsung dengan Management.</p>
+      </div>
+
+      <div class="bg-pearl p-8 md:p-12 rounded-2xl border border-gray-200 shadow-glass fade-in-up relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-imperial-gold opacity-50"></div>
+        <div class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-imperial-gold opacity-50"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
           
-          <div class="space-y-8">
-            <h3 class="font-cinzel text-2xl text-gold-leaf border-b border-glass-border pb-3">Informasi Acara</h3>
+          <div class="space-y-6">
+            <h3 class="font-serif text-xl font-bold text-charcoal border-b border-gray-200 pb-2">Data Acara</h3>
             
-            <div class="group relative">
-              <input type="text" id="picName" class="w-full bg-transparent border-b-2 border-gray-700 py-3 text-white font-mont focus:outline-none focus:border-gold-leaf transition peer" placeholder=" ">
-              <label class="absolute left-0 top-3 text-gray-500 font-mont text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-gold-leaf peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm">Nama Promotor / PIC</label>
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Nama Promotor / Klien</label>
+              <input type="text" id="picName" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 font-sans focus:outline-none focus:border-imperial-gold focus:ring-1 focus:ring-imperial-gold transition" placeholder="Masukkan nama lengkap">
             </div>
 
-            <div class="group relative">
-              <input type="text" id="eventName" class="w-full bg-transparent border-b-2 border-gray-700 py-3 text-white font-mont focus:outline-none focus:border-gold-leaf transition peer" placeholder=" ">
-              <label class="absolute left-0 top-3 text-gray-500 font-mont text-sm uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-gold-leaf peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm">Tipe & Nama Acara (Wedding/Corporate)</label>
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Jenis & Nama Acara</label>
+              <input type="text" id="eventName" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 font-sans focus:outline-none focus:border-imperial-gold focus:ring-1 focus:ring-imperial-gold transition" placeholder="Contoh: Chinese Wedding Sultan">
             </div>
 
-            <div class="group relative">
-              <input type="date" id="eventDate" class="w-full bg-transparent border-b-2 border-gray-700 py-3 text-white font-mont focus:outline-none focus:border-gold-leaf transition">
-              <label class="absolute left-0 -top-4 text-gold-leaf font-mont text-xs uppercase tracking-widest">Tanggal Pelaksanaan</label>
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Tanggal Pelaksanaan</label>
+              <input type="date" id="eventDate" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 font-sans focus:outline-none focus:border-imperial-gold focus:ring-1 focus:ring-imperial-gold transition">
             </div>
           </div>
 
-          <div class="space-y-8">
-            <h3 class="font-cinzel text-2xl text-gold-leaf border-b border-glass-border pb-3">Titik Lokasi</h3>
+          <div class="space-y-6">
+            <h3 class="font-serif text-xl font-bold text-charcoal border-b border-gray-200 pb-2">Lokasi Wilayah</h3>
 
             <div>
-              <select id="provinsi" onchange="loadKabupaten()" class="w-full bg-void border-b-2 border-gray-700 py-3 text-gray-300 font-mont focus:outline-none focus:border-gold-leaf cursor-pointer appearance-none">
-                <option value="">PILIH PROVINSI</option>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Provinsi</label>
+              <select id="provinsi" onchange="loadKabupaten()" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 font-sans focus:outline-none focus:border-imperial-gold cursor-pointer">
+                <option value="">Pilih Provinsi</option>
               </select>
             </div>
+            
             <div>
-              <select id="kabupaten" onchange="loadKecamatan()" disabled class="w-full bg-void border-b-2 border-gray-700 py-3 text-gray-300 font-mont focus:outline-none focus:border-gold-leaf cursor-pointer appearance-none disabled:opacity-30">
-                <option value="">KOTA / KABUPATEN</option>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Kabupaten / Kota</label>
+              <select id="kabupaten" onchange="loadKecamatan()" disabled class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 font-sans focus:outline-none focus:border-imperial-gold cursor-pointer disabled:bg-gray-100">
+                <option value="">Pilih Kab/Kota</option>
               </select>
             </div>
-            <div>
-              <select id="kecamatan" onchange="loadDesa()" disabled class="w-full bg-void border-b-2 border-gray-700 py-3 text-gray-300 font-mont focus:outline-none focus:border-gold-leaf cursor-pointer appearance-none disabled:opacity-30">
-                <option value="">KECAMATAN</option>
-              </select>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-[0.1em] mb-2 truncate">Kecamatan</label>
+                <select id="kecamatan" onchange="loadDesa()" disabled class="w-full bg-white border border-gray-300 rounded-lg py-3 px-2 font-sans focus:outline-none focus:border-imperial-gold cursor-pointer disabled:bg-gray-100 text-sm">
+                  <option value="">Pilih</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-[0.1em] mb-2 truncate">Desa</label>
+                <select id="desa" disabled class="w-full bg-white border border-gray-300 rounded-lg py-3 px-2 font-sans focus:outline-none focus:border-imperial-gold cursor-pointer disabled:bg-gray-100 text-sm">
+                  <option value="">Pilih</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          <div class="col-span-full mt-8">
-            <button onclick="generateLuxuryWA()" class="w-full btn-gold py-6 rounded-xl font-cinzel text-xl text-gold-leaf tracking-[0.2em] shadow-2xl flex items-center justify-center gap-4">
-              <span>Secure Your Date</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="col-span-full mt-4">
+            <button onclick="submitWhatsapp()" class="w-full btn-luxury py-5 rounded-xl font-bold flex items-center justify-center gap-3">
+              Kirim Ringkasan ke WhatsApp Management
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </button>
-            <p class="text-center font-mont text-xs text-gray-600 mt-4 tracking-widest">*Sistem akan menyiapkan ringkasan eksekutif ke WhatsApp Manager</p>
           </div>
 
         </div>
@@ -247,136 +368,222 @@
     </div>
   </section>
 
-  <footer class="py-10 border-t border-glass-border text-center">
-    <h2 class="font-cinzel text-2xl text-white mb-2">NIKEN KHO <span class="font-chinese text-gold-leaf">许芬琪</span></h2>
-    <p class="font-mont text-[10px] tracking-[0.4em] text-gray-500 uppercase">© 2026 GLOBAL ARTIST REPRESENTATIVE</p>
+  <footer class="bg-charcoal text-white py-16 text-center border-t-4 border-imperial-gold">
+    <h2 class="font-serif text-3xl font-bold mb-2">NIKEN KHO <span class="font-chinese text-imperial-gold">许芬琪</span></h2>
+    <p class="font-sans text-xs tracking-[0.4em] text-gray-400 mb-8 uppercase">Official Management Representative</p>
+    <div class="w-16 h-[1px] bg-imperial-gold mx-auto mb-8"></div>
+    <p class="font-sans text-xs text-gray-500 uppercase tracking-widest">© 2026 Designed for The Elite. All Rights Reserved.</p>
   </footer>
 
-  <div class="ai-orb" onclick="alert('The AI Concierge is active. Hubungi WA untuk terhubung dengan Executive Manager.')">
-    ✦
+  <div class="ai-bot-btn" onclick="toggleBot()" title="Chat dengan Asisten AI">
+    💬
+  </div>
+
+  <div class="ai-bot-window" id="botWindow">
+    <div class="ai-header flex justify-between items-center">
+      <span>Asisten Virtual 琪琪</span>
+      <button onclick="toggleBot()" class="text-xl leading-none hover:text-crimson">&times;</button>
+    </div>
+    <div class="ai-body" id="botBody">
+      <div class="ai-msg">
+        <strong>Halo!</strong> Saya asisten virtual representatif dari Niken Kho 许芬琪. Ada informasi yang ingin Anda tanyakan seputar booking atau spesifikasi panggung?
+      </div>
+      <div class="ai-options" id="botOptions">
+        <button class="ai-opt-btn" onclick="botReply('Jadwal & Ketersediaan')">📅 Cek Jadwal & Ketersediaan</button>
+        <button class="ai-opt-btn" onclick="botReply('Rate Card / Harga')">💎 Informasi Rate Card (Harga)</button>
+        <button class="ai-opt-btn" onclick="botReply('Technical Rider')">🎤 Technical & Hospitality Rider</button>
+      </div>
+    </div>
   </div>
 
 <script>
-  // 1. ADVANCED TILT EFFECTS FOR BENTO BOX
-  VanillaTilt.init(document.querySelectorAll(".bento-card"), { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
-
-  // 2. GSAP REVEAL ANIMATIONS
+  // 1. GSAP ANIMATIONS & HORIZONTAL SCROLL
   gsap.registerPlugin(ScrollTrigger);
-  gsap.utils.toArray('.gs-reveal').forEach(function(elem) {
+  
+  // Fade in up elements
+  gsap.utils.toArray('.fade-in-up').forEach(elem => {
     gsap.fromTo(elem, 
-      { autoAlpha: 0, y: 50 }, 
-      { duration: 1.2, autoAlpha: 1, y: 0, ease: "expo.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
+      { autoAlpha: 0, y: 40 }, 
+      { duration: 1, autoAlpha: 1, y: 0, ease: "power3.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
     );
   });
 
-  // 3. YOUTUBE IN-SITE THEATER
-  const YT_KEY = 'AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8';
+  // Jejak Digital Horizontal Scroll Logic
+  let sections = gsap.utils.toArray(".horizontal-panel");
+  gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".horizontal-wrapper",
+      pin: true,
+      scrub: 1,
+      snap: 1 / (sections.length - 1),
+      end: () => "+=" + document.querySelector(".horizontal-wrapper").offsetWidth
+    }
+  });
+
+  // 2. YOUTUBE IN-SITE PLAYER API
+  const YT_API_KEY = 'AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8';
+  const YT_HANDLE = '@nikenkhor';
   
-  async function loadCinematicVideos() {
-    const theater = document.getElementById('video-theater');
+  async function loadYouTubeVideos() {
+    const grid = document.getElementById('video-grid');
     try {
-      // 1. Get Channel ID strictly from handle
-      const chRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=@nikenkhor&type=channel&key=${YT_KEY}`);
+      // Get Channel ID
+      const chRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${YT_HANDLE}&type=channel&key=${YT_API_KEY}`);
       const chData = await chRes.json();
       if(!chData.items || chData.items.length === 0) throw new Error("Channel API failed");
       const chId = chData.items[0].snippet.channelId;
 
-      // 2. Fetch Latest 3 Videos
-      const vidRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${chId}&maxResults=3&order=date&type=video&key=${YT_KEY}`);
+      // Fetch Latest 3 Videos
+      const vidRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${chId}&maxResults=3&order=date&type=video&key=${YT_API_KEY}`);
       const vidData = await vidRes.json();
       
-      theater.innerHTML = ''; // Clear loading
+      grid.innerHTML = ''; // Clear loading message
       
       vidData.items.forEach((item, index) => {
         const vid = item.id.videoId;
         const title = item.snippet.title;
         
+        // Buat IFRAME pembungkus untuk putar langsung
         const wrapper = document.createElement('div');
-        wrapper.className = `glass-panel p-3 rounded-2xl transition duration-500 hover:scale-105 ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`;
+        wrapper.className = `fade-in-up ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`;
         
         wrapper.innerHTML = `
-          <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/${vid}?controls=1&rel=0&modestbranding=1" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-          <div class="mt-4 px-2">
-            <h3 class="font-mont font-bold text-white text-sm uppercase tracking-wider truncate">${title}</h3>
-            <p class="font-cinzel text-gold-leaf text-xs mt-1">Official Showcase</p>
+          <div class="mt-4 px-2 text-left">
+            <h3 class="font-serif font-bold text-charcoal text-lg lg:text-xl truncate">${title}</h3>
+            <p class="font-sans text-imperial-gold text-xs font-bold uppercase tracking-widest mt-1">Official Video</p>
           </div>
         `;
-        theater.appendChild(wrapper);
+        grid.appendChild(wrapper);
       });
+      
+      // Re-trigger fade-in for new elements
+      ScrollTrigger.refresh();
+      
     } catch (e) {
       console.error(e);
-      theater.innerHTML = '<div class="col-span-full text-center text-red-500 font-mont">Koneksi satelit terputus. Silakan cek channel YouTube langsung.</div>';
+      grid.innerHTML = '<div class="col-span-full text-center text-crimson font-serif">Koneksi YouTube terputus. Kunjungi langsung channel <a href="https://youtube.com/@nikenkhor" class="underline">@nikenkhor</a>.</div>';
     }
   }
-  loadCinematicVideos();
+  loadYouTubeVideos();
 
-  // 4. EMSIFA API LOGIC
+  // 3. EMSIFA API (LOKASI INDONESIA)
   const API_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
-  
-  async function getWilayah(endpoint) { const r = await fetch(API_URL + endpoint); return await r.json(); }
+  async function fetchJSON(url) { const r = await fetch(url); return await r.json(); }
 
-  async function initLocation() {
-    const p = await getWilayah('/provinces.json');
+  async function initProvinsi() {
+    const data = await fetchJSON(`${API_URL}/provinces.json`);
     const sel = document.getElementById('provinsi');
-    p.forEach(x => sel.add(new Option(x.name, x.id)));
+    data.forEach(p => sel.add(new Option(p.name, p.id)));
   }
-  initLocation();
+  initProvinsi();
 
   async function loadKabupaten() {
     const id = document.getElementById('provinsi').value;
     const sel = document.getElementById('kabupaten');
-    sel.innerHTML = '<option value="">KOTA / KABUPATEN</option>';
-    if(!id) return sel.disabled = true;
-    const data = await getWilayah(`/regencies/${id}.json`);
-    data.forEach(x => sel.add(new Option(x.name, x.id)));
+    sel.innerHTML = '<option value="">Pilih Kab/Kota</option>';
+    document.getElementById('kecamatan').innerHTML = '<option value="">Pilih Kecamatan</option>';
+    document.getElementById('desa').innerHTML = '<option value="">Pilih Desa</option>';
+    sel.disabled = true; document.getElementById('kecamatan').disabled = true; document.getElementById('desa').disabled = true;
+    
+    if(!id) return;
+    const data = await fetchJSON(`${API_URL}/regencies/${id}.json`);
+    data.forEach(k => sel.add(new Option(k.name, k.id)));
     sel.disabled = false;
   }
 
   async function loadKecamatan() {
     const id = document.getElementById('kabupaten').value;
     const sel = document.getElementById('kecamatan');
-    sel.innerHTML = '<option value="">KECAMATAN</option>';
-    if(!id) return sel.disabled = true;
-    const data = await getWilayah(`/districts/${id}.json`);
-    data.forEach(x => sel.add(new Option(x.name, x.id)));
+    sel.innerHTML = '<option value="">Pilih Kecamatan</option>';
+    document.getElementById('desa').innerHTML = '<option value="">Pilih Desa</option>';
+    sel.disabled = true; document.getElementById('desa').disabled = true;
+
+    if(!id) return;
+    const data = await fetchJSON(`${API_URL}/districts/${id}.json`);
+    data.forEach(k => sel.add(new Option(k.name, k.id)));
     sel.disabled = false;
   }
 
-  // 5. LUXURY WHATSAPP GENERATOR (Biar ga keliatan receh)
-  function generateLuxuryWA() {
+  async function loadDesa() {
+    const id = document.getElementById('kecamatan').value;
+    const sel = document.getElementById('desa');
+    sel.innerHTML = '<option value="">Pilih Desa</option>';
+    sel.disabled = true;
+
+    if(!id) return;
+    const data = await fetchJSON(`${API_URL}/villages/${id}.json`);
+    data.forEach(d => sel.add(new Option(d.name, d.id)));
+    sel.disabled = false;
+  }
+
+  // 4. WHATSAPP GENERATOR
+  function submitWhatsapp() {
     const pic = document.getElementById('picName').value.trim();
     const evt = document.getElementById('eventName').value.trim();
     const date = document.getElementById('eventDate').value;
+    
     const p = document.getElementById('provinsi');
-    const prov = p.options[p.selectedIndex]?.text || 'TBD';
+    const provTxt = p.options[p.selectedIndex]?.text || '-';
     const k = document.getElementById('kabupaten');
-    const kab = k.options[k.selectedIndex]?.text || 'TBD';
+    const kabTxt = k.options[k.selectedIndex]?.text || '-';
 
     if(!pic || !evt) {
-      alert("Executive Notice: Mohon isi Nama PIC dan Nama Acara.");
+      alert("Executive Notice: Mohon lengkapi Nama Klien dan Nama Acara.");
       return;
     }
 
-    // Format text yang rapi dan elit
     const waText = `⚜️ *VVIP BOOKING INQUIRY* ⚜️
 ━━━━━━━━━━━━━━━━━━━━
-*ARTIST:* Niken Kho 许芬琪
+*Artis:* Niken Kho 许芬琪
 
-👤 *EXECUTIVE SUMMARY*
-├ *PIC:* ${pic}
-├ *Acara:* ${evt}
-└ *Tanggal:* ${date || 'Menyesuaikan Jadwal'}
+📋 *INFORMASI ACARA*
+• PIC: ${pic}
+• Acara: ${evt}
+• Tanggal: ${date || 'Belum ditentukan'}
 
-📍 *LOCATION DETAILS*
-├ *Provinsi:* ${prov}
-└ *Kota/Kab:* ${kab}
+📍 *LOKASI*
+• Provinsi: ${provTxt}
+• Kab/Kota: ${kabTxt}
 
-_Mohon tim management menginformasikan ketersediaan jadwal dan mengirimkan Official Rate Card._
-━━━━━━━━━━━━━━━━━━━━`;
+_Mohon konfirmasi ketersediaan jadwal. Terima kasih._`;
 
     window.open(`https://wa.me/6282285287318?text=${encodeURIComponent(waText)}`, '_blank');
+  }
+
+  // 5. AI BOT CONCIERGE LOGIC
+  function toggleBot() {
+    const win = document.getElementById('botWindow');
+    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function botReply(topic) {
+    const body = document.getElementById('botBody');
+    document.getElementById('botOptions').style.display = 'none'; // Sembunyikan tombol
+    
+    // User bubble
+    body.innerHTML += `<div style="background:#C9A84C; color:white; padding:10px 16px; border-radius:12px 12px 0 12px; margin-left:auto; max-width:80%; font-weight:bold;">${topic}</div>`;
+    
+    let answer = "";
+    if(topic.includes('Jadwal')) answer = "Untuk mengecek ketersediaan jadwal Niken Kho, kami menyarankan Anda berdiskusi langsung dengan Executive Manager kami guna menghindari bentrok jadwal/double-booking.";
+    if(topic.includes('Harga')) answer = "Rate Card investasi VVIP disesuaikan dengan jenis acara (Wedding, Corporate, atau Festival) serta durasi penampilan. Mari diskusikan detailnya via WhatsApp.";
+    if(topic.includes('Technical')) answer = "Dokumen resmi Technical Rider (Sound System, Lighting) & Hospitality Rider (Akomodasi, Konsumsi) akan kami kirimkan dalam format PDF melalui WhatsApp.";
+
+    // Bot reply bubble + WA Button
+    setTimeout(() => {
+      body.innerHTML += `
+        <div class="ai-msg mt-3">${answer}</div>
+        <a href="https://wa.me/6282285287318?text=Halo%20Management%20Niken%20Kho,%20saya%20ingin%20bertanya%20detail%20mengenai%20${encodeURIComponent(topic)}" target="_blank" 
+           style="display:block; background:#1A1A1A; color:#C9A84C; text-align:center; padding:12px; border-radius:8px; font-weight:bold; margin-top:10px; text-decoration:none; letter-spacing:1px; text-transform:uppercase;">
+          Hubungi Manager Sekarang
+        </a>
+      `;
+      body.scrollTop = body.scrollHeight; // Scroll ke bawah
+    }, 600);
   }
 </script>
 </body>
