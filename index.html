@@ -1,1392 +1,973 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NIKEN KHO 许芬琪 | Official VVIP EPK</title>
-<meta name="description" content="Electronic Press Kit - Niken Kho 许芬琪. Diva Pop Mandarin & Hokkien dari Bengkalis." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niken Kho 许芬琪 | Official VVIP Electronic Press Kit</title>
+  <meta name="description" content="Official VVIP Electronic Press Kit Niken Kho 许芬琪 — Diva Pop Mandarin & Hokkien asal Bengkalis. Luxury booking funnel, availability calendar, showcase, media vault, dan concierge bot." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+TC:wght@400;700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Lato:wght@300;400;700;900&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet" />
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          'pearl': '#FCFCFA',
-          'ivory': '#F4F1EA',
-          'imperial-gold': '#C9A84C',
-          'gold-light': '#E8D28A',
-          'crimson': '#8B0000',
-          'charcoal': '#1A1A1A',
-          'glass': 'rgba(255,255,255,0.72)',
-          'onyx': '#111111'
-        },
-        fontFamily: {
-          serif: ['"Playfair Display"', 'serif'],
-          chinese: ['"Noto Serif TC"', 'serif'],
-          sans: ['"Lato"', 'sans-serif']
-        },
-        boxShadow: {
-          luxury: '0 20px 50px rgba(201, 168, 76, 0.14)',
-          glass: '0 8px 32px rgba(31, 38, 135, 0.07)',
-          glow: '0 0 0 1px rgba(201,168,76,0.12), 0 20px 60px rgba(201,168,76,0.15)'
-        },
-        backgroundImage: {
-          'hero-radial': 'radial-gradient(circle at top, rgba(201,168,76,0.16), transparent 45%)',
-          'gold-sheen': 'linear-gradient(135deg, rgba(154,122,44,1) 0%, rgba(201,168,76,1) 50%, rgba(232,210,138,1) 100%)'
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pearl: '#F9F7F2',
+            ivory: '#F2EFE8',
+            charcoal: '#121212',
+            'charcoal-soft': '#1F1F1F',
+            gold: '#C9A84C',
+            'gold-soft': '#E7D39A',
+            crimson: '#8A1525'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Lato"', 'sans-serif'],
+            chinese: ['"Noto Serif TC"', 'serif']
+          },
+          boxShadow: {
+            luxury: '0 20px 60px rgba(201,168,76,0.15)',
+            soft: '0 12px 40px rgba(0,0,0,0.10)',
+            glow: '0 0 0 1px rgba(201,168,76,0.16), 0 16px 50px rgba(201,168,76,0.16)'
+          },
+          backgroundImage: {
+            'gold-gradient': 'linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%)',
+            'hero-radial': 'radial-gradient(circle at top, rgba(201,168,76,0.18), transparent 42%)'
+          }
         }
       }
+    };
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-soft: #E7D39A;
+      --charcoal: #121212;
+      --pearl: #F9F7F2;
+      --ivory: #F2EFE8;
+      --crimson: #8A1525;
     }
-  };
-</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<style>
-  :root{
-    --gold:#C9A84C;
-    --gold-light:#E8D28A;
-    --ivory:#F4F1EA;
-    --pearl:#FCFCFA;
-    --charcoal:#1A1A1A;
-    --crimson:#8B0000;
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background-color: var(--pearl);
-    color: var(--charcoal);
-    overflow-x: hidden;
-    font-family: 'Lato', sans-serif;
-  }
-
-  ::selection { background: rgba(201,168,76,0.2); color: #111; }
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: var(--ivory); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
-
-  .text-gold-gradient {
-    background: linear-gradient(135deg, #9A7A2C 0%, #C9A84C 50%, #E8D28A 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .gold-border-soft { border: 1px solid rgba(201,168,76,0.18); }
-
-  .glass-card {
-    background: rgba(255,255,255,0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(201,168,76,0.18);
-    box-shadow: 0 20px 50px rgba(201,168,76,0.08);
-  }
-
-  .btn-luxury {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.35s ease;
-    background: #FCFCFA;
-    border: 1px solid #C9A84C;
-    color: #1A1A1A;
-    font-family: 'Playfair Display', serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    z-index: 1;
-  }
-  .btn-luxury::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    transform: translateX(-102%);
-    background: linear-gradient(135deg, #9A7A2C, #C9A84C, #E8D28A);
-    transition: transform 0.4s ease;
-    z-index: -1;
-  }
-  .btn-luxury:hover::before,
-  .btn-luxury:focus-visible::before {
-    transform: translateX(0%);
-  }
-  .btn-luxury:hover,
-  .btn-luxury:focus-visible {
-    color: #fff;
-    box-shadow: 0 12px 30px rgba(201,168,76,0.28);
-    transform: translateY(-2px);
-    outline: none;
-  }
-
-  .btn-ghost-luxury {
-    border: 1px solid rgba(201,168,76,0.32);
-    color: #1A1A1A;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.5);
-  }
-  .btn-ghost-luxury:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201,168,76,0.06);
-  }
-
-  .metric-pill {
-    border: 1px solid rgba(201,168,76,0.2);
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-  }
-
-  .section-title-line {
-    width: 96px;
-    height: 2px;
-    background: var(--gold);
-    margin: 1.25rem auto 0;
-  }
-
-  .luxury-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .feature-card,
-  .gallery-card,
-  .showcase-card,
-  .audio-card,
-  .booking-card,
-  .proof-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1.25rem;
-    border: 1px solid rgba(201,168,76,0.16);
-    background: #fff;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-  }
-  .feature-card:hover,
-  .gallery-card:hover,
-  .showcase-card:hover,
-  .audio-card:hover,
-  .booking-card:hover,
-  .proof-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(201,168,76,0.45);
-    box-shadow: 0 20px 50px rgba(201,168,76,0.12);
-  }
-
-  .shine::after {
-    content: "";
-    position: absolute;
-    top: -120%;
-    left: -30%;
-    width: 60%;
-    height: 300%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.38), transparent);
-    transform: rotate(18deg);
-    transition: left 0.8s ease;
-    pointer-events: none;
-  }
-  .shine:hover::after { left: 120%; }
-
-  .bento-card {
-    background: #fff;
-    border: 1px solid rgba(201,168,76,0.18);
-    border-radius: 1.1rem;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.35s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .bento-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 40px rgba(201,168,76,0.14);
-    border-color: rgba(201,168,76,0.45);
-  }
-  .bento-icon {
-    color: var(--gold);
-    transition: transform 0.35s ease;
-  }
-  .bento-card:hover .bento-icon { transform: scale(1.08); }
-
-  .horizontal-wrapper {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    background: var(--ivory);
-  }
-  .horizontal-container { display: flex; width: 400vw; height: 100%; }
-  .horizontal-panel {
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 10vw;
-    position: relative;
-    border-right: 1px solid rgba(201,168,76,0.25);
-  }
-  .year-mark {
-    font-size: clamp(4rem, 10vw, 8rem);
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    color: rgba(201,168,76,0.11);
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    z-index: 0;
-    line-height: 1;
-  }
-
-  .hero-pattern {
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(201,168,76,0.15), transparent 20%),
-      radial-gradient(circle at 85% 15%, rgba(201,168,76,0.12), transparent 18%),
-      radial-gradient(circle at 50% 80%, rgba(201,168,76,0.08), transparent 22%);
-  }
-
-  .marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-  }
-  .marquee-track {
-    display: inline-flex;
-    gap: 1rem;
-    animation: marquee 30s linear infinite;
-    padding-right: 1rem;
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .wave-bars {
-    display: inline-flex;
-    align-items: end;
-    gap: 3px;
-    height: 22px;
-  }
-  .wave-bars span {
-    width: 4px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--gold-light), var(--gold));
-    animation: bars 1.1s ease-in-out infinite;
-  }
-  .wave-bars span:nth-child(2) { animation-delay: .08s; }
-  .wave-bars span:nth-child(3) { animation-delay: .16s; }
-  .wave-bars span:nth-child(4) { animation-delay: .24s; }
-  .wave-bars span:nth-child(5) { animation-delay: .32s; }
-  @keyframes bars {
-    0%,100% { height: 6px; opacity: .55; }
-    50% { height: 20px; opacity: 1; }
-  }
-
-  .audio-progress-track,
-  .mini-progress-track {
-    position: relative;
-    width: 100%;
-    height: 6px;
-    background: rgba(201,168,76,0.12);
-    border-radius: 999px;
-    overflow: hidden;
-  }
-  .audio-progress-fill,
-  .mini-progress-fill {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(135deg, #9A7A2C, #C9A84C, #E8D28A);
-    border-radius: 999px;
-  }
-
-  .song-row {
-    border: 1px solid rgba(201,168,76,0.16);
-    border-radius: 1rem;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.7);
-  }
-  .song-row.active,
-  .song-row:hover {
-    border-color: rgba(201,168,76,0.42);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(201,168,76,0.12);
-  }
-
-  .video-thumb {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .video-spotlight {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 1.2rem;
-    background: #111;
-    border: 1px solid rgba(201,168,76,0.2);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  }
-  .video-spotlight iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  .gallery-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-  .gallery-card:hover img { transform: scale(1.06); }
-
-  .gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(17,17,17,0.7), rgba(17,17,17,0.05));
-    display: flex;
-    align-items: end;
-    padding: 1rem;
-  }
-
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(10,10,10,0.82);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-  }
-  .lightbox.open { display: flex; }
-  .lightbox-inner {
-    width: min(1100px, 100%);
-    background: rgba(17,17,17,0.72);
-    border: 1px solid rgba(201,168,76,0.34);
-    border-radius: 1.25rem;
-    overflow: hidden;
-  }
-  .lightbox-main {
-    width: 100%;
-    height: min(74vh, 760px);
-    background: #111;
-  }
-  .lightbox-main img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .step-chip {
-    border: 1px solid rgba(201,168,76,0.2);
-    background: rgba(255,255,255,0.7);
-    color: #6b7280;
-    transition: all 0.3s ease;
-  }
-  .step-chip.active {
-    border-color: var(--gold);
-    color: var(--charcoal);
-    box-shadow: 0 10px 24px rgba(201,168,76,0.15);
-  }
-
-  .form-input,
-  .form-select,
-  .form-textarea {
-    width: 100%;
-    border: 1px solid #d1d5db;
-    border-radius: 0.9rem;
-    padding: 0.9rem 1rem;
-    background: #fff;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    font-family: 'Lato', sans-serif;
-  }
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
-    outline: none;
-  }
-
-  .summary-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-  }
-  .summary-row:last-child { border-bottom: none; }
-
-  .package-option {
-    border: 1px solid rgba(201,168,76,0.18);
-    border-radius: 1rem;
-    padding: 1rem;
-    transition: all 0.25s ease;
-    cursor: pointer;
-    background: rgba(255,255,255,0.7);
-  }
-  .package-option.active,
-  .package-option:hover {
-    border-color: rgba(201,168,76,0.45);
-    box-shadow: 0 10px 26px rgba(201,168,76,0.12);
-    transform: translateY(-2px);
-  }
-
-  .score-ring {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background:
-      radial-gradient(closest-side, #fff 72%, transparent 73% 100%),
-      conic-gradient(var(--gold) var(--score-degree, 0deg), rgba(201,168,76,0.14) 0deg);
-    display: grid;
-    place-items: center;
-    margin: 0 auto;
-    box-shadow: inset 0 0 0 1px rgba(201,168,76,0.12);
-  }
-
-  .sticky-booking-summary {
-    position: sticky;
-    top: 100px;
-  }
-
-  .floating-cta {
-    position: fixed;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    z-index: 9997;
-    width: calc(100% - 24px);
-    max-width: 720px;
-    display: none;
-  }
-  .floating-cta.show { display: block; }
-
-  .ai-bot-btn {
-    position: fixed;
-    bottom: 90px;
-    right: 28px;
-    width: 68px;
-    height: 68px;
-    background: #fff;
-    border: 2px solid var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.85rem;
-    box-shadow: 0 12px 30px rgba(201,168,76,0.24);
-    cursor: pointer;
-    z-index: 9999;
-    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
-    animation: floatBot 3s infinite ease-in-out;
-  }
-  .ai-bot-btn:hover {
-    transform: scale(1.08);
-    background: var(--gold);
-    color: #fff;
-  }
-  @keyframes floatBot {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .ai-bot-window {
-    position: fixed;
-    bottom: 172px;
-    right: 28px;
-    width: min(390px, calc(100vw - 24px));
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(201,168,76,0.4);
-    border-radius: 1.1rem;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.16);
-    z-index: 9998;
-    display: none;
-    overflow: hidden;
-    flex-direction: column;
-  }
-  .ai-bot-window.open { display: flex; }
-  .ai-header {
-    background: linear-gradient(135deg, rgba(244,241,234,1), rgba(255,255,255,1));
-    padding: 1rem 1rem 0.95rem;
-    border-bottom: 1px solid rgba(201,168,76,0.22);
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: var(--charcoal);
-  }
-  .ai-body {
-    padding: 1rem;
-    max-height: 420px;
-    overflow-y: auto;
-    font-size: 0.94rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-  .ai-msg {
-    background: #F8F9FA;
-    padding: 12px 14px;
-    border-radius: 14px 14px 14px 3px;
-    border: 1px solid #ECECEC;
-    line-height: 1.55;
-  }
-  .ai-msg.user {
-    background: rgba(201,168,76,0.10);
-    border-color: rgba(201,168,76,0.16);
-    border-radius: 14px 14px 3px 14px;
-    margin-left: auto;
-    max-width: 92%;
-  }
-  .ai-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .ai-opt-btn {
-    background: #fff;
-    border: 1px solid rgba(201,168,76,0.35);
-    color: #7a6326;
-    padding: 10px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s ease;
-    font-size: 0.92rem;
-  }
-  .ai-opt-btn:hover {
-    background: var(--gold);
-    color: #fff;
-    border-color: var(--gold);
-  }
-
-  .fade-mask-top::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.55), transparent 35%);
-    pointer-events: none;
-  }
-
-  @media (max-width: 1024px) {
-    .horizontal-wrapper {
-      height: auto;
-      overflow: visible;
+    * {
+      box-sizing: border-box;
     }
-    .horizontal-container {
-      width: 100%;
-      height: auto;
+
+    body {
+      background: var(--pearl);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      font-family: 'Lato', sans-serif;
+    }
+
+    ::selection {
+      background: rgba(201, 168, 76, 0.20);
+      color: #121212;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #ebe6d9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 999px;
+    }
+
+    .gold-text {
+      background: linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-line {
+      width: 88px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto 0;
+    }
+
+    .noise-layer {
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(201,168,76,0.08), transparent 18%),
+        radial-gradient(circle at 80% 0%, rgba(201,168,76,0.05), transparent 18%),
+        radial-gradient(circle at 50% 100%, rgba(201,168,76,0.04), transparent 18%);
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(201,168,76,0.14);
+    }
+
+    .luxury-card {
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.16);
+      background: rgba(255,255,255,0.82);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,0.42);
+      box-shadow: 0 20px 60px rgba(201,168,76,0.16);
+    }
+
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -35%;
+      width: 60%;
+      height: 300%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.42), transparent);
+      transform: rotate(16deg);
+      pointer-events: none;
+      transition: left 0.8s ease;
+    }
+
+    .shine:hover::after {
+      left: 120%;
+    }
+
+    .btn-gold {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--charcoal);
+      transition: all 0.35s ease;
+      z-index: 1;
+    }
+
+    .btn-gold::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%);
+      transform: translateX(-102%);
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+
+    .btn-gold:hover::before,
+    .btn-gold:focus-visible::before {
+      transform: translateX(0%);
+    }
+
+    .btn-gold:hover,
+    .btn-gold:focus-visible {
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(201,168,76,0.24);
+      outline: none;
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(201,168,76,0.24);
+      background: rgba(255,255,255,0.56);
+      color: var(--charcoal);
+      transition: all 0.3s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
+      color: #8d6a18;
+    }
+
+    .nav-scrolled {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      border-bottom-color: rgba(201,168,76,0.18) !important;
+    }
+
+    .counter-value {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .fit-ring {
+      width: 150px;
+      height: 150px;
+      border-radius: 999px;
+      background:
+        radial-gradient(closest-side, #fff 74%, transparent 75% 100%),
+        conic-gradient(var(--gold) var(--progress, 0deg), rgba(201,168,76,0.12) 0deg);
       display: grid;
-      grid-template-columns: 1fr;
+      place-items: center;
+      margin: 0 auto;
+      box-shadow: inset 0 0 0 1px rgba(201,168,76,0.10);
     }
-    .horizontal-panel {
-      width: 100%;
-      min-height: 70vh;
-      padding: 4rem 1.5rem;
-    }
-    .year-mark {
-      top: 6%;
-      left: 1.5rem;
-    }
-    .sticky-booking-summary { position: relative; top: auto; }
-  }
 
-  @media (max-width: 768px) {
-    .ai-bot-btn { right: 16px; bottom: 92px; }
-    .ai-bot-window { right: 12px; bottom: 172px; }
-    .floating-cta { bottom: 12px; }
-  }
-</style>
+    .package-card.active {
+      border-color: rgba(201,168,76,0.52);
+      box-shadow: 0 20px 50px rgba(201,168,76,0.16);
+      transform: translateY(-2px);
+    }
+
+    .calendar-day {
+      min-height: 68px;
+      border-radius: 1rem;
+      border: 1px solid rgba(201,168,76,0.10);
+      background: rgba(255,255,255,0.80);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.65rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .calendar-day:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(201,168,76,0.12);
+    }
+
+    .calendar-day.empty {
+      background: transparent;
+      border: 1px dashed rgba(201,168,76,0.08);
+      cursor: default;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .calendar-day.available {
+      background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(231,211,154,0.22));
+      border-color: rgba(201,168,76,0.34);
+    }
+
+    .calendar-day.tentative {
+      background: rgba(255,255,255,0.88);
+      border-color: rgba(201,168,76,0.26);
+    }
+
+    .calendar-day.booked {
+      background: rgba(18,18,18,0.04);
+      color: #7b7b7b;
+      border-color: rgba(18,18,18,0.08);
+      cursor: not-allowed;
+    }
+
+    .calendar-day.selected {
+      outline: 2px solid var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(201,168,76,0.16);
+    }
+
+    .availability-legend span {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 999px;
+    }
+
+    .spotlight-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid rgba(201,168,76,0.18);
+    }
+
+    .spotlight-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .showcase-item.active {
+      border-color: rgba(201,168,76,0.50);
+      box-shadow: 0 16px 36px rgba(201,168,76,0.16);
+      transform: translateY(-2px);
+    }
+
+    .audio-progress,
+    .mini-progress {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(201,168,76,0.14);
+      overflow: hidden;
+    }
+
+    .audio-progress > div,
+    .mini-progress > div {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%);
+      border-radius: 999px;
+    }
+
+    .playlist-item.active {
+      border-color: rgba(201,168,76,0.48);
+      box-shadow: 0 14px 34px rgba(201,168,76,0.16);
+      transform: translateY(-2px);
+    }
+
+    .gallery-tile img {
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-tile:hover img {
+      transform: scale(1.06);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(12,12,12,0.82);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-panel {
+      width: min(1120px, 100%);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.30);
+      background: rgba(18,18,18,0.84);
+    }
+
+    .lightbox-media {
+      width: 100%;
+      height: min(72vh, 760px);
+      background: #000;
+    }
+
+    .lightbox-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bot-toggle {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      border: 2px solid var(--gold);
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 36px rgba(201,168,76,0.24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      z-index: 9999;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      animation: floatBot 3s ease-in-out infinite;
+    }
+
+    .bot-toggle:hover {
+      background: var(--gold);
+      color: white;
+      transform: scale(1.08);
+    }
+
+    @keyframes floatBot {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .bot-window {
+      position: fixed;
+      right: 24px;
+      bottom: 112px;
+      width: min(420px, calc(100vw - 24px));
+      max-height: 78vh;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.32);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.18);
+      z-index: 9998;
+    }
+
+    .bot-window.open {
+      display: flex;
+    }
+
+    .bot-messages {
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      max-height: 420px;
+    }
+
+    .bot-bubble {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      padding: 0.85rem 1rem;
+      border-radius: 1rem 1rem 1rem 0.25rem;
+      background: #f8f8f8;
+      border: 1px solid rgba(0,0,0,0.05);
+      max-width: 92%;
+    }
+
+    .bot-bubble.user {
+      align-self: flex-end;
+      border-radius: 1rem 1rem 0.25rem 1rem;
+      background: rgba(201,168,76,0.12);
+      border-color: rgba(201,168,76,0.16);
+    }
+
+    .bot-quick button {
+      border: 1px solid rgba(201,168,76,0.30);
+      border-radius: 999px;
+      padding: 0.55rem 0.8rem;
+      background: white;
+      color: #8d6a18;
+      font-size: 0.80rem;
+      transition: all 0.2s ease;
+    }
+
+    .bot-quick button:hover {
+      background: var(--gold);
+      color: white;
+      border-color: var(--gold);
+    }
+
+    .floating-cta {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 760px;
+      z-index: 9997;
+      display: none;
+    }
+
+    .floating-cta.show {
+      display: block;
+    }
+
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+
+    .mobile-drawer {
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+
+    .mobile-drawer.open {
+      transform: translateY(0px);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 1024px) {
+      .bot-window {
+        right: 12px;
+      }
+      .bot-toggle {
+        right: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .fit-ring {
+        width: 132px;
+        height: 132px;
+      }
+      .calendar-day {
+        min-height: 60px;
+        padding: 0.5rem;
+      }
+      .floating-cta {
+        bottom: 12px;
+      }
+    }
+  </style>
 </head>
 <body class="antialiased">
 
-  <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-    <div class="max-w-7xl mx-auto px-5 md:px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-imperial-gold/20 shadow-sm">
-      <a href="#" class="font-serif text-xl md:text-2xl font-black text-charcoal tracking-widest">
-        NIKEN KHO <span class="font-chinese text-imperial-gold">许芬琪</span>
-      </a>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-5 lg:px-6 py-4">
+      <div class="glass rounded-full px-5 py-3 flex items-center justify-between">
+        <a href="#" class="font-serif text-lg sm:text-xl lg:text-2xl font-black tracking-widest text-charcoal">
+          NIKEN KHO <span class="font-chinese text-gold">许芬琪</span>
+        </a>
 
-      <div class="hidden md:flex gap-8 font-sans text-[11px] tracking-[0.2em] font-bold text-gray-600 uppercase">
-        <a href="#jejak-digital" class="hover:text-imperial-gold transition">The Journey</a>
-        <a href="#signature-audio" class="hover:text-imperial-gold transition">Audio Lounge</a>
-        <a href="#showcase" class="hover:text-imperial-gold transition">Media Showcase</a>
-        <a href="#gallery" class="hover:text-imperial-gold transition">Gallery</a>
-        <a href="#booking" class="text-imperial-gold">VVIP Booking</a>
+        <div class="hidden lg:flex items-center gap-7 text-[11px] font-bold uppercase tracking-[0.22em] text-gray-600">
+          <a href="#funnel" class="hover:text-gold transition">Sales Funnel</a>
+          <a href="#availability" class="hover:text-gold transition">Availability</a>
+          <a href="#showcase" class="hover:text-gold transition">Showcase</a>
+          <a href="#vault" class="hover:text-gold transition">Media Vault</a>
+          <a href="#social" class="hover:text-gold transition">Connect</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="#funnel" class="hidden sm:inline-flex btn-gold rounded-full px-5 py-3 font-serif text-xs uppercase tracking-[0.18em]">
+            Priority Booking
+          </a>
+          <button id="mobileMenuBtn" class="lg:hidden w-11 h-11 rounded-full border border-gold/25 bg-white/80 text-charcoal flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <a href="#booking" class="hidden lg:inline-flex btn-luxury px-5 py-3 rounded-full text-[11px] font-bold">
-        Priority Inquiry
-      </a>
+      <div id="mobileDrawer" class="mobile-drawer lg:hidden mt-3 glass rounded-3xl p-4">
+        <div class="grid gap-3 text-sm font-bold uppercase tracking-[0.18em] text-gray-700">
+          <a href="#funnel" class="px-3 py-2 rounded-xl hover:bg-gold/10">Sales Funnel</a>
+          <a href="#availability" class="px-3 py-2 rounded-xl hover:bg-gold/10">Availability</a>
+          <a href="#showcase" class="px-3 py-2 rounded-xl hover:bg-gold/10">Showcase</a>
+          <a href="#vault" class="px-3 py-2 rounded-xl hover:bg-gold/10">Media Vault</a>
+          <a href="#social" class="px-3 py-2 rounded-xl hover:bg-gold/10">Connect</a>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <section class="relative min-h-screen flex items-center justify-center px-6 pt-24 hero-pattern bg-hero-radial">
-    <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=%2760%27 height=%2760%27 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cg fill=%27none%27 fill-rule=%27evenodd%27%3E%3Cg fill=%27%23C9A84C%27 fill-opacity=%271%27%3E%3Cpath d=%27M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  <section class="relative min-h-screen flex items-center noise-layer bg-hero-radial pt-28 pb-16">
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=%2760%27 height=%2760%27 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cg fill=%27none%27 fill-rule=%27evenodd%27%3E%3Cg fill=%27%23C9A84C%27 fill-opacity=%271%27%3E%3Cpath d=%27M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 
-    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
-      <div class="z-10 fade-in-up max-w-4xl">
-        <p class="font-sans text-xs md:text-sm tracking-[0.5em] text-imperial-gold mb-6 uppercase font-bold">
-          Official Electronic Press Kit
-        </p>
-
-        <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-charcoal mb-2 tracking-tighter">
-          NIKEN KHO
-        </h1>
-        <h2 class="font-chinese text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-gold-gradient mb-8">
-          许芬琪
-        </h2>
-
-        <div class="flex items-center gap-4 mb-8">
-          <div class="w-16 md:w-28 h-[1px] bg-imperial-gold/50"></div>
-          <span class="text-crimson text-xl font-serif">✤</span>
-          <div class="w-16 md:w-28 h-[1px] bg-imperial-gold/50"></div>
-        </div>
-
-        <p class="font-serif italic text-xl md:text-2xl text-gray-600 leading-relaxed mb-10 max-w-3xl">
-          “Menyuarakan harmoni dari Bengkalis hingga ke panggung global. Perpaduan sempurna antara keanggunan Pop Mandarin dan kedalaman jiwa Hokkien.”
-        </p>
-
-        <div class="flex flex-wrap gap-4 mb-10">
-          <a href="#booking" class="btn-luxury px-8 py-4 rounded-full font-bold text-sm">
-            Reservasi Eksklusif
-          </a>
-          <a href="#signature-audio" class="btn-ghost-luxury px-8 py-4 rounded-full font-serif uppercase tracking-[2px] text-sm">
-            Dengarkan Signature Voice
-          </a>
-        </div>
-
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="metric-pill rounded-2xl px-4 py-4">
-            <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Positioning</p>
-            <p class="font-serif text-lg text-charcoal mt-1">VVIP Mandarin Act</p>
-          </div>
-          <div class="metric-pill rounded-2xl px-4 py-4">
-            <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Strength</p>
-            <p class="font-serif text-lg text-charcoal mt-1">Wedding & Gala</p>
-          </div>
-          <div class="metric-pill rounded-2xl px-4 py-4">
-            <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Coverage</p>
-            <p class="font-serif text-lg text-charcoal mt-1">ID • SG • MY • TW</p>
-          </div>
-          <div class="metric-pill rounded-2xl px-4 py-4">
-            <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Booking Flow</p>
-            <p class="font-serif text-lg text-charcoal mt-1">Fast Qualifier</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="fade-in-up">
-        <div class="glass-card rounded-[2rem] p-5 md:p-6 shadow-glow relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-36 h-36 rounded-full blur-3xl bg-imperial-gold/15"></div>
-          <div class="relative rounded-[1.5rem] overflow-hidden border border-imperial-gold/20">
-            <img
-              src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80"
-              alt="Luxury performance visual"
-              class="w-full h-[430px] md:h-[520px] object-cover"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <p class="uppercase text-[11px] tracking-[0.35em] text-gold-light font-bold">Luxury Booking Experience</p>
-              <h3 class="font-serif text-3xl md:text-4xl leading-tight mt-2">
-                Designed to help promoters decide faster.
-              </h3>
-              <div class="mt-5 grid grid-cols-2 gap-3">
-                <div class="bg-white/10 border border-white/15 rounded-2xl px-4 py-3">
-                  <p class="text-[10px] uppercase tracking-[0.3em] text-white/70">Instant</p>
-                  <p class="font-serif text-lg">Event Fit</p>
-                </div>
-                <div class="bg-white/10 border border-white/15 rounded-2xl px-4 py-3">
-                  <p class="text-[10px] uppercase tracking-[0.3em] text-white/70">Luxury</p>
-                  <p class="font-serif text-lg">Media Sampling</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-5 grid grid-cols-3 gap-3">
-            <div class="rounded-2xl border border-imperial-gold/15 p-4 text-center bg-white/80">
-              <p class="text-[10px] uppercase tracking-[0.25em] text-gray-500">Mandarin</p>
-              <p class="font-serif text-lg mt-1">Elegant</p>
-            </div>
-            <div class="rounded-2xl border border-imperial-gold/15 p-4 text-center bg-white/80">
-              <p class="text-[10px] uppercase tracking-[0.25em] text-gray-500">Hokkien</p>
-              <p class="font-serif text-lg mt-1">Soulful</p>
-            </div>
-            <div class="rounded-2xl border border-imperial-gold/15 p-4 text-center bg-white/80">
-              <p class="text-[10px] uppercase tracking-[0.25em] text-gray-500">Stage</p>
-              <p class="font-serif text-lg mt-1">Premium</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-6 bg-white border-y border-imperial-gold/15">
-    <div class="marquee">
-      <div class="marquee-track">
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Chinese Wedding VVIP</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Corporate Gala Prestige</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Mandarin & Hokkien Repertoire</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Immersive Booking Concierge</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Luxury Media Showcase</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Priority WhatsApp Routing</div>
-
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Chinese Wedding VVIP</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Corporate Gala Prestige</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Mandarin & Hokkien Repertoire</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Immersive Booking Concierge</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Luxury Media Showcase</div>
-        <div class="px-6 py-2 rounded-full border border-imperial-gold/15 font-serif text-charcoal">Priority WhatsApp Routing</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="jejak-digital" class="horizontal-wrapper">
-    <div class="horizontal-container" id="journey-container">
-
-      <div class="horizontal-panel">
-        <div class="year-mark">2015</div>
-        <div class="z-10 max-w-2xl">
-          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Akar & Asal Usul ✦</p>
-          <h2 class="font-serif text-5xl md:text-7xl font-bold text-charcoal mb-6">Gema dari Bengkalis</h2>
-          <div class="w-16 h-[2px] bg-imperial-gold mb-6"></div>
-          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
-            Perjalanan dimulai dari kota Bengkalis, Riau. Lahir dengan nama Niken Angesti, bakat emasnya dalam mengolah vokal mulai terdengar. Di sinilah pondasi musikalitasnya terbentuk, menyerap kekayaan budaya Nusantara dan tradisi Tionghoa.
+    <div class="max-w-7xl mx-auto w-full px-5 lg:px-6">
+      <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center">
+        <div class="reveal-up">
+          <p class="text-[11px] md:text-sm uppercase tracking-[0.52em] font-bold text-gold mb-6">
+            Official VVIP Electronic Press Kit
           </p>
-        </div>
-      </div>
 
-      <div class="horizontal-panel bg-pearl">
-        <div class="year-mark">2018</div>
-        <div class="z-10 max-w-2xl">
-          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Transformasi Diva ✦</p>
-          <h2 class="font-serif text-5xl md:text-7xl font-bold text-charcoal mb-6">
-            Lahirnya Niken Kho <span class="font-chinese">许芬琪</span>
+          <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] leading-none font-black text-charcoal tracking-tight">
+            NIKEN KHO
+          </h1>
+          <h2 class="font-chinese text-4xl sm:text-5xl md:text-7xl lg:text-8xl gold-text mt-2">
+            许芬琪
           </h2>
-          <div class="w-16 h-[2px] bg-imperial-gold mb-6"></div>
-          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
-            Menemukan identitas panggung sebagai Niken Kho 许芬琪. Ia mulai mendominasi panggung-panggung Chinese Wedding VVIP dan Festival Imlek. Repertoar lagunya meluas, menguasai tembang hits Mandarin dan lagu Hokkien legendaris.
+
+          <div class="flex items-center gap-4 mt-8 mb-8">
+            <div class="w-16 md:w-28 h-px bg-gold/50"></div>
+            <span class="text-xl text-crimson font-serif">✦</span>
+            <div class="w-16 md:w-28 h-px bg-gold/50"></div>
+          </div>
+
+          <p class="max-w-3xl font-serif italic text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed">
+            “Diva Pop Mandarin & Hokkien asal Bengkalis dengan aura mewah, vokal emosional, dan panggung yang dirancang untuk event premium, wedding elite, serta gala kelas atas.”
           </p>
+
+          <div class="flex flex-wrap gap-4 mt-10">
+            <a href="#funnel" class="btn-gold rounded-full px-7 py-4 font-serif text-sm uppercase tracking-[0.18em]">
+              Start VVIP Inquiry
+            </a>
+            <a href="#showcase" class="btn-ghost rounded-full px-7 py-4 font-serif text-sm uppercase tracking-[0.18em]">
+              Watch Real Performances
+            </a>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+            <div class="glass rounded-2xl p-4">
+              <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 font-bold">Positioning</p>
+              <p class="font-serif text-lg mt-2">Luxury VVIP Singer</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 font-bold">Core Market</p>
+              <p class="font-serif text-lg mt-2">Wedding & Gala</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 font-bold">Signature</p>
+              <p class="font-serif text-lg mt-2">Mandarin & Hokkien</p>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-[10px] uppercase tracking-[0.28em] text-gray-500 font-bold">Response Flow</p>
+              <p class="font-serif text-lg mt-2">Brief-Ready Funnel</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-up">
+          <div class="luxury-card shine shadow-luxury bg-white p-5 md:p-6 rounded-[2rem]">
+            <div class="relative rounded-[1.6rem] overflow-hidden border border-gold/18">
+              <img
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80"
+                alt="Luxury stage atmosphere"
+                class="w-full h-[430px] md:h-[560px] object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+              <div class="absolute left-0 right-0 bottom-0 p-6 md:p-8 text-white">
+                <p class="uppercase text-[10px] tracking-[0.34em] text-gold-soft font-bold">Luxury Sales Psychology</p>
+                <h3 class="font-serif text-3xl md:text-4xl mt-3 leading-tight">
+                  A website built to qualify, persuade, and convert.
+                </h3>
+                <div class="grid grid-cols-2 gap-3 mt-6">
+                  <div class="bg-white/10 border border-white/15 rounded-2xl p-4">
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-white/70">Interactive</p>
+                    <p class="font-serif text-lg mt-1">Event Fit Score</p>
+                  </div>
+                  <div class="bg-white/10 border border-white/15 rounded-2xl p-4">
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-white/70">Urgency</p>
+                    <p class="font-serif text-lg mt-1">Availability Engine</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 mt-5">
+              <div class="rounded-2xl border border-gold/14 bg-pearl p-4 text-center">
+                <p class="text-[10px] uppercase tracking-[0.24em] text-gray-500">Aura</p>
+                <p class="font-serif text-lg mt-2">Refined</p>
+              </div>
+              <div class="rounded-2xl border border-gold/14 bg-pearl p-4 text-center">
+                <p class="text-[10px] uppercase tracking-[0.24em] text-gray-500">Voice</p>
+                <p class="font-serif text-lg mt-2">Emotional</p>
+              </div>
+              <div class="rounded-2xl border border-gold/14 bg-pearl p-4 text-center">
+                <p class="text-[10px] uppercase tracking-[0.24em] text-gray-500">Impact</p>
+                <p class="font-serif text-lg mt-2">Prestige</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="horizontal-panel">
-        <div class="year-mark">2022</div>
-        <div class="z-10 max-w-2xl">
-          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Penaklukan Digital ✦</p>
-          <h2 class="font-serif text-5xl md:text-7xl font-bold text-charcoal mb-6">Jutaan Penonton</h2>
-          <div class="w-16 h-[2px] bg-imperial-gold mb-6"></div>
-          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
-            Melalui channel YouTube @nikenkhor, suara emasnya menembus batas negara. Video penampilannya meraih perhatian penonton lintas pasar Indonesia, Malaysia, Taiwan, dan Singapura.
-          </p>
+      <div class="grid md:grid-cols-3 gap-5 mt-14">
+        <div class="luxury-card p-6 reveal-up">
+          <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Social Proof</p>
+          <div class="mt-3 font-serif text-4xl md:text-5xl font-black counter-value" data-counter="50000000" data-suffix="+">0</div>
+          <p class="text-gray-600 mt-2">YouTube Views</p>
+        </div>
+        <div class="luxury-card p-6 reveal-up">
+          <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Track Record</p>
+          <div class="mt-3 font-serif text-4xl md:text-5xl font-black counter-value" data-counter="500" data-suffix="+">0</div>
+          <p class="text-gray-600 mt-2">VVIP Events</p>
+        </div>
+        <div class="luxury-card p-6 reveal-up">
+          <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Career Legacy</p>
+          <div class="mt-3 font-serif text-4xl md:text-5xl font-black counter-value" data-counter="10" data-suffix="+">0</div>
+          <p class="text-gray-600 mt-2">Years Career</p>
         </div>
       </div>
-
-      <div class="horizontal-panel bg-pearl">
-        <div class="year-mark">2026</div>
-        <div class="z-10 max-w-2xl">
-          <p class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase mb-4 text-sm">✦ Masa Depan ✦</p>
-          <h2 class="font-serif text-5xl md:text-7xl font-bold text-imperial-gold mb-6">Top Music On Stage</h2>
-          <div class="w-16 h-[2px] bg-charcoal mb-6"></div>
-          <p class="font-sans text-lg md:text-xl text-gray-600 leading-relaxed">
-            Kini, Niken Kho bukan sekadar penyanyi, melainkan jaminan mutu dan kemewahan untuk setiap acara elit. Dengan jam terbang tinggi dan positioning yang presisi, ia siap menghadirkan masterpiece di panggung Anda.
-          </p>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <section class="py-24 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-14 fade-in-up">
-        <span class="text-crimson font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ Conversion Architecture ✦</span>
-        <h2 class="font-serif text-4xl md:text-5xl text-charcoal mt-4">Fitur Baru yang Bekerja untuk Closing</h2>
-        <div class="section-title-line"></div>
-      </div>
-
-      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-        <div class="feature-card shine p-7 fade-in-up">
-          <p class="text-[10px] tracking-[0.35em] uppercase text-imperial-gold font-bold">01</p>
-          <h3 class="font-serif text-2xl text-charcoal mt-3">Signature Audio Lounge</h3>
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Promotor bisa menilai warna vokal lebih cepat lewat curated audio preview, bukan hanya video panjang.
-          </p>
-        </div>
-        <div class="feature-card shine p-7 fade-in-up">
-          <p class="text-[10px] tracking-[0.35em] uppercase text-imperial-gold font-bold">02</p>
-          <h3 class="font-serif text-2xl text-charcoal mt-3">Luxury Photo Gallery</h3>
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Visual high-impact memperkuat persepsi premium, ambience panggung, wardrobe, dan crowd experience.
-          </p>
-        </div>
-        <div class="feature-card shine p-7 fade-in-up">
-          <p class="text-[10px] tracking-[0.35em] uppercase text-imperial-gold font-bold">03</p>
-          <h3 class="font-serif text-2xl text-charcoal mt-3">Booking Concierge</h3>
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Form booking bukan cuma input data, tapi memandu user ke package fit, urgency score, dan draft brief otomatis.
-          </p>
-        </div>
-        <div class="feature-card shine p-7 fade-in-up">
-          <p class="text-[10px] tracking-[0.35em] uppercase text-imperial-gold font-bold">04</p>
-          <h3 class="font-serif text-2xl text-charcoal mt-3">AI Guided CTA</h3>
-          <p class="text-gray-600 leading-relaxed mt-3">
-            Bot diarahkan untuk menjawab pertanyaan yang mengurangi friksi dan mendorong next action nyata ke WhatsApp.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="signature-audio" class="py-28 px-6 bg-ivory border-y border-imperial-gold/15">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 fade-in-up">
-        <span class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ Signature Audio Lounge ✦</span>
-        <h2 class="font-serif text-4xl md:text-6xl text-charcoal mt-4">Dengarkan Character Voice dalam Hitungan Detik</h2>
-        <div class="section-title-line"></div>
-        <p class="max-w-3xl mx-auto mt-6 text-gray-600">
-          Dibuat untuk promotor yang butuh keputusan cepat: satu spotlight player, tiga mood signature, dan preview yang tetap elegan.
+  <section id="funnel" class="py-28 bg-white border-y border-gold/12">
+    <div class="max-w-7xl mx-auto px-5 lg:px-6">
+      <div class="text-center reveal-up">
+        <p class="text-sm uppercase tracking-[0.34em] text-gold font-bold">✦ Live Sales Funnel ✦</p>
+        <h2 class="font-serif text-4xl md:text-6xl text-charcoal mt-4">Event Fit Score Engine</h2>
+        <div class="gold-line"></div>
+        <p class="max-w-3xl mx-auto text-gray-600 mt-6 leading-relaxed">
+          Masukkan detail acara untuk mendapatkan skor kecocokan, rekomendasi package, sinyal urgensi, dan Executive Brief yang siap dikirim ke WhatsApp Management.
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start">
-        <div class="audio-card p-6 md:p-8 shine fade-in-up">
-          <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 mt-14 items-start">
+        <div class="luxury-card shine p-6 md:p-8 lg:p-9 reveal-up">
+          <div class="grid md:grid-cols-2 gap-5">
             <div>
-              <p class="text-[11px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Now Playing</p>
-              <h3 id="nowPlayingTitle" class="font-serif text-3xl text-charcoal mt-2">Mandarin Romance Gala</h3>
-              <p id="nowPlayingMeta" class="text-gray-500 mt-1">Elegant • Mandarin • Luxury Wedding Opening</p>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Nama PIC</label>
+              <input id="picName" type="text" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" placeholder="Nama promotor / klien" />
             </div>
-            <div class="flex items-center gap-3">
-              <div class="wave-bars" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span>
-              </div>
-              <button id="heroAudioPlayBtn" class="btn-luxury rounded-full px-6 py-3 text-xs font-bold">
-                Play Sample
-              </button>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Perusahaan / Keluarga</label>
+              <input id="companyName" type="text" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" placeholder="Nama brand / keluarga / EO" />
             </div>
-          </div>
 
-          <div class="mt-8 rounded-[1.5rem] border border-imperial-gold/15 bg-gradient-to-br from-white to-pearl p-6">
-            <div class="grid md:grid-cols-[0.95fr_1.05fr] gap-6 items-center">
-              <div class="rounded-[1.3rem] overflow-hidden border border-imperial-gold/15">
-                <img
-                  id="audioCover"
-                  src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80"
-                  alt="Audio cover"
-                  class="w-full h-[300px] object-cover"
-                />
-              </div>
-              <div>
-                <div class="flex flex-wrap gap-3 mb-5">
-                  <span class="rounded-full border border-imperial-gold/20 bg-white px-4 py-2 text-xs uppercase tracking-[0.25em] text-gray-600">Curated Demo</span>
-                  <span class="rounded-full border border-imperial-gold/20 bg-white px-4 py-2 text-xs uppercase tracking-[0.25em] text-gray-600">Luxury Stage Tone</span>
-                </div>
-                <p class="font-serif text-2xl text-charcoal">Audisi singkat, impresi maksimal.</p>
-                <p class="text-gray-600 mt-3 leading-relaxed">
-                  Cocok untuk memvalidasi timbre vokal, mood acara, dan arah musikal tanpa harus berpindah tab atau menonton video panjang.
-                </p>
-
-                <div class="mt-7 space-y-3">
-                  <div class="audio-progress-track">
-                    <div class="audio-progress-fill" id="audioProgressFill"></div>
-                  </div>
-                  <div class="flex items-center justify-between text-sm text-gray-500">
-                    <span id="audioCurrent">00:00</span>
-                    <span id="audioDuration">00:00</span>
-                  </div>
-                </div>
-
-                <div class="mt-6 flex flex-wrap gap-3">
-                  <button id="prevAudioBtn" class="btn-ghost-luxury px-5 py-3 rounded-full font-serif text-sm">Prev</button>
-                  <button id="mainAudioPlayBtn" class="btn-luxury px-6 py-3 rounded-full text-sm font-bold">Play Signature</button>
-                  <button id="nextAudioBtn" class="btn-ghost-luxury px-5 py-3 rounded-full font-serif text-sm">Next</button>
-                </div>
-              </div>
+            <div class="md:col-span-2">
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Nama & Format Acara</label>
+              <input id="eventName" type="text" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" placeholder="Contoh: Wedding Grand Ballroom / Gala Dinner" />
             </div>
-          </div>
 
-          <audio id="signatureAudio"></audio>
-        </div>
-
-        <div class="space-y-4 fade-in-up" id="audioPlaylist">
-          <button class="song-row w-full text-left p-5 active" data-index="0">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Signature Mood</p>
-                <h4 class="font-serif text-2xl text-charcoal mt-2">Mandarin Romance Gala</h4>
-                <p class="text-gray-500 mt-2">Untuk luxury wedding opening dan entrance ambience.</p>
-              </div>
-              <span class="text-xs uppercase tracking-[0.25em] text-gray-400">01</span>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Jenis Acara</label>
+              <select id="eventType" class="w-full rounded-2xl border border-gray-300 px-4 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition">
+                <option value="">Pilih jenis acara</option>
+                <option value="Wedding VVIP">Wedding VVIP</option>
+                <option value="Corporate Gala">Corporate Gala</option>
+                <option value="Private Dinner">Private Dinner</option>
+                <option value="Festival / Public Event">Festival / Public Event</option>
+                <option value="Imlek Celebration">Imlek Celebration</option>
+              </select>
             </div>
-            <div class="mt-4 mini-progress-track"><div class="mini-progress-fill"></div></div>
-          </button>
 
-          <button class="song-row w-full text-left p-5" data-index="1">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Signature Mood</p>
-                <h4 class="font-serif text-2xl text-charcoal mt-2">Hokkien Golden Classics</h4>
-                <p class="text-gray-500 mt-2">Untuk audience mature premium dan emotional sing-along set.</p>
-              </div>
-              <span class="text-xs uppercase tracking-[0.25em] text-gray-400">02</span>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Jumlah Tamu</label>
+              <select id="guestCount" class="w-full rounded-2xl border border-gray-300 px-4 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition">
+                <option value="">Pilih jumlah tamu</option>
+                <option value="150">Di bawah 150</option>
+                <option value="300">150 - 300</option>
+                <option value="600">300 - 600</option>
+                <option value="1000">600 - 1000</option>
+                <option value="1500">Di atas 1000</option>
+              </select>
             </div>
-            <div class="mt-4 mini-progress-track"><div class="mini-progress-fill"></div></div>
-          </button>
 
-          <button class="song-row w-full text-left p-5" data-index="2">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Signature Mood</p>
-                <h4 class="font-serif text-2xl text-charcoal mt-2">Grand Finale Celebration</h4>
-                <p class="text-gray-500 mt-2">Untuk segment closing yang lebih hidup, glamor, dan engaging.</p>
-              </div>
-              <span class="text-xs uppercase tracking-[0.25em] text-gray-400">03</span>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Tanggal Event</label>
+              <input id="eventDate" type="date" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" />
             </div>
-            <div class="mt-4 mini-progress-track"><div class="mini-progress-fill"></div></div>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="showcase" class="py-32 px-6 bg-white relative">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-18 fade-in-up">
-        <span class="text-crimson font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ The Stage Mastery ✦</span>
-        <h2 class="font-serif text-5xl md:text-6xl font-bold text-charcoal mt-4 mb-6">Official Media Showcase</h2>
-        <div class="w-24 h-1 bg-imperial-gold mx-auto"></div>
-        <p class="font-sans mt-6 text-gray-500 max-w-2xl mx-auto">
-          Spotlight video dipilih agar klien tidak tersesat. Klik salah satu showcase untuk mengganti main performance secara instan.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 items-start">
-        <div class="fade-in-up">
-          <div class="video-spotlight">
-            <iframe id="spotlightFrame" src="https://www.youtube.com/embed/YQHsXMglC9A?rel=0&modestbranding=1" title="Spotlight performance" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-
-          <div class="mt-5 rounded-3xl border border-imperial-gold/15 bg-pearl p-6">
-            <p class="text-[11px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Selected Showcase</p>
-            <h3 id="spotlightTitle" class="font-serif text-3xl text-charcoal mt-2">Luxury Stage Performance Highlight</h3>
-            <p id="spotlightDesc" class="text-gray-600 mt-3">
-              Potongan performance yang menonjolkan kontrol vokal, penguasaan panggung, dan suasana premium untuk event kelas atas.
-            </p>
-          </div>
-        </div>
-
-        <div class="space-y-4 fade-in-up" id="showcaseList">
-          <button class="showcase-card w-full p-4 text-left active" data-video="YQHsXMglC9A" data-title="Luxury Stage Performance Highlight" data-desc="Potongan performance yang menonjolkan kontrol vokal, penguasaan panggung, dan suasana premium untuk event kelas atas.">
-            <div class="grid grid-cols-[112px_1fr] gap-4 items-center">
-              <img class="video-thumb rounded-2xl" src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80" alt="Performance 1">
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Stage 01</p>
-                <h4 class="font-serif text-2xl text-charcoal mt-2">Luxury Stage Performance Highlight</h4>
-                <p class="text-gray-500 mt-2">Strong opening impression untuk promotor dan klien VVIP.</p>
-              </div>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Durasi Performance</label>
+              <select id="setDuration" class="w-full rounded-2xl border border-gray-300 px-4 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition">
+                <option value="">Pilih durasi</option>
+                <option value="30">30 menit</option>
+                <option value="45">45 menit</option>
+                <option value="60">60 menit</option>
+                <option value="90">90 menit</option>
+                <option value="120">Multi-segment / Custom</option>
+              </select>
             </div>
-          </button>
 
-          <button class="showcase-card w-full p-4 text-left" data-video="fRh_vgS2dFE" data-title="Mandarin Elegance Session" data-desc="Cocok untuk memvalidasi karakter vokal lembut, emosional, dan refined dalam setting formal.">
-            <div class="grid grid-cols-[112px_1fr] gap-4 items-center">
-              <img class="video-thumb rounded-2xl" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80" alt="Performance 2">
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Stage 02</p>
-                <h4 class="font-serif text-2xl text-charcoal mt-2">Mandarin Elegance Session</h4>
-                <p class="text-gray-500 mt-2">Soft-luxury mood untuk wedding dan private dinner.</p>
-              </div>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Provinsi / Negara</label>
+              <select id="province" class="w-full rounded-2xl border border-gray-300 px-4 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition">
+                <option value="">Pilih wilayah</option>
+                <option value="Riau">Riau</option>
+                <option value="Kepulauan Riau">Kepulauan Riau</option>
+                <option value="Sumatera Utara">Sumatera Utara</option>
+                <option value="DKI Jakarta">DKI Jakarta</option>
+                <option value="Jawa Barat">Jawa Barat</option>
+                <option value="Jawa Timur">Jawa Timur</option>
+                <option value="Banten">Banten</option>
+                <option value="Luar Negeri">Luar Negeri</option>
+              </select>
             </div>
-          </button>
 
-          <button class="showcase-card w-full p-4 text-left" data-video="09R8_2nJtjg" data-title="Grand Celebration Finale" data-desc="Pilihan cepat untuk melihat energi crowd, stage presence, dan kemampuan closing di event besar.">
-            <div class="grid grid-cols-[112px_1fr] gap-4 items-center">
-              <img class="video-thumb rounded-2xl" src="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=600&q=80" alt="Performance 3">
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Stage 03</p>
-                <h4 class="font-serif text-2xl text-charcoal mt-2">Grand Celebration Finale</h4>
-                <p class="text-gray-500 mt-2">High-impact visual untuk suasana event yang meriah dan prestisius.</p>
-              </div>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Kota / Venue</label>
+              <input id="city" type="text" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" placeholder="Contoh: Medan / Batam / Singapore" />
             </div>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="gallery" class="py-32 px-6 bg-ivory border-y border-imperial-gold/20">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 fade-in-up">
-        <span class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ Luxury Visual Gallery ✦</span>
-        <h2 class="font-serif text-5xl md:text-6xl text-charcoal mt-4">High-Impact Images untuk Membantu Keputusan</h2>
-        <div class="section-title-line"></div>
-        <p class="max-w-2xl mx-auto mt-6 text-gray-600">
-          Galeri interaktif ini berfungsi sebagai visual proof: wardrobe, ambience, panggung, dan audience feel dalam satu alur mewah.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[220px] gap-5">
-        <button class="gallery-card shine lg:col-span-2 lg:row-span-2 fade-in-up" data-gallery-index="0">
-          <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80" alt="Gallery 1">
-          <div class="gallery-overlay">
-            <div class="text-left text-white">
-              <p class="uppercase text-[10px] tracking-[0.3em] text-gold-light font-bold">Main Hall</p>
-              <p class="font-serif text-2xl mt-2">Grand Ballroom Presence</p>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Bahasa Set</label>
+              <select id="setLanguage" class="w-full rounded-2xl border border-gray-300 px-4 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition">
+                <option value="">Pilih fokus set</option>
+                <option value="Mandarin Focus">Mandarin Focus</option>
+                <option value="Hokkien Focus">Hokkien Focus</option>
+                <option value="Mixed Signature">Mixed Signature</option>
+              </select>
             </div>
-          </div>
-        </button>
 
-        <button class="gallery-card shine fade-in-up" data-gallery-index="1">
-          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="Gallery 2">
-          <div class="gallery-overlay">
-            <div class="text-left text-white">
-              <p class="uppercase text-[10px] tracking-[0.3em] text-gold-light font-bold">Detail</p>
-              <p class="font-serif text-xl mt-2">Intimate Vocal Mood</p>
+            <div>
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Kontak WhatsApp PIC</label>
+              <input id="picPhone" type="tel" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" placeholder="08xxxxxxxxxx" />
             </div>
-          </div>
-        </button>
 
-        <button class="gallery-card shine fade-in-up" data-gallery-index="2">
-          <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=80" alt="Gallery 3">
-          <div class="gallery-overlay">
-            <div class="text-left text-white">
-              <p class="uppercase text-[10px] tracking-[0.3em] text-gold-light font-bold">Live</p>
-              <p class="font-serif text-xl mt-2">Stage Confidence</p>
-            </div>
-          </div>
-        </button>
-
-        <button class="gallery-card shine fade-in-up" data-gallery-index="3">
-          <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=900&q=80" alt="Gallery 4">
-          <div class="gallery-overlay">
-            <div class="text-left text-white">
-              <p class="uppercase text-[10px] tracking-[0.3em] text-gold-light font-bold">Crowd</p>
-              <p class="font-serif text-xl mt-2">Celebration Energy</p>
-            </div>
-          </div>
-        </button>
-
-        <button class="gallery-card shine lg:col-span-2 fade-in-up" data-gallery-index="4">
-          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1400&q=80" alt="Gallery 5">
-          <div class="gallery-overlay">
-            <div class="text-left text-white">
-              <p class="uppercase text-[10px] tracking-[0.3em] text-gold-light font-bold">Luxury Event</p>
-              <p class="font-serif text-2xl mt-2">Premium Wedding Ambience</p>
-            </div>
-          </div>
-        </button>
-
-        <button class="gallery-card shine fade-in-up" data-gallery-index="5">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Gallery 6">
-          <div class="gallery-overlay">
-            <div class="text-left text-white">
-              <p class="uppercase text-[10px] tracking-[0.3em] text-gold-light font-bold">Persona</p>
-              <p class="font-serif text-xl mt-2">Elegant Styling</p>
-            </div>
-          </div>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section id="social-bento" class="py-32 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 fade-in-up">
-        <h2 class="font-serif text-4xl md:text-5xl text-charcoal mb-4">Digital Connect</h2>
-        <p class="font-sans text-sm tracking-widest text-gray-500 uppercase">Ikuti Perjalanan di Platform Resmi</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-up">
-        <a href="https://youtube.com/@nikenkhor" target="_blank" class="bento-card lg:col-span-2 lg:row-span-2" style="background:#FCFCFA;">
-          <div class="w-full h-full flex flex-col items-center justify-center">
-            <svg class="bento-icon w-20 h-20 mb-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-            <h3 class="font-serif text-3xl font-bold text-charcoal mb-2">YouTube</h3>
-            <p class="font-sans text-imperial-gold tracking-[0.2em] uppercase text-sm font-bold">Official Channel</p>
-            <p class="font-sans text-gray-500 mt-4 max-w-xs">Pusat dokumentasi live performance dan Vlog eksklusif Niken Kho.</p>
-          </div>
-        </a>
-
-        <a href="https://www.instagram.com/nikenkhor" target="_blank" class="bento-card">
-          <svg class="bento-icon w-12 h-12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          <h3 class="font-serif text-xl font-bold text-charcoal">Instagram</h3>
-          <p class="font-sans text-gray-500 text-xs uppercase mt-2 tracking-widest">Visual Diary</p>
-        </a>
-
-        <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="bento-card">
-          <svg class="bento-icon w-12 h-12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.94a8.17 8.17 0 004.78 1.52V7.01a4.85 4.85 0 01-1.01-.32z"/></svg>
-          <h3 class="font-serif text-xl font-bold text-charcoal">TikTok</h3>
-          <p class="font-sans text-gray-500 text-xs uppercase mt-2 tracking-widest">Viral Moments</p>
-        </a>
-
-        <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="bento-card lg:col-span-2">
-          <svg class="bento-icon w-12 h-12 mb-2" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          <h3 class="font-serif text-xl font-bold text-charcoal">Facebook Page</h3>
-          <p class="font-sans text-gray-500 text-xs uppercase mt-2 tracking-widest">Fan Community</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-24 px-6 bg-ivory border-y border-imperial-gold/15">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-3 gap-6">
-        <div class="proof-card p-7 fade-in-up">
-          <p class="text-[10px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Booking Benefit</p>
-          <h3 class="font-serif text-3xl text-charcoal mt-3">Faster Qualification</h3>
-          <p class="text-gray-600 mt-3 leading-relaxed">
-            Form sekarang mengarahkan klien ke paket yang paling relevan sebelum ngobrol dengan management.
-          </p>
-        </div>
-        <div class="proof-card p-7 fade-in-up">
-          <p class="text-[10px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Promoter Utility</p>
-          <h3 class="font-serif text-3xl text-charcoal mt-3">One-Page Brief</h3>
-          <p class="text-gray-600 mt-3 leading-relaxed">
-            Ringkasan acara, kebutuhan panggung, dan level urgensi dikemas otomatis ke dalam draft WhatsApp.
-          </p>
-        </div>
-        <div class="proof-card p-7 fade-in-up">
-          <p class="text-[10px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Luxury Perception</p>
-          <h3 class="font-serif text-3xl text-charcoal mt-3">Media That Sells</h3>
-          <p class="text-gray-600 mt-3 leading-relaxed">
-            Audio, visual, dan showcase diposisikan untuk membuat impresi premium sebelum kontak terjadi.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="booking" class="py-32 bg-white px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16 fade-in-up">
-        <span class="text-imperial-gold font-sans font-bold tracking-[0.3em] uppercase text-sm">✦ Global Booking ✦</span>
-        <h2 class="font-serif text-4xl md:text-6xl font-bold text-charcoal mt-4">Booking Concierge VVIP</h2>
-        <p class="font-sans mt-4 text-gray-500 max-w-2xl mx-auto">
-          Ini bukan form biasa. Sistem ini mengkualifikasi event, menghitung fit, dan menyiapkan brief yang lebih siap untuk closing.
-        </p>
-      </div>
-
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-8 fade-in-up" id="stepChips">
-        <div class="step-chip active rounded-full px-5 py-3 text-xs uppercase tracking-[0.25em] font-bold" data-step-chip="1">01 Event</div>
-        <div class="step-chip rounded-full px-5 py-3 text-xs uppercase tracking-[0.25em] font-bold" data-step-chip="2">02 Stage Need</div>
-        <div class="step-chip rounded-full px-5 py-3 text-xs uppercase tracking-[0.25em] font-bold" data-step-chip="3">03 Package Fit</div>
-        <div class="step-chip rounded-full px-5 py-3 text-xs uppercase tracking-[0.25em] font-bold" data-step-chip="4">04 Send Brief</div>
-      </div>
-
-      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
-        <div class="booking-card bg-pearl p-6 md:p-8 lg:p-10 shadow-glass fade-in-up relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-imperial-gold opacity-45"></div>
-          <div class="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-imperial-gold opacity-45"></div>
-
-          <div class="relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Nama Promotor / Klien</label>
-                <input type="text" id="picName" class="form-input" placeholder="Masukkan nama lengkap">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Perusahaan / Keluarga / Brand</label>
-                <input type="text" id="companyName" class="form-input" placeholder="Contoh: Imperial Wedding Group">
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Jenis & Nama Acara</label>
-                <input type="text" id="eventName" class="form-input" placeholder="Contoh: Chinese Wedding Sultan / Gala Dinner Premium">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Tanggal Pelaksanaan</label>
-                <input type="date" id="eventDate" class="form-input">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Estimasi Tamu</label>
-                <select id="guestCount" class="form-select">
-                  <option value="">Pilih estimasi tamu</option>
-                  <option value="150">Di bawah 150</option>
-                  <option value="300">150 - 300</option>
-                  <option value="600">300 - 600</option>
-                  <option value="1000">600 - 1000</option>
-                  <option value="1001">Di atas 1000</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Provinsi</label>
-                <select id="provinsi" class="form-select">
-                  <option value="">Pilih Provinsi</option>
-                  <option value="DKI Jakarta">DKI Jakarta</option>
-                  <option value="Banten">Banten</option>
-                  <option value="Jawa Barat">Jawa Barat</option>
-                  <option value="Jawa Timur">Jawa Timur</option>
-                  <option value="Riau">Riau</option>
-                  <option value="Kepulauan Riau">Kepulauan Riau</option>
-                  <option value="Sumatera Utara">Sumatera Utara</option>
-                  <option value="Luar Negeri">Luar Negeri</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Kota / Lokasi Utama</label>
-                <input type="text" id="kabupaten" class="form-input" placeholder="Contoh: Medan / Batam / Singapore">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Venue</label>
-                <input type="text" id="venueName" class="form-input" placeholder="Nama ballroom / hall / venue">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Durasi Set Performance</label>
-                <select id="setDuration" class="form-select">
-                  <option value="">Pilih durasi</option>
-                  <option value="30 menit">30 menit</option>
-                  <option value="45 menit">45 menit</option>
-                  <option value="60 menit">60 menit</option>
-                  <option value="90 menit">90 menit</option>
-                  <option value="Custom">Custom / Multi Segment</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Format Acara</label>
-                <select id="eventFormat" class="form-select">
-                  <option value="">Pilih format</option>
-                  <option value="Wedding VVIP">Wedding VVIP</option>
-                  <option value="Corporate Gala">Corporate Gala</option>
-                  <option value="Private Dinner">Private Dinner</option>
-                  <option value="Festival / Public Event">Festival / Public Event</option>
-                  <option value="Imlek Celebration">Imlek Celebration</option>
-                </select>
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Preferensi Lagu / Mood Acara</label>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3" id="moodOptions">
-                  <button type="button" class="package-option text-left" data-mood="Mandarin Romantic">
-                    <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Mood</p>
-                    <p class="font-serif text-lg mt-2">Mandarin Romantic</p>
-                  </button>
-                  <button type="button" class="package-option text-left" data-mood="Hokkien Classics">
-                    <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Mood</p>
-                    <p class="font-serif text-lg mt-2">Hokkien Classics</p>
-                  </button>
-                  <button type="button" class="package-option text-left" data-mood="Elegant Ballad">
-                    <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Mood</p>
-                    <p class="font-serif text-lg mt-2">Elegant Ballad</p>
-                  </button>
-                  <button type="button" class="package-option text-left" data-mood="Grand Celebration">
-                    <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Mood</p>
-                    <p class="font-serif text-lg mt-2">Grand Celebration</p>
-                  </button>
-                </div>
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Kebutuhan Stage & Hospitality</label>
-                <textarea id="stageNeed" rows="4" class="form-textarea" placeholder="Contoh: LED backdrop, ballroom sound premium, wireless mic, private holding room, set pembuka saat entrance"></textarea>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Nomor WhatsApp PIC</label>
-                <input type="tel" id="picPhone" class="form-input" placeholder="08xxxxxxxxxx">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Email PIC</label>
-                <input type="email" id="picEmail" class="form-input" placeholder="nama@email.com">
-              </div>
-
-              <div class="md:col-span-2">
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Catatan Tambahan</label>
-                <textarea id="notes" rows="4" class="form-textarea" placeholder="Tuliskan arahan khusus, rundown penting, lagu request, atau batas waktu keputusan."></textarea>
+            <div class="md:col-span-2">
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Mood Signature</label>
+              <div id="moodGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <button type="button" class="mood-option rounded-2xl border border-gold/16 p-4 text-left bg-pearl transition hover:border-gold hover:shadow-soft" data-mood="Mandarin Romance">
+                  <p class="text-[10px] uppercase tracking-[0.24em] text-gold font-bold">Mood</p>
+                  <p class="font-serif text-lg mt-2">Mandarin Romance</p>
+                </button>
+                <button type="button" class="mood-option rounded-2xl border border-gold/16 p-4 text-left bg-pearl transition hover:border-gold hover:shadow-soft" data-mood="Hokkien Classics">
+                  <p class="text-[10px] uppercase tracking-[0.24em] text-gold font-bold">Mood</p>
+                  <p class="font-serif text-lg mt-2">Hokkien Classics</p>
+                </button>
+                <button type="button" class="mood-option rounded-2xl border border-gold/16 p-4 text-left bg-pearl transition hover:border-gold hover:shadow-soft" data-mood="Elegant Ballad">
+                  <p class="text-[10px] uppercase tracking-[0.24em] text-gold font-bold">Mood</p>
+                  <p class="font-serif text-lg mt-2">Elegant Ballad</p>
+                </button>
+                <button type="button" class="mood-option rounded-2xl border border-gold/16 p-4 text-left bg-pearl transition hover:border-gold hover:shadow-soft" data-mood="Grand Celebration">
+                  <p class="text-[10px] uppercase tracking-[0.24em] text-gold font-bold">Mood</p>
+                  <p class="font-serif text-lg mt-2">Grand Celebration</p>
+                </button>
               </div>
             </div>
 
-            <div class="mt-8 grid sm:grid-cols-2 gap-4">
-              <button id="analyzeBtn" class="btn-luxury w-full py-4 rounded-xl font-bold flex items-center justify-center gap-3">
-                Analisa Event Fit
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21H4a2 2 0 0 1-2-2V3"/><path d="m22 6-8.5 8.5-5-5L2 16"/></svg>
-              </button>
-              <button id="scrollToSummaryBtn" class="btn-ghost-luxury w-full py-4 rounded-xl font-serif text-sm uppercase tracking-[0.2em]">
-                Lihat Ringkasan
-              </button>
+            <div class="md:col-span-2">
+              <label class="block text-[11px] uppercase tracking-[0.28em] text-gray-500 font-bold mb-2">Stage & Hospitality Request</label>
+              <textarea id="stageNeed" rows="4" class="w-full rounded-2xl border border-gray-300 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold transition" placeholder="Contoh: LED backdrop, wireless mic, ballroom premium sound, private holding room, entrance set, emcee cue, dll."></textarea>
+            </div>
+
+            <div class="md:col-span-2">
+              <div class="grid sm:grid-cols-3 gap-4">
+                <button id="analyzeBtn" type="button" class="btn-gold rounded-2xl px-5 py-4 font-serif uppercase tracking-[0.18em] text-sm">
+                  Analyze Fit
+                </button>
+                <button id="copyBriefBtn" type="button" class="btn-ghost rounded-2xl px-5 py-4 font-serif uppercase tracking-[0.18em] text-sm">
+                  Copy Brief
+                </button>
+                <button id="whatsappBtn" type="button" class="btn-gold rounded-2xl px-5 py-4 font-serif uppercase tracking-[0.18em] text-sm">
+                  Send to WhatsApp
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="sticky-booking-summary space-y-6 fade-in-up">
-          <div class="booking-card p-6 md:p-7 bg-white">
-            <p class="text-[10px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Event Fit Score</p>
-            <div class="score-ring mt-5" id="scoreRing" style="--score-degree:0deg;">
+        <div class="space-y-6 reveal-up">
+          <div class="luxury-card p-6 md:p-7">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold text-center">Event Fit Score</p>
+            <div id="fitRing" class="fit-ring mt-5" style="--progress: 0deg;">
               <div class="text-center">
-                <p id="scoreValue" class="font-serif text-3xl text-charcoal">0</p>
-                <p class="text-[10px] tracking-[0.25em] uppercase text-gray-500">/ 100</p>
+                <p id="fitScoreValue" class="font-serif text-4xl font-black">0</p>
+                <p class="text-[10px] uppercase tracking-[0.22em] text-gray-500">out of 100</p>
               </div>
             </div>
-            <h3 id="scoreTitle" class="font-serif text-2xl text-charcoal mt-6 text-center">Belum dianalisa</h3>
-            <p id="scoreDesc" class="text-gray-600 text-center mt-3 leading-relaxed">
-              Lengkapi detail acara, lalu klik “Analisa Event Fit” untuk melihat kecocokan paket dan urgensi tindak lanjut.
+            <h3 id="fitScoreTitle" class="font-serif text-3xl text-center mt-6">Not Analyzed Yet</h3>
+            <p id="fitScoreDescription" class="text-center text-gray-600 mt-3 leading-relaxed">
+              Lengkapi data inti event untuk melihat seberapa kuat kecocokan booking dan package terbaik.
             </p>
           </div>
 
-          <div class="booking-card p-6 md:p-7 bg-pearl">
-            <p class="text-[10px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Recommended Package</p>
-            <h3 id="recommendedPackage" class="font-serif text-3xl text-charcoal mt-3">Undetermined</h3>
-            <p id="recommendedPackageDesc" class="text-gray-600 mt-3 leading-relaxed">
-              Sistem akan memilih package paling masuk akal berdasarkan format acara, jumlah tamu, durasi set, dan mood.
+          <div class="luxury-card p-6 md:p-7">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Recommended Package</p>
+            <h3 id="recommendedPackage" class="font-serif text-3xl mt-3">Undetermined</h3>
+            <p id="packageDescription" class="text-gray-600 mt-3 leading-relaxed">
+              Engine akan memilih Essential, Signature, atau Imperial berdasarkan skala event dan potensi closing.
             </p>
 
-            <div class="mt-6 grid grid-cols-1 gap-3">
-              <div class="package-option" data-package-card="Essential Luxury">
-                <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Package A</p>
-                <p class="font-serif text-xl mt-2">Essential Luxury</p>
-                <p class="text-gray-500 mt-2">Cocok untuk private dinner atau segment singkat yang refined.</p>
+            <div class="space-y-3 mt-6">
+              <div class="package-card rounded-2xl border border-gold/16 p-4 bg-pearl" data-package="Essential">
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Package I</p>
+                <p class="font-serif text-2xl mt-2">Essential</p>
+                <p class="text-gray-500 mt-2">Private, intimate, elegan, dan padat.</p>
               </div>
-              <div class="package-option" data-package-card="Signature Prestige">
-                <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Package B</p>
-                <p class="font-serif text-xl mt-2">Signature Prestige</p>
-                <p class="text-gray-500 mt-2">Ideal untuk wedding premium dan corporate gala dengan impact seimbang.</p>
+              <div class="package-card rounded-2xl border border-gold/16 p-4 bg-pearl" data-package="Signature">
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Package II</p>
+                <p class="font-serif text-2xl mt-2">Signature</p>
+                <p class="text-gray-500 mt-2">Paling seimbang untuk wedding premium dan gala.</p>
               </div>
-              <div class="package-option" data-package-card="Imperial Headline">
-                <p class="text-[10px] uppercase tracking-[0.25em] text-imperial-gold font-bold">Package C</p>
-                <p class="font-serif text-xl mt-2">Imperial Headline</p>
-                <p class="text-gray-500 mt-2">Untuk event besar yang membutuhkan stage presence dan memorability tinggi.</p>
+              <div class="package-card rounded-2xl border border-gold/16 p-4 bg-pearl" data-package="Imperial">
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Package III</p>
+                <p class="font-serif text-2xl mt-2">Imperial</p>
+                <p class="text-gray-500 mt-2">Headline experience untuk event besar dan high prestige.</p>
               </div>
             </div>
           </div>
 
-          <div class="booking-card p-6 md:p-7 bg-white">
-            <p class="text-[10px] uppercase tracking-[0.35em] text-imperial-gold font-bold">Instant Brief Summary</p>
-            <div class="mt-4" id="bookingSummary">
-              <div class="summary-row"><span class="text-gray-500">PIC</span><strong class="font-serif text-charcoal" id="summaryPic">-</strong></div>
-              <div class="summary-row"><span class="text-gray-500">Acara</span><strong class="font-serif text-charcoal text-right" id="summaryEvent">-</strong></div>
-              <div class="summary-row"><span class="text-gray-500">Tanggal</span><strong class="font-serif text-charcoal" id="summaryDate">-</strong></div>
-              <div class="summary-row"><span class="text-gray-500">Lokasi</span><strong class="font-serif text-charcoal text-right" id="summaryLocation">-</strong></div>
-              <div class="summary-row"><span class="text-gray-500">Format</span><strong class="font-serif text-charcoal" id="summaryFormat">-</strong></div>
-              <div class="summary-row"><span class="text-gray-500">Mood</span><strong class="font-serif text-charcoal" id="summaryMood">-</strong></div>
-              <div class="summary-row"><span class="text-gray-500">Durasi</span><strong class="font-serif text-charcoal" id="summaryDuration">-</strong></div>
+          <div class="luxury-card p-6 md:p-7 bg-charcoal text-white">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold-soft font-bold">Executive Brief Snapshot</p>
+            <div class="space-y-4 mt-5 text-sm">
+              <div class="flex justify-between gap-3 border-b border-white/10 pb-3">
+                <span class="text-white/65">PIC</span>
+                <strong id="briefPic" class="font-serif text-right">-</strong>
+              </div>
+              <div class="flex justify-between gap-3 border-b border-white/10 pb-3">
+                <span class="text-white/65">Acara</span>
+                <strong id="briefEvent" class="font-serif text-right">-</strong>
+              </div>
+              <div class="flex justify-between gap-3 border-b border-white/10 pb-3">
+                <span class="text-white/65">Tanggal</span>
+                <strong id="briefDate" class="font-serif text-right">-</strong>
+              </div>
+              <div class="flex justify-between gap-3 border-b border-white/10 pb-3">
+                <span class="text-white/65">Lokasi</span>
+                <strong id="briefLocation" class="font-serif text-right">-</strong>
+              </div>
+              <div class="flex justify-between gap-3 border-b border-white/10 pb-3">
+                <span class="text-white/65">Mood</span>
+                <strong id="briefMood" class="font-serif text-right">-</strong>
+              </div>
+              <div class="flex justify-between gap-3">
+                <span class="text-white/65">Urgency</span>
+                <strong id="briefUrgency" class="font-serif text-right gold-text">Moderate</strong>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <div class="mt-6 flex flex-col gap-3">
-              <button id="whatsappBtn" class="btn-luxury w-full py-4 rounded-xl font-bold flex items-center justify-center gap-3">
-                Kirim Ringkasan ke WhatsApp Management
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </button>
-              <button id="copyBriefBtn" class="btn-ghost-luxury w-full py-4 rounded-xl font-serif text-sm uppercase tracking-[0.2em]">
-                Copy Executive Brief
+  <section id="availability" class="py-28 bg-ivory border-y border-gold/12">
+    <div class="max-w-7xl mx-auto px-5 lg:px-6">
+      <div class="text-center reveal-up">
+        <p class="text-sm uppercase tracking-[0.34em] text-gold font-bold">✦ Urgency Engine ✦</p>
+        <h2 class="font-serif text-4xl md:text-6xl text-charcoal mt-4">Availability Calendar</h2>
+        <div class="gold-line"></div>
+        <p class="max-w-3xl mx-auto text-gray-600 mt-6 leading-relaxed">
+          Tanggal emas dirancang sebagai sinyal psikologis “prime inquiry window” untuk mempercepat keputusan booking. Pilih tanggal untuk otomatis masuk ke funnel dan memicu urgensi follow-up.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 mt-14 items-start">
+        <div class="space-y-5 reveal-up">
+          <div class="luxury-card p-5 md:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Prime Inquiry Legend</p>
+                <div class="availability-legend flex flex-wrap items-center gap-4 mt-3 text-sm text-gray-600">
+                  <div class="flex items-center gap-2"><span style="background: #C9A84C;"></span>Available</div>
+                  <div class="flex items-center gap-2"><span style="background: #E7D39A;"></span>High Demand</div>
+                  <div class="flex items-center gap-2"><span style="background: #BEBEBE;"></span>Reserved / Pending</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Selected Date</p>
+                <p id="selectedCalendarDate" class="font-serif text-2xl mt-2">No date selected</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="calendarMonths" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+        </div>
+
+        <div class="space-y-6 reveal-up">
+          <div class="luxury-card p-6 md:p-7">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Urgency Signal</p>
+            <h3 id="urgencyTitle" class="font-serif text-3xl mt-3">Prime Dates Still Open</h3>
+            <p id="urgencyDescription" class="text-gray-600 mt-3 leading-relaxed">
+              Pilih salah satu tanggal emas untuk langsung mengisi tanggal event di funnel dan menaikkan kecepatan diskusi.
+            </p>
+
+            <div class="grid grid-cols-3 gap-3 mt-6">
+              <div class="rounded-2xl bg-pearl border border-gold/14 p-4 text-center">
+                <p class="text-[10px] uppercase tracking-[0.22em] text-gray-500">Available</p>
+                <p id="availableCount" class="font-serif text-2xl mt-2">0</p>
+              </div>
+              <div class="rounded-2xl bg-pearl border border-gold/14 p-4 text-center">
+                <p class="text-[10px] uppercase tracking-[0.22em] text-gray-500">High Demand</p>
+                <p id="tentativeCount" class="font-serif text-2xl mt-2">0</p>
+              </div>
+              <div class="rounded-2xl bg-pearl border border-gold/14 p-4 text-center">
+                <p class="text-[10px] uppercase tracking-[0.22em] text-gray-500">Pending</p>
+                <p id="bookedCount" class="font-serif text-2xl mt-2">0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="luxury-card p-6 md:p-7 bg-charcoal text-white">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold-soft font-bold">Sales Psychology Copy</p>
+            <h3 class="font-serif text-3xl mt-3">Scarcity boosts response speed.</h3>
+            <p class="text-white/74 mt-4 leading-relaxed">
+              Saat user melihat slot emas yang masih terbuka, resistance turun dan keputusan kontak management jadi lebih cepat. Klik tanggal, generate brief, lalu kirim ke WhatsApp.
+            </p>
+            <div class="grid grid-cols-2 gap-3 mt-6">
+              <a href="#funnel" class="btn-gold rounded-2xl px-5 py-4 font-serif uppercase tracking-[0.18em] text-sm text-center">
+                Fill Funnel
+              </a>
+              <button id="calendarWhatsAppBtn" class="btn-ghost rounded-2xl px-5 py-4 font-serif uppercase tracking-[0.18em] text-sm text-white border-white/20 bg-white/10">
+                WA Management
               </button>
             </div>
           </div>
@@ -1395,636 +976,1211 @@
     </div>
   </section>
 
-  <footer class="bg-charcoal text-white py-16 text-center border-t-4 border-imperial-gold">
-    <h2 class="font-serif text-3xl font-bold mb-2">NIKEN KHO <span class="font-chinese text-imperial-gold">许芬琪</span></h2>
-    <p class="font-sans text-xs tracking-[0.4em] text-gray-400 mb-8 uppercase">Official Management Representative</p>
-    <div class="w-16 h-[1px] bg-imperial-gold mx-auto mb-8"></div>
-    <p class="font-sans text-xs text-gray-500 uppercase tracking-widest">© 2026 Designed for The Elite. All Rights Reserved.</p>
+  <section id="showcase" class="py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-6">
+      <div class="text-center reveal-up">
+        <p class="text-sm uppercase tracking-[0.34em] text-gold font-bold">✦ Official Performance Showcase ✦</p>
+        <h2 class="font-serif text-4xl md:text-6xl text-charcoal mt-4">Real Stage Performances</h2>
+        <div class="gold-line"></div>
+        <p class="max-w-3xl mx-auto text-gray-600 mt-6 leading-relaxed">
+          Spotlight player di bawah ini menampilkan performa publik Niken Kho dari kanal resmi, agar promotor bisa menilai energi panggung, karakter vokal, dan rasa premium dalam satu halaman.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 mt-14 items-start">
+        <div class="reveal-up">
+          <div class="spotlight-frame shadow-soft">
+            <iframe id="spotlightVideo" src="https://www.youtube.com/embed/WoaTkkzqXXI?rel=0&modestbranding=1" title="Niken Kho Performance Spotlight" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+          <div class="luxury-card p-6 md:p-7 mt-5">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Selected Performance</p>
+            <h3 id="spotlightTitle" class="font-serif text-3xl mt-3">男人歌 Nan Ren Ge — Live Performance Bengkalis</h3>
+            <p id="spotlightText" class="text-gray-600 mt-4 leading-relaxed">
+              Menampilkan rasa panggung yang matang, pembawaan percaya diri, dan eksekusi live yang cocok untuk audiens premium serta event dengan ekspektasi performa tinggi.
+            </p>
+          </div>
+        </div>
+
+        <div id="showcaseList" class="space-y-4 reveal-up">
+          <button class="showcase-item luxury-card w-full p-4 text-left active" data-video="WoaTkkzqXXI" data-title="男人歌 Nan Ren Ge — Live Performance Bengkalis" data-text="Menampilkan rasa panggung yang matang, pembawaan percaya diri, dan eksekusi live yang cocok untuk audiens premium serta event dengan ekspektasi performa tinggi.">
+            <div class="grid grid-cols-[110px_1fr] gap-4 items-center">
+              <img src="https://img.youtube.com/vi/WoaTkkzqXXI/hqdefault.jpg" alt="Nan Ren Ge" class="w-full aspect-video rounded-2xl object-cover" />
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Official Channel</p>
+                <h4 class="font-serif text-2xl mt-2">男人歌 Nan Ren Ge</h4>
+                <p class="text-gray-500 mt-2">Live Performance — Bengkalis</p>
+              </div>
+            </div>
+          </button>
+
+          <button class="showcase-item luxury-card w-full p-4 text-left" data-video="9v2I0XJh4Qk" data-title="人生如纸 Ren Sheng Ru Zhi — Live Performance" data-text="Pilihan kuat untuk memperlihatkan nuansa vokal emosional, kontrol frasa, dan daya tarik untuk event dengan audience dewasa premium.">
+            <div class="grid grid-cols-[110px_1fr] gap-4 items-center">
+              <img src="https://img.youtube.com/vi/9v2I0XJh4Qk/hqdefault.jpg" alt="Ren Sheng Ru Zhi" class="w-full aspect-video rounded-2xl object-cover" />
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Official Channel</p>
+                <h4 class="font-serif text-2xl mt-2">人生如纸 Ren Sheng Ru Zhi</h4>
+                <p class="text-gray-500 mt-2">Live Performance</p>
+              </div>
+            </div>
+          </button>
+
+          <button class="showcase-item luxury-card w-full p-4 text-left" data-video="yvzsnLWQTEY" data-title="浪子的心情 Long Cu E Sim Jieng — Live Performance" data-text="Memberi validasi cepat bahwa Niken Kho punya pijakan kuat di repertoire Hokkien yang emosional dan sangat relevan untuk pasar tradisional-premium.">
+            <div class="grid grid-cols-[110px_1fr] gap-4 items-center">
+              <img src="https://img.youtube.com/vi/yvzsnLWQTEY/hqdefault.jpg" alt="Long Cu E Sim Jieng" class="w-full aspect-video rounded-2xl object-cover" />
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Official Channel</p>
+                <h4 class="font-serif text-2xl mt-2">Long Cu E Sim Jieng</h4>
+                <p class="text-gray-500 mt-2">Hokkien Live Performance</p>
+              </div>
+            </div>
+          </button>
+
+          <button class="showcase-item luxury-card w-full p-4 text-left" data-video="M5qNeOBvgsg" data-title="返来阮的心 Teng Lai Gun E Sim — Live Performance" data-text="Cocok untuk promotor yang ingin melihat bagaimana performa menyentuh emosi audience dan tetap terasa elegan dalam setting live.">
+            <div class="grid grid-cols-[110px_1fr] gap-4 items-center">
+              <img src="https://img.youtube.com/vi/M5qNeOBvgsg/hqdefault.jpg" alt="Teng Lai Gun E Sim" class="w-full aspect-video rounded-2xl object-cover" />
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Official Channel</p>
+                <h4 class="font-serif text-2xl mt-2">Teng Lai Gun E Sim</h4>
+                <p class="text-gray-500 mt-2">Live Performance at Panipahan</p>
+              </div>
+            </div>
+          </button>
+
+          <button class="showcase-item luxury-card w-full p-4 text-left" data-video="TPaF8eN1KFw" data-title="大发财 Tua Huat Cai — Live Performance 2026" data-text="Sangat efektif sebagai sinyal kemeriahan, festive energy, dan daya tarik panggung untuk momen celebration atau seasonal high-value events.">
+            <div class="grid grid-cols-[110px_1fr] gap-4 items-center">
+              <img src="https://img.youtube.com/vi/TPaF8eN1KFw/hqdefault.jpg" alt="Tua Huat Cai" class="w-full aspect-video rounded-2xl object-cover" />
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Official Channel</p>
+                <h4 class="font-serif text-2xl mt-2">大发财 Tua Huat Cai</h4>
+                <p class="text-gray-500 mt-2">Live Performance 2026</p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vault" class="py-28 bg-ivory border-y border-gold/12">
+    <div class="max-w-7xl mx-auto px-5 lg:px-6">
+      <div class="text-center reveal-up">
+        <p class="text-sm uppercase tracking-[0.34em] text-gold font-bold">✦ Luxury Media Vault ✦</p>
+        <h2 class="font-serif text-4xl md:text-6xl text-charcoal mt-4">Audio Lounge & Photo Gallery</h2>
+        <div class="gold-line"></div>
+        <p class="max-w-3xl mx-auto text-gray-600 mt-6 leading-relaxed">
+          Kombinasi audio preview dan visual lightbox membantu promotor mengambil keputusan lebih cepat dengan impresi mewah yang konsisten.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 mt-14 items-start">
+        <div class="space-y-6 reveal-up">
+          <div class="luxury-card shine p-6 md:p-7">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Audio Lounge</p>
+                <h3 id="audioTitle" class="font-serif text-3xl mt-2">Mandarin Romance Signature</h3>
+                <p id="audioMeta" class="text-gray-500 mt-2">Luxury opening mood • Elegant atmosphere • Curated preview</p>
+              </div>
+              <button id="mainAudioToggle" class="btn-gold rounded-full px-6 py-3 font-serif uppercase tracking-[0.16em] text-xs">
+                Play Preview
+              </button>
+            </div>
+
+            <div class="grid md:grid-cols-[0.9fr_1.1fr] gap-6 mt-7 items-center">
+              <div class="rounded-[1.4rem] overflow-hidden border border-gold/16">
+                <img id="audioCover" src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80" alt="Audio cover" class="w-full h-[320px] object-cover" />
+              </div>
+
+              <div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-2xl border border-gold/14 bg-pearl p-4">
+                    <p class="text-[10px] uppercase tracking-[0.22em] text-gray-500">Mood</p>
+                    <p class="font-serif text-lg mt-2">Refined & Elegant</p>
+                  </div>
+                  <div class="rounded-2xl border border-gold/14 bg-pearl p-4">
+                    <p class="text-[10px] uppercase tracking-[0.22em] text-gray-500">Use Case</p>
+                    <p class="font-serif text-lg mt-2">Opening / Dinner</p>
+                  </div>
+                </div>
+
+                <div class="mt-6 audio-progress">
+                  <div id="audioProgressBar"></div>
+                </div>
+
+                <div class="flex justify-between text-sm text-gray-500 mt-2">
+                  <span id="audioCurrent">00:00</span>
+                  <span id="audioDuration">00:00</span>
+                </div>
+
+                <div class="flex flex-wrap gap-3 mt-6">
+                  <button id="prevTrackBtn" class="btn-ghost rounded-full px-5 py-3 font-serif uppercase tracking-[0.16em] text-xs">Prev</button>
+                  <button id="nextTrackBtn" class="btn-ghost rounded-full px-5 py-3 font-serif uppercase tracking-[0.16em] text-xs">Next</button>
+                </div>
+              </div>
+            </div>
+
+            <audio id="vaultAudio"></audio>
+
+            <div id="playlist" class="space-y-3 mt-7">
+              <button class="playlist-item luxury-card w-full p-4 text-left active" data-track="0">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Track 01</p>
+                    <h4 class="font-serif text-2xl mt-2">Mandarin Romance Signature</h4>
+                    <p class="text-gray-500 mt-2">Cocok untuk wedding entrance dan ballroom atmosphere.</p>
+                  </div>
+                  <span class="text-xs uppercase tracking-[0.22em] text-gray-400">Mandarin</span>
+                </div>
+                <div class="mini-progress mt-4"><div></div></div>
+              </button>
+
+              <button class="playlist-item luxury-card w-full p-4 text-left" data-track="1">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Track 02</p>
+                    <h4 class="font-serif text-2xl mt-2">Hokkien Classics Selection</h4>
+                    <p class="text-gray-500 mt-2">Nuansa emosional untuk audience dewasa premium.</p>
+                  </div>
+                  <span class="text-xs uppercase tracking-[0.22em] text-gray-400">Hokkien</span>
+                </div>
+                <div class="mini-progress mt-4"><div></div></div>
+              </button>
+
+              <button class="playlist-item luxury-card w-full p-4 text-left" data-track="2">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Track 03</p>
+                    <h4 class="font-serif text-2xl mt-2">Grand Celebration Closing</h4>
+                    <p class="text-gray-500 mt-2">Pilihan energik untuk segmen closing yang mewah.</p>
+                  </div>
+                  <span class="text-xs uppercase tracking-[0.22em] text-gray-400">Mixed</span>
+                </div>
+                <div class="mini-progress mt-4"><div></div></div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6 reveal-up">
+          <div class="luxury-card p-6 md:p-7">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold font-bold">Photo Gallery</p>
+            <h3 class="font-serif text-3xl mt-3">VVIP Visual Experience</h3>
+            <p class="text-gray-600 mt-3 leading-relaxed">
+              Lightbox gallery ini mempertegas visual mewah, energi panggung, dan positioning premium Niken Kho untuk event kelas atas.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 mt-6 auto-rows-[170px] md:auto-rows-[190px]">
+              <button class="gallery-tile luxury-card col-span-2 row-span-2 relative overflow-hidden" data-gallery-index="0">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Gallery 1" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end p-5">
+                  <div class="text-white text-left">
+                    <p class="text-[10px] uppercase tracking-[0.28em] text-gold-soft font-bold">Main Visual</p>
+                    <p class="font-serif text-2xl mt-2">Premium Wedding Ambience</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="gallery-tile luxury-card relative overflow-hidden" data-gallery-index="1">
+                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80" alt="Gallery 2" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                  <p class="font-serif text-white text-lg">Stage Elegance</p>
+                </div>
+              </button>
+
+              <button class="gallery-tile luxury-card relative overflow-hidden" data-gallery-index="2">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80" alt="Gallery 3" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                  <p class="font-serif text-white text-lg">Intimate Performance</p>
+                </div>
+              </button>
+
+              <button class="gallery-tile luxury-card relative overflow-hidden" data-gallery-index="3">
+                <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1200&q=80" alt="Gallery 4" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                  <p class="font-serif text-white text-lg">Celebration Energy</p>
+                </div>
+              </button>
+
+              <button class="gallery-tile luxury-card relative overflow-hidden" data-gallery-index="4">
+                <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80" alt="Gallery 5" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                  <p class="font-serif text-white text-lg">Grand Ballroom</p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="luxury-card p-6 md:p-7 bg-charcoal text-white">
+            <p class="text-[10px] uppercase tracking-[0.34em] text-gold-soft font-bold">Media Vault Benefit</p>
+            <h3 class="font-serif text-3xl mt-3">Persuasion without friction.</h3>
+            <p class="text-white/76 mt-4 leading-relaxed">
+              Saat video, audio, dan gallery hidup dalam satu flow yang mewah, promotor tidak perlu berpindah halaman untuk percaya bahwa act ini layak diprioritaskan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="social" class="py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-6">
+      <div class="text-center reveal-up">
+        <p class="text-sm uppercase tracking-[0.34em] text-gold font-bold">✦ Official Social Connect ✦</p>
+        <h2 class="font-serif text-4xl md:text-6xl text-charcoal mt-4">Connect with Niken Kho</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
+        <a href="https://www.youtube.com/@NikenKhor" target="_blank" class="luxury-card shine p-8 reveal-up lg:col-span-2 lg:row-span-2 bg-pearl">
+          <div class="h-full flex flex-col items-center justify-center text-center">
+            <svg class="w-20 h-20 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            <h3 class="font-serif text-4xl mt-5">YouTube</h3>
+            <p class="uppercase tracking-[0.24em] text-gold font-bold mt-3 text-sm">@nikenkhor</p>
+            <p class="text-gray-500 mt-4 max-w-sm">Official performance showcase, live recordings, dan dokumentasi visual publik Niken Kho.</p>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/nikenkhor" target="_blank" class="luxury-card p-8 reveal-up">
+          <svg class="w-12 h-12 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <h3 class="font-serif text-3xl mt-5">Instagram</h3>
+          <p class="uppercase tracking-[0.24em] text-gold font-bold mt-3 text-sm">@nikenkhor</p>
+          <p class="text-gray-500 mt-4">Visual diary dan branding lifestyle.</p>
+        </a>
+
+        <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="luxury-card p-8 reveal-up">
+          <svg class="w-12 h-12 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.94a8.17 8.17 0 004.78 1.52V7.01a4.85 4.85 0 01-1.01-.32z"/></svg>
+          <h3 class="font-serif text-3xl mt-5">TikTok</h3>
+          <p class="uppercase tracking-[0.24em] text-gold font-bold mt-3 text-sm">@nikenkhor</p>
+          <p class="text-gray-500 mt-4">Short-form moments dan audience growth.</p>
+        </a>
+
+        <a href="https://www.facebook.com/share/1UPsHwvoFP/" target="_blank" class="luxury-card p-8 reveal-up lg:col-span-2">
+          <svg class="w-12 h-12 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <h3 class="font-serif text-3xl mt-5">Facebook</h3>
+          <p class="uppercase tracking-[0.24em] text-gold font-bold mt-3 text-sm">Official Page Access</p>
+          <p class="text-gray-500 mt-4">Fan community, outreach, dan komunikasi sosial yang lebih luas.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-charcoal text-white py-16 text-center border-t-4 border-gold">
+    <h2 class="font-serif text-3xl md:text-4xl font-bold">
+      NIKEN KHO <span class="font-chinese text-gold">许芬琪</span>
+    </h2>
+    <p class="text-xs uppercase tracking-[0.42em] text-white/55 mt-4">Official Niken Kho Management 2026</p>
+    <div class="w-16 h-px bg-gold mx-auto my-8"></div>
+    <p class="text-xs uppercase tracking-[0.28em] text-white/45">Luxury Booking Experience • All Rights Reserved</p>
   </footer>
 
-  <div class="floating-cta" id="floatingCta">
-    <div class="glass-card rounded-full px-4 py-3 flex items-center justify-between gap-4">
+  <div id="floatingCta" class="floating-cta">
+    <div class="glass rounded-full px-4 py-3 flex items-center justify-between gap-4 shadow-glow">
       <div class="min-w-0">
-        <p class="text-[10px] uppercase tracking-[0.3em] text-imperial-gold font-bold">Priority Action</p>
-        <p class="font-serif text-charcoal truncate" id="floatingCtaText">Lengkapi booking concierge untuk prioritas respon management.</p>
+        <p class="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Priority Inquiry</p>
+        <p id="floatingCtaText" class="font-serif text-charcoal truncate">Build your Executive Brief and send it to WhatsApp Management.</p>
       </div>
-      <a href="#booking" class="btn-luxury px-5 py-3 rounded-full text-xs font-bold whitespace-nowrap">Book Now</a>
+      <a href="#funnel" class="btn-gold rounded-full px-5 py-3 font-serif uppercase tracking-[0.16em] text-xs whitespace-nowrap">
+        Book Now
+      </a>
     </div>
   </div>
 
-  <div class="ai-bot-btn" id="botToggleBtn" title="Chat dengan Asisten AI">💬</div>
+  <button id="botToggle" class="bot-toggle" title="VVIP Concierge 琪琪">💬</button>
 
-  <div class="ai-bot-window" id="botWindow">
-    <div class="ai-header flex justify-between items-center">
-      <span>Asisten Virtual 琪琪</span>
-      <button id="botCloseBtn" class="text-2xl leading-none hover:text-crimson transition">&times;</button>
-    </div>
-    <div class="ai-body" id="botBody">
-      <div class="ai-msg">
-        <strong>Halo!</strong> Saya asisten virtual representatif dari Niken Kho 许芬琪. Saya bisa bantu Anda memilih package, mengecek fit acara, atau menyiapkan brief singkat sebelum menuju WhatsApp.
-      </div>
-      <div class="ai-options" id="botOptions">
-        <button class="ai-opt-btn" data-bot-action="availability">📅 Cek gaya respon untuk jadwal & ketersediaan</button>
-        <button class="ai-opt-btn" data-bot-action="package">💎 Rekomendasikan package tercepat</button>
-        <button class="ai-opt-btn" data-bot-action="rider">🎤 Ringkas technical & hospitality need</button>
-        <button class="ai-opt-btn" data-bot-action="whatsapp">⚡ Arahkan saya ke WhatsApp sekarang</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="lightbox" id="galleryLightbox">
-    <div class="lightbox-inner">
-      <div class="flex items-center justify-between px-4 md:px-6 py-4 border-b border-imperial-gold/20 bg-charcoal text-white">
+  <div id="botWindow" class="bot-window">
+    <div class="px-5 py-4 border-b border-gold/18 bg-gradient-to-r from-pearl to-white">
+      <div class="flex items-center justify-between gap-4">
         <div>
-          <p class="text-[10px] uppercase tracking-[0.35em] text-gold-light font-bold">Luxury Gallery</p>
-          <h3 id="lightboxTitle" class="font-serif text-2xl mt-1">Gallery Preview</h3>
+          <p class="text-[10px] uppercase tracking-[0.30em] text-gold font-bold">VVIP Concierge Bot</p>
+          <h3 class="font-serif text-2xl mt-2">琪琪 Assistant</h3>
+        </div>
+        <button id="botClose" class="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center hover:bg-gold hover:text-white transition">
+          &times;
+        </button>
+      </div>
+    </div>
+
+    <div id="botMessages" class="bot-messages">
+      <div class="bot-bubble">
+        Halo, saya <strong>琪琪</strong>. Saya bisa bantu menangkap brief Anda, membaca kebutuhan event, lalu merangkum semuanya menjadi <strong>Executive Brief</strong> yang siap dikirim ke WhatsApp Management.
+      </div>
+      <div class="bot-bubble">
+        Anda bisa ketik bebas, misalnya: <em>“Wedding 600 pax di Medan bulan Mei, mau Mandarin + Hokkien, ballroom hotel, butuh set entrance dan closing.”</em>
+      </div>
+    </div>
+
+    <div class="px-4 pb-3">
+      <div class="bot-quick flex flex-wrap gap-2 mb-3">
+        <button type="button" data-quick="Wedding 600 pax di Medan, mood Mandarin Romance, ballroom premium.">Wedding Lead</button>
+        <button type="button" data-quick="Corporate gala 300 pax di Jakarta, elegant ballad, 45 menit.">Corporate Lead</button>
+        <button type="button" data-quick="Saya ingin ringkasan Executive Brief sekarang.">Generate Brief</button>
+        <button type="button" data-quick="Arahkan saya ke WhatsApp Management.">Send WhatsApp</button>
+      </div>
+      <div class="flex gap-2">
+        <input id="botInput" type="text" class="flex-1 rounded-full border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold" placeholder="Tulis brief event Anda..." />
+        <button id="botSend" class="btn-gold rounded-full px-5 py-3 font-serif uppercase tracking-[0.16em] text-xs">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-panel">
+      <div class="flex items-center justify-between px-5 py-4 bg-charcoal text-white border-b border-gold/20">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.28em] text-gold-soft font-bold">VVIP Gallery</p>
+          <h3 id="lightboxTitle" class="font-serif text-2xl mt-2">Gallery</h3>
         </div>
         <div class="flex items-center gap-2">
-          <button id="prevGalleryBtn" class="btn-ghost-luxury px-4 py-2 rounded-full text-white border-white/20 bg-white/10">Prev</button>
-          <button id="nextGalleryBtn" class="btn-ghost-luxury px-4 py-2 rounded-full text-white border-white/20 bg-white/10">Next</button>
-          <button id="closeLightboxBtn" class="btn-ghost-luxury px-4 py-2 rounded-full text-white border-white/20 bg-white/10">Close</button>
+          <button id="prevGallery" class="btn-ghost rounded-full px-4 py-2 text-white border-white/20 bg-white/10">Prev</button>
+          <button id="nextGallery" class="btn-ghost rounded-full px-4 py-2 text-white border-white/20 bg-white/10">Next</button>
+          <button id="closeLightbox" class="btn-ghost rounded-full px-4 py-2 text-white border-white/20 bg-white/10">Close</button>
         </div>
       </div>
-      <div class="lightbox-main">
-        <img id="lightboxImage" src="" alt="Gallery preview">
+      <div class="lightbox-media">
+        <img id="lightboxImage" src="" alt="Gallery item" />
       </div>
-      <div class="px-4 md:px-6 py-4 bg-charcoal text-white">
-        <p id="lightboxDesc" class="text-white/75">Visual ambience untuk memvalidasi premium stage persona.</p>
+      <div class="px-5 py-4 bg-charcoal text-white">
+        <p id="lightboxDesc" class="text-white/75">Luxury stage ambience.</p>
       </div>
     </div>
   </div>
 
-<script>
-  gsap.registerPlugin(ScrollTrigger);
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
 
-  const MANAGEMENT_PHONE = "6281234567890";
+    const WA_NUMBER = '6282285287318';
 
-  const audioTracks = [
-    {
-      title: "Mandarin Romance Gala",
-      meta: "Elegant • Mandarin • Luxury Wedding Opening",
-      image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80",
-      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-    },
-    {
-      title: "Hokkien Golden Classics",
-      meta: "Soulful • Hokkien • Audience Engagement",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80",
-      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-    },
-    {
-      title: "Grand Finale Celebration",
-      meta: "Festive • Premium • Big Closing Impact",
-      image: "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1200&q=80",
-      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
-    }
-  ];
-
-  const galleryItems = [
-    {
-      title: "Grand Ballroom Presence",
-      desc: "Visual utama untuk menggambarkan skala premium, panggung megah, dan impresi kelas atas.",
-      image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=80"
-    },
-    {
-      title: "Intimate Vocal Mood",
-      desc: "Nuansa dekat, refined, dan elegan untuk setting acara yang lebih personal.",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=80"
-    },
-    {
-      title: "Stage Confidence",
-      desc: "Menunjukkan kontrol panggung dan persona performa yang meyakinkan.",
-      image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=80"
-    },
-    {
-      title: "Celebration Energy",
-      desc: "Cocok untuk memproyeksikan suasana closing yang hidup dan memorable.",
-      image: "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1600&q=80"
-    },
-    {
-      title: "Premium Wedding Ambience",
-      desc: "Highlight ambience yang kuat untuk pasar wedding high-end dan keluarga besar.",
-      image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80"
-    },
-    {
-      title: "Elegant Styling",
-      desc: "Membantu promotor membayangkan kecocokan wardrobe dan visual persona.",
-      image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
-    }
-  ];
-
-  let currentAudioIndex = 0;
-  let currentGalleryIndex = 0;
-  let selectedMood = "";
-  let fitScore = 0;
-
-  const $ = (id) => document.getElementById(id);
-
-  function formatTime(seconds) {
-    if (!isFinite(seconds)) return "00:00";
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return String(mins).padStart(2, '0') + ":" + String(secs).padStart(2, '0');
-  }
-
-  function animateOnScroll() {
-    gsap.utils.toArray('.fade-in-up').forEach(elem => {
-      gsap.fromTo(elem,
-        { autoAlpha: 0, y: 40 },
-        {
-          duration: 1,
-          autoAlpha: 1,
-          y: 0,
-          ease: "power3.out",
-          scrollTrigger: { trigger: elem, start: "top 85%" }
-        }
-      );
-    });
-  }
-
-  function initHorizontalScroll() {
-    if (window.innerWidth <= 1024) return;
-    const sections = gsap.utils.toArray(".horizontal-panel");
-    gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".horizontal-wrapper",
-        pin: true,
-        scrub: 1,
-        snap: 1 / (sections.length - 1),
-        end: () => "+=" + document.querySelector(".horizontal-wrapper").offsetWidth
+    const tracks = [
+      {
+        title: 'Mandarin Romance Signature',
+        meta: 'Luxury opening mood • Elegant atmosphere • Curated preview',
+        cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
+      },
+      {
+        title: 'Hokkien Classics Selection',
+        meta: 'Emotional tone • Audience connection • Curated preview',
+        cover: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+      },
+      {
+        title: 'Grand Celebration Closing',
+        meta: 'Festive vibe • Big room energy • Curated preview',
+        cover: 'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1200&q=80',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
       }
-    });
-  }
+    ];
 
-  function initNavbar() {
-    const navbar = $('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        navbar.classList.add('shadow-md');
-      } else {
-        navbar.classList.remove('shadow-md');
+    const galleryItems = [
+      {
+        title: 'Premium Wedding Ambience',
+        desc: 'Atmosfer visual yang cocok untuk wedding ballroom dan event keluarga premium.',
+        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Stage Elegance',
+        desc: 'Menyampaikan keanggunan panggung yang refined dan premium.',
+        image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Intimate Performance',
+        desc: 'Visual untuk momen emosional, dekat, dan eksklusif.',
+        image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Celebration Energy',
+        desc: 'Nuansa meriah untuk closing set dan crowd engagement.',
+        image: 'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1600&q=80'
+      },
+      {
+        title: 'Grand Ballroom',
+        desc: 'Cocok untuk menegaskan skala besar dan prestige event.',
+        image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=80'
       }
-    });
-  }
+    ];
 
-  function initFloatingCta() {
-    const cta = $('floatingCta');
-    const bookingSection = $('booking');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting && window.scrollY > 400) {
-          cta.classList.add('show');
-        } else {
-          cta.classList.remove('show');
-        }
-      });
-    }, { threshold: 0.2 });
-
-    observer.observe(bookingSection);
-  }
-
-  function loadAudioTrack(index) {
-    currentAudioIndex = index;
-    const track = audioTracks[index];
-    const audio = $('signatureAudio');
-
-    $('nowPlayingTitle').textContent = track.title;
-    $('nowPlayingMeta').textContent = track.meta;
-    $('audioCover').src = track.image;
-    audio.src = track.src;
-
-    document.querySelectorAll('#audioPlaylist .song-row').forEach((row, rowIndex) => {
-      row.classList.toggle('active', rowIndex === index);
-      const fill = row.querySelector('.mini-progress-fill');
-      fill.style.width = rowIndex === index ? '18%' : '0%';
-    });
-
-    $('audioCurrent').textContent = "00:00";
-    $('audioDuration').textContent = "00:00";
-    $('audioProgressFill').style.width = "0%";
-    setHeroAudioButtons(false);
-  }
-
-  function setHeroAudioButtons(isPlaying) {
-    const text = isPlaying ? 'Pause Sample' : 'Play Sample';
-    $('heroAudioPlayBtn').textContent = text;
-    $('mainAudioPlayBtn').textContent = isPlaying ? 'Pause Signature' : 'Play Signature';
-  }
-
-  function toggleAudio() {
-    const audio = $('signatureAudio');
-    if (!audio.src) loadAudioTrack(currentAudioIndex);
-    if (audio.paused) {
-      audio.play();
-      setHeroAudioButtons(true);
-    } else {
-      audio.pause();
-      setHeroAudioButtons(false);
-    }
-  }
-
-  function initAudioPlayer() {
-    loadAudioTrack(0);
-
-    $('heroAudioPlayBtn').addEventListener('click', toggleAudio);
-    $('mainAudioPlayBtn').addEventListener('click', toggleAudio);
-
-    $('prevAudioBtn').addEventListener('click', () => {
-      const newIndex = (currentAudioIndex - 1 + audioTracks.length) % audioTracks.length;
-      loadAudioTrack(newIndex);
-      $('signatureAudio').play();
-      setHeroAudioButtons(true);
-    });
-
-    $('nextAudioBtn').addEventListener('click', () => {
-      const newIndex = (currentAudioIndex + 1) % audioTracks.length;
-      loadAudioTrack(newIndex);
-      $('signatureAudio').play();
-      setHeroAudioButtons(true);
-    });
-
-    document.querySelectorAll('#audioPlaylist .song-row').forEach(btn => {
-      btn.addEventListener('click', () => {
-        loadAudioTrack(Number(btn.dataset.index));
-        $('signatureAudio').play();
-        setHeroAudioButtons(true);
-      });
-    });
-
-    $('signatureAudio').addEventListener('loadedmetadata', () => {
-      $('audioDuration').textContent = formatTime($('signatureAudio').duration);
-    });
-
-    $('signatureAudio').addEventListener('timeupdate', () => {
-      const audio = $('signatureAudio');
-      const progress = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-      $('audioProgressFill').style.width = progress + '%';
-      $('audioCurrent').textContent = formatTime(audio.currentTime);
-
-      document.querySelectorAll('#audioPlaylist .song-row').forEach((row, rowIndex) => {
-        const fill = row.querySelector('.mini-progress-fill');
-        if (rowIndex === currentAudioIndex) {
-          fill.style.width = Math.max(progress, 18) + '%';
-        } else {
-          fill.style.width = '0%';
-        }
-      });
-    });
-
-    $('signatureAudio').addEventListener('ended', () => {
-      const nextIndex = (currentAudioIndex + 1) % audioTracks.length;
-      loadAudioTrack(nextIndex);
-      $('signatureAudio').play();
-      setHeroAudioButtons(true);
-    });
-
-    $('signatureAudio').addEventListener('pause', () => setHeroAudioButtons(false));
-    $('signatureAudio').addEventListener('play', () => setHeroAudioButtons(true));
-  }
-
-  function initShowcase() {
-    document.querySelectorAll('#showcaseList .showcase-card').forEach(card => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('#showcaseList .showcase-card').forEach(item => item.classList.remove('active', 'border-imperial-gold'));
-        card.classList.add('active', 'border-imperial-gold');
-        $('spotlightFrame').src = `https://www.youtube.com/embed/${card.dataset.video}?rel=0&modestbranding=1&autoplay=1`;
-        $('spotlightTitle').textContent = card.dataset.title;
-        $('spotlightDesc').textContent = card.dataset.desc;
-      });
-    });
-  }
-
-  function openLightbox(index) {
-    currentGalleryIndex = index;
-    const item = galleryItems[index];
-    $('lightboxImage').src = item.image;
-    $('lightboxTitle').textContent = item.title;
-    $('lightboxDesc').textContent = item.desc;
-    $('galleryLightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    $('galleryLightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function stepGallery(direction) {
-    currentGalleryIndex = (currentGalleryIndex + direction + galleryItems.length) % galleryItems.length;
-    openLightbox(currentGalleryIndex);
-  }
-
-  function initGallery() {
-    document.querySelectorAll('[data-gallery-index]').forEach(btn => {
-      btn.addEventListener('click', () => openLightbox(Number(btn.dataset.galleryIndex)));
-    });
-
-    $('closeLightboxBtn').addEventListener('click', closeLightbox);
-    $('prevGalleryBtn').addEventListener('click', () => stepGallery(-1));
-    $('nextGalleryBtn').addEventListener('click', () => stepGallery(1));
-    $('galleryLightbox').addEventListener('click', (e) => {
-      if (e.target === $('galleryLightbox')) closeLightbox();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (!$('galleryLightbox').classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') stepGallery(1);
-      if (e.key === 'ArrowLeft') stepGallery(-1);
-    });
-  }
-
-  function setActiveStep(step) {
-    document.querySelectorAll('[data-step-chip]').forEach(chip => {
-      chip.classList.toggle('active', Number(chip.dataset.stepChip) <= step);
-    });
-  }
-
-  function initMoodSelection() {
-    document.querySelectorAll('#moodOptions .package-option').forEach(option => {
-      option.addEventListener('click', () => {
-        document.querySelectorAll('#moodOptions .package-option').forEach(item => item.classList.remove('active'));
-        option.classList.add('active');
-        selectedMood = option.dataset.mood;
-        updateSummary();
-        setActiveStep(2);
-      });
-    });
-  }
-
-  function getFormData() {
-    return {
-      picName: $('picName').value.trim(),
-      companyName: $('companyName').value.trim(),
-      eventName: $('eventName').value.trim(),
-      eventDate: $('eventDate').value,
-      guestCount: $('guestCount').value,
-      provinsi: $('provinsi').value,
-      kabupaten: $('kabupaten').value.trim(),
-      venueName: $('venueName').value.trim(),
-      setDuration: $('setDuration').value,
-      eventFormat: $('eventFormat').value,
-      mood: selectedMood,
-      stageNeed: $('stageNeed').value.trim(),
-      picPhone: $('picPhone').value.trim(),
-      picEmail: $('picEmail').value.trim(),
-      notes: $('notes').value.trim()
+    const manualAvailability = {
+      '2026-04': {
+        available: [9, 11, 12, 16, 18, 19, 23, 25, 26, 30],
+        tentative: [10, 13, 17, 24, 27],
+        booked: [8, 14, 15, 20, 21, 22, 28, 29]
+      },
+      '2026-05': {
+        available: [2, 3, 7, 9, 10, 14, 16, 17, 21, 24, 28, 30, 31],
+        tentative: [1, 8, 15, 22, 29],
+        booked: [4, 5, 6, 11, 12, 13, 18, 19, 20, 23, 25, 26, 27]
+      },
+      '2026-06': {
+        available: [4, 6, 7, 11, 13, 14, 18, 20, 21, 25, 27, 28],
+        tentative: [5, 12, 19, 26],
+        booked: [1, 2, 3, 8, 9, 10, 15, 16, 17, 22, 23, 24, 29, 30]
+      }
     };
-  }
 
-  function getPackageRecommendation(data) {
-    let score = 35;
+    const botState = {
+      rawNotes: [],
+      inferredType: '',
+      inferredGuests: '',
+      inferredCity: '',
+      inferredMood: '',
+      inferredDuration: '',
+      summaryRequested: false
+    };
 
-    if (data.eventFormat === "Wedding VVIP") score += 18;
-    if (data.eventFormat === "Corporate Gala") score += 15;
-    if (data.eventFormat === "Imlek Celebration") score += 16;
-    if (data.eventFormat === "Festival / Public Event") score += 12;
-    if (data.eventFormat === "Private Dinner") score += 10;
+    let selectedMood = '';
+    let selectedTrack = 0;
+    let currentGalleryIndex = 0;
+    let selectedCalendarISO = '';
 
-    if (data.guestCount === "300") score += 10;
-    if (data.guestCount === "600") score += 15;
-    if (data.guestCount === "1000") score += 18;
-    if (data.guestCount === "1001") score += 22;
-    if (data.guestCount === "150") score += 6;
+    const $ = (id) => document.getElementById(id);
 
-    if (data.setDuration === "45 menit") score += 8;
-    if (data.setDuration === "60 menit") score += 11;
-    if (data.setDuration === "90 menit") score += 14;
-    if (data.setDuration === "Custom") score += 16;
-
-    if (data.mood === "Mandarin Romantic") score += 9;
-    if (data.mood === "Hokkien Classics") score += 8;
-    if (data.mood === "Grand Celebration") score += 10;
-    if (data.mood === "Elegant Ballad") score += 7;
-
-    if (data.venueName) score += 4;
-    if (data.stageNeed) score += 5;
-    if (data.picPhone || data.picEmail) score += 5;
-    if (data.provinsi === "Luar Negeri") score += 8;
-
-    score = Math.min(score, 98);
-
-    let title = "Warm Lead";
-    let desc = "Potensi acara cukup baik. Lengkapi detail kebutuhan panggung dan preferensi set agar manajemen bisa respon lebih presisi.";
-    let packageName = "Essential Luxury";
-    let packageDesc = "Disarankan untuk acara yang lebih intimate, private, atau membutuhkan segment premium yang padat dan elegan.";
-
-    if (score >= 60) {
-      title = "Strong Fit";
-      desc = "Acara memiliki kecocokan yang tinggi untuk positioning premium Niken Kho. Brief sudah cukup matang untuk masuk tahap diskusi serius.";
-      packageName = "Signature Prestige";
-      packageDesc = "Paket paling seimbang untuk wedding premium, gala dinner, dan event korporat yang butuh kualitas serta nuansa mewah.";
+    function formatNumberDisplay(value) {
+      if (value >= 1000000) return Math.floor(value / 1000000) + 'M';
+      if (value >= 1000) return Math.floor(value / 1000) + 'K';
+      return value.toString();
     }
 
-    if (score >= 80) {
-      title = "Priority VVIP";
-      desc = "Ini terlihat seperti lead prioritas tinggi. Acara memiliki skala, format, dan atmosfer yang sangat cocok untuk penampilan headline premium.";
-      packageName = "Imperial Headline";
-      packageDesc = "Rekomendasi terbaik untuk event besar, audience premium, dan kebutuhan panggung yang menuntut presence maksimal.";
+    function animateCounters() {
+      document.querySelectorAll('.counter-value').forEach((el) => {
+        const target = Number(el.dataset.counter || 0);
+        const suffix = el.dataset.suffix || '';
+        let displayTarget = target;
+        if (target >= 1000000) {
+          displayTarget = target / 1000000;
+        }
+
+        gsap.fromTo(
+          el,
+          { textContent: 0 },
+          {
+            textContent: displayTarget,
+            duration: 2,
+            ease: 'power2.out',
+            snap: { textContent: 1 },
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%'
+            },
+            onUpdate: function () {
+              const current = Number(el.textContent);
+              if (target >= 1000000) {
+                el.textContent = current + 'M' + suffix.replace('M', '');
+              } else {
+                el.textContent = current + suffix;
+              }
+            },
+            onComplete: function () {
+              el.textContent = formatNumberDisplay(target) + suffix.replace('M', '');
+              if (target >= 1000000) el.textContent = Math.floor(target / 1000000) + 'M' + (suffix.includes('+') ? '+' : '');
+            }
+          }
+        );
+      });
     }
 
-    return { score, title, desc, packageName, packageDesc };
-  }
-
-  function highlightRecommendedPackage(packageName) {
-    document.querySelectorAll('[data-package-card]').forEach(card => {
-      card.classList.toggle('active', card.dataset.packageCard === packageName);
-    });
-  }
-
-  function updateSummary() {
-    const data = getFormData();
-    $('summaryPic').textContent = data.picName || "-";
-    $('summaryEvent').textContent = data.eventName || "-";
-    $('summaryDate').textContent = data.eventDate || "-";
-    $('summaryLocation').textContent = [data.kabupaten, data.provinsi].filter(Boolean).join(", ") || "-";
-    $('summaryFormat').textContent = data.eventFormat || "-";
-    $('summaryMood').textContent = data.mood || "-";
-    $('summaryDuration').textContent = data.setDuration || "-";
-
-    const hasBasic = data.picName || data.eventName || data.eventDate || data.kabupaten || data.provinsi;
-    $('floatingCtaText').textContent = hasBasic
-      ? `Siap kirim brief untuk ${data.eventName || 'event Anda'}`
-      : 'Lengkapi booking concierge untuk prioritas respon management.';
-  }
-
-  function analyzeEventFit() {
-    const data = getFormData();
-    updateSummary();
-
-    const result = getPackageRecommendation(data);
-    fitScore = result.score;
-
-    $('scoreRing').style.setProperty('--score-degree', `${fitScore * 3.6}deg`);
-    $('scoreValue').textContent = fitScore;
-    $('scoreTitle').textContent = result.title;
-    $('scoreDesc').textContent = result.desc;
-    $('recommendedPackage').textContent = result.packageName;
-    $('recommendedPackageDesc').textContent = result.packageDesc;
-    highlightRecommendedPackage(result.packageName);
-
-    setActiveStep(4);
-    $('botWindow').classList.remove('open');
-    window.scrollTo({ top: $('booking').offsetTop - 70, behavior: 'smooth' });
-  }
-
-  function generateBriefText() {
-    const data = getFormData();
-    const result = getPackageRecommendation(data);
-
-    return [
-      "Halo Management Niken Kho 许芬琪, saya ingin mengajukan inquiry booking.",
-      "",
-      "EXECUTIVE BRIEF",
-      `Nama PIC: ${data.picName || '-'}`,
-      `Perusahaan / Keluarga / Brand: ${data.companyName || '-'}`,
-      `Jenis & Nama Acara: ${data.eventName || '-'}`,
-      `Tanggal Pelaksanaan: ${data.eventDate || '-'}`,
-      `Estimasi Tamu: ${data.guestCount || '-'}`,
-      `Format Acara: ${data.eventFormat || '-'}`,
-      `Provinsi: ${data.provinsi || '-'}`,
-      `Kota / Lokasi Utama: ${data.kabupaten || '-'}`,
-      `Venue: ${data.venueName || '-'}`,
-      `Durasi Set: ${data.setDuration || '-'}`,
-      `Preferensi Mood: ${data.mood || '-'}`,
-      `Stage & Hospitality Need: ${data.stageNeed || '-'}`,
-      `WhatsApp PIC: ${data.picPhone || '-'}`,
-      `Email PIC: ${data.picEmail || '-'}`,
-      `Catatan Tambahan: ${data.notes || '-'}`,
-      "",
-      "AUTO ANALYSIS",
-      `Event Fit Score: ${result.score}/100`,
-      `Recommended Package: ${result.packageName}`,
-      `Assessment: ${result.title}`,
-      "",
-      "Mohon info availability, skema package, dan next step diskusi. Terima kasih."
-    ].join("\n");
-  }
-
-  function openWhatsApp() {
-    const brief = generateBriefText();
-    const url = `https://wa.me/${MANAGEMENT_PHONE}?text=${encodeURIComponent(brief)}`;
-    window.open(url, '_blank', 'noopener');
-  }
-
-  async function copyBrief() {
-    const brief = generateBriefText();
-    try {
-      await navigator.clipboard.writeText(brief);
-      appendBotMessage("Brief berhasil dicopy. Anda bisa langsung paste ke WhatsApp atau email internal tim.", false);
-    } catch (error) {
-      appendBotMessage("Clipboard tidak tersedia di browser ini. Gunakan tombol WhatsApp untuk mengirim langsung.", false);
+    function revealElements() {
+      gsap.utils.toArray('.reveal-up').forEach((el) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%'
+          }
+        });
+      });
     }
-  }
 
-  function toggleBot(forceState = null) {
-    const bot = $('botWindow');
-    if (forceState === true) bot.classList.add('open');
-    else if (forceState === false) bot.classList.remove('open');
-    else bot.classList.toggle('open');
-  }
+    function initNavbar() {
+      const navbar = $('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 18) navbar.classList.add('nav-scrolled');
+        else navbar.classList.remove('nav-scrolled');
+      });
 
-  function appendBotMessage(text, isUser = false) {
-    const msg = document.createElement('div');
-    msg.className = 'ai-msg' + (isUser ? ' user' : '');
-    msg.innerHTML = text;
-    $('botBody').appendChild(msg);
-    $('botBody').scrollTop = $('botBody').scrollHeight;
-  }
+      $('mobileMenuBtn').addEventListener('click', () => {
+        $('mobileDrawer').classList.toggle('open');
+      });
 
-  function botReply(action) {
-    const data = getFormData();
-    let userText = "";
-    let replyText = "";
+      document.querySelectorAll('#mobileDrawer a').forEach((link) => {
+        link.addEventListener('click', () => $('mobileDrawer').classList.remove('open'));
+      });
+    }
 
-    if (action === 'availability') {
-      userText = "Saya ingin tahu bagaimana alur cek jadwal & ketersediaannya.";
-      replyText = `
-        Untuk mempercepat cek ketersediaan, isi minimal <strong>tanggal acara</strong>, <strong>lokasi</strong>, dan <strong>format acara</strong>. 
-        Setelah itu klik <strong>Kirim Ringkasan ke WhatsApp Management</strong> agar tim bisa menilai slot dan prioritas respons.
+    function initShowcase() {
+      document.querySelectorAll('#showcaseList .showcase-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          document.querySelectorAll('#showcaseList .showcase-item').forEach((card) => card.classList.remove('active'));
+          item.classList.add('active');
+          $('spotlightVideo').src = 'https://www.youtube.com/embed/' + item.dataset.video + '?rel=0&modestbranding=1&autoplay=1';
+          $('spotlightTitle').textContent = item.dataset.title;
+          $('spotlightText').textContent = item.dataset.text;
+        });
+      });
+    }
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds)) return '00:00';
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function loadTrack(index) {
+      selectedTrack = index;
+      const track = tracks[index];
+      const audio = $('vaultAudio');
+
+      $('audioTitle').textContent = track.title;
+      $('audioMeta').textContent = track.meta;
+      $('audioCover').src = track.cover;
+      audio.src = track.src;
+
+      document.querySelectorAll('#playlist .playlist-item').forEach((item, itemIndex) => {
+        item.classList.toggle('active', itemIndex === index);
+        const miniFill = item.querySelector('.mini-progress div');
+        miniFill.style.width = itemIndex === index ? '16%' : '0%';
+      });
+
+      $('audioCurrent').textContent = '00:00';
+      $('audioDuration').textContent = '00:00';
+      $('audioProgressBar').style.width = '0%';
+      $('mainAudioToggle').textContent = 'Play Preview';
+    }
+
+    function toggleAudio() {
+      const audio = $('vaultAudio');
+      if (!audio.src) loadTrack(selectedTrack);
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    function initAudioPlayer() {
+      loadTrack(0);
+
+      $('mainAudioToggle').addEventListener('click', toggleAudio);
+      $('prevTrackBtn').addEventListener('click', () => {
+        const nextIndex = (selectedTrack - 1 + tracks.length) % tracks.length;
+        loadTrack(nextIndex);
+        $('vaultAudio').play();
+      });
+      $('nextTrackBtn').addEventListener('click', () => {
+        const nextIndex = (selectedTrack + 1) % tracks.length;
+        loadTrack(nextIndex);
+        $('vaultAudio').play();
+      });
+
+      document.querySelectorAll('#playlist .playlist-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          loadTrack(Number(item.dataset.track));
+          $('vaultAudio').play();
+        });
+      });
+
+      $('vaultAudio').addEventListener('loadedmetadata', () => {
+        $('audioDuration').textContent = formatTime($('vaultAudio').duration);
+      });
+
+      $('vaultAudio').addEventListener('timeupdate', () => {
+        const audio = $('vaultAudio');
+        const progress = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+        $('audioProgressBar').style.width = progress + '%';
+        $('audioCurrent').textContent = formatTime(audio.currentTime);
+
+        document.querySelectorAll('#playlist .playlist-item').forEach((item, index) => {
+          const fill = item.querySelector('.mini-progress div');
+          fill.style.width = index === selectedTrack ? Math.max(progress, 16) + '%' : '0%';
+        });
+      });
+
+      $('vaultAudio').addEventListener('play', () => $('mainAudioToggle').textContent = 'Pause Preview');
+      $('vaultAudio').addEventListener('pause', () => $('mainAudioToggle').textContent = 'Play Preview');
+      $('vaultAudio').addEventListener('ended', () => {
+        const nextIndex = (selectedTrack + 1) % tracks.length;
+        loadTrack(nextIndex);
+        $('vaultAudio').play();
+      });
+    }
+
+    function openGallery(index) {
+      currentGalleryIndex = index;
+      const item = galleryItems[index];
+      $('lightboxTitle').textContent = item.title;
+      $('lightboxDesc').textContent = item.desc;
+      $('lightboxImage').src = item.image;
+      $('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      $('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function stepGallery(direction) {
+      currentGalleryIndex = (currentGalleryIndex + direction + galleryItems.length) % galleryItems.length;
+      openGallery(currentGalleryIndex);
+    }
+
+    function initGallery() {
+      document.querySelectorAll('[data-gallery-index]').forEach((btn) => {
+        btn.addEventListener('click', () => openGallery(Number(btn.dataset.galleryIndex)));
+      });
+
+      $('closeLightbox').addEventListener('click', closeGallery);
+      $('prevGallery').addEventListener('click', () => stepGallery(-1));
+      $('nextGallery').addEventListener('click', () => stepGallery(1));
+      $('lightbox').addEventListener('click', (e) => {
+        if (e.target === $('lightbox')) closeGallery();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!$('lightbox').classList.contains('open')) return;
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowRight') stepGallery(1);
+        if (e.key === 'ArrowLeft') stepGallery(-1);
+      });
+    }
+
+    function getMoodScore(mood) {
+      if (mood === 'Mandarin Romance') return 8;
+      if (mood === 'Hokkien Classics') return 8;
+      if (mood === 'Elegant Ballad') return 7;
+      if (mood === 'Grand Celebration') return 10;
+      return 0;
+    }
+
+    function calculateUrgencyDays(dateValue) {
+      if (!dateValue) return null;
+      const today = new Date();
+      const target = new Date(dateValue + 'T00:00:00');
+      const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+      return diff;
+    }
+
+    function getUrgencyLabel(diff) {
+      if (diff === null) return 'Moderate';
+      if (diff <= 14) return 'High';
+      if (diff <= 30) return 'Elevated';
+      return 'Moderate';
+    }
+
+    function getFormData() {
+      return {
+        picName: $('picName').value.trim(),
+        companyName: $('companyName').value.trim(),
+        eventName: $('eventName').value.trim(),
+        eventType: $('eventType').value,
+        guestCount: $('guestCount').value,
+        eventDate: $('eventDate').value,
+        setDuration: $('setDuration').value,
+        province: $('province').value,
+        city: $('city').value.trim(),
+        setLanguage: $('setLanguage').value,
+        stageNeed: $('stageNeed').value.trim(),
+        picPhone: $('picPhone').value.trim(),
+        mood: selectedMood
+      };
+    }
+
+    function analyzeScore() {
+      const data = getFormData();
+      let score = 22;
+
+      if (data.eventType === 'Wedding VVIP') score += 20;
+      if (data.eventType === 'Corporate Gala') score += 18;
+      if (data.eventType === 'Private Dinner') score += 12;
+      if (data.eventType === 'Festival / Public Event') score += 14;
+      if (data.eventType === 'Imlek Celebration') score += 18;
+
+      if (data.guestCount === '150') score += 6;
+      if (data.guestCount === '300') score += 12;
+      if (data.guestCount === '600') score += 18;
+      if (data.guestCount === '1000') score += 24;
+      if (data.guestCount === '1500') score += 28;
+
+      if (data.province === 'Riau' || data.province === 'Kepulauan Riau') score += 7;
+      if (data.province === 'Sumatera Utara') score += 8;
+      if (data.province === 'DKI Jakarta' || data.province === 'Jawa Barat' || data.province === 'Jawa Timur' || data.province === 'Banten') score += 10;
+      if (data.province === 'Luar Negeri') score += 12;
+
+      if (data.setDuration === '30') score += 6;
+      if (data.setDuration === '45') score += 9;
+      if (data.setDuration === '60') score += 12;
+      if (data.setDuration === '90') score += 16;
+      if (data.setDuration === '120') score += 18;
+
+      if (data.setLanguage === 'Mandarin Focus') score += 7;
+      if (data.setLanguage === 'Hokkien Focus') score += 7;
+      if (data.setLanguage === 'Mixed Signature') score += 10;
+
+      score += getMoodScore(data.mood);
+
+      if (data.city) score += 3;
+      if (data.stageNeed) score += 6;
+      if (data.picPhone) score += 6;
+      if (data.companyName) score += 3;
+
+      const urgencyDiff = calculateUrgencyDays(data.eventDate);
+      if (urgencyDiff !== null && urgencyDiff <= 14) score += 10;
+      else if (urgencyDiff !== null && urgencyDiff <= 30) score += 6;
+      else if (urgencyDiff !== null && urgencyDiff <= 60) score += 3;
+
+      score = Math.max(8, Math.min(98, score));
+
+      let packageName = 'Essential';
+      let title = 'Warm Opportunity';
+      let desc = 'Cukup potensial, namun detail event masih perlu diperkaya agar proses closing lebih cepat dan lebih presisi.';
+
+      if (score >= 55) {
+        packageName = 'Signature';
+        title = 'Strong Booking Fit';
+        desc = 'Event ini terlihat sangat cocok untuk positioning premium Niken Kho. Rekomendasi terbaik adalah diskusi lebih cepat dengan brief yang rapi.';
+      }
+
+      if (score >= 80) {
+        packageName = 'Imperial';
+        title = 'High-Priority VVIP Lead';
+        desc = 'Skala event, format, dan urgensi menunjukkan bahwa ini adalah lead premium dengan potensi closing tinggi. Prioritaskan follow-up segera.';
+      }
+
+      return { score, packageName, title, desc };
+    }
+
+    function renderScore() {
+      const result = analyzeScore();
+      $('fitRing').style.setProperty('--progress', (result.score * 3.6) + 'deg');
+      $('fitScoreValue').textContent = result.score;
+      $('fitScoreTitle').textContent = result.title;
+      $('fitScoreDescription').textContent = result.desc;
+      $('recommendedPackage').textContent = result.packageName;
+      $('packageDescription').textContent =
+        result.packageName === 'Essential'
+          ? 'Cocok untuk private, intimate dinner, atau acara premium berskala ringkas yang tetap ingin tampil mewah.'
+          : result.packageName === 'Signature'
+            ? 'Pilihan utama untuk wedding premium, corporate gala, dan event dengan kebutuhan impact yang seimbang.'
+            : 'Pilihan paling kuat untuk event besar, prestige tinggi, dan kebutuhan panggung headline yang lebih megah.';
+
+      document.querySelectorAll('.package-card').forEach((card) => {
+        card.classList.toggle('active', card.dataset.package === result.packageName);
+      });
+    }
+
+    function updateBriefSnapshot() {
+      const data = getFormData();
+      const urgencyLabel = getUrgencyLabel(calculateUrgencyDays(data.eventDate));
+
+      $('briefPic').textContent = data.picName || '-';
+      $('briefEvent').textContent = data.eventName || '-';
+      $('briefDate').textContent = data.eventDate || '-';
+      $('briefLocation').textContent = [data.city, data.province].filter(Boolean).join(', ') || '-';
+      $('briefMood').textContent = data.mood || '-';
+      $('briefUrgency').textContent = urgencyLabel;
+
+      const eventText = data.eventName || 'your event';
+      $('floatingCtaText').textContent = 'Executive Brief for ' + eventText + ' is ready to be sent.';
+    }
+
+    function generateExecutiveBrief() {
+      const data = getFormData();
+      const score = analyzeScore();
+      const urgency = getUrgencyLabel(calculateUrgencyDays(data.eventDate));
+      const botNotes = botState.rawNotes.length ? botState.rawNotes.join(' | ') : '-';
+
+      return [
+        'Halo Official Niken Kho Management, saya ingin mengajukan inquiry booking.',
+        '',
+        'EXECUTIVE BRIEF',
+        `Nama PIC: ${data.picName || '-'}`,
+        `Perusahaan / Keluarga: ${data.companyName || '-'}`,
+        `Nama & Format Acara: ${data.eventName || '-'}`,
+        `Jenis Acara: ${data.eventType || '-'}`,
+        `Jumlah Tamu: ${data.guestCount || '-'}`,
+        `Tanggal Event: ${data.eventDate || '-'}`,
+        `Durasi Performance: ${data.setDuration ? data.setDuration + ' menit' : '-'}`,
+        `Lokasi: ${[data.city, data.province].filter(Boolean).join(', ') || '-'}`,
+        `Bahasa Set: ${data.setLanguage || '-'}`,
+        `Mood Signature: ${data.mood || '-'}`,
+        `Stage & Hospitality Request: ${data.stageNeed || '-'}`,
+        `WhatsApp PIC: ${data.picPhone || '-'}`,
+        '',
+        'BOT CONCIERGE NOTES',
+        botNotes,
+        '',
+        'AUTO SALES ANALYSIS',
+        `Event Fit Score: ${score.score}/100`,
+        `Recommended Package: ${score.packageName}`,
+        `Lead Status: ${score.title}`,
+        `Urgency Level: ${urgency}`,
+        '',
+        'Mohon info availability, pilihan package, dan next step booking. Terima kasih.'
+      ].join('\n');
+    }
+
+    async function copyBrief() {
+      const brief = generateExecutiveBrief();
+      try {
+        await navigator.clipboard.writeText(brief);
+        pushBotMessage('Executive Brief berhasil di-copy. Anda bisa langsung paste ke WhatsApp.', false);
+      } catch (error) {
+        pushBotMessage('Clipboard tidak tersedia. Gunakan tombol WhatsApp untuk kirim langsung.', false);
+      }
+    }
+
+    function sendToWhatsApp() {
+      const brief = generateExecutiveBrief();
+      window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(brief), '_blank', 'noopener');
+    }
+
+    function bindFunnelEvents() {
+      ['picName', 'companyName', 'eventName', 'eventType', 'guestCount', 'eventDate', 'setDuration', 'province', 'city', 'setLanguage', 'stageNeed', 'picPhone'].forEach((id) => {
+        $(id).addEventListener('input', () => {
+          renderScore();
+          updateBriefSnapshot();
+        });
+        $(id).addEventListener('change', () => {
+          renderScore();
+          updateBriefSnapshot();
+        });
+      });
+
+      document.querySelectorAll('.mood-option').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.mood-option').forEach((item) => item.classList.remove('ring-2', 'ring-gold', 'bg-gold/10'));
+          btn.classList.add('ring-2', 'ring-gold', 'bg-gold/10');
+          selectedMood = btn.dataset.mood;
+          renderScore();
+          updateBriefSnapshot();
+        });
+      });
+
+      $('analyzeBtn').addEventListener('click', () => {
+        renderScore();
+        updateBriefSnapshot();
+        $('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      $('copyBriefBtn').addEventListener('click', copyBrief);
+      $('whatsappBtn').addEventListener('click', sendToWhatsApp);
+      $('calendarWhatsAppBtn').addEventListener('click', sendToWhatsApp);
+
+      renderScore();
+      updateBriefSnapshot();
+    }
+
+    function monthKey(year, month) {
+      return year + '-' + String(month + 1).padStart(2, '0');
+    }
+
+    function generateFallbackStatus(day, weekdayIndex) {
+      if (day % 7 === 0 || weekdayIndex === 5) return 'tentative';
+      if (day % 5 === 0) return 'booked';
+      return 'available';
+    }
+
+    function getStatusForDate(year, month, day, weekdayIndex) {
+      const key = monthKey(year, month);
+      const custom = manualAvailability[key];
+      if (custom) {
+        if (custom.available.includes(day)) return 'available';
+        if (custom.tentative.includes(day)) return 'tentative';
+        if (custom.booked.includes(day)) return 'booked';
+      }
+      return generateFallbackStatus(day, weekdayIndex);
+    }
+
+    function formatHumanDate(isoDate) {
+      const date = new Date(isoDate + 'T00:00:00');
+      return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function updateUrgencyPanel(status, isoDate) {
+      $('selectedCalendarDate').textContent = isoDate ? formatHumanDate(isoDate) : 'No date selected';
+
+      if (!isoDate) {
+        $('urgencyTitle').textContent = 'Prime Dates Still Open';
+        $('urgencyDescription').textContent = 'Pilih salah satu tanggal emas untuk langsung mengisi tanggal event di funnel dan menaikkan kecepatan diskusi.';
+        return;
+      }
+
+      const diff = calculateUrgencyDays(isoDate);
+
+      if (status === 'available') {
+        if (diff !== null && diff <= 21) {
+          $('urgencyTitle').textContent = 'High Urgency Window';
+          $('urgencyDescription').textContent = 'Tanggal ini masih terbuka dan cukup dekat. Ini momen terbaik untuk mengirim brief sekarang sebelum slot bergerak ke status high demand.';
+        } else {
+          $('urgencyTitle').textContent = 'Available Prime Window';
+          $('urgencyDescription').textContent = 'Tanggal emas ini masih terbuka. Sangat ideal untuk langsung mengunci diskusi lebih awal lewat WhatsApp Management.';
+        }
+      }
+
+      if (status === 'tentative') {
+        $('urgencyTitle').textContent = 'High Demand Signal';
+        $('urgencyDescription').textContent = 'Tanggal ini berada dalam area high demand. Anda tetap bisa inquiry, tapi sebaiknya kirim Executive Brief secepat mungkin untuk prioritas penanganan.';
+      }
+
+      if (status === 'booked') {
+        $('urgencyTitle').textContent = 'Reserved / Pending';
+        $('urgencyDescription').textContent = 'Tanggal ini tampak padat. Pilih opsi available lain atau tetap kirim brief untuk cek kemungkinan slot alternatif.';
+      }
+    }
+
+    function renderAvailabilityCounters(statuses) {
+      const available = statuses.filter((x) => x === 'available').length;
+      const tentative = statuses.filter((x) => x === 'tentative').length;
+      const booked = statuses.filter((x) => x === 'booked').length;
+      $('availableCount').textContent = available;
+      $('tentativeCount').textContent = tentative;
+      $('bookedCount').textContent = booked;
+    }
+
+    function createCalendarMonth(baseDate, offset) {
+      const current = new Date(baseDate.getFullYear(), baseDate.getMonth() + offset, 1);
+      const year = current.getFullYear();
+      const month = current.getMonth();
+      const monthName = current.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+      const firstWeekday = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const normalizedFirstWeekday = firstWeekday === 0 ? 6 : firstWeekday - 1;
+      const labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+
+      const card = document.createElement('div');
+      card.className = 'luxury-card p-5';
+
+      const header = document.createElement('div');
+      header.innerHTML = `
+        <p class="text-[10px] uppercase tracking-[0.30em] text-gold font-bold">Inquiry Month</p>
+        <h3 class="font-serif text-3xl mt-3">${monthName}</h3>
+      `;
+      card.appendChild(header);
+
+      const labelRow = document.createElement('div');
+      labelRow.className = 'grid grid-cols-7 gap-2 mt-5 text-center text-[11px] uppercase tracking-[0.20em] text-gray-500 font-bold';
+      labels.forEach((label) => {
+        const d = document.createElement('div');
+        d.textContent = label;
+        labelRow.appendChild(d);
+      });
+      card.appendChild(labelRow);
+
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-7 gap-2 mt-3';
+
+      const allStatuses = [];
+
+      for (let i = 0; i < normalizedFirstWeekday; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'calendar-day empty';
+        grid.appendChild(empty);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const weekdayIndex = new Date(year, month, day).getDay();
+        const status = getStatusForDate(year, month, day, weekdayIndex);
+        const iso = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        allStatuses.push(status);
+
+        const dayEl = document.createElement('button');
+        dayEl.type = 'button';
+        dayEl.className = `calendar-day ${status}`;
+        dayEl.dataset.iso = iso;
+        dayEl.dataset.status = status;
+        dayEl.innerHTML = `
+          <span class="text-sm font-bold">${day}</span>
+          <span class="text-[10px] uppercase tracking-[0.18em] ${status === 'available' ? 'text-gold font-bold' : status === 'tentative' ? 'text-amber-700 font-bold' : 'text-gray-400 font-bold'}">${status === 'available' ? 'Available' : status === 'tentative' ? 'High Demand' : 'Pending'}</span>
+        `;
+
+        dayEl.addEventListener('click', () => {
+          document.querySelectorAll('.calendar-day').forEach((node) => node.classList.remove('selected'));
+          dayEl.classList.add('selected');
+          selectedCalendarISO = iso;
+          $('eventDate').value = iso;
+          updateUrgencyPanel(status, iso);
+          renderScore();
+          updateBriefSnapshot();
+          if (status !== 'booked') {
+            $('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+
+        grid.appendChild(dayEl);
+      }
+
+      renderAvailabilityCounters(allStatuses);
+      card.appendChild(grid);
+      return card;
+    }
+
+    function renderCalendars() {
+      const mount = $('calendarMonths');
+      mount.innerHTML = '';
+      const baseDate = new Date();
+      for (let i = 0; i < 3; i++) {
+        mount.appendChild(createCalendarMonth(baseDate, i));
+      }
+    }
+
+    function pushBotMessage(text, user = false) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bot-bubble' + (user ? ' user' : '');
+      bubble.innerHTML = text;
+      $('botMessages').appendChild(bubble);
+      $('botMessages').scrollTop = $('botMessages').scrollHeight;
+    }
+
+    function inferFromMessage(message) {
+      const lower = message.toLowerCase();
+
+      if (lower.includes('wedding')) botState.inferredType = 'Wedding VVIP';
+      if (lower.includes('gala')) botState.inferredType = 'Corporate Gala';
+      if (lower.includes('dinner')) botState.inferredType = 'Private Dinner';
+      if (lower.includes('festival')) botState.inferredType = 'Festival / Public Event';
+      if (lower.includes('imlek')) botState.inferredType = 'Imlek Celebration';
+
+      if (lower.includes('mandarin')) botState.inferredMood = 'Mandarin Romance';
+      if (lower.includes('hokkien')) botState.inferredMood = 'Hokkien Classics';
+      if (lower.includes('ballad')) botState.inferredMood = 'Elegant Ballad';
+      if (lower.includes('closing') || lower.includes('celebration')) botState.inferredMood = 'Grand Celebration';
+
+      const paxMatch = lower.match(/(\d{2,4})\s*(pax|orang|guests?)/);
+      if (paxMatch) {
+        const pax = Number(paxMatch[1]);
+        if (pax <= 150) botState.inferredGuests = '150';
+        else if (pax <= 300) botState.inferredGuests = '300';
+        else if (pax <= 600) botState.inferredGuests = '600';
+        else if (pax <= 1000) botState.inferredGuests = '1000';
+        else botState.inferredGuests = '1500';
+      }
+
+      if (lower.includes('30 menit')) botState.inferredDuration = '30';
+      if (lower.includes('45 menit')) botState.inferredDuration = '45';
+      if (lower.includes('60 menit')) botState.inferredDuration = '60';
+      if (lower.includes('90 menit')) botState.inferredDuration = '90';
+
+      const cityHints = ['medan', 'jakarta', 'batam', 'bengkalis', 'surabaya', 'bandung', 'singapore', 'dumai'];
+      cityHints.forEach((city) => {
+        if (lower.includes(city)) botState.inferredCity = city.charAt(0).toUpperCase() + city.slice(1);
+      });
+
+      if (message.trim()) botState.rawNotes.push(message.trim());
+
+      if (botState.inferredType && !$('eventType').value) $('eventType').value = botState.inferredType;
+      if (botState.inferredGuests && !$('guestCount').value) $('guestCount').value = botState.inferredGuests;
+      if (botState.inferredCity && !$('city').value) $('city').value = botState.inferredCity;
+      if (botState.inferredDuration && !$('setDuration').value) $('setDuration').value = botState.inferredDuration;
+
+      if (botState.inferredMood && !selectedMood) {
+        selectedMood = botState.inferredMood;
+        document.querySelectorAll('.mood-option').forEach((item) => {
+          item.classList.toggle('ring-2', item.dataset.mood === selectedMood);
+          item.classList.toggle('ring-gold', item.dataset.mood === selectedMood);
+          item.classList.toggle('bg-gold/10', item.dataset.mood === selectedMood);
+        });
+      }
+
+      renderScore();
+      updateBriefSnapshot();
+    }
+
+    function generateBotSummary() {
+      const score = analyzeScore();
+      return `
+        <strong>Executive Brief Draft</strong><br><br>
+        PIC: ${$('picName').value.trim() || '-'}<br>
+        Event: ${$('eventName').value.trim() || '-'}<br>
+        Type: ${$('eventType').value || '-'}<br>
+        Guests: ${$('guestCount').value || '-'}<br>
+        Date: ${$('eventDate').value || '-'}<br>
+        Location: ${[$('city').value.trim(), $('province').value].filter(Boolean).join(', ') || '-'}<br>
+        Mood: ${selectedMood || '-'}<br>
+        Score: ${score.score}/100<br>
+        Package: ${score.packageName}<br><br>
+        Tekan <strong>Send to WhatsApp</strong> untuk mengirim ringkasan ke Management.
       `;
     }
 
-    if (action === 'package') {
-      const rec = getPackageRecommendation(data);
-      userText = "Tolong rekomendasikan package tercepat.";
-      replyText = `
-        Berdasarkan data yang ada, package yang paling relevan saat ini adalah <strong>${rec.packageName}</strong>.<br><br>
-        <strong>Assessment:</strong> ${rec.title}<br>
-        <strong>Fit Score:</strong> ${rec.score}/100<br><br>
-        Lengkapi data venue, durasi set, dan kebutuhan panggung supaya rekomendasinya makin tajam.
-      `;
-      analyzeEventFit();
+    function handleBotInput(message) {
+      if (!message.trim()) return;
+
+      pushBotMessage(message, true);
+      inferFromMessage(message);
+
+      const lower = message.toLowerCase();
+
+      if (lower.includes('generate brief') || lower.includes('executive brief') || lower.includes('ringkasan')) {
+        pushBotMessage(generateBotSummary(), false);
+        return;
+      }
+
+      if (lower.includes('whatsapp') || lower.includes('send whatsapp')) {
+        pushBotMessage('Saya arahkan Anda ke WhatsApp Management dengan Executive Brief yang sudah diringkas.', false);
+        setTimeout(sendToWhatsApp, 500);
+        return;
+      }
+
+      const score = analyzeScore();
+
+      pushBotMessage(
+        `Saya sudah menangkap brief Anda. Saat ini sinyal lead menunjukkan <strong>${score.title}</strong> dengan skor <strong>${score.score}/100</strong> dan package yang paling masuk akal adalah <strong>${score.packageName}</strong>.<br><br>Ketik <em>“Generate Brief”</em> untuk melihat ringkasan siap kirim.`,
+        false
+      );
     }
 
-    if (action === 'rider') {
-      userText = "Saya butuh ringkasan technical & hospitality.";
-      const riderBits = [];
-      if (data.stageNeed) riderBits.push(data.stageNeed);
-      if (data.eventFormat) riderBits.push(`Format acara ${data.eventFormat}`);
-      if (data.venueName) riderBits.push(`Venue ${data.venueName}`);
-      replyText = `
-        Draft kebutuhan saat ini:<br><br>
-        <strong>${riderBits.length ? riderBits.join(' • ') : 'Belum ada detail stage need yang diisi.'}</strong><br><br>
-        Untuk hasil lebih siap kirim, isi kolom <strong>Kebutuhan Stage & Hospitality</strong> di booking concierge.
-      `;
+    function initBot() {
+      $('botToggle').addEventListener('click', () => $('botWindow').classList.toggle('open'));
+      $('botClose').addEventListener('click', () => $('botWindow').classList.remove('open'));
+
+      $('botSend').addEventListener('click', () => {
+        const value = $('botInput').value;
+        handleBotInput(value);
+        $('botInput').value = '';
+      });
+
+      $('botInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          $('botSend').click();
+        }
+      });
+
+      document.querySelectorAll('[data-quick]').forEach((btn) => {
+        btn.addEventListener('click', () => handleBotInput(btn.dataset.quick));
+      });
     }
 
-    if (action === 'whatsapp') {
-      userText = "Arahkan saya ke WhatsApp sekarang.";
-      replyText = `
-        Siap. Saya sarankan klik <strong>Kirim Ringkasan ke WhatsApp Management</strong> agar pesan yang masuk sudah rapi, profesional, dan lebih cepat diproses.
-      `;
-      setTimeout(openWhatsApp, 500);
+    function initFloatingCta() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && window.scrollY > 500) $('floatingCta').classList.add('show');
+          else $('floatingCta').classList.remove('show');
+        });
+      }, { threshold: 0.2 });
+
+      observer.observe($('funnel'));
     }
 
-    appendBotMessage(userText, true);
-    setTimeout(() => appendBotMessage(replyText, false), 250);
-  }
+    function initAll() {
+      initNavbar();
+      revealElements();
+      animateCounters();
+      initShowcase();
+      initAudioPlayer();
+      initGallery();
+      bindFunnelEvents();
+      renderCalendars();
+      initBot();
+      initFloatingCta();
+      updateUrgencyPanel('', '');
+    }
 
-  function initBot() {
-    $('botToggleBtn').addEventListener('click', () => toggleBot());
-    $('botCloseBtn').addEventListener('click', () => toggleBot(false));
-    document.querySelectorAll('[data-bot-action]').forEach(btn => {
-      btn.addEventListener('click', () => botReply(btn.dataset.botAction));
-    });
-  }
-
-  function bindFormEvents() {
-    [
-      'picName', 'companyName', 'eventName', 'eventDate', 'guestCount', 'provinsi', 'kabupaten',
-      'venueName', 'setDuration', 'eventFormat', 'stageNeed', 'picPhone', 'picEmail', 'notes'
-    ].forEach(id => {
-      $(id).addEventListener('input', updateSummary);
-      $(id).addEventListener('change', updateSummary);
-    });
-
-    $('analyzeBtn').addEventListener('click', analyzeEventFit);
-    $('scrollToSummaryBtn').addEventListener('click', () => {
-      document.querySelector('.sticky-booking-summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    $('whatsappBtn').addEventListener('click', openWhatsApp);
-    $('copyBriefBtn').addEventListener('click', copyBrief);
-  }
-
-  function initAll() {
-    animateOnScroll();
-    initHorizontalScroll();
-    initNavbar();
-    initFloatingCta();
-    initAudioPlayer();
-    initShowcase();
-    initGallery();
-    initMoodSelection();
-    initBot();
-    bindFormEvents();
-    updateSummary();
-  }
-
-  document.addEventListener('DOMContentLoaded', initAll);
-</script>
+    document.addEventListener('DOMContentLoaded', initAll);
+  </script>
 </body>
 </html>
