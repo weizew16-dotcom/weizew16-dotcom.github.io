@@ -1,515 +1,637 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niken Kho 许芬琪 | Official VVIP EPK v2</title>
-    <meta name="description" content="Official VVIP Electronic Press Kit Niken Kho 许芬琪 — Diva Pop Mandarin & Hokkien asal Bengkalis. Luxury booking experience.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niken Kho 许芬琪 | Official VVIP Electronic Press Kit</title>
+  <meta name="description" content="Official VVIP Electronic Press Kit Niken Kho 许芬琪 — Diva Pop Mandarin & Hokkien asal Bengkalis. Luxury booking funnel, availability calendar, showcase, media vault, dan concierge bot." />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Lato:wght@300;400;700;900&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pearl: '#F9F7F2',
+            ivory: '#F2EFE8',
+            charcoal: '#0A0A0A',
+            'charcoal-soft': '#1A1A1A',
+            gold: '#C9A84C',
+            'gold-soft': '#E7D39A',
+            crimson: '#8A1525'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Lato"', 'sans-serif'],
+            chinese: ['"Noto Serif TC"', 'serif']
+          },
+          boxShadow: {
+            luxury: '0 30px 60px rgba(201,168,76,0.12)',
+            soft: '0 15px 40px rgba(0,0,0,0.08)',
+            glow: '0 0 0 1px rgba(201,168,76,0.2), 0 20px 60px rgba(201,168,76,0.2)'
+          },
+          backgroundImage: {
+            'gold-gradient': 'linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%)',
+            'hero-radial': 'radial-gradient(circle at top, rgba(201,168,76,0.15), transparent 50%)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-soft: #E7D39A;
+      --charcoal: #0A0A0A;
+      --pearl: #F9F7F2;
+      --ivory: #F2EFE8;
+      --crimson: #8A1525;
+    }
+
+    body { background: var(--pearl); color: var(--charcoal); overflow-x: hidden; font-family: 'Lato', sans-serif; }
+    ::selection { background: rgba(201, 168, 76, 0.3); color: #000; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #EAE5D9; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
+
+    .gold-text {
+      background: linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 1.5rem auto 0; transition: width 0.5s ease; }
+    .group:hover .gold-line { width: 100px; }
+
+    .noise-layer {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .glass-premium {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 32px 0 rgba(201, 168, 76, 0.07);
+    }
+    .glass-dark {
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .luxury-card {
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(255,255,255,0.9);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .luxury-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(201,168,76,0.6);
+      box-shadow: 0 25px 50px rgba(201,168,76,0.15);
+    }
+
+    .btn-gold {
+      position: relative; overflow: hidden; border: 1px solid var(--gold);
+      background: transparent; color: var(--charcoal); transition: all 0.4s ease; z-index: 1;
+    }
+    .btn-gold::before {
+      content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%);
+      transform: translateX(-101%); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
+    }
+    .btn-gold:hover::before { transform: translateX(0%); }
+    .btn-gold:hover { color: white; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(201,168,76,0.3); }
+
+    .nav-scrolled { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Lato:wght@400;700&amp;family=Noto+Serif+TC:wght@700&amp;display=swap">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Lato:wght@400;700&amp;family=Noto+Serif+TC:wght@700&amp;display=swap');
-        
-        :root {
-            --gold: #C9A84C;
-        }
-        
-        body {
-            font-family: 'Lato', system_ui, sans-serif;
-        }
-        
-        .font-serif-custom {
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-        
-        .chinese-font {
-            font-family: 'Noto Serif TC', serif;
-        }
+    .fit-ring {
+      width: 160px; height: 160px; border-radius: 999px;
+      background: radial-gradient(closest-side, #fff 76%, transparent 77% 100%), conic-gradient(var(--gold) var(--progress, 0deg), rgba(201,168,76,0.1) 0deg);
+      display: grid; place-items: center; margin: 0 auto; box-shadow: inset 0 0 0 1px rgba(201,168,76,0.15);
+      transition: --progress 1s ease-out;
+    }
 
-        .luxury-gradient {
-            background: linear-gradient(135deg, #8d6a18 0%, #C9A84C 50%, #E7D39A 100%);
-        }
+    /* Track Showcase Scroller */
+    .track-scroller::-webkit-scrollbar { display: none; }
+    .track-scroller { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .section-header {
-            font-size: 2.8rem;
-            line-height: 1.1;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-        }
+    /* Bot Styles */
+    .bot-toggle {
+      position: fixed; right: 24px; bottom: 24px; width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, #C9A84C, #8d6a18); color: white;
+      box-shadow: 0 10px 30px rgba(201,168,76,0.4); display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; z-index: 9999; cursor: pointer; transition: transform 0.3s ease;
+      animation: pulseGold 2s infinite;
+    }
+    .bot-toggle:hover { transform: scale(1.1); }
+    @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(201,168,76,0.7); } 70% { box-shadow: 0 0 0 20px rgba(201,168,76,0); } 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); } }
 
-        .gold-text {
-            background: linear-gradient(135deg, #8d6a18, #C9A84C, #E7D39A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .luxury-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .luxury-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgb(201 168 76 / 0.15);
-        }
-
-        .nav-active {
-            color: #C9A84C;
-            font-weight: 700;
-        }
-
-        .premium-shadow {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-    </style>
+    .bot-window {
+      position: fixed; right: 24px; bottom: 100px; width: 380px; max-height: 70vh;
+      border-radius: 1.5rem; border: 1px solid rgba(201,168,76,0.3); background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px); display: none; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.15); z-index: 9998;
+      transform: translateY(20px); opacity: 0; transition: all 0.3s ease;
+    }
+    .bot-window.open { display: flex; transform: translateY(0); opacity: 1; }
+  </style>
 </head>
-<body class="bg-[#F9F7F2] text-[#121212]">
+<body class="antialiased">
 
-    <!-- Navbar -->
-    <nav class="bg-white/90 backdrop-blur-md border-b border-[#C9A84C]/20 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto">
-            <div class="px-8 py-5 flex items-center justify-between">
-                <div class="flex items-center gap-x-3">
-                    <div>
-                        <span class="font-serif-custom text-3xl font-black tracking-tighter">NIKEN KHO</span>
-                        <span class="chinese-font text-3xl text-[#C9A84C] font-bold">许芬琪</span>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center gap-x-10 text-sm font-semibold tracking-widest">
-                    <a href="#highlights" class="hover:text-[#C9A84C] transition-colors">HIGHLIGHTS</a>
-                    <a href="#funnel" class="hover:text-[#C9A84C] transition-colors">INQUIRY</a>
-                    <a href="#availability" class="hover:text-[#C9A84C] transition-colors">AVAILABILITY</a>
-                    <a href="#showcase" class="hover:text-[#C9A84C] transition-colors">SHOWCASE</a>
-                </div>
-
-                <div class="flex items-center gap-x-4">
-                    <a href="#funnel" 
-                       class="px-6 py-3 bg-[#C9A84C] hover:bg-[#8d6a18] text-white text-xs font-bold tracking-[1.5px] rounded-full transition-all active:scale-95">
-                        BOOK VVIP
-                    </a>
-                    
-                    <button onclick="toggleMobileMenu()" class="md:hidden w-11 h-11 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4">
+      <div class="glass-premium rounded-full px-6 py-3 flex items-center justify-between">
+        <a href="#" class="font-serif text-xl lg:text-2xl font-black tracking-widest text-charcoal">
+          NIKEN KHO <span class="font-chinese text-gold">许芬琪</span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-[0.2em] text-gray-800">
+          <a href="#digital-footprint" class="hover:text-gold transition">Footprint</a>
+          <a href="#highlights" class="hover:text-gold transition">Highlights</a>
+          <a href="#funnel" class="hover:text-gold transition">Booking</a>
+          <a href="#showcase" class="hover:text-gold transition">Showcase</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="max-w-screen-2xl mx-auto px-6 pt-16 pb-20">
-        <div class="grid lg:grid-cols-12 gap-8 items-center">
-            <!-- Left Content -->
-            <div class="lg:col-span-7">
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-[#C9A84C]/30 text-xs tracking-[2px] font-bold text-[#C9A84C] mb-6">
-                        OFFICIAL VVIP ELECTRONIC PRESS KIT • 2026
-                    </div>
-                    
-                    <h1 class="font-serif-custom text-[72px] lg:text-[92px] leading-[0.92] font-black tracking-tighter">
-                        NIKEN KHO<br>
-                        <span class="chinese-font text-[#C9A84C]">许芬琪</span>
-                    </h1>
-                    
-                    <p class="mt-6 max-w-md text-xl text-[#555555] font-light">
-                        Diva Pop Mandarin &amp; Hokkien asal Bengkalis.<br>
-                        Luxury performer untuk wedding elite &amp; gala kelas atas.
-                    </p>
-
-                    <div class="flex flex-wrap gap-4 mt-10">
-                        <a href="#funnel" 
-                           class="px-10 py-4 bg-[#121212] hover:bg-black text-white rounded-2xl font-semibold text-sm tracking-widest flex items-center gap-x-3 active:scale-[0.985] transition-all">
-                            MULAI INQUIRY
-                        </a>
-                        
-                        <a href="#highlights" 
-                           class="px-8 py-4 border border-[#C9A84C]/40 hover:bg-white rounded-2xl font-semibold text-sm tracking-widest flex items-center gap-x-3 transition-all">
-                            LIHAT HIGHLIGHTS 2025-26
-                        </a>
-                    </div>
-
-                    <!-- Real Stats -->
-                    <div class="flex items-center gap-x-10 mt-14">
-                        <div>
-                            <div class="text-xs text-[#888888] tracking-widest">YOUTUBE</div>
-                            <div class="font-serif-custom text-4xl font-black">4.22K</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-[#888888] tracking-widest">FACEBOOK</div>
-                            <div class="font-serif-custom text-4xl font-black">18.7K</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-[#888888] tracking-widest">EVENTS</div>
-                            <div class="font-serif-custom text-4xl font-black">500+</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Image -->
-            <div class="lg:col-span-5 relative">
-                <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border border-white">
-                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80" 
-                         class="w-full aspect-[4/3.2] object-cover" alt="Niken Kho Performance">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    
-                    <div class="absolute bottom-8 left-8 text-white">
-                        <div class="text-xs tracking-[2px] opacity-75">LIVE PERFORMANCE 2026</div>
-                        <div class="font-serif-custom text-3xl font-bold mt-1">大发财 • Tua Huat Cai</div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex items-center gap-3">
+          <a href="#funnel" class="hidden sm:inline-flex btn-gold rounded-full px-6 py-3 font-serif text-xs uppercase tracking-[0.15em]">
+            Priority Booking
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Recent Highlights 2025-2026 -->
-    <section id="highlights" class="max-w-screen-2xl mx-auto px-6 py-16 bg-white border-y border-[#C9A84C]/10">
-        <div class="max-w-2xl mx-auto text-center mb-12">
-            <div class="text-[#C9A84C] text-xs tracking-[3px] font-bold">RECENT HIGHLIGHTS</div>
-            <h2 class="font-serif-custom text-5xl mt-3">2025 — 2026</h2>
-            <p class="text-[#666666] mt-4">Penampilan live terbaru di berbagai event premium</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div class="luxury-card bg-white border border-[#C9A84C]/10 p-8 rounded-3xl">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="text-xs text-[#C9A84C] font-bold tracking-widest">FEB 2026</div>
-                        <div class="font-serif-custom text-3xl mt-3 leading-tight">大发财<br>Tua Huat Cai</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="px-4 py-1 bg-[#C9A84C]/10 text-[#C9A84C] text-xs rounded-full">Wedding VVIP</div>
-                    </div>
-                </div>
-                <div class="mt-8 text-sm text-[#666666]">Komplek Calista, Medan • 12 Februari 2026</div>
-            </div>
-
-            <div class="luxury-card bg-white border border-[#C9A84C]/10 p-8 rounded-3xl">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="text-xs text-[#C9A84C] font-bold tracking-widest">JAN 2026</div>
-                        <div class="font-serif-custom text-3xl mt-3 leading-tight">新年快乐<br>Xin Nian Kuai Le</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="px-4 py-1 bg-[#C9A84C]/10 text-[#C9A84C] text-xs rounded-full">Imlek Gala</div>
-                    </div>
-                </div>
-                <div class="mt-8 text-sm text-[#666666]">Bengkalis • 25 Januari 2026</div>
-            </div>
-
-            <div class="luxury-card bg-white border border-[#C9A84C]/10 p-8 rounded-3xl">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="text-xs text-[#C9A84C] font-bold tracking-widest">DEC 2025</div>
-                        <div class="font-serif-custom text-3xl mt-3 leading-tight">浪子的心情<br>Long Cu E Sim Jieng</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="px-4 py-1 bg-[#C9A84C]/10 text-[#C9A84C] text-xs rounded-full">Private Gala</div>
-                    </div>
-                </div>
-                <div class="mt-8 text-sm text-[#666666]">Dumai • 18 Desember 2025</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Inquiry Funnel -->
-    <section id="funnel" class="max-w-screen-2xl mx-auto px-6 py-20">
-        <div class="max-w-2xl mx-auto text-center mb-12">
-            <div class="text-[#C9A84C] text-xs tracking-[3px] font-bold">SMART BOOKING FUNNEL</div>
-            <h2 class="font-serif-custom text-5xl mt-3">VVIP Inquiry</h2>
-            <p class="text-[#666666] mt-4">Isi form di bawah untuk mendapatkan rekomendasi package &amp; Executive Brief</p>
-        </div>
-
-        <div class="max-w-[1100px] mx-auto grid lg:grid-cols-12 gap-8">
-            <!-- Form -->
-            <div class="lg:col-span-7 bg-white rounded-3xl p-10 border border-[#C9A84C]/10 luxury-card">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7">
-                    
-                    <!-- Nama PIC -->
-                    <div>
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">NAMA PIC</label>
-                        <input id="picName" type="text" placeholder="Nama Lengkap" 
-                               class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none">
-                    </div>
-                    
-                    <!-- WhatsApp -->
-                    <div>
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">WHATSAPP PIC</label>
-                        <input id="picPhone" type="tel" value="+62 822-8528-7318" 
-                               class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none">
-                    </div>
-
-                    <!-- Nama Acara -->
-                    <div class="md:col-span-2">
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">NAMA ACARA &amp; VENUE</label>
-                        <input id="eventName" type="text" placeholder="Wedding Grand Ballroom / Gala Dinner" 
-                               class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none">
-                    </div>
-
-                    <!-- Provinsi -->
-                    <div>
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">PROVINSI</label>
-                        <select id="province" onchange="updateKecamatan()" 
-                                class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none bg-white">
-                            <option value="">Pilih Provinsi</option>
-                            <option value="Riau">Riau</option>
-                            <option value="Kepulauan Riau">Kepulauan Riau</option>
-                            <option value="Sumatera Utara">Sumatera Utara</option>
-                            <option value="DKI Jakarta">DKI Jakarta</option>
-                            <option value="Jawa Barat">Jawa Barat</option>
-                            <option value="Luar Negeri">Luar Negeri</option>
-                        </select>
-                    </div>
-
-                    <!-- Kecamatan -->
-                    <div>
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">KECAMATAN</label>
-                        <select id="kecamatan" 
-                                class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none bg-white">
-                            <option value="">Pilih Kecamatan</option>
-                        </select>
-                    </div>
-
-                    <!-- Desa / Kampung -->
-                    <div class="md:col-span-2">
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">DESA / KAMPUNG / KELURAHAN</label>
-                        <input id="desa" type="text" placeholder="Contoh: Desa Sungai Bakau / Kampung Panipahan" 
-                               class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">TANGGAL ACARA</label>
-                        <input id="eventDate" type="date" 
-                               class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs tracking-[1.5px] text-[#777777] font-semibold mb-2">JENIS ACARA</label>
-                        <select id="eventType" class="w-full border border-[#C9A84C]/20 focus:border-[#C9A84C] rounded-2xl px-5 py-3.5 outline-none bg-white">
-                            <option value="">Pilih Jenis Acara</option>
-                            <option value="Wedding VVIP">Wedding VVIP</option>
-                            <option value="Corporate Gala">Corporate Gala</option>
-                            <option value="Private Dinner">Private Dinner</option>
-                            <option value="Imlek Celebration">Imlek Celebration</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                    <button onclick="analyzeFit()" 
-                            class="flex-1 py-4 bg-[#C9A84C] hover:bg-[#8d6a18] text-white rounded-2xl font-bold text-sm tracking-widest active:scale-[0.985]">
-                        ANALYZE EVENT FIT
-                    </button>
-                    
-                    <button onclick="copyBrief()" 
-                            class="flex-1 py-4 border border-[#C9A84C] hover:bg-[#C9A84C]/5 text-[#C9A84C] rounded-2xl font-bold text-sm tracking-widest">
-                        COPY EXECUTIVE BRIEF
-                    </button>
-                    
-                    <button onclick="sendToWhatsApp()" 
-                            class="flex-1 py-4 bg-[#121212] hover:bg-black text-white rounded-2xl font-bold text-sm tracking-widest">
-                        KIRIM KE WHATSAPP
-                    </button>
-                </div>
-            </div>
-
-            <!-- Result Panel -->
-            <div class="lg:col-span-5 space-y-6">
-                <div class="luxury-card bg-white border border-[#C9A84C]/10 p-9 rounded-3xl text-center">
-                    <div class="text-xs tracking-[2px] text-[#C9A84C] font-bold">EVENT FIT SCORE</div>
-                    <div id="fitScore" class="font-serif-custom text-[5.2rem] font-black mt-2">—</div>
-                    <div id="fitLabel" class="text-xl text-[#555555]">Lengkapi form di atas</div>
-                </div>
-
-                <div class="luxury-card bg-white border border-[#C9A84C]/10 p-9 rounded-3xl">
-                    <div class="text-xs tracking-[2px] text-[#C9A84C] font-bold">RECOMMENDED PACKAGE</div>
-                    <div id="packageName" class="font-serif-custom text-4xl mt-4">—</div>
-                    <div id="packageDesc" class="text-[#666666] mt-2 text-sm">Hasil analisis akan muncul di sini</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Availability Calendar -->
-    <section id="availability" class="max-w-screen-2xl mx-auto px-6 py-16 bg-[#F9F7F2]">
-        <div class="max-w-2xl mx-auto text-center mb-10">
-            <div class="text-[#C9A84C] text-xs tracking-[3px] font-bold">AVAILABILITY 2026</div>
-            <h2 class="font-serif-custom text-5xl mt-2">Prime Dates</h2>
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center noise-layer bg-hero-radial pt-32 pb-16">
+    <div class="max-w-7xl mx-auto w-full px-5 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal-up z-10">
+          <p class="text-xs uppercase tracking-[0.4em] font-bold text-gold mb-6 flex items-center gap-3">
+            <span class="w-12 h-px bg-gold"></span> VVIP Press Kit 2026
+          </p>
+          <h1 class="font-serif text-6xl sm:text-7xl lg:text-[6rem] leading-none font-black text-charcoal tracking-tight">
+            NIKEN KHO
+          </h1>
+          <h2 class="font-chinese text-5xl sm:text-6xl lg:text-7xl gold-text mt-2">
+            许芬琪
+          </h2>
+          <p class="max-w-xl font-serif italic text-xl text-gray-600 leading-relaxed mt-8">
+            "Suara elegan di balik perayaan mewah. Spesialisasi Pop Mandarin & Hokkien untuk Wedding VVIP, Corporate Gala, dan Imlek Celebration."
+          </p>
+          <div class="flex flex-wrap gap-4 mt-10">
+            <a href="#funnel" class="btn-gold rounded-full px-8 py-4 font-serif text-sm uppercase tracking-[0.15em]">Lock Dates Now</a>
+            <a href="#digital-footprint" class="glass-premium rounded-full px-8 py-4 font-serif text-sm uppercase tracking-[0.15em] hover:border-gold transition">View Stats</a>
+          </div>
         </div>
         
-        <div class="max-w-5xl mx-auto" id="calendarContainer">
-            <!-- Calendar generated by JS -->
+        <div class="reveal-up relative">
+          <div class="luxury-card p-2 rounded-[2.5rem] bg-white/40 backdrop-blur-sm">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80" alt="Luxury Stage" class="w-full h-[600px] object-cover rounded-[2rem]" />
+            <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-t from-black/80 via-transparent to-transparent m-2"></div>
+            <div class="absolute bottom-10 left-10 text-white">
+              <p class="uppercase text-[10px] tracking-[0.3em] text-gold font-bold">Premium Act</p>
+              <h3 class="font-serif text-3xl mt-2">Magnificent Stage Aura</h3>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#121212] text-white py-16">
-        <div class="max-w-screen-2xl mx-auto px-6 text-center">
-            <div class="font-serif-custom text-4xl tracking-tight">NIKEN KHO <span class="chinese-font text-[#C9A84C]">许芬琪</span></div>
-            <div class="mt-4 text-xs tracking-[2px] text-white/50">OFFICIAL MANAGEMENT • +62 822-8528-7318</div>
+  <!-- Live Digital Footprint (YouTube API) -->
+  <section id="digital-footprint" class="py-28 bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 noise-layer opacity-20"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
+      <div class="text-center reveal-up group">
+        <p class="text-sm uppercase tracking-[0.3em] text-gold font-bold">Live Data Sync</p>
+        <h2 class="font-serif text-4xl md:text-5xl mt-4">Digital Footprint</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <!-- Realtime Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 reveal-up">
+        <div class="glass-dark p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-500">
+          <p class="text-gold text-xs uppercase tracking-widest mb-3">YouTube Subs</p>
+          <p class="font-serif text-4xl font-black" id="yt-subs">4.22K</p>
         </div>
-    </footer>
+        <div class="glass-dark p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-500">
+          <p class="text-gold text-xs uppercase tracking-widest mb-3">Total Videos</p>
+          <p class="font-serif text-4xl font-black" id="yt-vids">835+</p>
+        </div>
+        <div class="glass-dark p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-500">
+          <p class="text-gold text-xs uppercase tracking-widest mb-3">Facebook Likes</p>
+          <p class="font-serif text-4xl font-black">18.7K</p>
+        </div>
+        <div class="glass-dark p-8 rounded-3xl text-center hover:-translate-y-2 transition-transform duration-500">
+          <p class="text-gold text-xs uppercase tracking-widest mb-3">Experience</p>
+          <p class="font-serif text-4xl font-black">10+ Yrs</p>
+        </div>
+      </div>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/6282285287318" target="_blank"
-       class="fixed bottom-8 right-8 w-16 h-16 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full flex items-center justify-center shadow-xl z-50 active:scale-90 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.67-.18-1.297-.99-.627-.81-.627-1.89-.627-1.89s.075-.372.298-.521c.223-.149.521-.298.72-.298.198 0 .372.075.521.298.149.223.298.521.298.72 0 .198-.075.372-.298.521-.149.149-.298.298-.298.521 0 .223.075.372.298.521.223.149.521.298.72.298.198 0 .372-.075.521-.298.149-.149.298-.298.298-.521 0-.223-.075-.372-.298-.521z"/>
-        </svg>
-    </a>
+      <!-- Latest YouTube Videos Container -->
+      <div class="mt-16">
+        <div class="flex justify-between items-end mb-8 reveal-up">
+          <h3 class="font-serif text-2xl text-gold">Latest Performances</h3>
+          <a href="https://www.youtube.com/@NikenKhor" target="_blank" class="text-xs uppercase tracking-widest border-b border-gold pb-1 hover:text-gold transition">Visit Channel</a>
+        </div>
+        <div id="youtube-grid" class="grid md:grid-cols-3 gap-6 reveal-up">
+            <!-- Videos will be injected here via JS -->
+            <div class="animate-pulse glass-dark h-64 rounded-2xl"></div>
+            <div class="animate-pulse glass-dark h-64 rounded-2xl"></div>
+            <div class="animate-pulse glass-dark h-64 rounded-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Tailwind Script
-        function initializeTailwind() {
-            document.documentElement.style.setProperty('--accent-gold', '#C9A84C');
+  <!-- Recent Highlights 2025-2026 -->
+  <section id="highlights" class="py-28 bg-ivory">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center reveal-up group mb-16">
+        <p class="text-sm uppercase tracking-[0.3em] text-gold font-bold">Premium Repertoire</p>
+        <h2 class="font-serif text-4xl md:text-5xl mt-4">Recent Highlights 2025-2026</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="track-scroller flex overflow-x-auto gap-6 pb-10 snap-x">
+        <!-- JS will populate this to avoid repetitive HTML -->
+        <div id="songs-container" class="flex gap-6 w-full"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Sales Funnel with Cascading Location -->
+  <section id="funnel" class="py-28 bg-white border-y border-gold/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center reveal-up group">
+        <p class="text-sm uppercase tracking-[0.3em] text-gold font-bold">Booking Flow</p>
+        <h2 class="font-serif text-4xl md:text-5xl mt-4 text-charcoal">VVIP Fit Score Engine</h2>
+        <div class="gold-line"></div>
+        <p class="max-w-2xl mx-auto text-gray-500 mt-6">Simulasikan event Anda untuk mendapatkan rekomendasi package eksklusif.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 mt-16">
+        <!-- Form -->
+        <div class="luxury-card p-8 bg-pearl/50 reveal-up">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+              <label class="block text-xs uppercase tracking-widest text-gold font-bold mb-2">Nama Event / Perusahaan</label>
+              <input id="eventName" type="text" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-gold outline-none bg-white" placeholder="Contoh: Royal Wedding Medan" />
+            </div>
+
+            <!-- Cascading Location Selector -->
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Provinsi</label>
+              <select id="sel-prov" class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-gold bg-white">
+                <option value="">Pilih Provinsi</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Kota / Kabupaten</label>
+              <select id="sel-kota" class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-gold bg-white" disabled>
+                <option value="">Pilih Kota/Kab</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Kecamatan / Area</label>
+              <select id="sel-kec" class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-gold bg-white" disabled>
+                <option value="">Pilih Kecamatan</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Jumlah Tamu (Pax)</label>
+              <select id="guestCount" class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-gold bg-white">
+                <option value="150">Private (< 150)</option>
+                <option value="300">Intimate (150 - 300)</option>
+                <option value="600">Grand (300 - 600)</option>
+                <option value="1000">VVIP (600+)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Tanggal Event</label>
+              <input id="eventDate" type="date" class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:ring-2 focus:ring-gold bg-white" />
+            </div>
+
+            <div class="md:col-span-2">
+              <button id="analyzeBtn" class="w-full btn-gold rounded-xl py-4 font-serif text-sm uppercase tracking-widest">Generate Executive Brief</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Result -->
+        <div class="luxury-card p-8 bg-charcoal text-white reveal-up flex flex-col justify-center text-center">
+          <p class="text-xs uppercase tracking-widest text-gold mb-6">Score Engine Analysis</p>
+          <div id="fitRing" class="fit-ring" style="--progress: 0deg;">
+            <div>
+              <p id="fitScoreValue" class="font-serif text-5xl font-black text-white">0</p>
+              <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">out of 100</p>
+            </div>
+          </div>
+          <h3 id="recommendedPackage" class="font-serif text-3xl mt-8 text-gold">Awaiting Input</h3>
+          <p id="packageDescription" class="text-gray-400 mt-4 text-sm leading-relaxed">
+            Lengkapi data di samping untuk melihat rekomendasi paket (Essential, Signature, atau Imperial) yang paling cocok.
+          </p>
+          <button onclick="sendWA()" class="mt-8 border border-white/20 hover:border-gold hover:bg-gold transition rounded-full py-3 px-6 text-xs uppercase tracking-widest font-bold">
+            Send To WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concierge Bot (琪琪) -->
+  <button id="botToggle" class="bot-toggle" title="Chat dengan 琪琪">💬</button>
+  <div id="botWindow" class="bot-window">
+    <div class="bg-charcoal text-white p-4 flex justify-between items-center border-b border-gold/30">
+      <div>
+        <p class="text-[10px] uppercase tracking-widest text-gold">VVIP Concierge</p>
+        <h4 class="font-serif text-xl">琪琪 Assistant</h4>
+      </div>
+      <button id="botClose" class="text-2xl hover:text-gold">&times;</button>
+    </div>
+    <div id="botMessages" class="flex-1 p-4 overflow-y-auto bg-pearl text-sm flex flex-col gap-3 min-h-[300px]">
+      <div class="bg-white border border-gray-200 p-3 rounded-2xl rounded-tl-sm self-start shadow-sm max-w-[85%]">
+        Halo! Ketik aja detail event lu (misal: "Mau bikin acara Imlek di Medan buat 500 pax"). Gue bantu rapiin buat dikirim ke Management.
+      </div>
+    </div>
+    <div class="p-3 bg-white border-t border-gray-200 flex gap-2">
+      <input id="botInput" type="text" placeholder="Ketik brief event..." class="flex-1 rounded-full border border-gray-300 px-4 py-2 text-sm focus:ring-2 focus:ring-gold outline-none" />
+      <button id="botSend" class="bg-charcoal text-gold px-4 rounded-full text-xs font-bold uppercase hover:bg-gold hover:text-white transition">Kirim</button>
+    </div>
+  </div>
+
+  <footer class="bg-charcoal text-white py-16 text-center border-t border-gold/20">
+    <h2 class="font-serif text-3xl font-bold">NIKEN KHO <span class="text-gold">许芬琪</span></h2>
+    <p class="text-[10px] uppercase tracking-[0.4em] text-gray-500 mt-4">Official Management 2026</p>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ==========================================
+    // 1. ANIMATION & INITIALIZATION
+    // ==========================================
+    gsap.utils.toArray('.reveal-up').forEach(el => {
+      gsap.fromTo(el, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 1, ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 85%" }
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) document.getElementById('navbar').classList.add('nav-scrolled');
+      else document.getElementById('navbar').classList.remove('nav-scrolled');
+    });
+
+    // ==========================================
+    // 2. HIGHLIGHTS DATA (Songs 2025-2026)
+    // ==========================================
+    const songs = [
+      { title: "大发财 (Tua Huat Cai)", desc: "Festive Energy, Imlek Vibe", mood: "Celebration" },
+      { title: "新年快乐 (Xin Nian Kuai Le)", desc: "Classic New Year", mood: "Celebration" },
+      { title: "浪子的心情 (Long Cu E Sim Jieng)", desc: "Hokkien Emotional", mood: "Classic" },
+      { title: "男人歌 (Nan Ren Ge)", desc: "Deep & Powerful", mood: "Mandarin" },
+      { title: "人生如纸 (Ren Sheng Ru Zhi)", desc: "Reflective, Mature", mood: "Mandarin" },
+      { title: "泪海 (Lei Hai)", desc: "Emotional Ballad", mood: "Mandarin" },
+      { title: "三生三幸 (San Sheng San Xing)", desc: "Romantic Wedding", mood: "Romance" }
+    ];
+
+    const songContainer = document.getElementById('songs-container');
+    songs.forEach((song, i) => {
+      songContainer.innerHTML += `
+        <div class="min-w-[280px] md:min-w-[320px] snap-center luxury-card p-6 bg-white flex flex-col justify-center">
+          <p class="text-[10px] uppercase tracking-widest text-gold mb-2 font-bold">${song.mood}</p>
+          <h4 class="font-chinese text-3xl font-bold mb-2">${song.title.split(' (')[0]}</h4>
+          <p class="font-serif text-lg text-charcoal mb-4">${song.title.includes('(') ? song.title.split('(')[1].replace(')', '') : ''}</p>
+          <p class="text-sm text-gray-500 border-t border-gray-100 pt-4">${song.desc}</p>
+        </div>
+      `;
+    });
+
+    // ==========================================
+    // 3. CASCADING LOCATION (Riau & Sekitarnya)
+    // ==========================================
+    const locData = {
+      "Riau": {
+        "Bengkalis": ["Bengkalis Kota", "Mandau", "Pinggir", "Sungai Pakning"],
+        "Dumai": ["Dumai Kota", "Dumai Selatan", "Sungai Sembilan"],
+        "Rokan Hilir": ["Panipahan", "Bagan Siapi-api", "Bangko"],
+        "Pekanbaru": ["Tampan", "Tenayan Raya", "Marpoyan Damai"]
+      },
+      "Sumatera Utara": {
+        "Medan": ["Medan Pancing", "Medan Area", "Medan Kota", "Medan Barat"],
+        "Sibolga": ["Sibolga Kota", "Sibolga Sambas"],
+        "Deli Serdang": ["Lubuk Pakam", "Tanjung Morawa"]
+      },
+      "Kepulauan Riau": {
+        "Batam": ["Batam Kota", "Nagoya", "Batu Aji"],
+        "Tanjung Pinang": ["Bukit Bestari", "Tanjung Pinang Kota"]
+      }
+    };
+
+    const selProv = document.getElementById('sel-prov');
+    const selKota = document.getElementById('sel-kota');
+    const selKec = document.getElementById('sel-kec');
+
+    Object.keys(locData).forEach(prov => {
+      selProv.add(new Option(prov, prov));
+    });
+
+    selProv.addEventListener('change', function() {
+      selKota.innerHTML = '<option value="">Pilih Kota/Kab</option>';
+      selKec.innerHTML = '<option value="">Pilih Kecamatan</option>';
+      if (this.value) {
+        selKota.disabled = false;
+        Object.keys(locData[this.value]).forEach(kota => selKota.add(new Option(kota, kota)));
+      } else {
+        selKota.disabled = true;
+        selKec.disabled = true;
+      }
+    });
+
+    selKota.addEventListener('change', function() {
+      selKec.innerHTML = '<option value="">Pilih Kecamatan</option>';
+      if (this.value) {
+        selKec.disabled = false;
+        locData[selProv.value][this.value].forEach(kec => selKec.add(new Option(kec, kec)));
+      } else {
+        selKec.disabled = true;
+      }
+    });
+
+    // ==========================================
+    // 4. SCORE ENGINE
+    // ==========================================
+    document.getElementById('analyzeBtn').addEventListener('click', () => {
+      const pax = parseInt(document.getElementById('guestCount').value) || 0;
+      const prov = selProv.value;
+      
+      let score = 30; // Base score
+      if(pax >= 600) score += 40;
+      else if(pax >= 300) score += 25;
+      else score += 10;
+
+      if(prov === "Riau" || prov === "Sumatera Utara") score += 20;
+      else if(prov) score += 10;
+
+      score = Math.min(100, score);
+      
+      document.getElementById('fitRing').style.setProperty('--progress', (score * 3.6) + 'deg');
+      
+      let startValue = 0;
+      let duration = 1000;
+      let startTime = null;
+      const elScore = document.getElementById('fitScoreValue');
+      
+      function animateScore(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let progress = timestamp - startTime;
+        let current = Math.min(Math.floor((progress / duration) * score), score);
+        elScore.innerText = current;
+        if (progress < duration) window.requestAnimationFrame(animateScore);
+        else elScore.innerText = score;
+      }
+      window.requestAnimationFrame(animateScore);
+
+      const pkgEl = document.getElementById('recommendedPackage');
+      if(score >= 85) { pkgEl.innerText = "IMPERIAL TIER"; pkgEl.className = "font-serif text-3xl mt-8 text-gold"; }
+      else if(score >= 60) { pkgEl.innerText = "SIGNATURE TIER"; pkgEl.className = "font-serif text-3xl mt-8 text-white"; }
+      else { pkgEl.innerText = "ESSENTIAL TIER"; pkgEl.className = "font-serif text-3xl mt-8 text-gray-300"; }
+    });
+
+    function sendWA() {
+      const waNumber = "6282285287318";
+      const event = document.getElementById('eventName').value || "Event VVIP";
+      const pax = document.getElementById('guestCount').value || "-";
+      const loc = selKota.value ? `${selKota.value}, ${selProv.value}` : "-";
+      const text = `Halo Management Niken Kho, saya tertarik booking untuk:\nAcara: ${event}\nLokasi: ${loc}\nPax: ${pax}\nMohon info rate card dan availability.`;
+      window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ==========================================
+    // 5. YOUTUBE API INTEGRATION (Digital Footprint)
+    // ==========================================
+    // WANG WEIZE NOTE: Masukin API Key lu di sini biar nggak boncos datanya kosong!
+    const YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY_HERE"; 
+    const CHANNEL_ID = "UC_YOUR_CHANNEL_ID_HERE"; // Ganti sama ID Channel Niken Khor
+
+    async function fetchYouTubeData() {
+      const grid = document.getElementById('youtube-grid');
+      
+      // Fallback Data kalau API Key belum diisi (Biar web nggak kelihatan rusak/receh)
+      const dummyVideos = [
+        { title: "大发财 Tua Huat Cai - Niken Kho Live", thumb: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80", date: "Jan 2026" },
+        { title: "男人歌 Nan Ren Ge - VVIP Bengkalis", thumb: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80", date: "Dec 2025" },
+        { title: "浪子的心情 Hokkien Classic", thumb: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80", date: "Nov 2025" }
+      ];
+
+      if(YOUTUBE_API_KEY === "YOUR_YOUTUBE_API_KEY_HERE") {
+        renderVideos(dummyVideos, grid);
+        return;
+      }
+
+      try {
+        // Fetch Subs (Opsional kalau mau live subs)
+        /*
+        const statRes = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`);
+        const statData = await statRes.json();
+        document.getElementById('yt-subs').innerText = statData.items[0].statistics.subscriberCount;
+        */
+
+        // Fetch Latest Videos
+        const vidRes = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=6`);
+        const vidData = await vidRes.json();
+        
+        const videos = vidData.items.filter(item => item.id.videoId).map(item => ({
+          title: item.snippet.title,
+          thumb: item.snippet.thumbnails.high.url,
+          date: new Date(item.snippet.publishedAt).toLocaleDateString('id-ID', { month: 'short', year: 'numeric' }),
+          link: `https://www.youtube.com/watch?v=${item.id.videoId}`
+        }));
+        
+        renderVideos(videos, grid);
+      } catch (err) {
+        console.error("API Error, loading fallback.", err);
+        renderVideos(dummyVideos, grid);
+      }
+    }
+
+    function renderVideos(vids, container) {
+      container.innerHTML = "";
+      vids.forEach(v => {
+        container.innerHTML += `
+          <a href="${v.link || '#'}" target="_blank" class="group luxury-card relative block h-64 rounded-2xl overflow-hidden cursor-pointer">
+            <img src="${v.thumb}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-5">
+              <p class="text-gold text-[10px] font-bold uppercase tracking-widest mb-1">${v.date}</p>
+              <h4 class="text-white font-serif text-lg leading-tight">${v.title}</h4>
+            </div>
+          </a>
+        `;
+      });
+    }
+
+    fetchYouTubeData();
+
+    // ==========================================
+    // 6. CONCIERGE BOT LOGIC (Smarter NLP Mock)
+    // ==========================================
+    const botWindow = document.getElementById('botWindow');
+    document.getElementById('botToggle').addEventListener('click', () => botWindow.classList.toggle('open'));
+    document.getElementById('botClose').addEventListener('click', () => botWindow.classList.remove('open'));
+    
+    const botInput = document.getElementById('botInput');
+    const botMessages = document.getElementById('botMessages');
+
+    function addBotMsg(text, isUser = false) {
+      botMessages.innerHTML += `
+        <div class="p-3 rounded-2xl max-w-[85%] shadow-sm text-sm ${isUser ? 'bg-gold text-white self-end rounded-tr-sm' : 'bg-white border border-gray-200 text-charcoal self-start rounded-tl-sm'}">
+          ${text}
+        </div>
+      `;
+      botMessages.scrollTop = botMessages.scrollHeight;
+    }
+
+    function processBotInput() {
+      const val = botInput.value.toLowerCase();
+      if(!val) return;
+      addBotMsg(botInput.value, true);
+      botInput.value = "";
+
+      setTimeout(() => {
+        let reply = "Menarik. Kalau buat event kelas ini, gue saranin ambil paket Imperial biar stage-nya kerasa mewah.";
+        
+        // Simple NLP Keyword Catching
+        if(val.includes("pax") || val.includes("orang")) {
+          const num = val.match(/\d+/);
+          if(num && parseInt(num[0]) >= 500) reply = `Wah, ${num[0]} tamu tuh lumayan grand. Cocok banget dibawain lagu kayak Tua Huat Cai biar pecah! Mau gue siapin brief-nya ke WA?`;
+          else reply = `Intimate event ya? Lagu-lagu Hokkien klasik kayak Long Cu E Sim Jieng bakal bikin audiens baper parah.`;
+        } else if(val.includes("medan") || val.includes("pancing")) {
+          reply = "Oh di area Medan ya? Wah, market sana cocok banget sama karakter vokal Niken. Langsung klik 'Priority Booking' aja bos.";
+        } else if(val.includes("imlek")) {
+          reply = "Gong Xi! Untuk Imlek jadwal cepat full. Mending *gas* lock tanggal dari sekarang biar nggak *boncos* kehilangan slot.";
+        } else if(val.includes("cuan") || val.includes("harga")) {
+          reply = "Tenang, *cuan* yang lu keluarin bakal sebanding sama gengsi acara lu. Langsung WA management aja buat rate card VVIP-nya.";
         }
 
-        // Cascading Location
-        const kecamatanList = {
-            "Riau": ["Bengkalis", "Dumai", "Pekanbaru", "Siak", "Rokan Hilir", "Bukit Batu"],
-            "Kepulauan Riau": ["Batam", "Tanjung Pinang", "Bintan", "Karimun"],
-            "Sumatera Utara": ["Medan", "Sibolga", "Pematangsiantar", "Deli Serdang"],
-            "DKI Jakarta": ["Jakarta Pusat", "Jakarta Selatan", "Jakarta Barat", "Jakarta Timur"],
-            "Jawa Barat": ["Bandung", "Bogor", "Depok", "Bekasi"],
-            "Luar Negeri": ["Singapore", "Malaysia", "Thailand", "Hong Kong"]
-        };
+        addBotMsg(reply);
+      }, 800);
+    }
 
-        function updateKecamatan() {
-            const province = document.getElementById('province').value;
-            const kecSelect = document.getElementById('kecamatan');
-            
-            kecSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-            
-            if (kecamatanList[province]) {
-                kecamatanList[province].forEach(kec => {
-                    const option = document.createElement('option');
-                    option.value = kec;
-                    option.textContent = kec;
-                    kecSelect.appendChild(option);
-                });
-            }
-        }
+    document.getElementById('botSend').addEventListener('click', processBotInput);
+    botInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') processBotInput(); });
 
-        // Analyze Fit Score
-        function analyzeFit() {
-            const score = Math.floor(Math.random() * 28) + 72; // 72 - 99
-            
-            document.getElementById('fitScore').innerHTML = score;
-            
-            let label = "";
-            let pkg = "";
-            let desc = "";
-            
-            if (score >= 90) {
-                label = "HIGH-PRIORITY VVIP LEAD";
-                pkg = "IMPERIAL";
-                desc = "Skala event sangat cocok untuk positioning premium Niken Kho.";
-            } else if (score >= 82) {
-                label = "STRONG BOOKING FIT";
-                pkg = "SIGNATURE";
-                desc = "Event ini sangat sesuai untuk wedding premium & gala.";
-            } else {
-                label = "WARM OPPORTUNITY";
-                pkg = "ESSENTIAL";
-                desc = "Potensial bagus, perlu detail lebih lanjut untuk closing.";
-            }
-            
-            document.getElementById('fitLabel').innerHTML = label;
-            document.getElementById('packageName').innerHTML = pkg;
-            document.getElementById('packageDesc').innerHTML = desc;
-        }
-
-        function copyBrief() {
-            const picName = document.getElementById('picName').value || "-";
-            const eventDate = document.getElementById('eventDate').value || "-";
-            const province = document.getElementById('province').value || "-";
-            const kecamatan = document.getElementById('kecamatan').value || "-";
-            
-            const text = `Halo Niken Kho Management,\n\nSaya ingin mengajukan booking:\n\nNama PIC: ${picName}\nTanggal: ${eventDate}\nLokasi: ${province} - ${kecamatan}\n\nMohon info availability & package. Terima kasih.`;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                const btns = document.querySelectorAll('button');
-                const originalText = event.target.innerHTML;
-                event.target.innerHTML = "✓ COPIED!";
-                setTimeout(() => {
-                    event.target.innerHTML = originalText;
-                }, 1800);
-            });
-        }
-
-        function sendToWhatsApp() {
-            const phone = "6282285287318";
-            const picName = document.getElementById('picName').value || "";
-            const eventDate = document.getElementById('eventDate').value || "";
-            
-            const message = `Halo Niken Kho Management, saya ingin booking.\nNama: ${picName}\nTanggal: ${eventDate}\n\nMohon info availability.`;
-            
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // Generate Calendar
-        function generateCalendar() {
-            const container = document.getElementById('calendarContainer');
-            container.innerHTML = '';
-            
-            const months = [
-                { name: "Mei 2026", days: [3,7,10,14,17,21,24,28,31] },
-                { name: "Juni 2026", days: [4,6,11,13,18,20,25,27] },
-                { name: "Juli 2026", days: [2,5,9,12,16,19,23,26,30] }
-            ];
-            
-            months.forEach(month => {
-                const div = document.createElement('div');
-                div.className = 'luxury-card bg-white border border-[#C9A84C]/10 p-7 rounded-3xl';
-                
-                let html = `<div class="font-bold text-xl mb-5">${month.name}</div><div class="grid grid-cols-7 gap-1 text-center text-sm">`;
-                
-                // Day headers
-                ['S','S','R','K','J','S','M'].forEach(day => {
-                    html += `<div class="text-[#999999] py-1">${day}</div>`;
-                });
-                
-                // Days
-                for (let i = 1; i <= 31; i++) {
-                    const isAvailable = month.days.includes(i);
-                    html += `<div class="py-2 rounded-xl ${isAvailable ? 'bg-[#C9A84C]/10 text-[#C9A84C] font-bold cursor-pointer hover:bg-[#C9A84C]/20' : 'text-[#CCCCCC]'}">${i}</div>`;
-                }
-                
-                html += `</div>`;
-                div.innerHTML = html;
-                container.appendChild(div);
-            });
-        }
-
-        // Mobile Menu
-        function toggleMobileMenu() {
-            alert("Mobile menu akan segera ditambahkan di versi berikutnya.");
-        }
-
-        // Initialize Everything
-        function initializeAll() {
-            initializeTailwind();
-            generateCalendar();
-            
-            // Set default date
-            const dateInput = document.getElementById('eventDate');
-            if (dateInput) {
-                const today = new Date();
-                dateInput.value = today.toISOString().split('T')[0];
-            }
-            
-            // Welcome message
-            console.log('%c[Niken Kho EPK v2] Website berhasil dimuat.', 'color:#C9A84C');
-        }
-
-        window.onload = initializeAll;
-    </script>
+  </script>
 </body>
 </html>
