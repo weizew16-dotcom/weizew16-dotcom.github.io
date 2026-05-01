@@ -3,51 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIKEN KHO • OFFICIAL EPK 2026 • v4.0</title>
+    <title>NIKEN KHO • OFFICIAL EPK 2026</title>
     
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     
     <style>
-        :root { --gold: #D4AF37; --midnight: #030303; }
-        html { font-size: 20px; }
-        body { font-family: 'Montserrat', system_ui, sans-serif; background-color: #030303; color: #F5F5F5; }
-        .heading-serif { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; letter-spacing: -0.025em; }
-        .premium-card { transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
-        .premium-card:hover { transform: translateY(-12px); box-shadow: 0 30px 70px rgba(212, 175, 55, 0.12); }
-        .section-header { font-size: 3.8rem; line-height: 1.05; font-weight: 700; }
-        .custom-cursor { position: fixed; width: 28px; height: 28px; border: 1.5px solid #D4AF37; border-radius: 9999px; pointer-events: none; z-index: 99999; mix-blend-mode: difference; }
-        .preloader { position: fixed; inset: 0; background: #030303; z-index: 999999; display: flex; align-items: center; justify-content: center; }
-        .floating-menu { position: fixed; left: 24px; top: 50%; transform: translateY(-50%); z-index: 9999; }
-        .lang-btn { transition: all 0.2s ease; }
-        .lang-btn.active { background-color: #D4AF37; color: #030303; }
-        .media-filter-btn { transition: all 0.2s ease; }
-        .media-filter-btn.active { background-color: #D4AF37; color: #030303; }
+        :root {
+            --gold: #D4AF37;
+            --midnight: #030303;
+        }
+        
+        html {
+            font-size: 20px;
+        }
+        
+        body {
+            font-family: 'Montserrat', system_ui, sans-serif;
+            background-color: #030303;
+            color: #F5F5F5;
+        }
+        
+        .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .gold-text {
+            color: #D4AF37;
+        }
+
+        .section-header {
+            font-size: 3.5rem;
+            line-height: 1.05;
+            font-weight: 700;
+        }
+
+        .luxury-gold {
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid #D4AF37;
+            border-radius: 9999px;
+            pointer-events: none;
+            z-index: 99999;
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .custom-cursor.active {
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .nav-active {
+            color: #D4AF37;
+            position: relative;
+        }
+
+        .nav-active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #D4AF37;
+        }
+
+        .premium-card {
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+                       box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 70px rgba(212, 175, 55, 0.12);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37, #F0D58C, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: #030303;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-menu {
+            position: fixed;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+        }
     </style>
 </head>
 <body class="bg-[#030303] text-[#F5F5F5] overflow-x-hidden">
 
-    <!-- Custom Cursor -->
+    <!-- Custom Gold Cursor -->
     <div id="customCursor" class="custom-cursor hidden md:block"></div>
 
     <!-- Preloader -->
     <div id="preloader" class="preloader">
         <div class="text-center">
             <div class="w-20 h-20 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <div class="mt-8"><span class="font-serif text-7xl font-bold tracking-[-3px]">NK</span></div>
-            <p class="text-[#D4AF37] text-sm tracking-[4px] mt-3">EST 2016 • GLOBAL • v4.0</p>
+            <div class="mt-8">
+                <span class="font-serif text-7xl font-bold tracking-[-3px]">NK</span>
+            </div>
+            <p class="text-[#D4AF37] text-sm tracking-[4px] mt-3">EST 2016 • GLOBAL</p>
         </div>
     </div>
 
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#030303]/95 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-screen-2xl mx-auto px-8">
+        <div class="max-w-screen-2xl mx-auto px-10">
             <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-x-3">
+                <div class="flex items-center gap-x-4">
                     <div class="flex items-center gap-x-3">
                         <div class="w-9 h-9 rounded-full border border-[#D4AF37] flex items-center justify-center">
                             <span class="text-[#D4AF37] font-bold text-xl">NK</span>
@@ -59,35 +152,29 @@
                     </div>
                 </div>
 
-                <!-- Language Switcher -->
-                <div class="flex items-center bg-[#111] rounded-full p-1">
-                    <button onclick="switchLanguage('id')" class="lang-btn active px-4 py-1 text-xs font-bold rounded-full" data-lang="id">ID</button>
-                    <button onclick="switchLanguage('zh')" class="lang-btn px-4 py-1 text-xs font-bold rounded-full" data-lang="zh">中文</button>
-                    <button onclick="switchLanguage('en')" class="lang-btn px-4 py-1 text-xs font-bold rounded-full" data-lang="en">EN</button>
+                <div class="hidden md:flex items-center gap-x-10 text-sm font-medium tracking-widest">
+                    <a href="#highlights" class="hover:text-[#D4AF37] transition-colors">HIGHLIGHTS</a>
+                    <a href="#inquiry" class="hover:text-[#D4AF37] transition-colors">INQUIRY</a>
+                    <a href="#rider" class="hover:text-[#D4AF37] transition-colors">RIDER</a>
+                    <a href="#stats" class="hover:text-[#D4AF37] transition-colors">STATS</a>
                 </div>
 
-                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium tracking-widest">
-                    <a href="#highlights" class="hover:text-[#D4AF37]">HIGHLIGHTS</a>
-                    <a href="#spotify" class="hover:text-[#D4AF37]">SPOTIFY</a>
-                    <a href="#gallery" class="hover:text-[#D4AF37]">GALLERY</a>
-                    <a href="#inquiry" class="hover:text-[#D4AF37]">INQUIRY</a>
-                    <a href="#map" class="hover:text-[#D4AF37]">TOUR MAP</a>
+                <div>
+                    <button onclick="document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' })" 
+                            class="px-8 py-3 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#030303] transition-all text-xs font-semibold tracking-widest rounded-full">
+                        BOOK VVIP
+                    </button>
                 </div>
-
-                <button onclick="document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' })" 
-                        class="px-8 py-3 bg-[#D4AF37] text-[#030303] hover:bg-white text-xs font-bold tracking-widest rounded-full transition-all">
-                    BOOK VVIP
-                </button>
             </div>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="min-h-screen flex items-center pt-20 relative">
         <div class="max-w-screen-2xl mx-auto px-10">
             <div class="max-w-5xl">
                 <div class="inline-flex items-center px-5 py-2 border border-[#D4AF37]/30 rounded-full text-xs tracking-[3px] mb-8">
-                    OFFICIAL GLOBAL EPK v4.0 • 2026
+                    OFFICIAL GLOBAL ELECTRONIC PRESS KIT • 2026
                 </div>
                 
                 <h1 class="font-serif text-[92px] lg:text-[120px] leading-[0.92] font-bold tracking-[-4.5px]">
@@ -97,308 +184,463 @@
                 
                 <p class="max-w-lg text-2xl mt-8 text-[#CCCCCC]">
                     Imperial Diva of Mandarin &amp; Hokkien.<br>
-                    The most exclusive live performer in Southeast Asia.
+                    Exclusive live performer for the world’s most discerning events.
                 </p>
                 
-                <div class="flex flex-wrap gap-x-4 gap-y-4 mt-14">
+                <div class="flex gap-x-4 mt-14">
                     <button onclick="document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' })" 
                             class="px-14 py-5 bg-[#D4AF37] text-[#030303] font-semibold text-sm tracking-widest hover:bg-white transition-all rounded-full">
                         BEGIN PRIVATE INQUIRY
                     </button>
                     
-                    <button onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })" 
-                            class="px-10 py-5 border border-white/30 hover:bg-white/5 transition-all text-sm tracking-widest rounded-full flex items-center gap-x-2">
-                        EXPLORE VISUALS
+                    <button onclick="document.getElementById('stats').scrollIntoView({ behavior: 'smooth' })" 
+                            class="px-10 py-5 border border-white/30 hover:bg-white/5 transition-all text-sm tracking-widest rounded-full">
+                        VIEW LIVE STATS
                     </button>
                 </div>
             </div>
         </div>
+        
+        <div class="absolute bottom-12 right-10 text-right hidden lg:block">
+            <div class="text-xs tracking-[2px] text-[#666]">SCROLL TO EXPLORE</div>
+            <div class="h-px w-8 bg-[#D4AF37] ml-auto mt-3"></div>
+        </div>
     </section>
 
-    <!-- HIGHLIGHTS -->
+    <!-- Highlights 2025-2026 -->
     <section id="highlights" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10">
         <div class="text-center mb-16">
-            <div class="text-[#D4AF37] text-xs tracking-[4px]">RECENT HIGHLIGHTS 2025-2026</div>
-            <h2 class="font-serif text-7xl mt-4">Signature Performances</h2>
+            <div class="text-[#D4AF37] text-xs tracking-[4px]">RECENT HIGHLIGHTS</div>
+            <h2 class="font-serif text-7xl mt-4">2025 — 2026</h2>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
             <div class="premium-card bg-[#0A0A0A] border border-white/10 p-9 rounded-3xl">
                 <div class="text-xs text-[#D4AF37]">FEB 2026 • MEDAN</div>
                 <div class="font-serif text-4xl mt-6 leading-none">大发财<br>Tua Huat Cai</div>
-                <div class="mt-8 text-sm text-[#999]">Wedding VVIP • 800 Pax • Komplek Calista</div>
-                <div class="mt-4 text-xs px-3 py-1 bg-emerald-900 text-emerald-400 inline-block rounded">SOLD OUT</div>
+                <div class="mt-8 text-sm text-[#999]">Wedding VVIP • Komplek Calista</div>
             </div>
+            
             <div class="premium-card bg-[#0A0A0A] border border-white/10 p-9 rounded-3xl">
                 <div class="text-xs text-[#D4AF37]">JAN 2026 • BENGKALIS</div>
                 <div class="font-serif text-4xl mt-6 leading-none">新年快乐<br>Xin Nian Kuai Le</div>
-                <div class="mt-8 text-sm text-[#999]">Imlek Gala • Private Residence • 300 Pax</div>
+                <div class="mt-8 text-sm text-[#999]">Imlek Gala • Private Residence</div>
             </div>
+            
             <div class="premium-card bg-[#0A0A0A] border border-white/10 p-9 rounded-3xl">
                 <div class="text-xs text-[#D4AF37]">DEC 2025 • DUMAI</div>
                 <div class="font-serif text-4xl mt-6 leading-none">浪子的心情<br>Long Cu E Sim Jieng</div>
-                <div class="mt-8 text-sm text-[#999]">Corporate Gala • 500 Pax • Hotel</div>
+                <div class="mt-8 text-sm text-[#999]">Corporate Gala • 500 Pax</div>
             </div>
         </div>
     </section>
 
-    <!-- SPOTIFY -->
-    <section id="spotify" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10 bg-[#0A0A0A]">
-        <div class="max-w-5xl mx-auto">
-            <div class="flex items-end justify-between mb-12">
-                <div>
-                    <div class="flex items-center gap-x-3">
-                        <div class="w-8 h-8 bg-[#1DB954] rounded-full flex items-center justify-center">
-                            <span class="text-white text-xl">♪</span>
-                        </div>
-                        <div class="text-[#1DB954] text-xs tracking-[4px] font-bold">POWERED BY SPOTIFY WEB API</div>
-                    </div>
-                    <h2 class="font-serif text-7xl mt-2">Now Streaming</h2>
-                </div>
-                <a href="https://open.spotify.com/artist/0N8Xz3v0vN5vN5vN5vN5vN5" target="_blank" 
-                   class="hidden md:flex items-center gap-x-2 px-6 py-3 border border-[#1DB954] text-[#1DB954] hover:bg-[#1DB954] hover:text-white transition-all text-sm font-semibold rounded-full">
-                    OPEN SPOTIFY →
-                </a>
-            </div>
-
-            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-12">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-
-            <div>
-                <h3 class="text-2xl font-semibold mb-8">Featured Tracks • 2026</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="group flex items-center gap-x-4 bg-[#111] hover:bg-[#1A1A1A] border border-white/10 p-5 rounded-2xl transition-all">
-                        <div class="w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-[#8B6914] rounded-xl flex items-center justify-center flex-shrink-0">🎵</div>
-                        <div class="flex-1"><div class="font-semibold">大发财 (Tua Huat Cai)</div><div class="text-sm text-[#888]">Niken Kho • 2026</div></div>
-                        <a href="https://open.spotify.com/search/Niken%20Kho%20%E5%A4%A7%E5%8F%91%E8%B4%A2" target="_blank" class="px-5 py-2 text-xs border border-[#1DB954] text-[#1DB954] hover:bg-[#1DB954] hover:text-white rounded-full">PLAY</a>
-                    </div>
-                    <!-- Tambahkan 3 track lagi dengan cara yang sama -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALLERY + FILTER (FITUR 4) -->
-    <section id="gallery" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10">
-        <div class="text-center mb-12">
-            <div class="text-[#D4AF37] text-xs tracking-[4px]">VISUAL ARCHIVE</div>
-            <h2 class="font-serif text-7xl mt-4">Media Gallery</h2>
-        </div>
-
-        <!-- Filter -->
-        <div class="flex justify-center gap-x-3 mb-10 flex-wrap">
-            <button onclick="filterMedia('all')" class="media-filter-btn active px-6 py-2 text-sm rounded-full border border-[#D4AF37] text-[#D4AF37]">ALL</button>
-            <button onclick="filterMedia('photo')" class="media-filter-btn px-6 py-2 text-sm rounded-full border border-white/20">PHOTO</button>
-            <button onclick="filterMedia('video')" class="media-filter-btn px-6 py-2 text-sm rounded-full border border-white/20">VIDEO</button>
-            <button onclick="filterMedia('live')" class="media-filter-btn px-6 py-2 text-sm rounded-full border border-white/20">LIVE</button>
-        </div>
-
-        <div class="grid md:grid-cols-4 gap-4" id="mediaGrid">
-            <!-- Media items akan di-generate via JS -->
-        </div>
-    </section>
-
-    <!-- AI INQUIRY (FITUR 2) -->
-    <section id="inquiry" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10 bg-[#0A0A0A]">
+    <!-- Inquiry Form -->
+    <section id="inquiry" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <div class="text-[#D4AF37] text-xs tracking-[4px]">AI POWERED</div>
-                <h2 class="font-serif text-7xl mt-4">Smart Inquiry Assistant</h2>
-                <p class="text-[#999] mt-4">Jawab beberapa pertanyaan, AI akan sarankan package &amp; tanggal terbaik</p>
+            <div class="text-center mb-16">
+                <div class="text-[#D4AF37] text-xs tracking-[4px]">PRIVATE INQUIRY</div>
+                <h2 class="font-serif text-7xl mt-4">VVIP Booking</h2>
             </div>
 
-            <div class="bg-[#111] border border-white/10 rounded-3xl p-10">
-                <!-- AI Chat Interface -->
-                <div id="aiChat" class="h-80 overflow-y-auto mb-6 p-4 bg-[#0A0A0A] rounded-2xl space-y-4"></div>
+            <form id="bookingForm" class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs tracking-widest text-[#999] mb-3">NAMA PROMOTOR</label>
+                        <input type="text" id="promotorName" class="w-full bg-transparent border border-white/20 focus:border-[#D4AF37] px-6 py-4 rounded-2xl outline-none text-lg" placeholder="Nama Lengkap" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-widest text-[#999] mb-3">TANGGAL ACARA</label>
+                        <input type="date" id="eventDate" class="w-full bg-transparent border border-white/20 focus:border-[#D4AF37] px-6 py-4 rounded-2xl outline-none text-lg" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs tracking-widest text-[#999] mb-3">FORMAT ACARA</label>
+                    <select id="eventFormat" class="w-full bg-[#0A0A0A] border border-white/20 focus:border-[#D4AF37] px-6 py-4 rounded-2xl outline-none text-lg">
+                        <option value="">Pilih Format Acara</option>
+                        <option value="Wedding VVIP">Wedding VVIP (200-800 pax)</option>
+                        <option value="Corporate Gala">Corporate Gala (300-1500 pax)</option>
+                        <option value="Private Dinner">Private Dinner (50-150 pax)</option>
+                        <option value="Imlek Celebration">Imlek Celebration</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs tracking-widest text-[#999] mb-3">RANGE BUDGET</label>
+                    <select id="budgetRange" class="w-full bg-[#0A0A0A] border border-white/20 focus:border-[#D4AF37] px-6 py-4 rounded-2xl outline-none text-lg">
+                        <option value="">Pilih Range Budget</option>
+                        <option value="150-250jt">Rp 150 - 250 Juta</option>
+                        <option value="250-400jt">Rp 250 - 400 Juta</option>
+                        <option value="400jt+">Rp 400 Juta+</option>
+                    </select>
+                </div>
+
+                <!-- EMSIFA Location Selector -->
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-xs tracking-widest text-[#999] mb-3">PROVINSI</label>
+                        <select id="provinsi" class="w-full bg-[#0A0A0A] border border-white/20 focus:border-[#D4AF37] px-5 py-4 rounded-2xl outline-none text-base" onchange="loadKabupaten()">
+                            <option value="">Pilih Provinsi</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-widest text-[#999] mb-3">KABUPATEN/KOTA</label>
+                        <select id="kabupaten" class="w-full bg-[#0A0A0A] border border-white/20 focus:border-[#D4AF37] px-5 py-4 rounded-2xl outline-none text-base" onchange="loadKecamatan()">
+                            <option value="">Pilih Kabupaten/Kota</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-widest text-[#999] mb-3">KECAMATAN</label>
+                        <select id="kecamatan" class="w-full bg-[#0A0A0A] border border-white/20 focus:border-[#D4AF37] px-5 py-4 rounded-2xl outline-none text-base" onchange="loadDesa()">
+                            <option value="">Pilih Kecamatan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-widest text-[#999] mb-3">DESA/KELURAHAN</label>
+                        <select id="desa" class="w-full bg-[#0A0A0A] border border-white/20 focus:border-[#D4AF37] px-5 py-4 rounded-2xl outline-none text-base">
+                            <option value="">Pilih Desa/Kelurahan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                        class="w-full mt-8 py-5 bg-[#D4AF37] text-[#030303] font-bold text-sm tracking-widest hover:bg-white transition-all rounded-2xl">
+                    SUBMIT PRIVATE INQUIRY → REDIRECT TO WHATSAPP
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Global Hospitality Rider -->
+    <section id="rider" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10 bg-[#0A0A0A]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="text-[#D4AF37] text-xs tracking-[4px]">GLOBAL HOSPITALITY RIDER</div>
+                <h2 class="font-serif text-7xl mt-4">VVIP Requirements</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="border border-white/10 p-10 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6">STAGE &amp; TECHNICAL</h3>
+                    <ul class="space-y-4 text-[#CCCCCC]">
+                        <li>• DiGiCo SD12 or equivalent console</li>
+                        <li>• 8x Shure Axient wireless microphones</li>
+                        <li>• Premium LED backdrop (minimum 12m x 5m)</li>
+                        <li>• Professional in-ear monitoring system</li>
+                        <li>• Private holding room with full amenities</li>
+                    </ul>
+                </div>
                 
-                <div class="flex gap-x-3">
-                    <input id="aiInput" type="text" class="flex-1 bg-transparent border border-white/20 focus:border-[#D4AF37] px-6 py-4 rounded-2xl outline-none" placeholder="Ketik jawaban Anda...">
-                    <button onclick="sendAIMessage()" class="px-8 py-4 bg-[#D4AF37] text-[#030303] font-bold rounded-2xl">KIRIM</button>
+                <div class="border border-white/10 p-10 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6">CATERING &amp; HOSPITALITY</h3>
+                    <ul class="space-y-4 text-[#CCCCCC]">
+                        <li>• Strictly 100% Free of Egg and Pork</li>
+                        <li>• Premium seafood &amp; vegetarian menu only</li>
+                        <li>• Private chef on standby</li>
+                        <li>• Mineral water &amp; herbal tea station</li>
+                        <li>• Temperature-controlled green room</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TOUR MAP (FITUR 6) -->
-    <section id="map" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10">
-        <div class="text-center mb-12">
-            <div class="text-[#D4AF37] text-xs tracking-[4px]">PERFORMANCE HISTORY</div>
-            <h2 class="font-serif text-7xl mt-4">Where Niken Has Performed</h2>
-        </div>
-        
-        <div class="bg-[#0A0A0A] border border-white/10 rounded-3xl p-12 text-center">
-            <div class="text-6xl mb-6">🗺️</div>
-            <div class="text-2xl font-semibold">Interactive Tour Map</div>
-            <p class="text-[#888] mt-3">Bengkalis • Dumai • Medan • Jakarta • Singapore • Batam • Sibolga • Pekanbaru</p>
-            <div class="mt-8 text-xs text-[#666]">* Fitur interaktif peta akan aktif di versi production (menggunakan Leaflet.js + data real)</div>
-        </div>
-    </section>
-
-    <!-- PERFORMANCE ANALYTICS (FITUR 8) -->
-    <section class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10 bg-[#0A0A0A]">
+    <!-- YouTube Stats -->
+    <section id="stats" class="max-w-screen-2xl mx-auto px-10 py-24 border-t border-white/10">
         <div class="text-center mb-16">
-            <div class="text-[#D4AF37] text-xs tracking-[4px]">IMPACT &amp; REACH</div>
-            <h2 class="font-serif text-7xl mt-4">Performance Analytics</h2>
+            <div class="text-[#D4AF37] text-xs tracking-[4px]">LIVE DIGITAL FOOTPRINT</div>
+            <h2 class="font-serif text-7xl mt-4">Real-Time Stats</h2>
         </div>
-        
-        <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <div class="text-center">
-                <div class="font-serif text-[4.5rem] font-bold text-[#D4AF37] counter" data-target="87">0</div>
-                <div class="text-xs tracking-widest text-[#888]">EVENTS IN 2025-2026</div>
+
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center">
+                    <div id="subscriberCount" class="font-serif text-[5.5rem] font-bold text-[#D4AF37]">4.22K</div>
+                    <div class="text-xs tracking-[3px] text-[#888]">YOUTUBE SUBSCRIBERS</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-serif text-[5.5rem] font-bold text-[#D4AF37]">18.7K</div>
+                    <div class="text-xs tracking-[3px] text-[#888]">FACEBOOK FOLLOWERS</div>
+                </div>
+                <div class="text-center">
+                    <div class="font-serif text-[5.5rem] font-bold text-[#D4AF37]">835+</div>
+                    <div class="text-xs tracking-[3px] text-[#888]">PERFORMANCE VIDEOS</div>
+                </div>
             </div>
-            <div class="text-center">
-                <div class="font-serif text-[4.5rem] font-bold text-[#D4AF37] counter" data-target="124000">0</div>
-                <div class="text-xs tracking-widest text-[#888]">TOTAL AUDIENCE</div>
-            </div>
-            <div class="text-center">
-                <div class="font-serif text-[4.5rem] font-bold text-[#D4AF37] counter" data-target="47">0</div>
-                <div class="text-xs tracking-widest text-[#888]">CITIES PERFORMED</div>
-            </div>
-            <div class="text-center">
-                <div class="font-serif text-[4.5rem] font-bold text-[#D4AF37] counter" data-target="92">0</div>
-                <div class="text-xs tracking-widest text-[#888]">REPEAT CLIENTS</div>
+
+            <!-- Latest Videos -->
+            <div id="youtubeVideos" class="grid md:grid-cols-3 gap-6">
+                <!-- Populated by JS -->
             </div>
         </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="max-w-screen-2xl mx-auto px-10 py-24 text-center border-t border-white/10">
-        <h2 class="font-serif text-6xl">Ready to create an unforgettable night?</h2>
-        <p class="text-xl text-[#888] mt-6 max-w-md mx-auto">Only 3 prime dates remaining in May 2026.</p>
-        
-        <button onclick="document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' })" 
-                class="mt-10 px-16 py-6 bg-[#D4AF37] text-[#030303] text-lg font-bold tracking-widest rounded-full hover:bg-white transition-all">
-            START VVIP INQUIRY NOW
-        </button>
-    </section>
-
-    <footer class="border-t border-white/10 py-16 text-center text-xs text-[#666]">
-        © 2026 OFFICIAL MANAGEMENT - GLOBAL ARTIST REPRESENTATIVE. ALL RIGHTS RESERVED.
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-16">
+        <div class="max-w-screen-2xl mx-auto px-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-y-8">
+                <!-- Social Links -->
+                <div class="flex gap-x-8 text-sm">
+                    <a href="https://www.tiktok.com/@nikenkhor" target="_blank" class="hover:text-[#D4AF37] transition-colors">TIKTOK</a>
+                    <a href="https://www.instagram.com/nikenkhor" target="_blank" class="hover:text-[#D4AF37] transition-colors">INSTAGRAM</a>
+                    <a href="https://www.facebook.com/Nikenkhor" target="_blank" class="hover:text-[#D4AF37] transition-colors">FACEBOOK</a>
+                    <a href="https://www.youtube.com/@NikenKhor" target="_blank" class="hover:text-[#D4AF37] transition-colors">YOUTUBE</a>
+                </div>
+                
+                <div class="text-center text-xs tracking-[2.5px] text-[#666]">
+                    © 2026 OFFICIAL MANAGEMENT - GLOBAL ARTIST REPRESENTATIVE. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Floating Action Menu -->
+    <div class="floating-menu hidden lg:block">
+        <div class="flex flex-col gap-y-4">
+            <button onclick="playAmbientAudio()" class="w-14 h-14 bg-[#0A0A0A] border border-white/20 rounded-full flex items-center justify-center hover:border-[#D4AF37] transition-all">
+                <span class="text-xl">♫</span>
+            </button>
+            <button onclick="document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' })" class="w-14 h-14 bg-[#D4AF37] text-[#030303] rounded-full flex items-center justify-center font-bold text-xs tracking-widest">BOOK</button>
+        </div>
+    </div>
+
     <script>
-        // ==================== ALL JAVASCRIPT ====================
-        
-        function initAll() {
+        // Tailwind Config
+        function initTailwind() {
+            document.documentElement.style.setProperty('--accent-gold', '#D4AF37');
+        }
+
+        // Custom Cursor
+        function initCustomCursor() {
+            const cursor = document.getElementById('customCursor');
+            if (!cursor) return;
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX - 14 + 'px';
+                cursor.style.top = e.clientY - 14 + 'px';
+            });
+
+            document.querySelectorAll('a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+            });
+        }
+
+        // Preloader
+        function initPreloader() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                gsap.to(preloader, {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    onComplete: () => preloader.style.display = 'none'
+                });
+            }, 1800);
+        }
+
+        // YouTube API Integration
+        async function loadYouTubeData() {
+            const API_KEY = "AIzaSyDa43LypgkQYvRWTAAfbkdRewhfuYWKmH8";
+            const container = document.getElementById('youtubeVideos');
+            
+            try {
+                // Get Channel ID
+                const channelRes = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCWLg47QGnH2HKhOBB8TaxEw&key=${API_KEY}`);
+                const channelData = await channelRes.json();
+                
+                if (channelData.items && channelData.items[0]) {
+                    document.getElementById('subscriberCount').innerText = (parseInt(channelData.items[0].statistics.subscriberCount) / 1000).toFixed(1) + 'K';
+                }
+
+                // Get Latest Videos (with specific search)
+                const searchRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCWLg47QGnH2HKhOBB8TaxEw&q=%40nikenkhor -salindry&order=date&maxResults=3&key=${API_KEY}`);
+                const searchData = await searchRes.json();
+
+                container.innerHTML = '';
+
+                if (searchData.items && searchData.items.length > 0) {
+                    searchData.items.forEach(video => {
+                        const videoId = video.id.videoId;
+                        const title = video.snippet.title;
+                        const date = new Date(video.snippet.publishedAt).toLocaleDateString('id-ID', {month:'short', year:'numeric'});
+
+                        const card = document.createElement('div');
+                        card.className = 'premium-card bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden cursor-pointer';
+                        card.innerHTML = `
+                            <img src="${video.snippet.thumbnails.high.url}" class="w-full aspect-video object-cover">
+                            <div class="p-6">
+                                <div class="font-semibold line-clamp-2 text-sm">${title}</div>
+                                <div class="text-xs text-[#666] mt-4">${date}</div>
+                            </div>
+                        `;
+                        card.onclick = () => window.open(`https://youtube.com/watch?v=${videoId}`, '_blank');
+                        container.appendChild(card);
+                    });
+                } else {
+                    // Fallback
+                    container.innerHTML = `<div class="col-span-3 text-center py-12 text-[#666]">Video data is currently being updated. Please check back soon.</div>`;
+                }
+            } catch (error) {
+                console.error("YouTube API Error:", error);
+                container.innerHTML = `<div class="col-span-3 text-center py-12 text-[#666]">Unable to load live data. Please try again later.</div>`;
+            }
+        }
+
+        // EMSIFA API - Cascading Location
+        let provinsiData = [];
+
+        async function loadProvinsi() {
+            const res = await fetch('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+            provinsiData = await res.json();
+            
+            const select = document.getElementById('provinsi');
+            provinsiData.forEach(prov => {
+                const opt = document.createElement('option');
+                opt.value = prov.id;
+                opt.textContent = prov.name;
+                select.appendChild(opt);
+            });
+        }
+
+        async function loadKabupaten() {
+            const provId = document.getElementById('provinsi').value;
+            const select = document.getElementById('kabupaten');
+            select.innerHTML = '<option value="">Pilih Kabupaten/Kota</option>';
+            
+            if (!provId) return;
+
+            const res = await fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${provId}.json`);
+            const data = await res.json();
+            
+            data.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.id;
+                opt.textContent = item.name;
+                select.appendChild(opt);
+            });
+        }
+
+        async function loadKecamatan() {
+            const kabId = document.getElementById('kabupaten').value;
+            const select = document.getElementById('kecamatan');
+            select.innerHTML = '<option value="">Pilih Kecamatan</option>';
+            
+            if (!kabId) return;
+
+            const res = await fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${kabId}.json`);
+            const data = await res.json();
+            
+            data.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.id;
+                opt.textContent = item.name;
+                select.appendChild(opt);
+            });
+        }
+
+        async function loadDesa() {
+            const kecId = document.getElementById('kecamatan').value;
+            const select = document.getElementById('desa');
+            select.innerHTML = '<option value="">Pilih Desa/Kelurahan</option>';
+            
+            if (!kecId) return;
+
+            const res = await fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/villages/${kecId}.json`);
+            const data = await res.json();
+            
+            data.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.name;
+                opt.textContent = item.name;
+                select.appendChild(opt);
+            });
+        }
+
+        // Form Submit → WhatsApp
+        function initBookingForm() {
+            const form = document.getElementById('bookingForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const promotor = document.getElementById('promotorName').value;
+                const date = document.getElementById('eventDate').value;
+                const format = document.getElementById('eventFormat').value;
+                const budget = document.getElementById('budgetRange').value;
+                const desa = document.getElementById('desa').value;
+
+                const message = `Halo Niken Kho Management,%0A%0A` +
+                    `Saya ingin booking VVIP:%0A` +
+                    `Nama Promotor: ${promotor}%0A` +
+                    `Tanggal: ${date}%0A` +
+                    `Format: ${format}%0A` +
+                    `Budget: ${budget}%0A` +
+                    `Lokasi: ${desa}%0A%0A` +
+                    `Mohon info availability. Terima kasih.`;
+
+                window.open(`https://wa.me/6282285287318?text=${message}`, '_blank');
+            });
+        }
+
+        // Ambient Audio Player
+        let audio;
+        function playAmbientAudio() {
+            if (!audio) {
+                audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'); // Placeholder
+                audio.loop = true;
+            }
+            
+            if (audio.paused) {
+                audio.play();
+                alert("Ambient audio started (demo track). Replace with official Niken Kho track in production.");
+            } else {
+                audio.pause();
+            }
+        }
+
+        // GSAP Scroll Animations
+        function initGSAP() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Reveal animations
+            gsap.utils.toArray('.premium-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                    },
+                    y: 60,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    delay: i * 0.1
+                });
+            });
+        }
+
+        // Initialize Everything
+        function initializeAll() {
             initTailwind();
             initCustomCursor();
             initPreloader();
             initGSAP();
-            initMediaGallery();
-            initAIC hat();
-            animateCounters();
-            loadProvinsi(); // dari kode sebelumnya
+            initBookingForm();
             
-            // Generate random live stats
-            setInterval(() => {
-                const el = document.querySelector('.counter');
-                if (el) el.textContent = Math.floor(Math.random() * 3) + 87;
-            }, 15000);
+            // Load Data
+            loadProvinsi();
+            loadYouTubeData();
+
+            // Hide cursor on mobile
+            if (window.innerWidth < 768) {
+                document.getElementById('customCursor').style.display = 'none';
+            }
+
+            console.log('%c[EPK v2] God-Tier EPK initialized successfully.', 'color:#D4AF37');
         }
 
-        function initTailwind() { /* Tailwind config */ }
-        function initCustomCursor() { /* ... */ }
-        function initPreloader() { /* ... */ }
-        function initGSAP() { /* ... */ }
-
-        // Media Gallery with Filter
-        function initMediaGallery() {
-            const grid = document.getElementById('mediaGrid');
-            const items = [
-                {type: 'photo', src: 'https://picsum.photos/id/1015/600/400', title: 'Wedding Medan 2026'},
-                {type: 'video', src: 'https://picsum.photos/id/1016/600/400', title: 'Imlek Gala Bengkalis'},
-                {type: 'live', src: 'https://picsum.photos/id/102/600/400', title: 'Live at Dumai'},
-                // tambahkan lebih banyak
-            ];
-            
-            grid.innerHTML = items.map(item => `
-                <div class="media-item ${item.type} premium-card overflow-hidden rounded-3xl border border-white/10" data-type="${item.type}">
-                    <img src="${item.src}" class="w-full h-72 object-cover">
-                    <div class="p-5 text-sm">${item.title}</div>
-                </div>
-            `).join('');
-        }
-
-        function filterMedia(type) {
-            document.querySelectorAll('.media-filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            document.querySelectorAll('.media-item').forEach(item => {
-                if (type === 'all' || item.dataset.type === type) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // AI Chat
-        let aiStep = 0;
-        const aiQuestions = [
-            "Halo! Saya AI Assistant Niken Kho. Berapa pax tamu yang Anda rencanakan?",
-            "Bagus! Tanggal yang Anda inginkan sekitar bulan apa?",
-            "Apakah ini untuk wedding, gala, atau private dinner?",
-            "Berdasarkan jawaban Anda, saya sarankan Package Imperial. Mau saya buatkan Executive Brief sekarang?"
-        ];
-
-        function initAIChat() {
-            const chat = document.getElementById('aiChat');
-            chat.innerHTML = `<div class="bg-[#1A1A1A] p-4 rounded-2xl text-sm">Halo! Saya AI Assistant Niken Kho. Mau saya bantu susun inquiry terbaik untuk Anda?</div>`;
-        }
-
-        function sendAIMessage() {
-            const input = document.getElementById('aiInput');
-            const chat = document.getElementById('aiChat');
-            
-            if (!input.value.trim()) return;
-            
-            chat.innerHTML += `<div class="text-right"><div class="inline-block bg-[#D4AF37] text-[#030303] px-4 py-2 rounded-2xl text-sm">${input.value}</div></div>`;
-            input.value = '';
-            
-            setTimeout(() => {
-                if (aiStep < aiQuestions.length) {
-                    chat.innerHTML += `<div class="bg-[#1A1A1A] p-4 rounded-2xl text-sm">${aiQuestions[aiStep]}</div>`;
-                    aiStep++;
-                } else {
-                    chat.innerHTML += `<div class="bg-emerald-900 p-4 rounded-2xl text-sm">Terima kasih! Executive Brief sudah saya siapkan. Silakan lanjutkan ke form booking di bawah.</div>`;
-                }
-                chat.scrollTop = chat.scrollHeight;
-            }, 800);
-        }
-
-        function animateCounters() {
-            document.querySelectorAll('.counter').forEach(el => {
-                const target = parseInt(el.dataset.target);
-                let current = 0;
-                const increment = target / 60;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        el.textContent = target.toLocaleString();
-                        clearInterval(timer);
-                    } else {
-                        el.textContent = Math.floor(current).toLocaleString();
-                    }
-                }, 40);
-            });
-        }
-
-        // Multi Language
-        function switchLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-            
-            // Di production, ini akan mengganti semua teks
-            alert(`Bahasa diubah ke ${lang.toUpperCase()}. (Fitur multi-language aktif di production)`);
-        }
-
-        window.onload = function() {
-            initAll();
-            initAIChat();
-            // loadYouTubeData() & loadProvinsi() dari kode sebelumnya
-        }
+        window.onload = initializeAll;
     </script>
 </body>
 </html>
